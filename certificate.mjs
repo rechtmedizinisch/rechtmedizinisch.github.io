@@ -1,4 +1,4 @@
-import {PDFDocument,StandardFonts,rgb} from './assets/pdf-lib.mjs?v=20260930ae';
+import {PDFDocument,StandardFonts,rgb} from './assets/pdf-lib.mjs?v=20260930af';
 export function certificateName(value){const name=String(value??'').trim().replace(/\s+/gu,' ');if(!name||[...name].length>120)throw Error('Bitte geben Sie einen Namen mit 1 bis 120 Zeichen ein.');return name;}
 export function requireCertificate(status){if(!status?.isComplete||status.totalCourses!==15||status.completedCourses!==15||status.totalUnits<=0||status.completedUnits!==status.totalUnits)throw Error('Das Zertifikat wird erst nach allen Pflichtschritten freigeschaltet.');}
 // The browser rasterizes only the name so all characters supported by its fonts

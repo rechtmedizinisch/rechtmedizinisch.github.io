@@ -1,4 +1,4 @@
-import {courseStatus} from './progress-engine.mjs?v=20260930ae';
+import {courseStatus} from './progress-engine.mjs?v=20260930af';
 export function catalogStatus(entry,value={},content){
   if(content)return courseStatus(content,value);
   const totalUnits=entry.totalUnits??0;
@@ -33,6 +33,6 @@ export function renderProgress(main,catalog,store,isSignedIn){
   const label=el('label','Name auf dem Zertifikat'),input=el('input'),download=el('button',s.isComplete?'↓ Zertifikat als PDF speichern':'🔒 Zertifikat noch nicht freigeschaltet'),feedback=el('p');
   input.id='certificate-name';label.htmlFor=input.id;input.maxLength=120;input.autocomplete='name';input.value=store.snapshot.certificateName??'';download.type='button';download.disabled=!s.isComplete;feedback.role='status';
   input.addEventListener('change',()=>store.setCertificateName(input.value));
-  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20260930ae');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
+  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20260930af');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
   certificate.append(label,input,download,feedback);main.append(certificate);
 }
