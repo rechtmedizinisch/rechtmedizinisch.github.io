@@ -1,14 +1,14 @@
-import {courseStatus} from './progress-engine.mjs?v=20260930ag';
-import {shuffle,safeURL} from './policy.mjs?v=20260930ag';
-import {formatSlideText} from './slide-tools.js?v=20260930ag';
+import {courseStatus} from './progress-engine.mjs?v=20260930ah';
+import {shuffle,safeURL} from './policy.mjs?v=20260930ah';
+import {formatSlideText} from './slide-tools.js?v=20260930ah';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 const button=(label,fn,cls='secondary')=>{const b=el('button',label,cls);b.type='button';b.onclick=fn;return b;};
 function external(label,url,onOpen){const a=el('a',label,'source-link'),href=safeURL(url);if(href){a.href=href;a.target='_blank';a.rel='noopener noreferrer';a.onclick=onOpen;}return a;}
-export function renderCourseLearning(main,head,course,store){
+export function renderCourseLearning(main,head,course,store,signedIn=false){
   const id=course.id,progress=el('div',null,'course-learning-progress'),meter=el('progress'),caption=el('p'),saveStatus=el('p',null,'subtle');
   meter.max=100;meter.setAttribute('aria-label','Kursfortschritt');caption.role='status';saveStatus.role='status';
   progress.append(meter,caption);head.insertBefore(progress,head.querySelector('h2'));main.append(saveStatus);
-  function refresh(){const s=courseStatus(course,store.course(id));meter.value=s.percent;caption.textContent=`${s.percent} % · ${s.completedUnits} von ${s.totalUnits} Lernschritten`;saveStatus.textContent=store.error??'Lernstand wird in diesem Browser gespeichert. Gast und angemeldetes Konto bleiben getrennt.';}
+  function refresh(){const s=courseStatus(course,store.course(id));meter.value=s.percent;caption.textContent=`${s.percent} % · ${s.completedUnits} von ${s.totalUnits} Lernschritten`;saveStatus.textContent=store.error??(signedIn?'Ihr Lernstand gehört zu Ihrem Web-Konto. Den Synchronisierungsstatus finden Sie unter Fortschritt.':'Ihr Gast-Lernstand bleibt in diesem Browser. Nach der Anmeldung können Sie ihn auf Wunsch in Ihr Web-Konto übernehmen.');}
   function update(patch){store.update(id,patch);store.recordStatus(id,courseStatus(course,store.course(id)));refresh();}
   function mark(field,index){update({[field]:[...new Set([...store.course(id)[field],index])]});}
   function section(step,title){const box=el('section',null,'card learning-step');box.append(el('p',`SCHRITT ${step}`,'section-number'),el('h2',title));main.append(box);return box;}

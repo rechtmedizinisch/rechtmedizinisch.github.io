@@ -7,5 +7,5 @@ export async function preparePresentationDownload(auth) {
     throw new Error('Die Präsentation ist derzeit nicht verfügbar.');
   }
   // Metadata and Storage independently enforce the current server-side entitlement.
-  return {url: await auth.getGraphic(asset.path), filename: asset.filename};
+  return {url: await auth.getGraphic(asset.path,asset.filename), filename: asset.filename};
 }
