@@ -1,4 +1,4 @@
-import {catalogOverall} from './progress-overview.mjs?v=20260930aj';
+import {catalogOverall} from './progress-overview.mjs?v=20260930ak';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 export function homeLearning(main,catalog,store){
   const overall=catalogOverall(catalog,store.snapshot),next=overall.states.find(s=>!s.isComplete)??overall.states.at(-1);

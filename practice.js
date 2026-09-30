@@ -1,6 +1,6 @@
-import {hasAccess,shuffle} from './policy.mjs?v=20260930aj';
-import {protectReferences} from './presentation-theme.mjs?v=20260930aj';
-import {courseMistakes} from './practice-mistakes.mjs?v=20260930aj';
+import {hasAccess,shuffle} from './policy.mjs?v=20260930ak';
+import {protectReferences} from './presentation-theme.mjs?v=20260930ak';
+import {courseMistakes} from './practice-mistakes.mjs?v=20260930ak';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const btn=(text,fn,cls='')=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
 const feedback=s=>(s??'').replace(/^(Richtig\.|Nein\.)\s*/, '');
