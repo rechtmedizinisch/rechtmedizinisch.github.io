@@ -1,7 +1,7 @@
-import {renderSource} from './source-links.mjs?v=20260930r';
-import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930r';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930r';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930r';
+import {renderSource} from './source-links.mjs?v=20260930s';
+import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930s';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930s';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930s';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 const categorySymbols={'PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
 const careerEntries=[['Vor meinem PJ',['pj-rolle','pj-plan','kompetenz-pj','aufklaerung-pj']],['Vor meiner ersten Stelle',['approbation-start','vertrag-start','arbeitszeit-start','haftpflicht-start','versorgung-start']],['In meiner Weiterbildung',['wbo-start','elogbuch-start','facharzt-start','ueberlastung-start']]];
