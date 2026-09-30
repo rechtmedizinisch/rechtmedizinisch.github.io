@@ -1,0 +1,12 @@
+export function formatSlideText(parent,text){
+ const parts=text.replace(/§{1,2}\s+(?=\d)/g,m=>m.trim()+'\u00a0').split(/(?:\s*•\s*|\n\s*[-–]\s+)/).filter(x=>x.trim());
+ if(parts.length>1||/^\s*•/.test(text)){const ul=document.createElement('ul');ul.className='slide-points';for(const part of parts){const li=document.createElement('li');li.textContent=part.trim();ul.append(li);}parent.append(ul);}else{const p=document.createElement('p');p.textContent=parts[0]??'';parent.append(p);}
+}
+export async function downloadSlides(auth,freeSlides,full){
+ const available=full?await auth.getSlides():freeSlides.filter(e=>e.free).map(e=>e.content);const byId=new Map(available.filter(c=>c?.blocks).map(c=>[String(c.id),c]));const slides=freeSlides.map(e=>byId.get(String(e.nativeId))).filter(Boolean);
+ if(!slides.length)throw Error('Keine Folien verfügbar');
+ const doc=document.implementation.createHTMLDocument('Recht Medizinisch – Kursfolien');doc.documentElement.lang='de';
+ const style=doc.createElement('style');style.textContent='body{font:18px system-ui;background:#f4f6f4;color:#143745;margin:0}article{max-width:1000px;margin:30px auto;background:white;padding:40px;border-top:8px solid #09868b;border-radius:18px;page-break-after:always}h1{color:#073143}h2{color:#087f86}li,p{line-height:1.6}li{margin:12px 0}small{color:#596e75}@media print{article{margin:0;border-radius:0}}';doc.head.append(style);
+ for(const c of slides){const article=doc.createElement('article'),label=doc.createElement('small'),h=doc.createElement('h1');label.textContent='Recht Medizinisch · Folie '+c.id;h.textContent=c.title;article.append(label,h);for(const block of c.blocks??[]){if(block.role==='heading'){const heading=doc.createElement('h2');heading.textContent=block.text;article.append(heading);}else if(block.text)formatSlideText(article,block.text);for(const l of block.links??[]){if(!/^https:\/\//.test(l.url))continue;const p=doc.createElement('p'),a=doc.createElement('a');a.href=l.url;a.textContent=l.label??'Quelle';p.append(a);article.append(p);}}doc.body.append(article);}
+ const blob=new Blob(['<!doctype html>'+doc.documentElement.outerHTML],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=full?'Recht-Medizinisch-Kursfolien.html':'Recht-Medizinisch-Kostenlose-Folien.html';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+}
