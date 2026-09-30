@@ -1,4 +1,5 @@
-import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20260930k';
+import {renderSource} from './source-links.mjs?v=20260930l';
+import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20260930l';
 export function richText(parent,text){const doc=parent.ownerDocument;let cursor=0;for(const r of emphasisRanges(text)){parent.append(doc.createTextNode(text.slice(cursor,r.start)));const strong=doc.createElement('strong');strong.textContent=text.slice(r.start,r.end);parent.append(strong);cursor=r.end;}parent.append(doc.createTextNode(text.slice(cursor)));}
 export function formatSlideText(parent,text){
  const parts=readingParts(text),doc=parent.ownerDocument;
@@ -18,7 +19,7 @@ export async function downloadSlides(auth,freeSlides,full){
   for(const part of sections){const theme=headingStyle(part.title),section=doc.createElement('section');section.className='slide-block tone-'+theme.tone;if(part.title){const heading=doc.createElement('h2');if(theme.symbol){const symbol=doc.createElement('span');symbol.className=theme.step?'step-number':'section-symbol';symbol.textContent=theme.symbol;heading.append(symbol);}heading.append(doc.createTextNode(' '+theme.title));section.append(heading);}
    for(const block of part.blocks){if(block.image){const img=doc.createElement('img');img.src=await embed(block.image,c);img.alt='Originalgrafik: '+c.title;section.append(img);}if(block.text)formatSlideText(section,block.text);for(const l of block.links??[]){const url=typeof l==='string'?l:l.url;if(!/^https:\/\//.test(url??''))continue;const p=doc.createElement('p'),a=doc.createElement('a');a.href=url;a.textContent=typeof l==='string'?'Quelle':l.label??'Quelle';p.append(a);section.append(p);}}grid.append(section);
   }
-  if(sources.length){const box=doc.createElement('aside'),title=doc.createElement('h3');title.textContent='📚 Quellen & Fundstellen';box.append(title);for(const text of sources){const p=doc.createElement('p');p.textContent=text;box.append(p);}article.append(box);}doc.body.append(article);
+  if(sources.length){const box=doc.createElement('aside'),title=doc.createElement('h3');title.textContent='📚 Quellen & Fundstellen';box.append(title);for(const text of sources){const p=doc.createElement('p');renderSource(p,text);box.append(p);}article.append(box);}doc.body.append(article);
  }
  const blob=new Blob(['<!doctype html>'+doc.documentElement.outerHTML],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob);
  return {url,filename:full?'Recht-Medizinisch-Kursfolien.html':'Recht-Medizinisch-Kostenlose-Folien.html'};

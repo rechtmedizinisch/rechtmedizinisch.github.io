@@ -1,6 +1,7 @@
-import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930k';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930k';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930k';
+import {renderSource} from './source-links.mjs?v=20260930l';
+import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930l';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930l';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930l';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 let entries;
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
@@ -72,7 +73,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
   let src=c.publicAssets?.[name];
   if(!src&&auth){try{const a=await auth.getCourse('asset-v3:'+scope(e)+':'+name);if(a&&['image/png','image/jpeg','image/webp'].includes(a.mime)&&/^[A-Za-z0-9_-]+\.(png|jpg|jpeg|webp)$/.test(a.path))src=await auth.getGraphic(a.path);}catch{}}
   if(!isCurrent())return;
-  if(!src){main.append(node('p','Die Grafik konnte nicht geladen werden. Die Lesefassung steht unten bereit.','notice'));return;}
+  if(!src){target.append(node('p','Die Grafik konnte nicht geladen werden. Die Lesefassung steht unten bereit.','notice'));return;}
   const figure=node('figure',null,'diagram'),img=node('img');img.src=src;img.alt=e.title;img.loading='lazy';
   const zoom=node('button','Grafik vergrößern ⤢','secondary');zoom.type='button';zoom.onclick=()=>{const dialog=node('dialog',null,'image-dialog'),close=node('button','Schließen ×');const full=img.cloneNode();close.onclick=()=>{dialog.close();dialog.remove();};dialog.append(close,full);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();};figure.append(img,zoom);target.append(figure);
  }
@@ -88,7 +89,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
  const {sections,sources}=slideSections(c.blocks);const sectionsGrid=node('div',null,'slide-sections');stage.append(sectionsGrid);
  for(const part of sections){const style=headingStyle(part.title),section=node('section',null,'slide-block tone-'+style.tone);if(part.title){const h=node('h2');if(style.symbol)h.append(node('span',style.symbol,style.step?'step-number':'section-symbol'));h.append(node('span',style.title));section.append(h);}for(const block of part.blocks){if(block.image)await graphic(block.image,section);if(!isCurrent())return;if(block.text)formatSlideText(section,block.text);for(const l of block.links??[]){const url=typeof l==='string'?l:l.url;if(safeURL(url)){const a=anchor((typeof l==='string'?'Quelle':l.label??'Rechtsquelle')+' ↗',url);a.target='_blank';a.rel='noopener noreferrer';section.append(a);}}}sectionsGrid.append(section);}
- if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources)detail.append(node('p',text));stage.append(detail);}
+ if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources){const p=node('p');renderSource(p,text);detail.append(p);}stage.append(detail);}
  const siblings=entries.filter(x=>x.group==='slides'),i=siblings.findIndex(x=>x.id===e.id);const nav=node('nav');if(i>0)nav.append(anchor('← Vorherige Folie','#material/'+encodeURIComponent(siblings[i-1].id)));if(i+1<siblings.length)nav.append(anchor('Nächste Folie →','#material/'+encodeURIComponent(siblings[i+1].id)));main.append(nav);
  const toolbar=main.querySelector('.slide-toolbar'),playerHeader=node('div',null,'player-header'),brand=node('div',null,'player-brand'),logo=node('img');logo.src='assets/podcast-cover.webp';logo.alt='';brand.append(logo,node('strong','Recht Medizinisch'));playerHeader.append(brand,node('span',`Folie ${e.nativeId} · ${i+1} / ${siblings.length}`,'player-position'),anchor('✕ Übersicht','#slides'));
  const foot=node('div',null,'player-controls'),progress=node('progress');progress.max=siblings.length;progress.value=i+1;progress.setAttribute('aria-label','Position in der Präsentation');foot.append(nav,progress);
