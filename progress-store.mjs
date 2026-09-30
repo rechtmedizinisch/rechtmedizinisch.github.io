@@ -1,4 +1,4 @@
-import {emptyCourseProgress} from './progress-engine.mjs?v=20260930ab';
+import {emptyCourseProgress} from './progress-engine.mjs?v=20260930ac';
 export const progressKey=owner=>'rm-web-learning-v1:'+(owner||'guest');
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 function normalizeCourse(value){
@@ -15,11 +15,12 @@ function normalizeSnapshot(value){
   const courses=Object.fromEntries(Object.entries(object(value?.courses)?value.courses:{}).map(([id,course])=>[id,normalizeCourse(course)]));
   const certificateName=typeof value?.certificateName==='string'?value.certificateName:'';
   const validSync=object(value?._sync)&&Number.isSafeInteger(value._sync.revision)&&value._sync.revision>=0&&typeof value._sync.dirty==='boolean';
-  return {courses,certificateName,_sync:validSync?{revision:value._sync.revision,dirty:value._sync.dirty}:{revision:0,dirty:Object.keys(courses).length>0||certificateName.length>0}};
+  const completedCareerTopics=Array.isArray(value?.completedCareerTopics)?[...new Set(value.completedCareerTopics.filter(id=>typeof id==='string'&&id.length<=120))]:[];
+  return {courses,certificateName,completedCareerTopics,_sync:validSync?{revision:value._sync.revision,dirty:value._sync.dirty}:{revision:0,dirty:Object.keys(courses).length>0||certificateName.length>0||completedCareerTopics.length>0}};
 }
 export function progressStore(owner,storage=localStorage){
   const key=progressKey(owner);
-  let snapshot={courses:{},certificateName:'',_sync:{revision:0,dirty:false}},error=null,generation=0;
+  let snapshot={courses:{},certificateName:'',completedCareerTopics:[],_sync:{revision:0,dirty:false}},error=null,generation=0;
   try{const saved=JSON.parse(storage.getItem(key)||'null');if(saved)snapshot=normalizeSnapshot(saved);}catch{error='Der gespeicherte Lernstand konnte nicht gelesen werden.';}
   const listeners=new Set();
   return {
@@ -28,7 +29,10 @@ export function progressStore(owner,storage=localStorage){
     course(id){return normalizeCourse(snapshot.courses[id]);},
     update(id,patch){snapshot.courses[id]={...this.course(id),...structuredClone(patch)};this.save();},
     recordStatus(id,status){if(!snapshot.courses[id]&&status.completedUnits===0)return;const before=this.course(id);if(before.completedUnits===status.completedUnits&&before.totalUnits===status.totalUnits)return;snapshot.courses[id]={...before,completedUnits:status.completedUnits,totalUnits:status.totalUnits};this.save();},
+    markCareerRead(id){if(snapshot.completedCareerTopics.includes(id))return;snapshot.completedCareerTopics.push(id);this.save();},
     setCertificateName(name){snapshot.certificateName=name;this.save();},
+    replaceLearning(payload){const sync=this.syncState;snapshot=normalizeSnapshot(payload);snapshot._sync=sync;this.save();},
+    resetLearning(){this.replaceLearning({courses:{},certificateName:''});},
     acceptRemote(payload,revision){snapshot=normalizeSnapshot({...payload,_sync:{revision,dirty:false}});this.save('remote');},
     acknowledge(revision,sentGeneration){snapshot._sync={revision,dirty:generation!==sentGeneration};this.save('remote');},
     rebase(revision){snapshot._sync={revision,dirty:true};this.save('remote');},

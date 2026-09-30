@@ -1,5 +1,6 @@
-import {hasAccess,shuffle} from './policy.mjs?v=20260930ab';
-import {protectReferences} from './presentation-theme.mjs?v=20260930ab';
+import {hasAccess,shuffle} from './policy.mjs?v=20260930ac';
+import {protectReferences} from './presentation-theme.mjs?v=20260930ac';
+import {courseMistakes} from './practice-mistakes.mjs?v=20260930ac';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const btn=(text,fn,cls='')=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
 const feedback=s=>(s??'').replace(/^(Richtig\.|Nein\.)\s*/, '');
@@ -9,7 +10,7 @@ const modes=[
  {id:'exam',icon:'📝',title:'Prüfungsmodus',description:'Ohne Lösungshinweise kreuzen. Alle Lösungen und Erklärungen erscheinen erst in der Auswertung.'}
 ];
 function modeCards(onChange){const grid=el('div',null,'practice-modes');if(onChange)grid.setAttribute('aria-label','Übungsmodus auswählen');for(const m of modes){const card=el(onChange?'button':'article',null,'practice-mode');if(onChange){card.type='button';card.setAttribute('aria-pressed',String(m.id==='learning'));card.onclick=()=>{for(const n of grid.children)n.setAttribute('aria-pressed','false');card.setAttribute('aria-pressed','true');onChange(m.id);};}card.append(el('span',m.icon,'mode-icon'),el('strong',m.title),el('span',m.description,'mode-description'));grid.append(card);}return grid;}
-export async function renderPractice(main,auth,grants,user,isCurrent){
+export async function renderPractice(main,auth,grants,user,isCurrent,learningStore){
  const hero=el('section',null,'knowledge-banner');hero.append(el('p','LERNWERKZEUGE','section-number'),el('h1','Wissen gezielt festigen'),el('p','Üben, wiederholen oder unter Zeitdruck testen. Fragen und Antworten werden bei jeder neuen Runde neu gemischt.'));main.append(hero);
  if(!auth||!hasAccess('practice',grants)){const a=el('a','Anmelden & Übungsbereich freischalten →','button');a.href='#account';const gate=el('section',null,'card');gate.append(el('h2','🔒 Ihre Wissensrunde freischalten'),el('p','Der Übungsbereich benötigt einen Web-Zugang für Übungen oder alle Inhalte.','notice'),a);main.append(gate,modeCards());const free=el('section',null,'card');free.append(el('span','Kostenlos starten','badge'),el('h2','Fragen direkt im Kurs beantworten'),el('p','Die Fallfragen und Wissensfragen in Kurs 1 und 2 sind ohne Anmeldung zugänglich.'));const links=el('div',null,'row');for(const n of [1,2]){const l=el('a',`Kurs ${n} öffnen →`,'button secondary');l.href=`#course/tag-0${n}`;links.append(l);}free.append(links);main.append(free);return;}
  let data;try{data=await auth.getCourse('practice:course-quizzes');}catch{}
@@ -27,7 +28,11 @@ export async function renderPractice(main,auth,grants,user,isCurrent){
   const start=items=>{const n=Number(seconds.value);if(!Number.isInteger(n)||n<0||n>5400||n%30){seconds.reportValidity();return;}run(items,selectedMode,n);};
   const timerBox=el('div',null,'practice-timer-setup');timerBox.append(el('h3','⏱ Optionales Zeitlimit'),timeLabel,seconds,timePreview,btn('90 Sekunden je Frage übernehmen',()=>{seconds.value=String(data.questions.length*90);showTime();},'secondary'));
   panel.append(modesView,timerBox,el('p',`${data.questions.length} Fragen. Für die Auswertung zählt der erste Versuch je Frage.`,'subtle'),btn('Runde starten →',()=>start(data.questions)));
-  const wrong=data.questions.filter(q=>mistakes.includes(q.id)),mistakeBox=el('section',null,'practice-mistakes');mistakeBox.append(el('h3','↻ Fehlertraining aus Übungsrunden'),el('p',wrong.length?`${wrong.length} offene Fragen`:'Aktuell keine offenen Fehler in diesem Bereich.'));if(wrong.length)mistakeBox.append(btn('Diese Fehler üben →',()=>run(wrong,'learning',0),'secondary'));panel.append(mistakeBox);
+  const courseWrong=courseMistakes(data.questions,learningStore?.snapshot),courseBox=el('section',null,'practice-mistakes');
+  courseBox.append(el('h3','📚 Fehlertraining aus Kursen'),el('p',courseWrong.length?`${courseWrong.length} ${courseWrong.length===1?'offene Kursfrage':'offene Kursfragen'}`:'Aktuell keine offenen Fehler aus Ihren Kursfragen.'));
+  if(courseWrong.length){courseBox.append(btn('Kursfehler üben →',()=>run(courseWrong,'learning',0),'secondary'));const links=el('div',null,'row');for(const q of courseWrong){const a=el('a',`Kurs ${String(q.no).padStart(2,'0')} · Antwort im Kurs korrigieren →`,'button secondary');a.href='#course/'+encodeURIComponent(q.id);links.append(a);}courseBox.append(links);}
+  courseBox.append(el('p','Kursfehler bleiben hier sichtbar, bis Sie die Frage im jeweiligen Kurs richtig beantworten. Eine Übungsrunde verändert weder Ihren Kursabschluss noch die Zertifikatsfreigabe.','subtle'));panel.append(courseBox);
+  const wrong=data.questions.filter(q=>mistakes.includes(q.id)),mistakeBox=el('section',null,'practice-mistakes');mistakeBox.append(el('h3','↻ Fehlertraining aus Übungsrunden'),el('p',wrong.length?`${wrong.length} ${wrong.length===1?'offene Frage':'offene Fragen'}`:'Aktuell keine offenen Fehler in diesem Bereich.'));if(wrong.length)mistakeBox.append(btn('Diese Fehler üben →',()=>run(wrong,'learning',0),'secondary'));panel.append(mistakeBox);
   panel.append(el('p','Die Fehlerliste bleibt in diesem Browser getrennt für Ihr Web-Konto gespeichert. Sie wird nicht mit iCloud oder anderen Geräten synchronisiert.','subtle'));
  }
  function run(items,mode,seconds){
