@@ -1,5 +1,5 @@
-import {createClient} from './assets/supabase.bundle.mjs?v=20260930ai';
-import {config} from './config.js?v=20260930ai';
+import {createClient} from './assets/supabase.bundle.mjs?v=20260930aj';
+import {config} from './config.js?v=20260930aj';
 export const client=createClient(config.url,config.key,{auth:{flowType:'pkce',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'rm-web-auth-v2'}});
 export async function currentUser(){const {data,error}=await client.auth.getUser();if(error)return null;return data.user;}
 export async function getGrants(){if(!config.backendReady)return [];const {data,error}=await client.from('web_entitlements').select('scope,starts_at,expires_at,revoked_at');if(error)throw error;return data;}
