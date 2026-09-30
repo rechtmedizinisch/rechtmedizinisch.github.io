@@ -1,6 +1,7 @@
 const exact={kernpunkte:['☷','teal'],kernaussage:['❝','teal'],'tragende aussage':['❝','teal'],zitat:['❝','teal'],einordnung:['🧭','indigo'],kontext:['🧭','indigo'],ausgangspunkt:['🧭','indigo'],'historische einordnung':['🧭','indigo'],funktion:['⚙','blue'],methode:['⚙','blue'],kriterien:['⚙','blue'],kausalität:['🔗','teal'],rollen:['👥','teal'],aufklärung:['💬','blue'],einwilligung:['✓','teal'],berufsrecht:['🪪','blue'],zivilrecht:['👥','teal'],strafrecht:['⚖','indigo'],verfahren:['☷','teal'],kommunikation:['💬','blue'],akte:['📂','teal'],approbationsrecht:['🪪','blue'],rechtsfolge:['↳','teal'],anfangsverdacht:['🔎','teal'],grenzen:['⚠','gold'],sachverhalt:['🧩','blue'],fall:['🧩','blue'],beispiel:['🧩','blue'],fallbeispiel:['🧩','blue'],praxisfall:['🧩','blue'],'fiktives fallbeispiel':['🧩','blue'],'fiktiver übungsfall':['🧩','blue'],leitfrage:['?','indigo'],leitfragen:['?','indigo'],entscheidung:['⚖','indigo'],norm:['⚖','indigo'],normen:['⚖','indigo'],dokumentation:['📝','teal'],beweis:['🔎','teal'],evidenz:['🔎','teal'],befund:['🔎','teal'],praxis:['🩺','teal'],lehrtransfer:['🩺','teal'],patientensicherheit:['✚','teal'],'podcast-folge':['🎙','teal'],arbeitsauftrag:['☑','teal'],arbeitsaufträge:['☑','teal']};
 const prefixes=[[/^(fundstelle|quelle)/,'📚','blue'],[/^(achtung|warnung)/,'⚠','gold'],[/^(merksatz|praxis-merksatz|merke)/,'💡','gold'],[/^hinweis/,'ℹ','teal'],[/^(definition|legaldefinition)/,'📖','teal'],[/^checkliste/,'☑','teal'],[/^(lernziel|ihre lernziele)/,'🎯','teal'],[/^(problem|rechtsfrage)/,'?','indigo']];
 export function headingStyle(title=''){
+ const role=title.match(/^Rollen? (\d{1,2})$/);if(role)return {symbol:role[1],tone:'blue',title:'Rolle',step:true};
  const steps=['Tod feststellen','Prognose klären','Willen ermitteln','Rollen trennen','Prozess sichern'];const step=steps.indexOf(title),numbered=title.match(/^(\d{1,2}[.)]?|[A-C][.)])\s+(.+)$/);
  if(step>=0)return {symbol:String(step+1),tone:'teal',title,step:true};if(numbered)return {symbol:numbered[1].replace(/[.)]/g,''),tone:'teal',title:numbered[2],step:true};
  const key=title.toLocaleLowerCase('de').trim(),entry=exact[key],prefix=prefixes.find(([re])=>re.test(key));return {symbol:entry?.[0]??prefix?.[1]??'',tone:entry?.[1]??prefix?.[2]??'plain',title,step:false};
@@ -22,6 +23,7 @@ export function layoutForSlide(slide){
  const sections=slideSections(slide.blocks??[]).sections;
  if(Number(slide.id)===1)return 'cover';
  const short=sections.filter(s=>s.title&&s.blocks.every(b=>!b.image)&&s.blocks.reduce((n,b)=>n+(b.text?.length??0),0)<600);
+ if(sections.length>=4&&sections.length<=8&&short.length===sections.length&&sections.filter(s=>/^Rollen? \d/.test(s.title)).length>=4)return 'roles';
  if(sections.length>=2&&sections.length<=6&&short.length===sections.length)return 'comparison';
  if(sections.length===1&&/Zitat|Kernaussage|Tragende Aussage/i.test(sections[0].title??''))return 'statement';
  return 'reading';
