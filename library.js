@@ -1,8 +1,10 @@
-import {renderSource} from './source-links.mjs?v=20260930m';
-import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930m';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930m';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930m';
+import {renderSource} from './source-links.mjs?v=20260930n';
+import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930n';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930n';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930n';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
+const categorySymbols={'PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
+const careerEntries=[['Vor meinem PJ',['pj-rolle','pj-plan','kompetenz-pj','aufklaerung-pj']],['Vor meiner ersten Stelle',['approbation-start','vertrag-start','arbeitszeit-start','haftpflicht-start','versorgung-start']],['In meiner Weiterbildung',['wbo-start','elogbuch-start','facharzt-start','ueberlastung-start']]];
 let entries;
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
@@ -29,6 +31,10 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(!id){
   if(onlyGroup&&onlyGroup!=='slides')main.append(anchor('← Alle Wissensbereiche','#library'));
   main.append(node('h1',onlyGroup==='slides'?'Kursfolien':groups[onlyGroup]??'Wissen & Materialien'),node('p',onlyGroup==='slides'?'Ihre Präsentation: gezielt auswählen und Folie für Folie durcharbeiten.':'Die Inhalte der App – zum Nachschlagen, Vertiefen und Lernen.'));
+  if(onlyGroup==='career'){
+   const entry=node('section',null,'card career-entry');entry.append(node('h2','🧭 Was steht bei Ihnen als Nächstes an?'),node('p','Wählen Sie Ihren Einstieg. Die Lernkarten helfen Ihnen, Ihre nächsten Schritte zu klären.'));
+   for(const [title,ids] of careerEntries){const detail=node('details');detail.append(node('summary',title));for(const id of ids){const item=entries.find(e=>e.id==='career:'+id);if(item)detail.append(anchor(item.title+' →','#material/'+encodeURIComponent(item.id)));}entry.append(detail);}main.append(entry);
+  }
   const presentation=node('section',null,'presentation-launch');presentation.append(node('h2','▶ Präsentation'),node('p','Folie für Folie in einer festen Leseansicht – mit direkter Auswahl und Vor-/Zurücknavigation.'),anchor('Präsentation starten →','#material/slides%3A1'));const download=node('button',hasAccess('slides',grants)?'↓ Alle Kursfolien herunterladen':'↓ Kostenlose Folien herunterladen','secondary');download.onclick=async()=>{download.disabled=true;try{const file=await downloadSlides(auth,entries.filter(e=>e.group==='slides'),hasAccess('slides',grants));presentation.querySelector('.download-ready')?.remove();const ready=node('div',null,'download-ready'),save=anchor('↓ Datei jetzt speichern',file.url),preview=anchor('Druckansicht öffnen ↗',file.url);save.download=file.filename;preview.target='_blank';preview.rel='noopener';ready.append(save,preview,node('p','Im Browser drucken oder über „Teilen“ in Dateien sichern.','subtle'));presentation.append(ready);download.textContent='Download erneut vorbereiten';}catch{download.textContent='Download fehlgeschlagen – erneut versuchen';}finally{download.disabled=false;}};presentation.append(download,node('p','Download mit Foliengestaltung und Grafiken als HTML-Datei; im Browser auch als PDF druckbar. Heruntergeladene Dateien bleiben nach Ablauf eines Zugangs erhalten.','subtle'));if(onlyGroup==='slides')main.append(presentation);
   const search=node('input');search.type='search';search.placeholder='Thema, Beruf oder Begriff suchen';search.setAttribute('aria-label','Materialien durchsuchen');const results=node('div');
   function draw(){
@@ -50,14 +56,14 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
       const grid=node('div',null,'slide-grid');for(const e of items.slice(page*size,(page+1)*size)){const card=node('article',null,'card slide-preview');card.append(node('p','FOLIE '+e.nativeId,'section-number'),node('h3',e.title),badge(e),anchor('Folie öffnen →','#material/'+encodeURIComponent(e.id)));grid.append(card);}deck.append(grid);
      }selector.onchange=()=>{page=0;drawDeck();};section.append(selector,deck);drawDeck();
     }else{
-     for(const cat of [...new Set(matching.map(e=>e.category??''))]){const details=node('details');details.open=Boolean(search.value);details.append(node('summary',(cat||title)+' · Inhalte öffnen'));for(const e of matching.filter(x=>(x.category??'')===cat)){const row=node('div',null,'library-row');row.append(badge(e),anchor(e.title+' →','#material/'+encodeURIComponent(e.id)));details.append(row);}section.append(details);}
+     for(const cat of [...new Set(matching.map(e=>e.category??''))]){const details=node('details');details.open=Boolean(search.value);details.append(node('summary',(categorySymbols[cat]?categorySymbols[cat]+' ':'')+(cat||title)+' · Inhalte öffnen'));for(const e of matching.filter(x=>(x.category??'')===cat)){const row=node('div',null,'library-row');row.append(badge(e),anchor(e.title+' →','#material/'+encodeURIComponent(e.id)));details.append(row);}section.append(details);}
     }results.append(section);
    }
   }
   search.addEventListener('input',draw);main.append(search,results);draw();return;
  }
- const e=entries.find(x=>x.id===id);main.append(anchor('← Wissen & Materialien','#library'));if(!e){main.append(node('h1','Inhalt nicht gefunden'));return;}
- main.append(node('p',groups[e.group],'section-number'),node('h1',e.title),badge(e));let c=e.content;
+ const e=entries.find(x=>x.id===id);main.append(anchor(e?'← '+(e.group==='slides'?'Kursfolien':groups[e.group]):'← Wissen & Materialien',e?(e.group==='slides'?'#slides':'#library/'+e.group):'#library'));if(!e){main.append(node('h1','Inhalt nicht gefunden'));return;}
+ const heading=node('section',null,e.group==='slides'?'':'knowledge-banner');heading.append(node('p',groups[e.group],'section-number'));if(e.group!=='slides'&&categorySymbols[e.category]){const symbol=node('span',categorySymbols[e.category],'knowledge-symbol');symbol.setAttribute('aria-hidden','true');heading.append(symbol);}heading.append(node('h1',e.title));if(e.category)heading.append(node('p',e.category,'knowledge-category'));heading.append(badge(e));main.append(heading);let c=e.content;
  if(!c&&open(e)&&auth){try{c=await auth.getCourse(e.id);}catch{main.append(node('p','Inhalt konnte nicht geladen werden. Bitte erneut versuchen.','notice'));return;}if(!isCurrent())return;}
  if(!c){main.append(node('p','Für diesen Inhalt benötigen Sie einen gültigen Freischaltcode. Die kostenlosen Einstiege bleiben ohne Anmeldung zugänglich.','notice'),anchor('Anmelden & Zugang freischalten →','#account'));return;}
  if(e.group==='slides'){
