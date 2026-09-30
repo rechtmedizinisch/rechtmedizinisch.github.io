@@ -66,3 +66,7 @@ header{flex-wrap:wrap}.brand{min-width:0}header nav{min-width:0}header nav a{whi
 .search-controls{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin:24px 0}.search-controls input,.search-controls select{width:100%;min-width:0}.search-result mark{background:#ffebae;color:#172d35;border-radius:3px;padding:0 2px}.search-result h2{font-size:1.25rem}.search-result h2 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}.search-result p{line-height:1.7}@media(max-width:600px){.search-controls{grid-template-columns:1fr}}
 
 .sync-panel{border-top:5px solid #07878b}.sync-panel button{margin:6px 10px 6px 0}.sync-panel h2{color:#08787e}
+
+.home-learning-summary{font-weight:650}.home-progress-link{display:block;margin-top:16px;color:inherit;text-underline-offset:4px}.home-learning-menu>a{display:grid;grid-template-columns:30px minmax(0,1fr) 18px;align-items:center;gap:12px;padding:17px 4px;border-bottom:1px solid #dce7e4;color:#071d33;text-decoration:none;font-weight:650}.home-learning-menu>a:last-child{border-bottom:0}.home-learning-menu>a:hover,.home-learning-menu>a:focus-visible{background:#eaf7f5;border-radius:8px}.home-learning-menu>a>span:last-child{font-size:25px;color:#087f86}
+
+.card>a.button{margin:6px 8px 6px 0;white-space:normal;text-align:left}
