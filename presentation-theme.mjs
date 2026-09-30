@@ -18,3 +18,11 @@ export function readingParts(text){
  const statutory=[...paragraphs.matchAll(/(?:^|\s)\((\d+)\)\s+/g)];if(statutory.length>1&&statutory[0].index===0&&statutory.every((m,i)=>Number(m[1])===Number(statutory[0][1])+i))paragraphs=paragraphs.replace(/\s+(?=\(\d+\)\s)/g,'\n\n');
  return {kind:'paragraphs',items:paragraphs.split('\n\n').filter(Boolean)};
 }
+export function layoutForSlide(slide){
+ const sections=slideSections(slide.blocks??[]).sections;
+ if(Number(slide.id)===1)return 'cover';
+ const short=sections.filter(s=>s.title&&s.blocks.every(b=>!b.image)&&s.blocks.reduce((n,b)=>n+(b.text?.length??0),0)<600);
+ if(sections.length>=2&&sections.length<=6&&short.length===sections.length)return 'comparison';
+ if(sections.length===1&&/Zitat|Kernaussage|Tragende Aussage/i.test(sections[0].title??''))return 'statement';
+ return 'reading';
+}
