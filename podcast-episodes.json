@@ -1,0 +1,137 @@
+[
+  {
+    "id": "standards",
+    "label": "Aktuell",
+    "title": "Status quo – Was gilt eigentlich? Leitlinie, Richtlinie oder SOP",
+    "url": "https://open.spotify.com/episode/1mlnkZz01jTKrqL5R1Yepe",
+    "duration": "46:05",
+    "summary": "Leitlinienklassen, G-BA-Richtlinien und hausinterne SOPs: Orientierung für fachliche Standards und begründete Abweichungen.",
+    "courses": [
+      9,
+      13
+    ],
+    "materials": [
+      "system:directive",
+      "system:system"
+    ],
+    "note": "Bei Spotify derzeit ebenfalls als Folge 5 bezeichnet."
+  },
+  {
+    "id": "defensiv",
+    "label": "Folge 5",
+    "title": "So viel wie nötig, so wenig wie möglich – Defensivmedizin und Überdiagnostik",
+    "url": "https://www.podcast.de/episode/705909964/folge-5-so-viel-wie-noetig-so-wenig-wie-moeglich-defensivmedizin-und-ueberdiagnostik",
+    "duration": "49:37",
+    "summary": "Indikation, Vortestwahrscheinlichkeit und Sicherheitsnetz statt Diagnostik aus Angst.",
+    "courses": [
+      13
+    ],
+    "materials": [
+      "podcast:PodcastDefensive"
+    ],
+    "note": ""
+  },
+  {
+    "id": "erwachsene",
+    "label": "Folge 4 · Teil 2",
+    "title": "Freiheitsentziehende Maßnahmen beim Erwachsenen",
+    "url": "https://www.podcast.de/episode/705488168/folge-4-2-freiheitsentziehende-massnahmen-beim-erwachsenen",
+    "duration": "28:56",
+    "summary": "Selbstbestimmung, Vertretung, gerichtliche Kontrolle und mildere Maßnahmen.",
+    "courses": [
+      10
+    ],
+    "materials": [
+      "podcast:PodcastAdults"
+    ],
+    "note": ""
+  },
+  {
+    "id": "kinder",
+    "label": "Folge 4 · Teil 1",
+    "title": "Ultima Ratio!",
+    "url": "https://open.spotify.com/episode/7KcXwsJXde4QCvCJwE1EkT",
+    "duration": "51:31",
+    "summary": "Freiheitsentziehende Maßnahmen bei Minderjährigen: Eltern, Familiengericht und Behandlungsteam.",
+    "courses": [
+      10
+    ],
+    "materials": [
+      "podcast:PodcastChildren"
+    ],
+    "note": ""
+  },
+  {
+    "id": "aufklaerung",
+    "label": "Folge 3",
+    "title": "Aufklärung geklärt",
+    "url": "https://open.spotify.com/episode/3ROIMztRtgvjiFgLir18Te",
+    "duration": "57:39",
+    "summary": "Verständliche Aufklärung, Sprachbarrieren, Notfälle und Dokumentation.",
+    "courses": [
+      3,
+      4,
+      10
+    ],
+    "materials": [
+      "podcast:PodcastEmergency"
+    ],
+    "note": ""
+  },
+  {
+    "id": "erlanger",
+    "label": "Kurzvisite",
+    "title": "Der Erlanger Baby-Fall",
+    "url": "https://www.podcast.de/episode/704305819/kurzvisite-der-erlanger-baby-fall",
+    "duration": "2:35",
+    "summary": "Ein Grenzfall als Einstieg in die Abwägung von Prognose, Patientenwillen und Vertretung.",
+    "courses": [
+      1,
+      14
+    ],
+    "materials": [],
+    "note": ""
+  },
+  {
+    "id": "patientenwille",
+    "label": "Folge 2",
+    "title": "In dubio pro vita! – Im Zweifel für das Leben",
+    "url": "https://open.spotify.com/episode/3eyia0qcX192zupd65u3dL",
+    "duration": "38:04",
+    "summary": "Patientenverfügung, mutmaßlicher Wille und Ehegattenvertretung in Klinik und Rettungsdienst.",
+    "courses": [
+      10
+    ],
+    "materials": [
+      "podcast:PodcastEmergency"
+    ],
+    "note": ""
+  },
+  {
+    "id": "btm",
+    "label": "Folge 1",
+    "title": "Betäubungsmittel im Klinikalltag – Grobe Schnitzer und wie wir diese abwenden können",
+    "url": "https://www.podcast.de/episode/703749717/folge-1-betaeubungsmittel-im-klinikalltag-grobe-schnitzer-und-wie-wir-diese-abwenden-koennen",
+    "duration": "43:37",
+    "summary": "Medikationsfehler, Kommunikation, Delegation und Verantwortung im Team.",
+    "courses": [
+      11,
+      12
+    ],
+    "materials": [],
+    "note": ""
+  },
+  {
+    "id": "intro",
+    "label": "Folge 0",
+    "title": "Warum „Recht Medizinisch“?",
+    "url": "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8",
+    "duration": "8:41",
+    "summary": "Florian Schlepple und Philipp Graef stellen den Podcast zwischen Medizin, Pflege und Recht vor.",
+    "courses": [
+      1
+    ],
+    "materials": [],
+    "note": ""
+  }
+]

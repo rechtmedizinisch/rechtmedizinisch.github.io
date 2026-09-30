@@ -47,3 +47,22 @@ main.presentation-player{position:fixed;inset:0;z-index:20;max-width:none;margin
 .account-welcome{display:grid;grid-template-columns:1.15fr 1fr;background:var(--navy);color:white;border-radius:24px;overflow:hidden;margin-bottom:24px}.account-welcome-copy{padding:28px}.account-welcome h1{margin:12px 0;font-family:Georgia,serif;font-size:36px}.account-welcome img{width:100%;height:100%;object-fit:cover;min-height:250px}.account-slogan{font-size:22px;line-height:1.45;font-weight:700}.account-slogan span{color:#59d7d1}.account-grants{border-top:5px solid var(--teal)}.account-code{background:#edf7f5;border:1px solid #b8dbd5}.account-code h2{color:#08737b}@media(max-width:540px){.account-welcome{grid-template-columns:1fr}.account-welcome img{height:180px;min-height:0;object-position:center 40%}.account-welcome-copy{padding:24px}}
 
 header{flex-wrap:wrap}.brand{min-width:0}header nav{min-width:0}header nav a{white-space:nowrap}@media(min-width:721px) and (max-width:1200px){header nav{flex-basis:100%;gap:16px}}
+
+/* Native learning steps: semantic answers and persistent course progress. */
+.course-learning-progress{margin-top:1.4rem}.course-learning-progress progress{width:100%;height:14px;accent-color:var(--teal,#07878b)}
+.learning-material{border:1px solid #cbdedb;border-radius:16px;margin:12px 0;background:#f4faf8;padding:16px}
+.learning-material summary{cursor:pointer;font-weight:750;color:#075e66;line-height:1.5;text-align:left}.learning-material>div{padding-top:16px}
+.learning-answers{display:grid;gap:12px}.learning-answer{display:flex;align-items:flex-start;gap:12px;text-align:left;white-space:normal;line-height:1.6;width:100%}
+.answer-marker{display:inline-flex;justify-content:center;align-items:center;flex:0 0 30px;height:30px;border:1px solid currentColor;border-radius:50%;font-weight:800}
+.learning-feedback{padding:16px;margin-top:16px;border-radius:16px}.learning-feedback:empty{display:none}
+.learning-feedback.correct{background:#e0f5ef;color:#086d69}.learning-feedback.wrong{background:#fff0ee;color:#9b3035}
+.learning-step .source-link{display:block;margin:12px 0;padding:14px;background:#edf6f5;border-radius:12px;font-weight:650;overflow-wrap:anywhere}
+.learning-answer:disabled{opacity:1}.learning-answer.correct{background:#dcf5ed;color:#086d69;border:2px solid #0b8c82}.learning-answer.wrong{background:#fff0ee;color:#9b3035;border:2px solid #ba4249}
+
+.course-progress-preview{display:grid;gap:8px;margin:14px 0;font-size:.88rem;font-weight:650;color:#08787e}.course-progress-preview progress{width:100%;height:10px;accent-color:#07878b}.progress-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}.progress-stat-grid>div{display:grid;gap:7px;padding:18px;border-radius:16px;background:#ffffffc9;color:#093346}.progress-stat-grid strong{font-size:1.7rem}.progress-stat-grid span{font-size:.85rem}.certificate-gate{margin-top:28px;border-top:5px solid #bf9a42}@media(max-width:540px){.progress-stat-grid{grid-template-columns:1fr}.progress-stat-grid>div{display:flex;align-items:center;justify-content:space-between}}
+
+.podcast-hero{display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center;padding:32px;background:#0b2339;color:white;border-radius:26px;margin-bottom:28px}.podcast-hero img{width:100%;border-radius:20px}.podcast-hero h1{color:white}.podcast-hosts{color:#66d2d0;font-weight:750}.podcast-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}.podcast-related{display:grid;gap:12px;border-top:1px solid #d7e3e0;margin-top:22px;padding-top:12px}.podcast-related a{padding:12px;border-radius:12px;background:#edf7f4;font-weight:650}.podcast-episode{margin:0}.podcast-grid+.card{margin-top:28px}@media(max-width:650px){.podcast-hero{grid-template-columns:1fr;padding:24px}.podcast-hero img{width:130px}.podcast-grid{grid-template-columns:1fr}}
+
+.search-controls{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin:24px 0}.search-controls input,.search-controls select{width:100%;min-width:0}.search-result mark{background:#ffebae;color:#172d35;border-radius:3px;padding:0 2px}.search-result h2{font-size:1.25rem}.search-result h2 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}.search-result p{line-height:1.7}@media(max-width:600px){.search-controls{grid-template-columns:1fr}}
+
+.sync-panel{border-top:5px solid #07878b}.sync-panel button{margin:6px 10px 6px 0}.sync-panel h2{color:#08787e}

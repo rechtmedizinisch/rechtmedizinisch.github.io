@@ -1,5 +1,5 @@
-import {safeURL} from './policy.mjs?v=20260930z';
-import {protectReferences} from './presentation-theme.mjs?v=20260930z';
+import {safeURL} from './policy.mjs?v=20260930aa';
+import {protectReferences} from './presentation-theme.mjs?v=20260930aa';
 
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function source(label,url){const a=node('a',label,'reference-source');a.href=safeURL(url)||'#';a.target='_blank';a.rel='noopener noreferrer';return a;}
@@ -15,7 +15,7 @@ function symbol(category){
 function select(label,values){const wrap=node('label',label),input=node('select');for(const v of values){const o=node('option',v);o.value=v;input.append(o);}wrap.append(input);return [wrap,input];}
 function detail(label,text,cls){if(!text)return null;const box=node('div',null,cls);box.append(node('h3',label),node('p',text));return box;}
 
-export function renderReferences(main,type,catalog){
+export function renderReferences(main,type,catalog,selectedId){
   const cases=type==='cases',data=cases?catalog.landmarkCases:catalog.importantNorms;
   const hero=node('section',null,'knowledge-banner reference-banner');
   hero.append(node('p',cases?'⚖ LEITENTSCHEIDUNGSATLAS':'§ WERKZEUGKISTE','section-number'),node('h1',cases?'Entscheidungen, die das Medizinrecht geprägt haben':'Kernnormen schnell nachschlagen'),node('p',cases?`${data.length} Entscheidungen mit Leitsatzkern, Einordnung und Praxistransfer.`:`${data.length} zentrale Vorschriften – nach Rechtsgebiet geordnet und direkt mit der Originalfassung verlinkt.`));
@@ -26,6 +26,7 @@ export function renderReferences(main,type,catalog){
   const count=node('p',null,'subtle');count.setAttribute('role','status');controls.append(search,filters,count);main.append(controls);
   const results=node('div',null,'reference-results');main.append(results);
   const matches=r=>JSON.stringify(r).toLocaleLowerCase('de').includes(search.value.toLocaleLowerCase('de'));
+  if(selectedId&&cases){const selected=data.find(r=>r.id===selectedId);if(selected)search.value=selected.title;}
   const render=()=>{
     results.replaceChildren();const visible=data.filter(r=>matches(r)&&(area.value==='Alle'||(cases?r.area:r.category)===area.value)&&(!cases||tier.value==='Alle'||r.tier===tier.value));
     count.textContent=`${visible.length} von ${data.length} ${cases?'Entscheidungen':'Vorschriften'}`;
