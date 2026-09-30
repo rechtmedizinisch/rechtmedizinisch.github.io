@@ -10,11 +10,11 @@ export function progressActions(store,guestStore,isSignedIn,onRefresh){
   const guest=guestStore?.snapshot;
   if(isSignedIn&&(Object.keys(guest?.courses??{}).length||guest?.certificateName||guest?.completedCareerTopics?.length)){
     confirmation('📥 Gastlernstand in mein Konto übernehmen',
-      'Der Gastlernstand dieses Browsers ersetzt den Kursfortschritt, Gelesen-Markierungen und Zertifikatsnamen Ihres Web-Kontos. Die Änderung wird synchronisiert. Ihr bisheriger Kontolernstand wird dabei ersetzt; die Gastkopie bleibt erhalten. Freischaltungen und Käufe ändern sich nicht.',
+      'Der Gastlernstand dieses Browsers ersetzt den Kursfortschritt, Gelesen-Markierungen, Fehlerlisten und Zertifikatsnamen Ihres Web-Kontos. Die Änderung wird synchronisiert. Ihr bisheriger Kontolernstand wird dabei ersetzt; die Gastkopie bleibt erhalten. Freischaltungen und Käufe ändern sich nicht.',
       'Ja, Kontolernstand durch Gastlernstand ersetzen',()=>store.replaceLearning(guestStore.snapshot));
   }
   confirmation(isSignedIn?'Lernstand meines Web-Kontos zurücksetzen':'Lokalen Gastlernstand zurücksetzen',
-    isSignedIn?'Alle Kursantworten, Lernschritte, Gelesen-Markierungen und der Zertifikatsname Ihres Web-Kontos werden zurückgesetzt und die Änderung wird synchronisiert. Der Gastlernstand, Ihre Freischaltungen und die separate Fehlerliste aus Übungsrunden bleiben erhalten.':'Alle Kursantworten, Lernschritte, Gelesen-Markierungen und der Zertifikatsname im Gastbereich dieses Browsers werden zurückgesetzt. Lernstände angemeldeter Konten bleiben erhalten.',
+    isSignedIn?'Alle Kursantworten, Lernschritte, Gelesen-Markierungen, Fehlerlisten und der Zertifikatsname Ihres Web-Kontos werden zurückgesetzt und die Änderung wird synchronisiert. Der Gastlernstand und Ihre Freischaltungen bleiben erhalten.':'Alle Kursantworten, Lernschritte, Gelesen-Markierungen, Fehlerlisten und der Zertifikatsname im Gastbereich dieses Browsers werden zurückgesetzt. Lernstände angemeldeter Konten bleiben erhalten.',
     'Ja, diesen Lernstand zurücksetzen',()=>store.resetLearning());
   return panel;
 }

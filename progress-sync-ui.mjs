@@ -6,5 +6,5 @@ export function syncPanel(info,service,onRefresh){
  function action(label,callback){const b=el('button',label,'secondary');b.type='button';b.onclick=async()=>{b.disabled=true;await callback();onRefresh();};panel.append(b);}
  if(info.kind==='conflict'){action('Stand aus dem Web-Konto übernehmen',()=>service.resolve(true));action('Diesen Browserstand für das Konto verwenden',()=>service.resolve(false));}
  else action('Jetzt synchronisieren',()=>service.sync());
- panel.append(el('p','Die Synchronisierung betrifft Ihren Lernstand und Zertifikatsnamen. Sie überträgt keine Apple-Käufe und verbindet sich nicht mit iCloud.','subtle'));return panel;
+ panel.append(el('p','Die Synchronisierung betrifft Ihren Lernstand, Lesemarken, Fehlerlisten und Zertifikatsnamen. Sie überträgt keine Apple-Käufe und verbindet sich nicht mit iCloud.','subtle'));return panel;
 }

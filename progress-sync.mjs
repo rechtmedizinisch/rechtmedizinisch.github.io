@@ -2,7 +2,7 @@
 export function progressSync(store,transport,owner,onState=()=>{}){
   let stopped=false,running=false,conflict=null,timer=null;
   const notify=(state)=>{if(!stopped)onState(state);};
-  const payload=()=>({courses:store.snapshot.courses,certificateName:store.snapshot.certificateName??'',completedCareerTopics:store.snapshot.completedCareerTopics??[]});
+  const payload=()=>({courses:store.snapshot.courses,certificateName:store.snapshot.certificateName??'',completedCareerTopics:store.snapshot.completedCareerTopics??[],practiceMistakes:store.snapshot.practiceMistakes??[]});
   async function sync(){
     if(stopped||running||conflict)return;running=true;let repeat=false;notify({kind:'syncing'});
     try{

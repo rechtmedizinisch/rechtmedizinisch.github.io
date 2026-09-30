@@ -1,6 +1,6 @@
-import {hasAccess,shuffle} from './policy.mjs?v=20260930ac';
-import {protectReferences} from './presentation-theme.mjs?v=20260930ac';
-import {courseMistakes} from './practice-mistakes.mjs?v=20260930ac';
+import {hasAccess,shuffle} from './policy.mjs?v=20260930ad';
+import {protectReferences} from './presentation-theme.mjs?v=20260930ad';
+import {courseMistakes} from './practice-mistakes.mjs?v=20260930ad';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const btn=(text,fn,cls='')=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
 const feedback=s=>(s??'').replace(/^(Richtig\.|Nein\.)\s*/, '');
@@ -16,10 +16,8 @@ export async function renderPractice(main,auth,grants,user,isCurrent,learningSto
  let data;try{data=await auth.getCourse('practice:course-quizzes');}catch{}
  if(!isCurrent())return;
  if(!data?.questions?.length){main.append(el('p','Die Übungsfragen konnten nicht geladen werden. Bitte versuchen Sie es erneut.','notice'));return;}
- const storageKey='rm-web-practice-v1:'+user.id;
- let mistakes=[];try{mistakes=JSON.parse(localStorage.getItem(storageKey)??'[]');if(!Array.isArray(mistakes))mistakes=[];}catch{}
  const panel=el('section',null,'card practice-panel');main.append(panel);
- function saveResult(id,right){mistakes=mistakes.filter(x=>x!==id);if(!right)mistakes.push(id);try{localStorage.setItem(storageKey,JSON.stringify(mistakes));}catch{}}
+ function saveResult(id,right){learningStore.recordPracticeAnswer(id,right);}
  function setup(){
   panel.replaceChildren(el('span','✓ Übungsbereich freigeschaltet','badge'),el('h2','Ihre Wissensrunde'));
   let selectedMode='learning';const modesView=modeCards(value=>selectedMode=value);
@@ -32,8 +30,8 @@ export async function renderPractice(main,auth,grants,user,isCurrent,learningSto
   courseBox.append(el('h3','📚 Fehlertraining aus Kursen'),el('p',courseWrong.length?`${courseWrong.length} ${courseWrong.length===1?'offene Kursfrage':'offene Kursfragen'}`:'Aktuell keine offenen Fehler aus Ihren Kursfragen.'));
   if(courseWrong.length){courseBox.append(btn('Kursfehler üben →',()=>run(courseWrong,'learning',0),'secondary'));const links=el('div',null,'row');for(const q of courseWrong){const a=el('a',`Kurs ${String(q.no).padStart(2,'0')} · Antwort im Kurs korrigieren →`,'button secondary');a.href='#course/'+encodeURIComponent(q.id);links.append(a);}courseBox.append(links);}
   courseBox.append(el('p','Kursfehler bleiben hier sichtbar, bis Sie die Frage im jeweiligen Kurs richtig beantworten. Eine Übungsrunde verändert weder Ihren Kursabschluss noch die Zertifikatsfreigabe.','subtle'));panel.append(courseBox);
-  const wrong=data.questions.filter(q=>mistakes.includes(q.id)),mistakeBox=el('section',null,'practice-mistakes');mistakeBox.append(el('h3','↻ Fehlertraining aus Übungsrunden'),el('p',wrong.length?`${wrong.length} ${wrong.length===1?'offene Frage':'offene Fragen'}`:'Aktuell keine offenen Fehler in diesem Bereich.'));if(wrong.length)mistakeBox.append(btn('Diese Fehler üben →',()=>run(wrong,'learning',0),'secondary'));panel.append(mistakeBox);
-  panel.append(el('p','Die Fehlerliste bleibt in diesem Browser getrennt für Ihr Web-Konto gespeichert. Sie wird nicht mit iCloud oder anderen Geräten synchronisiert.','subtle'));
+  const wrong=data.questions.filter(q=>learningStore.snapshot.practiceMistakes.includes(q.id)),mistakeBox=el('section',null,'practice-mistakes');mistakeBox.append(el('h3','↻ Fehlertraining aus Übungsrunden'),el('p',wrong.length?`${wrong.length} ${wrong.length===1?'offene Frage':'offene Fragen'}`:'Aktuell keine offenen Fehler in diesem Bereich.'));if(wrong.length)mistakeBox.append(btn('Diese Fehler üben →',()=>run(wrong,'learning',0),'secondary'));panel.append(mistakeBox);
+  panel.append(el('p','Die Fehlerliste gehört zu Ihrem Web-Konto und wird zusammen mit dem Lernstand synchronisiert. Den aktuellen Abgleichstatus finden Sie unter Fortschritt.','subtle'));
  }
  function run(items,mode,seconds){
   const questions=shuffle(items).map(q=>({...q,order:shuffle(q.choices.map((_,i)=>i))}));
