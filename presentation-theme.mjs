@@ -7,3 +7,14 @@ export function headingStyle(title=''){
 }
 export function protectReferences(text){return text.replace(/(§{1,2}|\bArt\.|\bAbs\.|\bSatz|\bNr\.)[ \t]+(?=\d)/g,'$1\u00a0');}
 export function slideSections(blocks){const sections=[],sources=[];for(const b of blocks){if(b.role==='source'){if(b.text&&!sources.includes(b.text))sources.push(b.text);continue;}if(b.role==='heading'){const title=b.text.replace(/ · Fortsetzung$/,'');if(sections.at(-1)?.title!==title)sections.push({title,blocks:[]});}else{if(!sections.length||b.image)sections.push({title:'',blocks:[]});const section=sections.at(-1),last=section.blocks.at(-1);if(b.continuesPrevious&&last?.role==='body'&&b.role==='body')section.blocks[section.blocks.length-1]={...last,text:last.text+' '+b.text,links:[...(last.links??[]),...(b.links??[])]};else section.blocks.push(b);}}return {sections,sources};}
+
+export const emphasisTerms=['Einwilligungsfähigkeit','Patientenwille','Beweislast','Aufklärungspflicht','Verhältnismäßigkeit','Garantenstellung','Dokumentationspflicht','Patientenverfügung','Behandlungsfehler','Selbstbestimmungsrecht','Schweigepflicht','Amtshaftung','Wirtschaftlichkeitsgebot','Facharztstandard','Beweislastumkehr','rechtfertigende Indikation','mutmaßlicher Wille','Recht auf Nichtwissen','Anfangsverdacht','Unschuldsvermutung','Sachleistungsprinzip','Kostenerstattungsprinzip','Versicherungspflichtgrenze','Gemeinsamer Bundesausschuss','Solidaritätsprinzip','Subsidiaritätsprinzip'];
+export function emphasisRanges(text){const found=[];for(const term of emphasisTerms){if(found.length===2)break;const match=new RegExp('(?<![\\p{L}])'+term+'(?![\\p{L}])','u').exec(text);if(match)found.push({start:match.index,end:match.index+term.length});}return found.sort((a,b)=>a.start-b.start);}
+export function readingParts(text){
+ const value=protectReferences(text).trim();if(value.startsWith('•'))return {kind:'bullets',items:value.split('•').map(x=>x.trim()).filter(Boolean)};
+ const matches=[...value.matchAll(/(?:^|\s)(\d+)\.\s+/g)],numbers=matches.map(m=>Number(m[1]));
+ if(matches.length>1&&matches[0].index===0&&numbers[0]>0&&numbers.every((n,i)=>n===numbers[0]+i))return {kind:'steps',start:numbers[0],items:matches.map((m,i)=>value.slice(m.index+m[0].length,matches[i+1]?.index??value.length).trim())};
+ let paragraphs=value.replace(/(?<=[.!?;]) (Heutiger Lehrtransfer|Weitere Begründung|Tragende Aussage|Praxis|Rechtsstand|Begründung|Genehmigung|Lehrtransfer|Historische Einordnung): /g,'\n\n$1: ');
+ const statutory=[...paragraphs.matchAll(/(?:^|\s)\((\d+)\)\s+/g)];if(statutory.length>1&&statutory[0].index===0&&statutory.every((m,i)=>Number(m[1])===Number(statutory[0][1])+i))paragraphs=paragraphs.replace(/\s+(?=\(\d+\)\s)/g,'\n\n');
+ return {kind:'paragraphs',items:paragraphs.split('\n\n').filter(Boolean)};
+}
