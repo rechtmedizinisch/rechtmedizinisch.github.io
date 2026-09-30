@@ -1,4 +1,4 @@
-import {courseStatus} from './progress-engine.mjs?v=20260930al';
+import {courseStatus} from './progress-engine.mjs?v=20260930an';
 export function catalogStatus(entry,value={},content){
   if(content)return courseStatus(content,value);
   const totalUnits=entry.totalUnits??0;
@@ -34,7 +34,7 @@ export function renderProgress(main,catalog,store,isSignedIn){
   const label=el('label','Name auf dem Zertifikat'),input=el('input'),download=el('button',s.isComplete?'↓ Zertifikat als PDF speichern':'🔒 Zertifikat noch nicht freigeschaltet'),feedback=el('p');
   input.id='certificate-name';label.htmlFor=input.id;input.maxLength=120;input.autocomplete='name';input.value=store.snapshot.certificateName??'';download.type='button';download.disabled=!s.isComplete;feedback.role='status';
   input.addEventListener('change',()=>store.setCertificateName(input.value));
-  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20260930al');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
+  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20260930an');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
   certificate.append(label,input,download,feedback);main.append(certificate);
   const heading=el('div',null,'progress-course-heading');heading.append(el('p','KURS FÜR KURS','section-number'),el('h2','Ihr Lernstand im Detail'),el('p','Wählen Sie einen Kurs aus, um genau dort weiterzulernen, wo Sie aufgehört haben.'));main.append(heading);
   const grid=el('div',null,'grid');for(const state of s.states){const c=state.entry,card=el('section',null,'card');card.append(el('p',`KURS ${String(c.no).padStart(2,'0')}`,'section-number'),el('h2',c.title),progressBadge(c,store,catalog.courses.find(x=>x.id===c.id)),el('p',`${state.completedUnits} von ${state.totalUnits} Lernschritten`,'subtle'),link(state.isComplete?'Kurs wiederholen →':state.completedUnits?'Weiterlernen →':'Kurs öffnen →',`#course/${c.id}`,'button secondary'));grid.append(card);}main.append(grid);
