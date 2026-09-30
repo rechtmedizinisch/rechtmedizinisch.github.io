@@ -1,7 +1,7 @@
 [
   {
     "id": "standards",
-    "label": "Aktuell",
+    "label": "Folge 6",
     "title": "Status quo – Was gilt eigentlich? Leitlinie, Richtlinie oder SOP",
     "url": "https://open.spotify.com/episode/1mlnkZz01jTKrqL5R1Yepe",
     "duration": "46:05",
@@ -13,8 +13,7 @@
     "materials": [
       "system:directive",
       "system:system"
-    ],
-    "note": "Bei Spotify derzeit ebenfalls als Folge 5 bezeichnet."
+    ]
   },
   {
     "id": "defensiv",

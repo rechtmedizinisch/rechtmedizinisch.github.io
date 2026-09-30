@@ -1,8 +1,8 @@
-import {preparePresentationDownload} from './presentation-download.mjs?v=20260930ah';
-import {renderSource} from './source-links.mjs?v=20260930ah';
-import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930ah';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930ah';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930ah';
+import {fetchPresentationDownload} from './presentation-download.mjs?v=20260930ai';
+import {renderSource} from './source-links.mjs?v=20260930ai';
+import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930ai';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930ai';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930ai';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 const categorySymbols={'PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
 const careerEntries=[['Vor meinem PJ',['pj-rolle','pj-plan','kompetenz-pj','aufklaerung-pj']],['Vor meiner ersten Stelle',['approbation-start','vertrag-start','arbeitszeit-start','haftpflicht-start','versorgung-start']],['In meiner Weiterbildung',['wbo-start','elogbuch-start','facharzt-start','ueberlastung-start']]];
@@ -11,7 +11,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20260930ah');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20260930ai');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -19,7 +19,7 @@ export async function courseMaterials(main,no,isCurrent){
  main.append(box);
 }
 export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null,learningStore=null){
- if(!entries){const r=await fetch('./library.json?v=20260930ah');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20260930ai');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  const open=e=>e.free||hasAccess(scope(e),grants);
  const badge=e=>node('span',(e.group==='career'&&learningStore?.snapshot.completedCareerTopics.includes(e.id)?'✓ Gelesen · ':'')+(e.free?'Kostenlos':open(e)?'✓ Freigeschaltet':'🔒 Mit Code freischalten'),`badge ${open(e)?'':'lock'}`);
@@ -44,15 +44,16 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
    const entry=node('section',null,'card career-entry');entry.append(node('h2','🧭 Was steht bei Ihnen als Nächstes an?'),node('p','Wählen Sie Ihren Einstieg. Die Lernkarten helfen Ihnen, Ihre nächsten Schritte zu klären.'));
    for(const [title,ids] of careerEntries){const detail=node('details');detail.append(node('summary',title));for(const id of ids){const item=entries.find(e=>e.id==='career:'+id);if(item)detail.append(anchor(item.title+' →','#material/'+encodeURIComponent(item.id)));}entry.append(detail);}main.append(entry);
   }
-  const presentation=node('section',null,'presentation-launch');presentation.append(node('h2','▶ Präsentation'),node('p','Folie für Folie in einer festen Leseansicht – mit direkter Auswahl und Vor-/Zurücknavigation.'),anchor('Präsentation starten →','#material/slides%3A1'));const download=node('button',hasAccess('slides',grants)?'↓ Alle Kursfolien herunterladen':'↓ Kostenlose Folien herunterladen','secondary');download.onclick=async()=>{download.disabled=true;try{const file=await downloadSlides(auth,entries.filter(e=>e.group==='slides'),hasAccess('slides',grants));presentation.querySelector('.download-ready')?.remove();const ready=node('div',null,'download-ready'),save=anchor('↓ Datei jetzt speichern',file.url),preview=anchor('Druckansicht öffnen ↗',file.url);save.download=file.filename;preview.target='_blank';preview.rel='noopener';ready.append(save,preview,node('p','Im Browser drucken oder über „Teilen“ in Dateien sichern.','subtle'));presentation.append(ready);download.textContent='Download erneut vorbereiten';}catch{download.textContent='Download fehlgeschlagen – erneut versuchen';}finally{download.disabled=false;}};const pptx=anchor('↓ Kostenloser Einstieg als PowerPoint','assets/downloads/Recht-Medizinisch-Einstieg.pptx?v=20260930ah');pptx.download='Recht-Medizinisch-Einstieg.pptx';presentation.append(pptx,node('p','Die ersten 12 Folieneinträge als PowerPoint: 16 Seiten mit gekennzeichneten Fortsetzungen.','subtle'));presentation.append(download,node('p','Download mit Foliengestaltung und Grafiken als HTML-Datei; im Browser auch als PDF druckbar. Heruntergeladene Dateien bleiben nach Ablauf eines Zugangs erhalten.','subtle'));if(onlyGroup==='slides'){
+  const presentation=node('section',null,'presentation-launch');presentation.append(node('h2','▶ Präsentation'),node('p','Folie für Folie in einer festen Leseansicht – mit direkter Auswahl und Vor-/Zurücknavigation.'),anchor('Präsentation starten →','#material/slides%3A1'));const download=node('button',hasAccess('slides',grants)?'↓ Alle Kursfolien herunterladen':'↓ Kostenlose Folien herunterladen','secondary');download.onclick=async()=>{download.disabled=true;try{const file=await downloadSlides(auth,entries.filter(e=>e.group==='slides'),hasAccess('slides',grants));presentation.querySelector('.download-ready')?.remove();const ready=node('div',null,'download-ready'),save=anchor('↓ Datei jetzt speichern',file.url),preview=anchor('Druckansicht öffnen ↗',file.url);save.download=file.filename;preview.target='_blank';preview.rel='noopener';ready.append(save,preview,node('p','Im Browser drucken oder über „Teilen“ in Dateien sichern.','subtle'));presentation.append(ready);download.textContent='Download erneut vorbereiten';}catch{download.textContent='Download fehlgeschlagen – erneut versuchen';}finally{download.disabled=false;}};const pptx=anchor('↓ Kostenloser Einstieg als PowerPoint','assets/downloads/Recht-Medizinisch-Einstieg.pptx?v=20260930ai');pptx.download='Recht-Medizinisch-Einstieg.pptx';presentation.append(pptx,node('p','Die ersten 12 Folieneinträge als PowerPoint: 16 Seiten mit gekennzeichneten Fortsetzungen.','subtle'));presentation.append(download,node('p','Download mit Foliengestaltung und Grafiken als HTML-Datei; im Browser auch als PDF druckbar. Heruntergeladene Dateien bleiben nach Ablauf eines Zugangs erhalten.','subtle'));if(onlyGroup==='slides'){
    const complete=node('button','↓ Vollständige Präsentation als PowerPoint','secondary');
    const feedback=node('p','','subtle');feedback.setAttribute('role','status');
    complete.onclick=async()=>{
     if(!hasAccess('slides',grants)){location.hash='#account';return;}
     complete.disabled=true;feedback.textContent='Download wird vorbereitet …';
-    try{const file=await preparePresentationDownload(auth);if(!isCurrent())return;
-     const save=anchor('↓ PowerPoint jetzt speichern',file.url);save.download=file.filename;
-     feedback.replaceChildren(save,node('span',' Der Download-Link gilt zwei Minuten. Danach bitte erneut vorbereiten.'));
+    try{const file=await fetchPresentationDownload(auth);if(!isCurrent())return;
+     if(complete.dataset.blobUrl)URL.revokeObjectURL(complete.dataset.blobUrl);const url=URL.createObjectURL(file.blob);complete.dataset.blobUrl=url;
+     const save=anchor('↓ PowerPoint jetzt speichern',url);save.download=file.filename;
+     feedback.replaceChildren(save,node('span',` Datei bereit · ${(file.blob.size/1000000).toLocaleString('de-DE',{maximumFractionDigits:1})} MB. Speichern Sie die Präsentation auf Ihrem Gerät.`));
     }catch(error){feedback.textContent=error.message||'Download derzeit nicht verfügbar. Bitte Zugang prüfen und erneut versuchen.';}
     finally{complete.disabled=false;}
    };
@@ -117,7 +118,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(c.blocks){
  const stage=node('div',null,'slide-stage');stage.classList.add('layout-'+layoutForSlide(c),'slide-variant-'+((Number(c.id)-1)%4));stage.setAttribute('aria-label','Aktuelle Folie');stage.tabIndex=0;main.append(stage);
  const titleBlock=node('div',null,'deck-title');titleBlock.append(node('p',c.eyebrow??'RECHT MEDIZINISCH','eyebrow'),node('h1',e.title));for(const no of e.courses??[])titleBlock.append(anchor('Kurs '+String(no).padStart(2,'0')+' öffnen →','#course/tag-'+String(no).padStart(2,'0')));stage.append(titleBlock);
- if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20260930ah');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
+ if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20260930ai');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
  const {sections,sources}=slideSections(c.blocks);const sectionsGrid=node('div',null,'slide-sections');stage.append(sectionsGrid);
  for(const part of sections){const style=headingStyle(part.title),section=node('section',null,'slide-block tone-'+style.tone);if(part.title){const h=node('h2');if(style.symbol)h.append(node('span',style.symbol,style.step?'step-number':'section-symbol'));h.append(node('span',style.title));section.append(h);}for(const block of part.blocks){if(block.image)await graphic(block.image,section);if(!isCurrent())return;if(block.text)formatSlideText(section,block.text);for(const l of block.links??[]){const url=typeof l==='string'?l:l.url;if(safeURL(url)){const a=anchor((typeof l==='string'?'Quelle':l.label??'Rechtsquelle')+' ↗',url);a.target='_blank';a.rel='noopener noreferrer';section.append(a);}}}sectionsGrid.append(section);}
  if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources){const p=node('p');renderSource(p,text);detail.append(p);}stage.append(detail);}
