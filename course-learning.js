@@ -1,7 +1,7 @@
-import {protectReferences} from './presentation-theme.mjs?v=20260930ak';
-import {courseStatus} from './progress-engine.mjs?v=20260930ak';
-import {shuffle,safeURL} from './policy.mjs?v=20260930ak';
-import {formatSlideText} from './slide-tools.js?v=20260930ak';
+import {protectReferences} from './presentation-theme.mjs?v=20260930al';
+import {courseStatus} from './progress-engine.mjs?v=20260930al';
+import {shuffle,safeURL} from './policy.mjs?v=20260930al';
+import {formatSlideText} from './slide-tools.js?v=20260930al';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(label,fn,cls='secondary')=>{const b=el('button',label,cls);b.type='button';b.onclick=fn;return b;};
 function external(label,url,onOpen){const a=el('a',label,'source-link'),href=safeURL(url);if(href){a.href=href;a.target='_blank';a.rel='noopener noreferrer';a.onclick=onOpen;}return a;}

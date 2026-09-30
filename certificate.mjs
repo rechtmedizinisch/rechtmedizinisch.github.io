@@ -1,4 +1,4 @@
-import {PDFDocument,StandardFonts,rgb} from './assets/pdf-lib.mjs?v=20260930ak';
+import {PDFDocument,StandardFonts,rgb} from './assets/pdf-lib.mjs?v=20260930al';
 export function certificateName(value){const name=String(value??'').trim().replace(/\s+/gu,' ');if(!name||[...name].length>120)throw Error('Bitte geben Sie einen Namen mit 1 bis 120 Zeichen ein.');return name;}
 export function requireCertificate(status){if(!status?.isComplete||status.totalCourses!==15||status.completedCourses!==15||status.totalUnits<=0||status.completedUnits!==status.totalUnits)throw Error('Das Zertifikat wird erst nach allen Pflichtschritten freigeschaltet.');}
 // The browser rasterizes only the name so all characters supported by its fonts
@@ -14,16 +14,16 @@ export async function buildCertificate({name,status,nameImage,date=new Date()}){
   page.drawRectangle({x:0,y:580,width:842,height:15,color:rgb(.35,.84,.82)});
   const center=(text,y,size,font=regular,color=navy)=>page.drawText(text,{x:(842-font.widthOfTextAtSize(text,size))/2,y,size,font,color});
   center('RECHT MEDIZINISCH · INTERAKTIVER LERNKURS',508,13,bold);
-  center('Medizinrecht-Zertifikat',427,36,bold);
+  center('Kursabschluss-Zertifikat',427,36,bold);
   center('Hiermit wird bestätigt, dass',373,16);
   const image=await doc.embedPng(nameImage);page.drawImage(image,{x:100,y:295,width:642,height:65});
   page.drawLine({start:{x:180,y:284},end:{x:662,y:284},thickness:1,color:navy});
   center('alle 15 Kurse mit Pflichtmaterialien, Originalquellen und Wissensaufgaben',243,15);
   center('erfolgreich abgeschlossen hat.',218,15);
   center(`ABSCHLUSS 100 % · ${status.completedUnits*10} XP · ${date.toLocaleDateString('de-DE')}`,158,13,bold,teal);
-  center('Digitaler Lernnachweis der Lernplattform;',84,11,regular,muted);
-  center('keine staatliche Prüfungs- oder Berufsqualifikationsbescheinigung.',68,11,regular,muted);
-  doc.setTitle('Medizinrecht-Zertifikat');doc.setAuthor('Recht Medizinisch');
+  center('Nachweis über den Abschluss dieses Lernkurses;',84,11,regular,muted);
+  center('keine CME-Anerkennung oder Berufsqualifikation.',68,11,regular,muted);
+  doc.setTitle('Recht Medizinisch - Kursabschluss-Zertifikat');doc.setAuthor('Recht Medizinisch');
   return {bytes:await doc.save(),filename:'Recht-Medizinisch-Zertifikat.pdf'};
 }
 export async function downloadCertificate(name,status){
