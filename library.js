@@ -1,7 +1,7 @@
-import {renderSource} from './source-links.mjs?v=20260930n';
-import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930n';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930n';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930n';
+import {renderSource} from './source-links.mjs?v=20260930o';
+import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930o';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930o';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930o';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 const categorySymbols={'PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
 const careerEntries=[['Vor meinem PJ',['pj-rolle','pj-plan','kompetenz-pj','aufklaerung-pj']],['Vor meiner ersten Stelle',['approbation-start','vertrag-start','arbeitszeit-start','haftpflicht-start','versorgung-start']],['In meiner Weiterbildung',['wbo-start','elogbuch-start','facharzt-start','ueberlastung-start']]];
@@ -98,6 +98,11 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources){const p=node('p');renderSource(p,text);detail.append(p);}stage.append(detail);}
  const siblings=entries.filter(x=>x.group==='slides'),i=siblings.findIndex(x=>x.id===e.id);const nav=node('nav');if(i>0)nav.append(anchor('← Vorherige Folie','#material/'+encodeURIComponent(siblings[i-1].id)));if(i+1<siblings.length)nav.append(anchor('Nächste Folie →','#material/'+encodeURIComponent(siblings[i+1].id)));main.append(nav);
  const toolbar=main.querySelector('.slide-toolbar'),playerHeader=node('div',null,'player-header'),brand=node('div',null,'player-brand'),logo=node('img');logo.src='assets/podcast-cover.webp';logo.alt='';brand.append(logo,node('strong','Recht Medizinisch'));playerHeader.append(brand,node('span',`Folie ${e.nativeId} · ${i+1} / ${siblings.length}`,'player-position'),anchor('✕ Übersicht','#slides'));
+ const find=node('button','⌕ Folie finden','secondary');find.type='button';find.onclick=()=>{
+  const dialog=node('dialog',null,'slide-search-dialog'),title=node('h2','Folie finden'),close=node('button','Schließen ×','secondary'),search=node('input'),results=node('div');title.id='slide-search-title';dialog.setAttribute('aria-labelledby',title.id);search.type='search';search.placeholder='Foliennummer, Thema oder Kurs';search.setAttribute('aria-label','Folien durchsuchen');
+  const draw=()=>{const q=search.value.trim().toLocaleLowerCase('de');const found=siblings.filter(x=>!q||`${x.nativeId} ${x.title} ${(x.courses??[]).map(n=>'Kurs '+n).join(' ')}`.toLocaleLowerCase('de').includes(q));results.replaceChildren(node('p',found.length+' Folien gefunden','subtle'));for(const x of found.slice(0,30)){const a=anchor('Folie '+x.nativeId+' · '+x.title+(open(x)?'':' · 🔒'),'#material/'+encodeURIComponent(x.id));a.onclick=()=>{dialog.close();dialog.remove();};results.append(a);}if(found.length>30)results.append(node('p','Suchbegriff eingrenzen, um weitere passende Folien zu finden.','subtle'));};
+  search.oninput=draw;close.onclick=()=>dialog.close();dialog.addEventListener('close',()=>dialog.remove(),{once:true});dialog.append(title,close,search,results);document.body.append(dialog);draw();dialog.showModal();search.focus();
+ };playerHeader.append(find);
  const foot=node('div',null,'player-controls'),progress=node('progress');progress.max=siblings.length;progress.value=i+1;progress.setAttribute('aria-label','Position in der Präsentation');foot.append(nav,progress);
  
  stage.append(node('p','App-Ausgabe: September 2026 · Den fachlichen Prüfstand finden Sie bei den jeweiligen Quellen. Zusätzliches Lernmaterial: Durchblättern erfüllt keine Kursaufgaben.','deck-reading-note'));
