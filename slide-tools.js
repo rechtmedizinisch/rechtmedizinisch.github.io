@@ -1,5 +1,6 @@
+import {protectReferences} from './presentation-theme.mjs?v=20260930h';
 export function formatSlideText(parent,text){
- const parts=text.replace(/§{1,2}\s+(?=\d)/g,m=>m.trim()+'\u00a0').split(/(?:\s*•\s*|\n\s*[-–]\s+)/).filter(x=>x.trim());
+ const parts=protectReferences(text).split(/(?:\s*•\s*|\n\s*[-–]\s+)/).filter(x=>x.trim());
  if(parts.length>1||/^\s*•/.test(text)){const ul=document.createElement('ul');ul.className='slide-points';for(const part of parts){const li=document.createElement('li');li.textContent=part.trim();ul.append(li);}parent.append(ul);}else{const p=document.createElement('p');p.textContent=parts[0]??'';parent.append(p);}
 }
 export async function downloadSlides(auth,freeSlides,full){

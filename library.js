@@ -1,5 +1,6 @@
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930g';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930g';
+import {headingStyle,slideSections} from './presentation-theme.mjs?v=20260930h';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930h';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930h';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 let entries;
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
@@ -74,5 +75,16 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(c.explanation){box(c.kind,c.explanation);box('💡 Für die Praxis',c.practice,'notice');source((c.source??'Rechtsquelle').split(';')[0],c.url);if(e.id==='glossary:richtlinienfaehigkeit'){const related=box('🖼 Passendes Schaubild');related.append(anchor('Schaubild: Wann wird eine Methode zur GKV-Leistung? →','#material/system%3Adirective'));}}
  if(c.points){const b=box('Kernpunkte');const ul=node('ul');for(const p of c.points)ul.append(node('li',p));b.append(ul);box('⚖ Rechtliche Einordnung',c.clarification,'notice');}
  if(c.nodes){for(const [i,n] of c.nodes.entries())box(`${i+1}. ${n.title}`,n.text);box('💡 Merksatz',c.takeaway,'notice');for(const s of c.sources??[])source(s.title,s.url);}
- if(c.blocks){const stage=node('div',null,'slide-stage');stage.setAttribute('aria-label','Aktuelle Folie');main.append(stage);let section=null;let lastHeading='';for(const block of c.blocks){if(block.role==='heading'){const title=block.text.replace(/ · Fortsetzung$/,'');if(title!==lastHeading){section=node('section',null,'slide-block');const symbol=/merke|praxis/i.test(title)?'💡':/fall|sachverhalt/i.test(title)?'🧩':/problem|risik|achtung/i.test(title)?'⚠':/quelle|fundstelle/i.test(title)?'📚':/kernpunkt|kompetenz|lernziel/i.test(title)?'🎯':'◆';section.append(node('h2',symbol+' '+title));stage.append(section);lastHeading=title;}}else if(block.text){if(!section){section=node('section',null,'slide-block');stage.append(section);}if(block.role==='source'){const detail=node('details');detail.append(node('summary','📚 Quelle & Einordnung'),node('p',block.text));stage.append(detail);}else formatSlideText(section,block.text);}for(const l of block.links??[])if(safeURL(l.url)){const a=anchor((l.label??'Rechtsquelle')+' ↗',safeURL(l.url));a.target='_blank';a.rel='noopener noreferrer';stage.append(a);}}const siblings=entries.filter(x=>x.group==='slides'),i=siblings.findIndex(x=>x.id===e.id);const nav=node('nav');if(i>0)nav.append(anchor('← Vorherige Folie','#material/'+encodeURIComponent(siblings[i-1].id)));if(i+1<siblings.length)nav.append(anchor('Nächste Folie →','#material/'+encodeURIComponent(siblings[i+1].id)));main.append(nav);}
+ if(c.blocks){
+ const stage=node('div',null,'slide-stage');stage.setAttribute('aria-label','Aktuelle Folie');stage.tabIndex=0;main.append(stage);
+ const titleBlock=node('div',null,'deck-title');titleBlock.append(node('p',c.eyebrow??'RECHT MEDIZINISCH','eyebrow'),node('h1',e.title));stage.append(titleBlock);
+ const {sections,sources}=slideSections(c.blocks);
+ for(const part of sections){const style=headingStyle(part.title),section=node('section',null,'slide-block tone-'+style.tone);if(part.title){const h=node('h2');if(style.symbol)h.append(node('span',style.symbol,style.step?'step-number':'section-symbol'));h.append(node('span',style.title));section.append(h);}for(const block of part.blocks){if(block.text)formatSlideText(section,block.text);for(const l of block.links??[]){const url=typeof l==='string'?l:l.url;if(safeURL(url)){const a=anchor((typeof l==='string'?'Quelle':l.label??'Rechtsquelle')+' ↗',url);a.target='_blank';a.rel='noopener noreferrer';section.append(a);}}}stage.append(section);}
+ if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources)detail.append(node('p',text));stage.append(detail);}
+ const siblings=entries.filter(x=>x.group==='slides'),i=siblings.findIndex(x=>x.id===e.id);const nav=node('nav');if(i>0)nav.append(anchor('← Vorherige Folie','#material/'+encodeURIComponent(siblings[i-1].id)));if(i+1<siblings.length)nav.append(anchor('Nächste Folie →','#material/'+encodeURIComponent(siblings[i+1].id)));main.append(nav);
+ const toolbar=main.querySelector('.slide-toolbar'),playerHeader=node('div',null,'player-header'),brand=node('div',null,'player-brand'),logo=node('img');logo.src='assets/podcast-cover.webp';logo.alt='';brand.append(logo,node('strong','Recht Medizinisch'));playerHeader.append(brand,node('span',`Folie ${e.nativeId} · ${i+1} / ${siblings.length}`,'player-position'),anchor('✕ Übersicht','#slides'));
+ const foot=node('div',null,'player-controls'),progress=node('progress');progress.max=siblings.length;progress.value=i+1;progress.setAttribute('aria-label','Position in der Präsentation');foot.append(nav,progress);
+ for(const figure of [...main.querySelectorAll('figure.diagram')])stage.append(figure);
+ main.classList.add('presentation-player');main.replaceChildren(playerHeader,toolbar,stage,foot);
+ }
 }
