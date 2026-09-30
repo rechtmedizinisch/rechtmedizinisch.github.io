@@ -1,7 +1,7 @@
-import {renderSource} from './source-links.mjs?v=20260930l';
-import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930l';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930l';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930l';
+import {renderSource} from './source-links.mjs?v=20260930m';
+import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930m';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930m';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930m';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 let entries;
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
@@ -94,6 +94,8 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const toolbar=main.querySelector('.slide-toolbar'),playerHeader=node('div',null,'player-header'),brand=node('div',null,'player-brand'),logo=node('img');logo.src='assets/podcast-cover.webp';logo.alt='';brand.append(logo,node('strong','Recht Medizinisch'));playerHeader.append(brand,node('span',`Folie ${e.nativeId} · ${i+1} / ${siblings.length}`,'player-position'),anchor('✕ Übersicht','#slides'));
  const foot=node('div',null,'player-controls'),progress=node('progress');progress.max=siblings.length;progress.value=i+1;progress.setAttribute('aria-label','Position in der Präsentation');foot.append(nav,progress);
  
+ stage.append(node('p','App-Ausgabe: September 2026 · Den fachlichen Prüfstand finden Sie bei den jeweiligen Quellen. Zusätzliches Lernmaterial: Durchblättern erfüllt keine Kursaufgaben.','deck-reading-note'));
  main.classList.add('presentation-player');main.replaceChildren(playerHeader,toolbar,stage,foot);
+ document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=true;});stage.focus({preventScroll:true});
  }
 }
