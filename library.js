@@ -1,7 +1,7 @@
-import {renderSource} from './source-links.mjs?v=20260930o';
-import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930o';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930o';
-import {hasAccess,safeURL} from './policy.mjs?v=20260930o';
+import {renderSource} from './source-links.mjs?v=20260930p';
+import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930p';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930p';
+import {hasAccess,safeURL} from './policy.mjs?v=20260930p';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 const categorySymbols={'PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
 const careerEntries=[['Vor meinem PJ',['pj-rolle','pj-plan','kompetenz-pj','aufklaerung-pj']],['Vor meiner ersten Stelle',['approbation-start','vertrag-start','arbeitszeit-start','haftpflicht-start','versorgung-start']],['In meiner Weiterbildung',['wbo-start','elogbuch-start','facharzt-start','ueberlastung-start']]];
@@ -90,7 +90,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(c.points){const b=box('Kernpunkte');const ul=node('ul');for(const p of c.points)ul.append(node('li',p));b.append(ul);box('⚖ Rechtliche Einordnung',c.clarification,'notice');}
  if(c.nodes){for(const [i,n] of c.nodes.entries())box(`${i+1}. ${n.title}`,n.text);box('💡 Merksatz',c.takeaway,'notice');for(const s of c.sources??[])source(s.title,s.url);}
  if(c.blocks){
- const stage=node('div',null,'slide-stage');stage.classList.add('layout-'+layoutForSlide(c));stage.setAttribute('aria-label','Aktuelle Folie');stage.tabIndex=0;main.append(stage);
+ const stage=node('div',null,'slide-stage');stage.classList.add('layout-'+layoutForSlide(c),'slide-variant-'+((Number(c.id)-1)%4));stage.setAttribute('aria-label','Aktuelle Folie');stage.tabIndex=0;main.append(stage);
  const titleBlock=node('div',null,'deck-title');titleBlock.append(node('p',c.eyebrow??'RECHT MEDIZINISCH','eyebrow'),node('h1',e.title));for(const no of e.courses??[])titleBlock.append(anchor('Kurs '+String(no).padStart(2,'0')+' öffnen →','#course/tag-'+String(no).padStart(2,'0')));stage.append(titleBlock);
  if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
  const {sections,sources}=slideSections(c.blocks);const sectionsGrid=node('div',null,'slide-sections');stage.append(sectionsGrid);
