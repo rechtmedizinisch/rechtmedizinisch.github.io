@@ -1,4 +1,4 @@
-import {emptyCourseProgress} from './progress-engine.mjs?v=20260930af';
+import {emptyCourseProgress} from './progress-engine.mjs?v=20260930ag';
 export const progressKey=owner=>'rm-web-learning-v1:'+(owner||'guest');
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 function normalizeCourse(value){

@@ -1,8 +1,8 @@
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;return n;};
 export function loginPanel(auth,config){
  const box=el('section');box.className='card';box.append(el('h2','1. Anmelden oder kostenlos registrieren'),el('p','Ihr Konto bleibt bestehen. Zum erneuten Anmelden brauchen Sie kein Passwort: Nutzen Sie den E-Mail-Link oder den Anmeldecode aus derselben E-Mail.'));
- const message=el('p');message.role='status';
- if(config.googleEnabled){const google=el('button','Mit Google fortfahren');google.type='button';google.onclick=async()=>{google.disabled=true;try{await auth.googleLogin();}catch{message.textContent='Google-Anmeldung derzeit nicht möglich. Bitte nutzen Sie E-Mail.';google.disabled=false;}};box.append(google);}
+ const message=el('p');message.role='status';if(!auth)message.textContent='Anmeldung wird vorbereitet …';
+ if(config.googleEnabled){const google=el('button','Mit Google fortfahren');google.type='button';google.disabled=!auth;google.onclick=async()=>{google.disabled=true;try{await auth.googleLogin();}catch{message.textContent='Google-Anmeldung derzeit nicht möglich. Bitte nutzen Sie E-Mail.';google.disabled=false;}};box.append(google);}
  const form=el('form'),label=el('label','Ihre E-Mail-Adresse'),email=el('input');email.type='email';email.id='login-email';email.required=true;email.autocomplete='email';label.htmlFor=email.id;
  try{email.value=sessionStorage.getItem('rm-pending-email')??'';}catch{}
  const send=el('button','Anmeldemail senden');send.type='submit';send.disabled=!auth||!config.emailEnabled;

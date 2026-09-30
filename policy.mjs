@@ -5,3 +5,5 @@ export function shuffle(values,random=Math.random){const copy=[...values];for(le
 export function safeURL(value){try{const u=new URL(value);return u.protocol==='https:'?u.href:null;}catch{return null;}}
 
 export function scopeLabel(scope){if(/^course:\d{2}$/.test(scope))return 'Kurs '+scope.slice(7);return ({all:'Premium-Webzugang · alle Inhalte',slides:'Alle Kursfolien',diagrams:'Alle Schaubilder',knowledge:'Begriffe & Berufsstart',practice:'Übungsbereich'})[scope]??'Webzugang';}
+
+export function accessDuration(expiresAt){const date=new Date(expiresAt);if(!Number.isFinite(date.getTime()))return 'Laufzeit nicht verfügbar';return date.getUTCFullYear()>=9999?'Dauerhaft':`bis ${date.toLocaleString('de-DE')}`;}
