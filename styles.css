@@ -228,3 +228,5 @@ body>header{background:#fff}
 @media(max-width:720px){.search-results{grid-template-columns:1fr}}
 .progress-certificate-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:11px 15px;border:1px solid #e6c770;border-radius:999px;background:#fff5d8;color:#63491a;font-size:14px;font-weight:800;text-decoration:none}
 .progress-certificate-link:hover{background:#ffeab3}
+
+.footer-author{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;white-space:nowrap}.footer-author img{display:block;width:26px;height:26px;flex:none}.footer-author span{line-height:1.3}
