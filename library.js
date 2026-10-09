@@ -96,7 +96,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  }
  const e=entries.find(x=>x.id===id);main.append(anchor(e?'← '+(e.group==='slides'?'Kursfolien':groups[e.group]):'← Wissen & Materialien',e?(e.group==='slides'?'#slides':'#library/'+e.group):'#library'));if(!e){main.append(node('h1','Inhalt nicht gefunden'));return;}
  const heading=node('section',null,e.group==='slides'?'':'knowledge-banner');heading.append(node('p',groups[e.group],'section-number'));if(e.group!=='slides'&&categorySymbols[e.category]){const symbol=node('span',categorySymbols[e.category],'knowledge-symbol');symbol.setAttribute('aria-hidden','true');heading.append(symbol);}heading.append(node('h1',e.title));if(e.category)heading.append(node('p',e.category,'knowledge-category'));heading.append(badge(e));main.append(heading);let c=e.content;
- if(!c&&open(e)&&auth){try{c=await auth.getCourse(e.id);}catch{main.append(node('p','Inhalt konnte nicht geladen werden. Bitte erneut versuchen.','notice'));return;}if(!isCurrent())return;}
+ if(!c&&open(e)&&auth){try{c=await auth.getCourse(e.id);}catch(error){if(e.group==='slides')throw error;main.append(node('p','Inhalt konnte nicht geladen werden. Bitte erneut versuchen.','notice'));return;}if(!isCurrent())return;}
  if(!c){main.append(node('p','Für diesen Inhalt benötigen Sie einen gültigen Freischaltcode. Die kostenlosen Einstiege bleiben ohne Anmeldung zugänglich.','notice'),anchor('Anmelden & Zugang freischalten →','#account'));return;}
  if(e.group==='slides'){
   const slides=entries.filter(x=>x.group==='slides'),index=slides.findIndex(x=>x.id===e.id),nav=node('nav',null,'slide-toolbar');nav.setAttribute('aria-label','Foliennavigation');
@@ -140,6 +140,6 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  
  stage.append(node('p','App-Ausgabe: September 2026 · Den fachlichen Prüfstand finden Sie bei den jeweiligen Quellen. Zusätzliches Lernmaterial: Durchblättern erfüllt keine Kursaufgaben.','deck-reading-note'));
  main.classList.add('presentation-player');main.replaceChildren(playerHeader,toolbar,stage,foot);
- document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=true;});stage.focus({preventScroll:true});
+ if(main.isConnected){document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=true;});stage.focus({preventScroll:true});}
  }
 }
