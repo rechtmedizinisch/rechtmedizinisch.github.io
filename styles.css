@@ -233,3 +233,13 @@ body>header{background:#fff}
 
 .player-loading{font-size:12px;color:#a4c7cc}.player-loading button{font-size:12px;padding:6px 10px}
  .presentation-player .player-loading{position:absolute;right:14px;bottom:66px;z-index:1;padding:8px 12px;border-radius:12px;background:#031523;color:#a4c7cc;box-shadow:0 4px 18px #0003;max-width:calc(100% - 28px)}
+.home-resume-card {display:flex;align-items:flex-start;gap:16px;padding:20px;margin:20px 0;border:1px solid #a0d8d5;border-radius:20px;background:#e8f6f3;color:var(--navy,#102434);text-decoration:none;}
+.home-resume-card > span:nth-child(2) {display:grid;gap:6px;flex:1;min-width:0;overflow-wrap:anywhere;}
+.home-resume-card strong {font-size:1.15rem;color:#08777e;}
+.home-resume-card small {color:#466273;}
+.home-resume-card:hover {border-color:#08777e;}
+.home-resume-card:focus-visible {outline:3px solid #08777e;outline-offset:4px;}
+.resume-arrow {font-size:1.6rem;color:#08777e;}
+.diagram-actions {display:flex;flex-wrap:wrap;gap:12px;margin:12px 0;}
+.diagram-actions button {min-height:44px;flex:1 1 210px;text-align:center;}
+.diagram figcaption {text-align:left;margin-top:12px;}

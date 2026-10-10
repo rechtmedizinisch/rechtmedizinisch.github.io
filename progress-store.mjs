@@ -1,4 +1,5 @@
 import {emptyCourseProgress} from './progress-engine.mjs?v=20260930ao';
+import {resumeStore} from './learning-resume.mjs?v=20261010c';
 export const progressKey=owner=>'rm-web-learning-v1:'+(owner||'guest');
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 function normalizeCourse(value){
@@ -21,12 +22,15 @@ function normalizeSnapshot(value){
 }
 export function progressStore(owner,storage=localStorage){
   const key=progressKey(owner);
+  const resume=resumeStore(owner,storage);
   let snapshot={courses:{},certificateName:'',completedCareerTopics:[],practiceMistakes:[],_sync:{revision:0,dirty:false}},error=null,generation=0;
   try{const saved=JSON.parse(storage.getItem(key)||'null');if(saved)snapshot=normalizeSnapshot(saved);
     if(owner&&!Object.hasOwn(saved??{},'practiceMistakes')){const legacy=JSON.parse(storage.getItem('rm-web-practice-v1:'+owner)||'[]');const migrated=normalizeSnapshot({practiceMistakes:legacy}).practiceMistakes;if(migrated.length){snapshot.practiceMistakes=migrated;snapshot._sync.dirty=true;}}
   }catch{error='Der gespeicherte Lernstand konnte nicht gelesen werden.';}
   const listeners=new Set();
   return {
+    get resumeLocation(){return resume.location;},
+    rememberLocation(location){return resume.remember(location);},
     get error(){return error;},get snapshot(){return structuredClone(snapshot);},get generation(){return generation;},
     get syncState(){return {...(snapshot._sync??{revision:0,dirty:Object.keys(snapshot.courses).length>0})};},
     course(id){return normalizeCourse(snapshot.courses[id]);},
@@ -36,7 +40,7 @@ export function progressStore(owner,storage=localStorage){
     markCareerRead(id){if(snapshot.completedCareerTopics.includes(id))return;snapshot.completedCareerTopics.push(id);this.save();},
     setCertificateName(name){snapshot.certificateName=name;this.save();},
     replaceLearning(payload){const sync=this.syncState;snapshot=normalizeSnapshot(payload);snapshot._sync=sync;this.save();},
-    resetLearning(){this.replaceLearning({courses:{},certificateName:''});},
+    resetLearning(){resume.clear();this.replaceLearning({courses:{},certificateName:''});},
     acceptRemote(payload,revision){snapshot=normalizeSnapshot({...payload,_sync:{revision,dirty:false}});this.save('remote');},
     acknowledge(revision,sentGeneration){snapshot._sync={revision,dirty:generation!==sentGeneration};this.save('remote');},
     rebase(revision){snapshot._sync={revision,dirty:true};this.save('remote');},

@@ -1,8 +1,17 @@
 import {catalogOverall} from './progress-overview.mjs?v=20260930ao';
+import {resumeHref} from './learning-resume.mjs?v=20261010c';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 export function homeLearning(main,catalog,store){
   const overall=catalogOverall(catalog,store.snapshot),next=overall.states.find(s=>!s.isComplete)??overall.states.at(-1);
   const hero=main.querySelector('.hero-copy'),start=hero?.querySelector('a.button');
+  const resume=store.resumeLocation,href=resumeHref(resume);
+  if(href){
+    const card=el('a',null,'home-resume-card');card.href=href;
+    const symbol=el('span',resume.kind==='slide'?'📑':'📖','home-shortcut-symbol');symbol.setAttribute('aria-hidden','true');
+    const text=el('span'),detail=resume.kind==='slide'?`Folie ${resume.id.split(':')[1]} · ${resume.title}`:`Kurs ${resume.id.slice(-2)} · ${resume.title}`;
+    text.append(el('strong','Hier weitermachen'),el('span',detail),el('small','Zuletzt in diesem Browser geöffnet'));
+    card.append(symbol,text,el('span','→','resume-arrow'));main.querySelector('.hero')?.after(card);
+  }
   if(hero&&start){
     const summary=el('p',`${overall.completedCourses} von ${overall.totalCourses} Kursen abgeschlossen · ${overall.percent} % · ${overall.experiencePoints} XP`,'home-learning-summary');
     hero.insertBefore(summary,start);

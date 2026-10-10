@@ -3,6 +3,8 @@ import {renderSource} from './source-links.mjs?v=20260930ao';
 import {headingStyle,slideSections,layoutForSlide} from './presentation-theme.mjs?v=20260930ao';
 import {formatSlideText,downloadSlides} from './slide-tools.js?v=20260930ao';
 import {hasAccess,safeURL} from './policy.mjs?v=20260930ao';
+import {hasMaterialAccess} from './material-access.mjs?v=20261010b';
+import {fetchGraphicDownload} from './graphic-download.mjs?v=20261010b';
 const groups={glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Kursfolien'};
 const groupDescriptions={glossary:'Zentrale Begriffe, Institutionen und Zusammenhänge verständlich erklärt.',career:'Antworten für PJ, erste Stelle und die ärztliche Weiterbildung.',professions:'Rechtliche Orientierung für Pflege, Rettungsdienst und weitere Gesundheitsberufe.',podcast:'Die Fälle und Fragen aus den Podcastfolgen als Schaubilder.',system:'Grafische Übersichten zu Haftung, Versorgung und Finanzierung.',slides:'Die gesamte Präsentation im Folien-Player mit Suche und direktem Kurseinstieg.'};
 const categorySymbols={'PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
@@ -22,7 +24,7 @@ export async function courseMaterials(main,no,isCurrent){
 export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null,learningStore=null){
  if(!entries){const r=await fetch('./library.json?v=20260930ao');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
- const open=e=>e.free||hasAccess(scope(e),grants);
+ const open=e=>hasMaterialAccess(e,grants);
  const badge=e=>node('span',(e.group==='career'&&learningStore?.snapshot.completedCareerTopics.includes(e.id)?'✓ Gelesen · ':'')+(e.free?'Kostenlos':open(e)?'✓ Freigeschaltet':'🔒 Mit Code freischalten'),`badge ${open(e)?'':'lock'}`);
  if(!id&&onlyGroup==='diagrams'){
   main.append(node('h1','🖼 Schaubilder'),node('p','Visuell verstehen: Wählen Sie die Schaubilder zum Podcast oder die thematisch geordneten Übersichten zum Medizinrecht und Gesundheitssystem.'));
@@ -98,6 +100,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const heading=node('section',null,e.group==='slides'?'':'knowledge-banner');heading.append(node('p',groups[e.group],'section-number'));if(e.group!=='slides'&&categorySymbols[e.category]){const symbol=node('span',categorySymbols[e.category],'knowledge-symbol');symbol.setAttribute('aria-hidden','true');heading.append(symbol);}heading.append(node('h1',e.title));if(e.category)heading.append(node('p',e.category,'knowledge-category'));heading.append(badge(e));main.append(heading);let c=e.content;
  if(!c&&open(e)&&auth){try{c=await auth.getCourse(e.id);}catch(error){if(e.group==='slides')throw error;main.append(node('p','Inhalt konnte nicht geladen werden. Bitte erneut versuchen.','notice'));return;}if(!isCurrent())return;}
  if(!c){main.append(node('p','Für diesen Inhalt benötigen Sie einen gültigen Freischaltcode. Die kostenlosen Einstiege bleiben ohne Anmeldung zugänglich.','notice'),anchor('Anmelden & Zugang freischalten →','#account'));return;}
+ if(e.group==='slides'&&isCurrent())learningStore?.rememberLocation({kind:'slide',id:e.id,title:e.title});
  if(e.group==='slides'){
   const slides=entries.filter(x=>x.group==='slides'),index=slides.findIndex(x=>x.id===e.id),nav=node('nav',null,'slide-toolbar');nav.setAttribute('aria-label','Foliennavigation');
   if(index>0)nav.append(anchor('← Zurück','#material/'+encodeURIComponent(slides[index-1].id)));
@@ -113,7 +116,21 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
   if(!isCurrent())return;
   if(!src){target.append(node('p','Die Grafik konnte nicht geladen werden. Die Lesefassung steht unten bereit.','notice'));return;}
   const figure=node('figure',null,'diagram'),img=node('img');img.src=src;img.alt=e.title;img.loading='lazy';
-  const zoom=node('button','Grafik vergrößern ⤢','secondary');zoom.type='button';zoom.onclick=()=>{const dialog=node('dialog',null,'image-dialog'),close=node('button','Schließen ×');const full=img.cloneNode();close.onclick=()=>{dialog.close();dialog.remove();};dialog.append(close,full);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();};figure.append(img,zoom);target.append(figure);
+  const zoom=node('button','Grafik vergrößern ⤢','secondary');zoom.type='button';zoom.onclick=()=>{const dialog=node('dialog',null,'image-dialog'),close=node('button','Schließen ×');const full=img.cloneNode();close.onclick=()=>{dialog.close();dialog.remove();};dialog.append(close,full);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();};
+  const download=node('button','↓ Grafik herunterladen','secondary'),feedback=node('p','','subtle');download.type='button';feedback.setAttribute('role','status');
+  download.onclick=async()=>{
+   download.disabled=true;feedback.textContent='Download wird vorbereitet …';
+   try{
+    const file=await fetchGraphicDownload(auth,scope(e),name,c.publicAssets?.[name]);if(!isCurrent())return;
+    if(download.dataset.blobUrl)URL.revokeObjectURL(download.dataset.blobUrl);
+    const url=URL.createObjectURL(file.blob);download.dataset.blobUrl=url;
+    const save=anchor('↓ Grafik jetzt speichern',url);save.download=file.filename;
+    feedback.replaceChildren(save,node('span',' Auf dem iPhone über „Teilen“ in Dateien oder Fotos sichern.'));
+   }catch(error){feedback.textContent=error.message||'Download derzeit nicht verfügbar. Bitte erneut versuchen.';}
+   finally{download.disabled=false;}
+  };
+  const actions=node('div',null,'diagram-actions');actions.append(zoom,download);
+  figure.append(img,actions,feedback,node('figcaption','Für Ihre persönliche Nutzung. Heruntergeladene Dateien bleiben nach Ablauf Ihres Zugangs erhalten.','subtle'));target.append(figure);
  }
  if(!c.blocks)for(const name of c.assets??[])await graphic(name);
  if(!isCurrent())return;
