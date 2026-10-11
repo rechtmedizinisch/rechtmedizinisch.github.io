@@ -1,4 +1,4 @@
-import {termsSections} from './terms-data.mjs?v=20261011-live3';
+import {termsSections} from './terms-data.mjs?v=20261011-live4';
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
 export function renderLegal(main,type){
  main.classList.add('narrow');

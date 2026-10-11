@@ -1,4 +1,4 @@
-import {config} from './config.js?v=20261011-live3';
+import {config} from './config.js?v=20261011-live4';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 const active=g=>!g.revoked_at&&Date.parse(g.starts_at)<=Date.now()&&Date.parse(g.expires_at)>Date.now();
 export async function billingRequest(auth,action,extra={}){
@@ -11,7 +11,7 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
  let state={grants:knownGrants,environment:'live'};
  let unavailable=false;
  if(signedIn&&config.billingLiveEnabled){try{state=await billingRequest(auth,'status');}catch{unavailable=true;}}
- const response=await fetch(new URL('./billing-offers.json?v=20261011-live3',import.meta.url));if(!response.ok)return null;
+ const response=await fetch(new URL('./billing-offers.json?v=20261011-live4',import.meta.url));if(!response.ok)return null;
  const offers=await response.json();
  const section=el('section',null,'card billing-panel');
  section.append(el('span','IHR WEB-ZUGANG','badge'),el('h2','✨ So lernen Sie weiter'),el('p','Wählen Sie den Zugang, der zu Ihrem Lernen passt. Kurse 1 und 2 bleiben kostenlos. Ein gültiger Freischaltcode ist weiterhin eine Alternative.'));

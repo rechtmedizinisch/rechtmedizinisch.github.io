@@ -1,6 +1,6 @@
 export const config = {
-  "billingLiveEnabled": false,
-  "cancellationLiveEnabled": false,
+  "billingLiveEnabled": true,
+  "cancellationLiveEnabled": true,
   "billingFunction": "billing-live",
   "url": "https://exgcgkderlacmcpcolbx.supabase.co",
   "key": "sb_publishable_EMi9yg7QeMVaiUtZNp67lQ_6puwfXvJ",
