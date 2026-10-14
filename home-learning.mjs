@@ -1,4 +1,4 @@
-import {catalogOverall} from './progress-overview.mjs?v=20260930ao';
+import {catalogOverall} from './progress-overview.mjs?v=20261014-shared1';
 import {resumeHref} from './learning-resume.mjs?v=20261010c';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 export function homeLearning(main,catalog,store){

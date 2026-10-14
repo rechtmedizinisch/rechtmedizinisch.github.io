@@ -1,6 +1,7 @@
-import {createClient} from './assets/supabase.bundle.mjs?v=20260930ao';
-import {config} from './config.js?v=20261011-live4';
-export const client=createClient(config.url,config.key,{auth:{flowType:'pkce',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'rm-web-auth-v2'}});
+import {createClient} from './assets/supabase.bundle.mjs?v=20261014-shared1';
+import {config} from './config.js?v=20261014-shared1';
+export const sandboxContext=(config.billingSandboxEnabled&&!config.billingLiveEnabled)||(typeof location!=='undefined'&&new URLSearchParams(location.search).get('reviewSandbox')==='1');
+export const client=createClient(config.url,config.key,{global:{headers:sandboxContext?{'x-rm-billing-mode':'sandbox'}:{}},auth:{flowType:'pkce',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'rm-web-auth-v2'}});
 export async function currentUser(){const {data,error}=await client.auth.getUser();if(error)return null;return data.user;}
 export async function getGrants(){if(!config.backendReady)return [];const {data,error}=await client.from('web_entitlements').select('scope,starts_at,expires_at,revoked_at');if(error)throw error;return data;}
 export async function getCourse(id){const {data,error}=await client.from('web_content').select('payload').eq('id',id).maybeSingle();if(error)throw error;return data?.payload??null;}
@@ -15,3 +16,5 @@ export async function verifyEmailCode(email,token){const {error}=await client.au
 export async function googleLogin(){if(!config.googleEnabled)throw Error('Google-Anmeldung wird noch eingerichtet.');const {error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:new URL('./index.html',location.href).href}});if(error)throw error;}
 
 export async function getSlides(){const {data,error}=await client.from("web_content").select("payload").eq("scope","slides").order("id");if(error)throw error;return (data??[]).map(r=>r.payload).sort((a,b)=>Number(a.id)-Number(b.id));}
+
+export async function passwordLogin(email,password){const {error}=await client.auth.signInWithPassword({email,password});if(error)throw error;}

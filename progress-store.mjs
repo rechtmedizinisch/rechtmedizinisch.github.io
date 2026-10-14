@@ -1,4 +1,4 @@
-import {emptyCourseProgress} from './progress-engine.mjs?v=20260930ao';
+import {emptyCourseProgress} from './progress-engine.mjs?v=20261014-shared1';
 import {resumeStore} from './learning-resume.mjs?v=20261010c';
 export const progressKey=owner=>'rm-web-learning-v1:'+(owner||'guest');
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
