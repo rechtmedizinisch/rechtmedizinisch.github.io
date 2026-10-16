@@ -98,7 +98,9 @@ async function account(){
    if(user?.id!==owner)return;accountNotice={owner,...message};await sessionManager.refresh();
   }}),accountTools(auth,()=>sessionManager.refresh(),user));
  }
- const purchases=await billingPanel(auth,{signedIn:!!user,grants});
+ let purchases;
+ try{purchases=await billingPanel(auth,{signedIn:!!user,grants});}
+ catch{if(version===routeVersion&&owner===(user?.id??null))main.append(status('Die Kaufangebote konnten gerade nicht geladen werden. Anmeldung und Freischaltcodes können Sie weiterhin nutzen.'));}
  if(version!==routeVersion||owner!==(user?.id??null))return;
  if(purchases)main.append(purchases);
  main.append(el('p','Ab App-Version 1.1 verwenden Sie denselben Kontozugang in App und Website. Bereits bestehende Apple-Käufe können Sie einmalig im App-Konto übernehmen.','notice'));
