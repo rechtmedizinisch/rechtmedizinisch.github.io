@@ -1,5 +1,5 @@
 import {config} from './config.js?v=20261014-shared1';
-import {sandboxContext} from './auth.js?v=20261014-shared1';
+import {sandboxContext} from './auth-client.mjs';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 const active=g=>!g.revoked_at&&Date.parse(g.starts_at)<=Date.now()&&Date.parse(g.expires_at)>Date.now();
 export async function billingRequest(auth,action,extra={}){

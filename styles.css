@@ -252,3 +252,5 @@ body>header{background:#fff}
 .apple-sign-in:hover,.apple-sign-in:focus-visible{background:#000;color:#fff}
 .apple-sign-in img{display:block;width:min(100%,320px);height:50px;object-fit:contain}
 .apple-sign-in:disabled{opacity:.55;cursor:wait}
+
+.code-feedback:empty{display:none}.code-feedback{margin-bottom:0;overflow-wrap:anywhere}.code-feedback.success{background:#e4f5ef;color:#075e58;border-left:4px solid #13847e}.code-feedback.error{background:#fff0eb;color:#8c3025;border-left:4px solid #bf5141}.account-code[aria-busy="true"] button{cursor:progress}

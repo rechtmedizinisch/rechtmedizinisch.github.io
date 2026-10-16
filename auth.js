@@ -1,19 +1,22 @@
-import {createClient} from './assets/supabase.bundle.mjs?v=20261014-shared1';
+import {client,sandboxContext} from './auth-client.mjs';
+import {requestDeadline} from './request-deadline.mjs';
+export {client,sandboxContext};
 import {config} from './config.js?v=20261015-apple1';
 import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261016-apple3';
 export {isAppleCancellation};
 export function prepareAppleLogin(){return prepareAppleRequest({clientID:config.appleClientID,redirectURI:config.appleRedirectURI});}
 export function appleLogin(request){return completeAppleLogin(client,request);}
-export const sandboxContext=(config.billingSandboxEnabled&&!config.billingLiveEnabled)||(typeof location!=='undefined'&&new URLSearchParams(location.search).get('reviewSandbox')==='1');
-export const client=createClient(config.url,config.key,{global:{headers:sandboxContext?{'x-rm-billing-mode':'sandbox'}:{}},auth:{flowType:'pkce',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storageKey:'rm-web-auth-v2'}});
-export async function currentUser(){const {data,error}=await client.auth.getUser();if(error)return null;return data.user;}
-export async function getGrants(){if(!config.backendReady)return [];const {data,error}=await client.from('web_entitlements').select('scope,starts_at,expires_at,revoked_at');if(error)throw error;return data;}
+export function currentUser(){return requestDeadline(async()=>{
+ const {data:stored,error:storedError}=await client.auth.getSession();if(storedError)throw storedError;if(!stored?.session)return null;
+ const {data,error}=await client.auth.getUser();if(error)throw error;return data.user;
+});}
+export async function getGrants(owner){if(!config.backendReady)return [];const {data,error}=await requestDeadline(signal=>{let query=client.from('web_entitlements').select('scope,starts_at,expires_at,revoked_at');if(owner)query=query.eq('user_id',owner);return query.abortSignal(signal);});if(error)throw error;return data;}
 export async function getCourse(id){const {data,error}=await client.from('web_content').select('payload').eq('id',id).maybeSingle();if(error)throw error;return data?.payload??null;}
 export async function getSearchContent(){const rows=[];for(let start=0;;start+=200){const {data,error}=await client.from('web_content').select('id,payload').order('id').range(start,start+199);if(error)throw error;rows.push(...(data??[]));if((data??[]).length<200)return rows;}}
 export async function readProgress(owner){const current=await currentUser();if(current?.id!==owner)throw Error('Account changed');const {data,error}=await client.from('web_learning_progress').select('revision,payload').eq('user_id',owner).maybeSingle();if(error)throw error;return data??{revision:0,payload:{courses:{},certificateName:''}};}
 export async function writeProgress(owner,revision,payload){const {data,error}=await client.rpc('save_web_learning_progress',{owner_id:owner,expected_revision:revision,next_payload:payload});if(error)throw error;return data;}
 export async function getGraphic(path,download=null){const {data,error}=await client.storage.from('web-learning-assets').createSignedUrl(path,120,download?{download}:undefined);if(error)throw error;return data.signedUrl;}
-export async function redeem(code){const {data,error}=await client.rpc('redeem_web_code',{code});if(error)throw error;return data;}
+export async function redeem(code){const {data,error}=await requestDeadline(signal=>client.rpc('redeem_web_code',{code}).abortSignal(signal));if(error)throw error;return data;}
 export function deleteAccount(confirmation,appleRequest){
  if(confirmation!=='KONTO LÖSCHEN')return Promise.reject(Error('confirmation_required'));
  // Start Apple's popup in the original click event, before any asynchronous work.
