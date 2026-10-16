@@ -88,9 +88,10 @@ async function shop(){
  const version=routeVersion,owner=user?.id??null;
  main.append(el('h1','🛍 Zugang wählen'),el('p','Einfach starten, flexibel vertiefen.'));
  const offers=el('div'),loading=status('Kaufangebote werden geladen …');offers.append(loading);
- const codes=accessCodeEntry();codes.classList.add('shop-code-entry');main.append(offers,codes);
+ const codes=accessCodeEntry();codes.classList.add('shop-code-entry');main.append(offers);
  try{const purchases=await billingPanel(auth,{signedIn:!!user,grants});if(version===routeVersion&&owner===(user?.id??null)){offers.replaceChildren();if(purchases)offers.append(purchases);else offers.append(status('Die Kaufangebote konnten gerade nicht geladen werden. Freischaltcodes können Sie hier weiterhin einlösen.'));}}
  catch{if(version===routeVersion&&owner===(user?.id??null))offers.replaceChildren(status('Die Kaufangebote konnten gerade nicht geladen werden. Freischaltcodes können Sie hier weiterhin einlösen.'));}
+ if(version===routeVersion&&owner===(user?.id??null))main.append(codes);
 }
 async function account(){
  const version=routeVersion,owner=user?.id??null;main.classList.add('narrow');
