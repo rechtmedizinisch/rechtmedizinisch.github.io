@@ -1,5 +1,6 @@
 import {sessionCoordinator,grantDetails} from './session-coordinator.mjs';
-import {codePanel} from './code-panel.mjs';
+import {notify,sessionFeedback} from './feedback.mjs';
+import {codePanel} from './code-panel.mjs?v=20261016-feedback1';
 import {renderCancellation} from './cancellation.js?v=20261014-shared1';
 import {billingPanel} from './billing.js?v=20261016-session1';
 import {replacePresentation} from './presentation-transition.mjs?v=20261010b';
@@ -16,7 +17,7 @@ import {renderCourseLearning} from './course-learning.js?v=20261014-shared1';
 import {progressStore} from './progress-store.mjs?v=20261010c';
 import {renderReferences} from './references.js?v=20261014-shared1';
 import {formatSlideText} from './slide-tools.js?v=20261014-shared1';
-import {loginPanel} from './email-login.js?v=20261016-session1';
+import {loginPanel} from './email-login.js?v=20261016-feedback1';
 import {renderLegal} from './legal.js?v=20261015-apple1';
 import {renderPractice} from './practice.js?v=20261014-shared1';
 import {accountTools} from './account-tools.js?v=20261015-apple1';
@@ -24,8 +25,9 @@ import {renderLibrary,courseMaterials} from './library.js?v=20261010c';
 import {config} from './config.js?v=20261015-apple1';
 import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261014-shared1';
 const main=document.querySelector('main');
-const returningFromLogin=new URLSearchParams(location.search).has('code')||new URLSearchParams(location.hash.slice(1)).has('error');
-let loginReturnFailed=false,authSettled=false;
+const returningFromLogin=new URLSearchParams(location.search).has('code')||new URLSearchParams(location.search).has('error')||new URLSearchParams(location.hash.slice(1)).has('error');
+let loginReturnFailed=new URLSearchParams(location.search).has('error')||new URLSearchParams(location.hash.slice(1)).has('error'),authSettled=false;
+let sessionMessage=null;
 let catalog,user=null,grants=[],auth=null,routeVersion=0,expiryTimer;
 let renderedAccess;
 let sessionManager,sessionProblem=null,accountNotice=null;
@@ -83,13 +85,14 @@ async function account(){
  if(!authSettled){main.append(status('Anmeldung wird geladen …'));return;}
  if(!user){
   if(sessionProblem)return;
+  if(sessionMessage)main.append(status(sessionMessage));
   if(loginReturnFailed)main.append(status('Die Anmeldung wurde in diesem Browser nicht abgeschlossen. Bitte versuchen Sie es erneut. Ihr bestehendes Konto bleibt erhalten.'));
   main.append(loginPanel(auth,config,()=>sessionManager.refresh()));
  }else{
   const box=card('✓ Angemeldet');box.append(el('p',user.email??'Ihr Konto'),button('Abmelden',async event=>{
    const target=event.currentTarget;target.disabled=true;
    try{const {error}=await auth.client.auth.signOut({scope:'local'});if(error)throw error;await sessionManager.refresh();}
-   catch{target.disabled=false;box.append(status('Abmelden derzeit nicht möglich. Bitte versuchen Sie es erneut.'));}
+   catch{target.disabled=false;const text='Abmelden derzeit nicht möglich. Bitte versuchen Sie es erneut.';box.append(status(text));notify({kind:'error',title:'Abmeldung nicht abgeschlossen',text});}
   },'secondary'));main.append(box);
   const grantBox=card('🔓 Ihre Freischaltungen');grantBox.classList.add('account-grants');
   for(const grant of grants.filter(g=>hasAccess(g.scope,[g])))grantBox.append(el('p',`${scopeLabel(grant.scope)} · ${accessDuration(grant.expires_at)}`));
@@ -120,9 +123,12 @@ try{
   auth=await import('./auth.js?v=20261016-session1');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
+   const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});
    user=next.user;grants=next.grantsError&&previousOwner===(user?.id??null)?grants:next.grants;
    sessionProblem=next.grantsError?'Ihre Anmeldung ist bestätigt. Die Freischaltungen konnten gerade nicht vollständig geladen werden.':null;
    authSettled=true;if(user)loginReturnFailed=false;
+   if(feedback){sessionMessage=user?null:'Sie sind erfolgreich abgemeldet.';notify({...feedback,text:next.grantsError?sessionProblem:feedback.text});}
+   else if(first&&loginReturnFailed)notify({kind:'error',title:'Anmeldung nicht abgeschlossen',text:'Bitte versuchen Sie es erneut.'});
    if(accountNotice?.owner!==user?.id)accountNotice=null;
    const changed=first||previousOwner!==(user?.id??null)||previousGrants!==grantDetails(grants);
    if(changed)await route();else{sessionNotice();watchExpiry();}
