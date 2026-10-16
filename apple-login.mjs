@@ -39,7 +39,11 @@ export async function prepareAppleRequest(settings, load = loadAppleSDK, cryptoA
       used = true;
       sdk.auth.init({clientId: settings.clientID, redirectURI: redirect.href, scope: 'email',
         state, nonce: hash, usePopup: true});
-      return Promise.resolve(sdk.auth.signIn()).then(response => {
+      const responsePromise = sdk.auth.signIn();
+      // Browsers can suppress a popup without rejecting Apple's promise.
+      let timer;
+      const deadline = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('apple_login_timeout')), 180000); });
+      return Promise.race([responsePromise, deadline]).finally(() => clearTimeout(timer)).then(response => {
         const value = response?.authorization;
         if (value?.state !== state || ![value.id_token, value.code].every(text =>
             typeof text === 'string' && text.length > 0 && text.length < 12000)) throw new Error('apple_response_invalid');

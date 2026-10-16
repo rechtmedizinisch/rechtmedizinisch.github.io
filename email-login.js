@@ -8,7 +8,7 @@ export function loginPanel(auth,config){
   let request;
   const prepare=async()=>{try{request=await auth.prepareAppleLogin();apple.disabled=false;}catch{message.textContent='Apple-Anmeldung derzeit nicht verfügbar. Bitte nutzen Sie Google oder E-Mail.';}};
   if(auth)prepare();
-  apple.onclick=async()=>{apple.disabled=true;let signedIn=false;try{await auth.appleLogin(request);signedIn=true;}catch(error){if(!auth.isAppleCancellation(error))message.textContent='Die Apple-Anmeldung wurde nicht abgeschlossen. Bitte versuchen Sie es erneut oder nutzen Sie Google oder E-Mail.';}finally{if(!signedIn&&apple.isConnected)await prepare();}};
+  apple.onclick=async()=>{apple.disabled=true;message.textContent='Bestätigen Sie die Anmeldung im Apple-Fenster.';let signedIn=false;try{await auth.appleLogin(request);signedIn=true;}catch(error){if(!auth.isAppleCancellation(error))message.textContent='Die Apple-Anmeldung wurde nicht abgeschlossen. Bitte versuchen Sie es erneut oder nutzen Sie Google oder E-Mail.';}finally{if(!signedIn&&apple.isConnected)await prepare();}};
  }
  if(config.googleEnabled){const google=el('button','Mit Google fortfahren');google.type='button';google.disabled=!auth;google.onclick=async()=>{google.disabled=true;try{await auth.googleLogin();}catch{message.textContent='Google-Anmeldung derzeit nicht möglich. Bitte nutzen Sie E-Mail.';google.disabled=false;}};box.append(google);}
  const form=el('form'),label=el('label','Ihre E-Mail-Adresse'),email=el('input');email.type='email';email.id='login-email';email.required=true;email.autocomplete='email';label.htmlFor=email.id;
