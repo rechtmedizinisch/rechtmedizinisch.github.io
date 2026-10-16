@@ -74,6 +74,24 @@ function sessionNotice(){
  main.querySelector('#session-problem')?.remove();if(!sessionProblem)return;
  const box=card();box.id='session-problem';box.append(status(sessionProblem),button('Erneut prüfen',()=>sessionManager?sessionManager.refresh():location.reload(),'secondary'));main.prepend(box);
 }
+function accessCodeEntry(){
+ if(!user){
+  const entry=card('🎟 Freischaltcode einlösen');entry.classList.add('shop-code-entry');
+  entry.append(el('p','Sie haben einen Kurs- oder Premium-Code? Melden Sie sich an, um Ihren Zugang freizuschalten.'),link('Anmelden und Code einlösen →','#account','button'));return entry;
+ }
+ const owner=user.id;
+ return codePanel(auth,{notice:accountNotice?.owner===owner?accountNotice:null,onRedeemed:async message=>{
+  if(user?.id!==owner)return;accountNotice={owner,...message};await sessionManager.refresh();
+ }});
+}
+async function shop(){
+ const version=routeVersion,owner=user?.id??null;
+ main.append(el('h1','🛍 Zugang wählen'),el('p','Einfach starten, flexibel vertiefen.'));
+ const offers=el('div'),loading=status('Kaufangebote werden geladen …');offers.append(loading);
+ const codes=accessCodeEntry();codes.classList.add('shop-code-entry');main.append(offers,codes);
+ try{const purchases=await billingPanel(auth,{signedIn:!!user,grants});if(version===routeVersion&&owner===(user?.id??null)){offers.replaceChildren();if(purchases)offers.append(purchases);else offers.append(status('Die Kaufangebote konnten gerade nicht geladen werden. Freischaltcodes können Sie hier weiterhin einlösen.'));}}
+ catch{if(version===routeVersion&&owner===(user?.id??null))offers.replaceChildren(status('Die Kaufangebote konnten gerade nicht geladen werden. Freischaltcodes können Sie hier weiterhin einlösen.'));}
+}
 async function account(){
  const version=routeVersion,owner=user?.id??null;main.classList.add('narrow');
  const welcome=el('section',undefined,'account-welcome'),welcomeCopy=el('div',undefined,'account-welcome-copy');
@@ -97,9 +115,7 @@ async function account(){
   const grantBox=card('🔓 Ihre Freischaltungen');grantBox.classList.add('account-grants');
   for(const grant of grants.filter(g=>hasAccess(g.scope,[g])))grantBox.append(el('p',`${scopeLabel(grant.scope)} · ${accessDuration(grant.expires_at)}`));
   if(!grantBox.querySelector('p'))grantBox.append(el('p',sessionProblem?'Ihre Freischaltungen konnten gerade nicht geprüft werden.':'Noch kein zusätzlicher Web-Zugang aktiv. Kurse 1 und 2 bleiben kostenlos.'));
-  main.append(grantBox,codePanel(auth,{notice:accountNotice?.owner===owner?accountNotice:null,onRedeemed:async message=>{
-   if(user?.id!==owner)return;accountNotice={owner,...message};await sessionManager.refresh();
-  }}),accountTools(auth,()=>sessionManager.refresh(),user));
+  main.append(grantBox,accessCodeEntry(),accountTools(auth,()=>sessionManager.refresh(),user));
  }
  let purchases;
  try{purchases=await billingPanel(auth,{signedIn:!!user,grants});}
@@ -115,7 +131,7 @@ async function route(){renderedAccess=accessFingerprint(grants);learningStore();
   await replacePresentation(main,{accessKey,isCurrent:()=>version===routeVersion&&accessKey===JSON.stringify([user?.id??null,accessFingerprint(grants)]),render:prepared=>renderLibrary(prepared,materialId,auth,grants,()=>version===routeVersion,null,learningStore()),retry:route});
   return;
  }
- document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=false;});main.querySelectorAll('[data-blob-url]').forEach(n=>URL.revokeObjectURL(n.dataset.blobUrl));main.removeAttribute('aria-busy');main.classList.remove('narrow','presentation-player');main.replaceChildren();if(!authSettled&&['library','material','slides','practice','progress','courses','course','search'].includes(page)){main.append(status('Ihr Zugang und Lernstand werden geladen …'));return;}if(page==='library'||page==='material'||page==='slides')await renderLibrary(main,page==='material'&&id?decodeURIComponent(id):null,auth,grants,()=>version===routeVersion,page==='slides'?'slides':page==='library'?id:null,learningStore());else if(page==='practice')await renderPractice(main,auth,grants,user,()=>version===routeVersion,learningStore());else if(page==='search')await renderSearch(main,catalog,auth,()=>version===routeVersion);else if(page==='podcast')await renderPodcast(main,()=>version===routeVersion,id?decodeURIComponent(id):null);else if(page==='progress'){renderProgress(main,catalog,learningStore(),!!user);main.append(progressActions(learningStore(),user?progressStore(null):null,!!user,route));if(syncService)main.querySelector('#certificate')?.after(syncPanel(syncInfo,syncService,route));if(id==='certificate')main.querySelector('#certificate')?.scrollIntoView({block:'start'});}else if(page==='offer')renderLearningOffer(main,catalog);else if(page==='free')await renderFreeContent(main,catalog,()=>version===routeVersion);else if(page==='courses')courses();else if(page==='course')await course(id,version);else if(['cases','norms'].includes(page))references(page,id);else if(page==='account')await account();else if(page==='shop'){main.append(el('h1','🛍 Zugang wählen'),el('p','Einfach starten, flexibel vertiefen.'));const purchases=await billingPanel(auth,{signedIn:!!user,grants});if(version===routeVersion&&purchases)main.append(purchases);}else if(page==='cancel')renderCancellation(main);else if(['privacy','terms'].includes(page))renderLegal(main,page);else home();}
+ document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=false;});main.querySelectorAll('[data-blob-url]').forEach(n=>URL.revokeObjectURL(n.dataset.blobUrl));main.removeAttribute('aria-busy');main.classList.remove('narrow','presentation-player');main.replaceChildren();if(!authSettled&&['library','material','slides','practice','progress','courses','course','search','shop'].includes(page)){main.append(status('Ihr Zugang und Lernstand werden geladen …'));return;}if(page==='library'||page==='material'||page==='slides')await renderLibrary(main,page==='material'&&id?decodeURIComponent(id):null,auth,grants,()=>version===routeVersion,page==='slides'?'slides':page==='library'?id:null,learningStore());else if(page==='practice')await renderPractice(main,auth,grants,user,()=>version===routeVersion,learningStore());else if(page==='search')await renderSearch(main,catalog,auth,()=>version===routeVersion);else if(page==='podcast')await renderPodcast(main,()=>version===routeVersion,id?decodeURIComponent(id):null);else if(page==='progress'){renderProgress(main,catalog,learningStore(),!!user);main.append(progressActions(learningStore(),user?progressStore(null):null,!!user,route));if(syncService)main.querySelector('#certificate')?.after(syncPanel(syncInfo,syncService,route));if(id==='certificate')main.querySelector('#certificate')?.scrollIntoView({block:'start'});}else if(page==='offer')renderLearningOffer(main,catalog);else if(page==='free')await renderFreeContent(main,catalog,()=>version===routeVersion);else if(page==='courses')courses();else if(page==='course')await course(id,version);else if(['cases','norms'].includes(page))references(page,id);else if(page==='account')await account();else if(page==='shop')await shop();else if(page==='cancel')renderCancellation(main);else if(['privacy','terms'].includes(page))renderLegal(main,page);else home();}
 try{
  catalog=await fetch('./catalog.json?v=20261014-shared1').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{window.scrollTo(0,0);route();});
