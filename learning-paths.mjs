@@ -1,4 +1,4 @@
-import {hasMaterialAccess} from './material-access.mjs?v=20261027-update51';
+import {hasMaterialAccess} from './material-access.mjs?v=20261027-update51b';
 const validId=id=>typeof id==='string'&&/^(?:special:special-[a-z0-9-]+|atlas:(?:case|topic|schema|procedure|term|review)-[a-z0-9-]+|podcast:Podcast(?:Emergency|Defensive|Adults|Children)|slides:[1-9]\d{0,3})$/.test(id);
 const validStep=step=>typeof step==='string'&&(step==='presentation-index'||validId(step)||/^(?:atlas:(?:schema|procedure)-[a-z0-9-]+|podcast:Podcast(?:Emergency|Defensive|Adults|Children))\?stage=[1-9]\d?$/.test(step));
 export const learningTrailId=step=>String(step??'').split('?')[0];

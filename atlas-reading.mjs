@@ -1,8 +1,8 @@
-import {formatSlideText} from './slide-tools.js?v=20261027-update51';
-import {safeURL} from './policy.mjs?v=20261027-update51';
-import {protectReferences} from './presentation-theme.mjs?v=20261027-update51';
-import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-update51';
-import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261027-update51';
+import {formatSlideText} from './slide-tools.js?v=20261027-update51b';
+import {safeURL} from './policy.mjs?v=20261027-update51b';
+import {protectReferences} from './presentation-theme.mjs?v=20261027-update51b';
+import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-update51b';
+import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261027-update51b';
 const element=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 const symbols={facts:'▤',question:'?',solution:'✓',warning:'!',takeaway:'💡',focus:'◎'};
 function card(title,text,role='explanation'){

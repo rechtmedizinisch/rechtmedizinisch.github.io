@@ -1,32 +1,32 @@
 import {sessionCoordinator,grantDetails} from './session-coordinator.mjs';
 import {notify,sessionFeedback} from './feedback.mjs';
-import {createLearningUpdateNotice} from './learning-update.mjs?v=20261027-update51';
-import {codePanel} from './code-panel.mjs?v=20261027-update51';
-import {renderCancellation} from './cancellation.js?v=20261027-update51';
-import {billingPanel} from './billing.js?v=20261027-update51';
-import {replacePresentation} from './presentation-transition.mjs?v=20261027-update51';
-import {renderLearningOffer} from './learning-offer.mjs?v=20261027-update51';
-import {renderFreeContent} from './free-content.mjs?v=20261027-update51';
-import {homeLearning} from './home-learning.mjs?v=20261027-update51';
-import {progressActions} from './progress-actions.mjs?v=20261027-update51';
-import {progressSync} from './progress-sync.mjs?v=20261027-update51';
-import {syncPanel} from './progress-sync-ui.mjs?v=20261027-update51';
-import {renderSearch} from './search.js?v=20261027-update51';
-import {renderPodcast} from './podcast.js?v=20261027-update51';
-import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261027-update51';
-import {renderCourseLearning} from './course-learning.js?v=20261027-update51';
-import {progressStore} from './progress-store.mjs?v=20261027-update51';
-import {renderReferences} from './references.js?v=20261027-update51';
-import {formatSlideText} from './slide-tools.js?v=20261027-update51';
-import {loginPanel} from './email-login.js?v=20261027-update51';
-import {renderLegal} from './legal.js?v=20261027-update51';
-import {renderPractice} from './practice.js?v=20261027-update51';
-import {accountTools} from './account-tools.js?v=20261027-update51';
-import {renderLibrary,courseMaterials} from './library.js?v=20261027-update51';
-import {readingViewState} from './reading-view-state.mjs?v=20261027-update51';
-import {config} from './config.js?v=20261027-update51';
-import {installContextHelp} from './context-help.mjs?v=20261027-update51';
-import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261027-update51';
+import {createLearningUpdateNotice} from './learning-update.mjs?v=20261027-update51b';
+import {codePanel} from './code-panel.mjs?v=20261027-update51b';
+import {renderCancellation} from './cancellation.js?v=20261027-update51b';
+import {billingPanel} from './billing.js?v=20261027-update51b';
+import {replacePresentation} from './presentation-transition.mjs?v=20261027-update51b';
+import {renderLearningOffer} from './learning-offer.mjs?v=20261027-update51b';
+import {renderFreeContent} from './free-content.mjs?v=20261027-update51b';
+import {homeLearning} from './home-learning.mjs?v=20261027-update51b';
+import {progressActions} from './progress-actions.mjs?v=20261027-update51b';
+import {progressSync} from './progress-sync.mjs?v=20261027-update51b';
+import {syncPanel} from './progress-sync-ui.mjs?v=20261027-update51b';
+import {renderSearch} from './search.js?v=20261027-update51b';
+import {renderPodcast} from './podcast.js?v=20261027-update51b';
+import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261027-update51b';
+import {renderCourseLearning} from './course-learning.js?v=20261027-update51b';
+import {progressStore} from './progress-store.mjs?v=20261027-update51b';
+import {renderReferences} from './references.js?v=20261027-update51b';
+import {formatSlideText} from './slide-tools.js?v=20261027-update51b';
+import {loginPanel} from './email-login.js?v=20261027-update51b';
+import {renderLegal} from './legal.js?v=20261027-update51b';
+import {renderPractice} from './practice.js?v=20261027-update51b';
+import {accountTools} from './account-tools.js?v=20261027-update51b';
+import {renderLibrary,courseMaterials} from './library.js?v=20261027-update51b';
+import {readingViewState} from './reading-view-state.mjs?v=20261027-update51b';
+import {config} from './config.js?v=20261027-update51b';
+import {installContextHelp} from './context-help.mjs?v=20261027-update51b';
+import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261027-update51b';
 const main=document.querySelector('main');
 const learningUpdateNotice=createLearningUpdateNotice();
 installContextHelp(main);
@@ -150,10 +150,10 @@ async function route(){
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261027-update51').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261027-update51b').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
-  auth=await import('./auth.js?v=20261027-update51');
+  auth=await import('./auth.js?v=20261027-update51b');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
    const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});
