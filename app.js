@@ -1,32 +1,32 @@
 import {sessionCoordinator,grantDetails} from './session-coordinator.mjs';
 import {notify,sessionFeedback} from './feedback.mjs';
-import {createLearningUpdateNotice} from './learning-update.mjs?v=20261027-parity54';
-import {codePanel} from './code-panel.mjs?v=20261027-parity54';
-import {renderCancellation} from './cancellation.js?v=20261027-parity54';
-import {billingPanel} from './billing.js?v=20261027-parity54';
-import {replacePresentation} from './presentation-transition.mjs?v=20261027-parity54';
-import {renderLearningOffer} from './learning-offer.mjs?v=20261027-parity54';
-import {renderFreeContent} from './free-content.mjs?v=20261027-parity54';
-import {homeLearning} from './home-learning.mjs?v=20261027-parity54';
-import {progressActions} from './progress-actions.mjs?v=20261027-parity54';
-import {progressSync} from './progress-sync.mjs?v=20261027-parity54';
-import {syncPanel} from './progress-sync-ui.mjs?v=20261027-parity54';
-import {renderSearch} from './search.js?v=20261027-parity54';
-import {renderPodcast} from './podcast.js?v=20261027-parity54';
-import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261027-parity54';
-import {renderCourseLearning} from './course-learning.js?v=20261027-parity54';
-import {progressStore} from './progress-store.mjs?v=20261027-parity54';
-import {renderReferences} from './references.js?v=20261027-parity54';
-import {formatSlideText} from './slide-tools.js?v=20261027-parity54';
-import {loginPanel} from './email-login.js?v=20261027-parity54';
-import {renderLegal} from './legal.js?v=20261027-parity54';
-import {renderPractice} from './practice.js?v=20261027-parity54';
-import {accountTools} from './account-tools.js?v=20261027-parity54';
-import {renderLibrary,courseMaterials} from './library.js?v=20261027-parity54';
-import {readingViewState} from './reading-view-state.mjs?v=20261027-parity54';
-import {config} from './config.js?v=20261027-parity54';
-import {installContextHelp} from './context-help.mjs?v=20261027-parity54';
-import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261027-parity54';
+import {createLearningUpdateNotice} from './learning-update.mjs?v=20261027-google-choice55';
+import {codePanel} from './code-panel.mjs?v=20261027-google-choice55';
+import {renderCancellation} from './cancellation.js?v=20261027-google-choice55';
+import {billingPanel} from './billing.js?v=20261027-google-choice55';
+import {replacePresentation} from './presentation-transition.mjs?v=20261027-google-choice55';
+import {renderLearningOffer} from './learning-offer.mjs?v=20261027-google-choice55';
+import {renderFreeContent} from './free-content.mjs?v=20261027-google-choice55';
+import {homeLearning} from './home-learning.mjs?v=20261027-google-choice55';
+import {progressActions} from './progress-actions.mjs?v=20261027-google-choice55';
+import {progressSync} from './progress-sync.mjs?v=20261027-google-choice55';
+import {syncPanel} from './progress-sync-ui.mjs?v=20261027-google-choice55';
+import {renderSearch} from './search.js?v=20261027-google-choice55';
+import {renderPodcast} from './podcast.js?v=20261027-google-choice55';
+import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261027-google-choice55';
+import {renderCourseLearning} from './course-learning.js?v=20261027-google-choice55';
+import {progressStore} from './progress-store.mjs?v=20261027-google-choice55';
+import {renderReferences} from './references.js?v=20261027-google-choice55';
+import {formatSlideText} from './slide-tools.js?v=20261027-google-choice55';
+import {loginPanel} from './email-login.js?v=20261027-google-choice55';
+import {renderLegal} from './legal.js?v=20261027-google-choice55';
+import {renderPractice} from './practice.js?v=20261027-google-choice55';
+import {accountTools} from './account-tools.js?v=20261027-google-choice55';
+import {renderLibrary,courseMaterials} from './library.js?v=20261027-google-choice55';
+import {readingViewState} from './reading-view-state.mjs?v=20261027-google-choice55';
+import {config} from './config.js?v=20261027-google-choice55';
+import {installContextHelp} from './context-help.mjs?v=20261027-google-choice55';
+import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261027-google-choice55';
 const main=document.querySelector('main');
 const learningUpdateNotice=createLearningUpdateNotice();
 installContextHelp(main);
@@ -150,10 +150,10 @@ async function route(){
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261027-parity54').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261027-google-choice55').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
-  auth=await import('./auth.js?v=20261027-parity54');
+  auth=await import('./auth.js?v=20261027-google-choice55');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
    const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});

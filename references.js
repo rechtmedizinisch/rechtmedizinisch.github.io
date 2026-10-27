@@ -1,5 +1,5 @@
-import {safeURL} from './policy.mjs?v=20261027-parity54';
-import {protectReferences} from './presentation-theme.mjs?v=20261027-parity54';
+import {safeURL} from './policy.mjs?v=20261027-google-choice55';
+import {protectReferences} from './presentation-theme.mjs?v=20261027-google-choice55';
 
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function source(label,url){const a=node('a',label,'reference-source');a.href=safeURL(url)||'#';a.target='_blank';a.rel='noopener noreferrer';return a;}

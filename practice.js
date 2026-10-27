@@ -1,8 +1,8 @@
-import {hasAccess,shuffle} from './policy.mjs?v=20261027-parity54';
-import {protectReferences} from './presentation-theme.mjs?v=20261027-parity54';
-import {courseMistakes} from './practice-mistakes.mjs?v=20261027-parity54';
-import {validPracticeBank,practiceExplanations,practiceSources} from './practice-bank.mjs?v=20261027-parity54';
-import {learningPathQuestions} from './learning-paths.mjs?v=20261027-parity54';
+import {hasAccess,shuffle} from './policy.mjs?v=20261027-google-choice55';
+import {protectReferences} from './presentation-theme.mjs?v=20261027-google-choice55';
+import {courseMistakes} from './practice-mistakes.mjs?v=20261027-google-choice55';
+import {validPracticeBank,practiceExplanations,practiceSources} from './practice-bank.mjs?v=20261027-google-choice55';
+import {learningPathQuestions} from './learning-paths.mjs?v=20261027-google-choice55';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const btn=(text,fn,cls='')=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
 function sourceLinks(target,question){for(const url of practiceSources(question)){const link=el('a','Originalquelle · '+new URL(url).hostname+'','practice-source');link.href=url;link.target='_blank';link.rel='noopener noreferrer';target.append(link);}}
@@ -19,7 +19,7 @@ export async function renderPractice(main,auth,grants,user,isCurrent,learningSto
  let data;try{data=await auth.getCourse('practice:course-quizzes-202610');}catch{}
  if(!isCurrent())return;
  if(!validPracticeBank(data?.questions)){main.append(el('p','Die Übungsfragen konnten nicht geladen werden. Bitte versuchen Sie es erneut.','notice'));return;}
- let paths=[];try{const response=await fetch('./library.json?v=20261027-parity54');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
+ let paths=[];try{const response=await fetch('./library.json?v=20261027-google-choice55');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
  if(!isCurrent())return;
  let pathId=initialPathId;
  const panel=el('section',null,'card practice-panel');main.append(panel);

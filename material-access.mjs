@@ -1,4 +1,4 @@
-import {hasAccess} from './policy.mjs?v=20261027-parity54';
+import {hasAccess} from './policy.mjs?v=20261027-google-choice55';
 
 export function isGraphic(entry) {
   return ['podcast','system'].includes(entry?.group) || (entry?.group==='atlas' && entry.graphic===true);

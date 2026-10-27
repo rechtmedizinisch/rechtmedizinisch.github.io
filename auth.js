@@ -1,8 +1,9 @@
 import {client,sandboxContext} from './auth-client.mjs';
 import {requestDeadline} from './request-deadline.mjs';
+import {startGoogleLogin} from './google-login.mjs?v=20261027-google-choice55';
 export {client,sandboxContext};
-import {config} from './config.js?v=20261027-parity54';
-import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261027-parity54';
+import {config} from './config.js?v=20261027-google-choice55';
+import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261027-google-choice55';
 export {isAppleCancellation};
 export function prepareAppleLogin(){return prepareAppleRequest({clientID:config.appleClientID,redirectURI:config.appleRedirectURI});}
 export function appleLogin(request){return completeAppleLogin(client,request);}
@@ -40,7 +41,7 @@ export function deleteAccount(confirmation,appleRequest){
 }
 export async function emailLogin(email){if(!config.emailEnabled)throw Error('Der E-Mail-Versand wird noch eingerichtet.');const {error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:new URL('./index.html',location.href).href}});if(error)throw error;}
 export async function verifyEmailCode(email,token){const {error}=await client.auth.verifyOtp({email,token,type:'email'});if(error)throw error;}
-export async function googleLogin(){if(!config.googleEnabled)throw Error('Google-Anmeldung wird noch eingerichtet.');const {error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:new URL('./index.html',location.href).href}});if(error)throw error;}
+export async function googleLogin(){if(!config.googleEnabled)throw Error('Google-Anmeldung wird noch eingerichtet.');return startGoogleLogin(client,new URL('./index.html',location.href).href);}
 
 export async function getSlides(){const {data,error}=await client.from("web_content").select("payload").eq("scope","slides").order("id");if(error)throw error;return (data??[]).map(r=>r.payload).sort((a,b)=>Number(a.id)-Number(b.id));}
 
