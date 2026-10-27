@@ -1,8 +1,8 @@
-import {formatSlideText} from './slide-tools.js?v=20261027-google-choice55';
-import {safeURL} from './policy.mjs?v=20261027-google-choice55';
-import {protectReferences} from './presentation-theme.mjs?v=20261027-google-choice55';
-import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-google-choice55';
-import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261027-google-choice55';
+import {formatSlideText} from './slide-tools.js?v=20261027-view-parity56';
+import {safeURL} from './policy.mjs?v=20261027-view-parity56';
+import {protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56';
+import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-view-parity56';
+import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261027-view-parity56';
 const element=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 const symbols={facts:'▤',question:'?',solution:'✓',warning:'!',takeaway:'💡',focus:'◎'};
 function card(title,text,role='explanation'){

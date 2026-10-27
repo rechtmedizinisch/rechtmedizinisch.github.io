@@ -1,4 +1,4 @@
-const fields=new Set(['title','subtitle','goals','body','text','searchText','explanation','practice','definition','summary','prompt','question','label','description','tenor','holding','status','docket','court','category','source','sourceCaseId','eyebrow','kind','bridge','feedback','answer','keywords']);
+const fields=new Set(['title','subtitle','goals','body','text','searchText','explanation','practice','definition','summary','prompt','question','label','description','tenor','holding','status','docket','court','category','source','sourceCaseId','eyebrow','kind','bridge','feedback','answer','keywords','from','relation','to']);
 export function searchableText(value){
   if(Array.isArray(value))return value.map(searchableText).join(' ');
   if(value&&typeof value==='object')return Object.entries(value).map(([key,v])=>{if(['assets','publicAssets','materials','courses','courseIds','links','sourcePages'].includes(key))return '';if(typeof v==='string')return fields.has(key)?v:'';if(Array.isArray(v)&&!fields.has(key))return v.filter(x=>x&&typeof x==='object').map(searchableText).join(' ');return searchableText(v);}).join(' ');

@@ -1,18 +1,19 @@
-import {renderDefinitions} from './definition-library.mjs?v=20261027-google-choice55';
-import {renderPresentationIndex} from './presentation-index.mjs?v=20261027-google-choice55';
-import {fetchPresentationDownload} from './presentation-download.mjs?v=20261027-google-choice55';
-import {renderSource} from './source-links.mjs?v=20261027-google-choice55';
-import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261027-google-choice55';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261027-google-choice55';
-import {hasAccess,safeURL} from './policy.mjs?v=20261027-google-choice55';
-import {hasMaterialAccess} from './material-access.mjs?v=20261027-google-choice55';
-import {fetchGraphicDownload} from './graphic-download.mjs?v=20261027-google-choice55';
-import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261027-google-choice55';
-import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-google-choice55';
-import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261027-google-choice55';
+import {renderDefinitions} from './definition-library.mjs?v=20261027-view-parity56';
+import {renderPresentationIndex} from './presentation-index.mjs?v=20261027-view-parity56';
+import {fetchPresentationDownload} from './presentation-download.mjs?v=20261027-view-parity56';
+import {renderSource} from './source-links.mjs?v=20261027-view-parity56';
+import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261027-view-parity56';
+import {hasAccess,safeURL} from './policy.mjs?v=20261027-view-parity56';
+import {hasMaterialAccess} from './material-access.mjs?v=20261027-view-parity56';
+import {fetchGraphicDownload} from './graphic-download.mjs?v=20261027-view-parity56';
+import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261027-view-parity56';
+import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-view-parity56';
+import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261027-view-parity56';
 const groups={atlas:'⚖ Fälle, Schemata & Vertiefungen',glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Folien & Vertiefungen'};
 const groupDescriptions={glossary:'Zentrale Begriffe, Institutionen und Zusammenhänge verständlich erklärt.',career:'Antworten für PJ, erste Stelle und die ärztliche Weiterbildung.',professions:'Rechtliche Orientierung für Pflege, Rettungsdienst und weitere Gesundheitsberufe.',podcast:'Die Fälle und Fragen aus den Podcastfolgen als Schaubilder.',system:'Grafische Übersichten zu Haftung, Versorgung und Finanzierung.',slides:'Die gesamte Präsentation im Folien-Player mit Suche und direktem Kurseinstieg.'};
 groups.special='Spezialkurse';groupDescriptions.special='Thematisch lernen: Grundlagen, passende Fälle und gemeinsame Übungen.';
+groups.guide='🧭 Gesundheitssystem & Berufsweg';groupDescriptions.guide='Sechs kompakte Einstiege mit direkten Verweisen zu Begriffen und Originalquellen.';
 groupDescriptions.atlas='Prüfungsschemata, vollständige Verfahrensübersichten, Fälle und optionale Kurserläuterungen.';
 const categorySymbols={'Berufsrecht':'🪪','Datenschutz & Dokumentation':'🔒','Haftung & Verfahren':'⚖','Kompetenz & Verantwortung':'🛡','Rechtliche Grundlagen':'§','Regelwerke & Standard':'☷','Strafrechtliche Grundlagen':'🏛','PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
 const careerEntries=[['Vor meinem PJ',['pj-rolle','pj-plan','kompetenz-pj','aufklaerung-pj']],['Vor meiner ersten Stelle',['approbation-start','vertrag-start','arbeitszeit-start','haftpflicht-start','versorgung-start']],['In meiner Weiterbildung',['wbo-start','elogbuch-start','facharzt-start','ueberlastung-start']]];
@@ -21,7 +22,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261027-google-choice55');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261027-view-parity56');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -35,8 +36,8 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const freeOnly=onlyGroup==='atlas-free';if(freeOnly)onlyGroup='atlas';
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
- if(!id&&onlyGroup==='glossary')main.append(anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261027-google-choice55');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
+ if(!entries){const r=await fetch('./library.json?v=20261027-view-parity56');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);
@@ -77,7 +78,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
    for(const [title,ids] of careerEntries){const detail=node('details');detail.append(node('summary',title));for(const id of ids){const item=entries.find(e=>e.id==='career:'+id);if(item)detail.append(anchor(item.title+' →','#material/'+encodeURIComponent(item.id)));}entry.append(detail);}main.append(entry);
   }
   if(onlyGroup==='slides')renderPresentationIndex(main,entries,badge);
-  const presentation=node('section',null,'presentation-launch');presentation.append(node('h2','▶ Präsentation'),node('p','Folie für Folie in einer festen Leseansicht – mit direkter Auswahl und Vor-/Zurücknavigation.'),anchor('Präsentation starten →','#material/slides%3A1'));const download=node('button',hasAccess('slides',grants)?'↓ Alle Kursfolien herunterladen':'↓ Kostenlose Folien herunterladen','secondary');download.onclick=async()=>{download.disabled=true;try{const file=await downloadSlides(auth,entries.filter(e=>e.group==='slides'),hasAccess('slides',grants));presentation.querySelector('.download-ready')?.remove();const ready=node('div',null,'download-ready'),save=anchor('↓ Datei jetzt speichern',file.url),preview=anchor('Druckansicht öffnen',file.url);save.download=file.filename;preview.target='_blank';preview.rel='noopener';ready.append(save,preview,node('p','Im Browser drucken oder über „Teilen“ in Dateien sichern.','subtle'));presentation.append(ready);download.textContent='Download erneut vorbereiten';}catch{download.textContent='Download fehlgeschlagen – erneut versuchen';}finally{download.disabled=false;}};const pptx=anchor('↓ Kostenloser Einstieg als PowerPoint','assets/downloads/Recht-Medizinisch-Einstieg.pptx?v=20261027-google-choice55');pptx.download='Recht-Medizinisch-Einstieg.pptx';presentation.append(pptx,node('p','Die ersten 12 Folieneinträge als PowerPoint: 16 Seiten mit gekennzeichneten Fortsetzungen.','subtle'));presentation.append(download,node('p','Download mit Foliengestaltung und Grafiken als HTML-Datei; im Browser auch als PDF druckbar. Heruntergeladene Dateien bleiben nach Ablauf eines Zugangs erhalten.','subtle'));if(onlyGroup==='slides'){
+  const presentation=node('section',null,'presentation-launch');presentation.append(node('h2','▶ Präsentation'),node('p','Folie für Folie in einer festen Leseansicht – mit direkter Auswahl und Vor-/Zurücknavigation.'),anchor('Präsentation starten →','#material/slides%3A1'));const download=node('button',hasAccess('slides',grants)?'↓ Alle Kursfolien herunterladen':'↓ Kostenlose Folien herunterladen','secondary');download.onclick=async()=>{download.disabled=true;try{const file=await downloadSlides(auth,entries.filter(e=>e.group==='slides'),hasAccess('slides',grants));presentation.querySelector('.download-ready')?.remove();const ready=node('div',null,'download-ready'),save=anchor('↓ Datei jetzt speichern',file.url),preview=anchor('Druckansicht öffnen',file.url);save.download=file.filename;preview.target='_blank';preview.rel='noopener';ready.append(save,preview,node('p','Im Browser drucken oder über „Teilen“ in Dateien sichern.','subtle'));presentation.append(ready);download.textContent='Download erneut vorbereiten';}catch{download.textContent='Download fehlgeschlagen – erneut versuchen';}finally{download.disabled=false;}};const pptx=anchor('↓ Kostenloser Einstieg als PowerPoint','assets/downloads/Recht-Medizinisch-Einstieg.pptx?v=20261027-view-parity56');pptx.download='Recht-Medizinisch-Einstieg.pptx';presentation.append(pptx,node('p','Die ersten 12 Folieneinträge als PowerPoint: 16 Seiten mit gekennzeichneten Fortsetzungen.','subtle'));presentation.append(download,node('p','Download mit Foliengestaltung und Grafiken als HTML-Datei; im Browser auch als PDF druckbar. Heruntergeladene Dateien bleiben nach Ablauf eines Zugangs erhalten.','subtle'));if(onlyGroup==='slides'){
    const complete=node('button','↓ Vollständige Präsentation als PowerPoint','secondary');
    const feedback=node('p','','subtle');feedback.setAttribute('role','status');
    complete.onclick=async()=>{
@@ -173,17 +174,25 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(['career:pj-rolle','career:kompetenz-pj','career:haftpflicht-start'].includes(e.id))main.append(anchor('Fall vertiefen: Die unbeschriftete Spritze im PJ →','#material/atlas%3Acase-r54'));
  if(!isCurrent())return;
  if(c.miniCase){const b=box('🧩 Kurzfall',c.miniCase.question),details=node('details');details.append(node('summary','Lösung und Einordnung anzeigen'),node('p',c.miniCase.answer));b.append(details);}
+ if(e.group==='guide')for(const [index,section] of (c.sections??[]).entries()){
+  const card=box(`${index+1}. ${section.title}`,section.body);
+  for(const id of section.terms??[]){const term=entries.find(row=>row.id==='glossary:'+id);if(term)card.append(anchor(term.title+' nachschlagen','#material/'+encodeURIComponent(term.id)));}
+ }
  if(c.explanation){box(c.kind,c.explanation);if(c.relatedMaterials?.length){const related=box('↗ Vertiefen & anwenden');for(const target of c.relatedMaterials)related.append(anchor(target.title+' öffnen','#material/'+encodeURIComponent('atlas:'+target.id)));}box('💡 Für die Praxis',c.practice,'notice');source((c.source??'Rechtsquelle').split(';')[0],c.url);if(e.id==='glossary:richtlinienfaehigkeit'){const related=box('🖼 Passendes Schaubild');related.append(anchor('Schaubild: Wann wird eine Methode zur GKV-Leistung? →','#material/system%3Adirective'));}}
  if(e.group==='career'&&learningStore){const readBox=box('✓ Ihr Lesefortschritt'),mark=node('button'),feedback=node('p');const refresh=()=>{const read=learningStore.snapshot.completedCareerTopics.includes(e.id);mark.textContent=read?'✓ Als gelesen markiert':'Als gelesen markieren';mark.disabled=read;feedback.textContent=learningStore.error??'Diese Markierung ist unabhängig vom Abschluss der 15 Kurse.';};mark.type='button';mark.onclick=()=>{learningStore.markCareerRead(e.id);refresh();};feedback.role='status';readBox.append(mark,feedback);refresh();}
  if(c.points){
   renderPodcastReading(main,c,context.focusedStage);box('⚖ Rechtliche Einordnung',c.clarification,'notice');
+  for(const link of c.sources??[])source(link.title,link.url);
   main.dataset.readingId=materialReadingKey('podcast',c.id,focusedPodcastNode(c,context.focusedStage)?context.focusedStage:null,context.from);main.dataset.readingVersion='podcast-stations-v1';
  }
- if(c.nodes){for(const [i,n] of c.nodes.entries())box(`${i+1}. ${n.title}`,n.text);box('💡 Merksatz',c.takeaway,'notice');for(const s of c.sources??[])source(s.title,s.url);}
+ if(c.nodes){
+  if(c.relationships?.length){const card=box('Zusammenhänge & Geldflüsse');for(const relation of c.relationships){const line=node('p');line.append(node('strong',relation.from),document.createTextNode(' · '+relation.relation+' · '),node('strong',relation.to));card.append(line);}}
+  for(const [i,n] of c.nodes.entries())box(`${i+1}. ${n.title}`,n.text);box('💡 Merksatz',c.takeaway,'notice');for(const s of c.sources??[])source(s.title,s.url);
+ }
  if(c.blocks){
  const stage=node('div',null,'slide-stage');stage.classList.add('layout-'+layoutForSlide(c),'slide-variant-'+((Number(c.id)-1)%4));stage.setAttribute('aria-label','Aktuelle Folie');stage.tabIndex=0;main.append(stage);
  const titleBlock=node('div',null,'deck-title');titleBlock.append(node('p',c.eyebrow??'RECHT MEDIZINISCH','eyebrow'),node('h1',e.title));for(const no of e.courses??[])titleBlock.append(anchor('Kurs '+String(no).padStart(2,'0')+' öffnen','#course/tag-'+String(no).padStart(2,'0')));stage.append(titleBlock);
- if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20261027-google-choice55');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
+ if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20261027-view-parity56');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
  const {sections,sources}=slideSections(c.blocks);const sectionsGrid=node('div',null,'slide-sections');stage.append(sectionsGrid);
  for(const part of sections){const style=headingStyle(part.title),section=node('section',null,'slide-block tone-'+style.tone);if(part.title){const h=node('h2');if(style.symbol)h.append(node('span',style.symbol,style.step?'step-number':'section-symbol'));h.append(node('span',style.title));section.append(h);}for(const block of part.blocks){if(block.image)await graphic(block.image,section);if(!isCurrent())return;if(block.text)formatSlideText(section,block.text);for(const l of block.links??[]){const url=typeof l==='string'?l:l.url;if(safeURL(url)){const a=anchor((typeof l==='string'?'Quelle':l.label??'Rechtsquelle')+'',url);a.target='_blank';a.rel='noopener noreferrer';section.append(a);}}}sectionsGrid.append(section);}
  if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources){const p=node('p');renderSource(p,text);detail.append(p);}stage.append(detail);}

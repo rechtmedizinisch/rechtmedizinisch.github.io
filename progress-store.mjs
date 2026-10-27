@@ -1,5 +1,5 @@
-import {emptyCourseProgress} from './progress-engine.mjs?v=20261027-google-choice55';
-import {resumeStore} from './learning-resume.mjs?v=20261027-google-choice55';
+import {emptyCourseProgress} from './progress-engine.mjs?v=20261027-view-parity56';
+import {resumeStore} from './learning-resume.mjs?v=20261027-view-parity56';
 export const progressKey=owner=>'rm-web-learning-v1:'+(owner||'guest');
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 function normalizeCourse(value){

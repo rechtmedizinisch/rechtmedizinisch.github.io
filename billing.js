@@ -1,6 +1,6 @@
-import {config} from './config.js?v=20261027-google-choice55';
+import {config} from './config.js?v=20261027-view-parity56';
 import {sandboxContext} from './auth-client.mjs';
-import {offerDescription} from './billing-copy.mjs?v=20261027-google-choice55';
+import {offerDescription} from './billing-copy.mjs?v=20261027-view-parity56';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 const active=g=>!g.revoked_at&&Date.parse(g.starts_at)<=Date.now()&&Date.parse(g.expires_at)>Date.now();
 export async function billingRequest(auth,action,extra={}){
@@ -14,8 +14,8 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
  let unavailable=false;
  if(signedIn&&config.billingLiveEnabled){try{state=await billingRequest(auth,'status');}catch{unavailable=true;}}
  const [response,catalogResponse]=await Promise.all([
-  fetch(new URL('./billing-offers.json?v=20261027-google-choice55',import.meta.url)),
-  fetch(new URL('./catalog.json?v=20261027-google-choice55',import.meta.url)).catch(()=>null)
+  fetch(new URL('./billing-offers.json?v=20261027-view-parity56',import.meta.url)),
+  fetch(new URL('./catalog.json?v=20261027-view-parity56',import.meta.url)).catch(()=>null)
  ]);if(!response.ok)return null;
  const offers=await response.json();
  let counts={};try{if(catalogResponse?.ok)counts=(await catalogResponse.json()).learningMaterialCounts??{};}catch{}
