@@ -15,5 +15,5 @@ export function sourceParts(text){
  parts.push({text:text.slice(cursor)});return parts;
 }
 export function renderSource(parent,text){
- for(const part of sourceParts(text)){if(part.url){const a=parent.ownerDocument.createElement('a');a.href=part.url;a.textContent=part.text+' ↗';a.target='_blank';a.rel='noopener noreferrer';parent.append(a);}else parent.append(parent.ownerDocument.createTextNode(part.text));}
+ for(const part of sourceParts(text)){if(part.url){const a=parent.ownerDocument.createElement('a');a.href=part.url;a.textContent=part.text+'';a.target='_blank';a.rel='noopener noreferrer';parent.append(a);}else parent.append(parent.ownerDocument.createTextNode(part.text));}
 }

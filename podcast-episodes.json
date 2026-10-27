@@ -1,5 +1,24 @@
 [
   {
+    "id": "finanzierung",
+    "label": "Folge 7",
+    "title": "Diagnose? Kaputt gespart",
+    "url": "https://creators.spotify.com/pod/profile/schleppleflorian/episodes/Folge-7---Diagnose--Kaputt-gespart-e3r4h97",
+    "duration": "36:46",
+    "summary": "Flo und Philipp diskutieren den finanziellen Druck auf Krankenhäuser und Krankenkassen sowie die gesundheitspolitische Debatte über Zuzahlungen, Psychotherapie und Vorsorge. Dazu passen die Grundlagen zu GKV-Leistungen, Geldflüssen und Krankenhausfinanzierung. Veröffentlicht am 27. Oktober 2026; rechtspolitische Einschätzungen sind von geltendem Recht zu unterscheiden.",
+    "courses": [
+      12,
+      13
+    ],
+    "materials": [
+      "system:hospital-finance",
+      "system:ambulant",
+      "system:system",
+      "system:directive",
+      "atlas:topic-gkv-und-pkv-leistungen-und-lebensplanung"
+    ]
+  },
+  {
     "id": "standards",
     "label": "Folge 6",
     "title": "Status quo – Was gilt eigentlich? Leitlinie, Richtlinie oder SOP",

@@ -1,8 +1,8 @@
 import {client,sandboxContext} from './auth-client.mjs';
 import {requestDeadline} from './request-deadline.mjs';
 export {client,sandboxContext};
-import {config} from './config.js?v=20261015-apple1';
-import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261016-apple3';
+import {config} from './config.js?v=20261027-update51';
+import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261027-update51';
 export {isAppleCancellation};
 export function prepareAppleLogin(){return prepareAppleRequest({clientID:config.appleClientID,redirectURI:config.appleRedirectURI});}
 export function appleLogin(request){return completeAppleLogin(client,request);}

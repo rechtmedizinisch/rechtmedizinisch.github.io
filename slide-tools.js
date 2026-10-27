@@ -1,9 +1,17 @@
-import {renderSource} from './source-links.mjs?v=20261014-shared1';
-import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20261014-shared1';
+import {renderSource} from './source-links.mjs?v=20261027-update51';
+import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20261027-update51';
 export function richText(parent,text){const doc=parent.ownerDocument;let cursor=0;for(const r of emphasisRanges(text)){parent.append(doc.createTextNode(text.slice(cursor,r.start)));const strong=doc.createElement('strong');strong.textContent=text.slice(r.start,r.end);parent.append(strong);cursor=r.end;}parent.append(doc.createTextNode(text.slice(cursor)));}
 export function formatSlideText(parent,text){
  const parts=readingParts(text),doc=parent.ownerDocument;
- if(parts.kind==='bullets'||parts.kind==='steps'){const list=doc.createElement(parts.kind==='steps'?'ol':'ul');list.className=parts.kind==='steps'?'slide-steps':'slide-points';if(parts.start)list.start=parts.start;for(const part of parts.items){const item=doc.createElement('li');richText(item,part);list.append(item);}parent.append(list);}else for(const part of parts.items){const p=doc.createElement('p');if(/^(Praxis|Lehrtransfer|Heutiger Lehrtransfer):/.test(part))p.className='practice-callout';richText(p,part);parent.append(p);}
+ if(parts.kind==='bullets'||parts.kind==='steps'){const list=doc.createElement(parts.kind==='steps'?'ol':'ul');list.className=parts.kind==='steps'?'slide-steps':'slide-points';if(parts.start)list.start=parts.start;for(const part of parts.items){const item=doc.createElement('li');richText(item,part);list.append(item);}parent.append(list);}else for(const part of parts.items){
+  const lines=part.split('\n'),start=lines.findIndex(line=>/^\s*•/.test(line));
+  if(start>0&&lines.slice(start).every(line=>/^\s*•\s*\S/.test(line))){
+   formatSlideText(parent,lines.slice(0,start).join('\n'));
+   formatSlideText(parent,lines.slice(start).join('\n'));
+   continue;
+  }
+  const p=doc.createElement('p');if(/^(Praxis|Lehrtransfer|Heutiger Lehrtransfer):/.test(part))p.className='practice-callout';richText(p,part);parent.append(p);
+ }
 
 }
 export async function downloadSlides(auth,freeSlides,full){

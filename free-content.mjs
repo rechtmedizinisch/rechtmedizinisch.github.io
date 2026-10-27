@@ -5,11 +5,16 @@ export async function renderFreeContent(main,catalog,isCurrent){
   const grid=el('div',null,'grid');main.append(grid);
   const courseBox=el('section',null,'card');courseBox.append(el('h2','📚 Kurse 1 & 2'));
   for(const c of catalog.catalog.filter(c=>c.free))courseBox.append(link(`Kurs ${c.no} · ${c.title} →`,'#course/'+c.id));grid.append(courseBox);
-  for(const [title,text,href] of [['🏛 Urteile',`${catalog.landmarkCases.length} Leitentscheidungen mit Einordnung und Originalquellen`,'#cases'],['⚖ Normen & Praxisressourcen','Rechtsgrundlagen und praktische Anlaufstellen zum Nachschlagen','#norms'],['🎧 Podcast','Alle Folgen mit Bezügen zu Kursen und Materialien','#podcast']]){const box=el('section',null,'card');box.append(el('h2',title),el('p',text),link('Bereich öffnen →',href));grid.append(box);}
-  let entries;try{const response=await fetch('./library.json?v=20261014-shared1');if(!response.ok)throw Error();entries=await response.json();}catch{if(isCurrent())main.append(el('p','Die weiteren kostenlosen Inhalte konnten gerade nicht geladen werden. Bitte versuchen Sie es erneut.','notice'));return;}if(!isCurrent())return;
+  for(const [title,text,href] of [['🏛 Urteile',`${catalog.landmarkCases.length} Leitentscheidungen mit Einordnung und Originalquellen`,'#cases'],['⚖ Normen & Praxisressourcen','Rechtsgrundlagen und praktische Anlaufstellen zum Nachschlagen','#norms'],['🎧 Podcast','Alle Folgen mit Bezügen zu Kursen und Materialien','#podcast']]){const box=el('section',null,'card');box.append(el('h2',title),el('p',text),link('Bereich öffnen',href));grid.append(box);}
+  let entries;try{const response=await fetch('./library.json?v=20261027-update51');if(!response.ok)throw Error();entries=await response.json();}catch{if(isCurrent())main.append(el('p','Die weiteren kostenlosen Inhalte konnten gerade nicht geladen werden. Bitte versuchen Sie es erneut.','notice'));return;}if(!isCurrent())return;
+  const definitions=el('section',null,'card');definitions.append(el('h2','📖 Begriffe direkt nachschlagen'),el('p','Alle kostenlosen Begriffsdefinitionen mit Querverweisen und Normen.'),link('Begriffe A–Z öffnen','#library/definitions'));grid.append(definitions);
+  const updated=el('section',null,'card');updated.append(el('h2','✨ Neu im kostenlosen Nachschlagewissen'));
+  updated.append(el('p','Zusätzliche Fälle und Lernmaterialien – mit Suche und Kursfilter.'),link('Kostenlose Fälle & Vertiefungen →','#library/atlas-free'));
+  updated.append(link('Leitlinie, Richtlinie & SOP · Überblick →','#material/atlas%3Aterm-leitlinie-richtlinie-und-sop'));grid.append(updated);
+  const rescue=el('section',null,'card');rescue.append(el('h2','✚ Rettungsmedizin · Themenübersicht'),el('p','Die Übersicht ist kostenlos. Die einzelnen Materialien zeigen den jeweils erforderlichen Zugang.'),link('Themenübersicht öffnen','#material/special%3Aspecial-rettungsmedizin'));grid.append(rescue);
   for(const [group,title,href] of [['glossary','📖 Begriffe & Gesundheitssystem','#library/glossary'],['professions','🤝 Sieben Gesundheitsberufe','#library/professions'],['slides','📑 Die ersten zwölf Lernfolien','#slides'],['career','🩺 Einstieg in PJ & Berufsstart','#library/career'],['podcast','🖼 Zwei Podcast-Schaubilder','#library/podcast']]){
     const free=entries.filter(e=>e.group===group&&e.free),all=entries.filter(e=>e.group===group),box=el('section',null,'card');box.append(el('h2',title),el('p',`${free.length} Inhalte kostenlos${free.length<all.length?' · weitere Inhalte mit Freischaltcode':''}`));
     if(free.length<=2)for(const e of free)box.append(link(e.title+' →','#material/'+encodeURIComponent(e.id)));
-    else box.append(link(group==='slides'?'Kostenlose Präsentation starten →':'Bereich öffnen →',group==='slides'?'#material/slides%3A1':href));grid.append(box);
+    else box.append(link(group==='slides'?'Kostenlose Präsentation starten →':'Bereich öffnen',group==='slides'?'#material/slides%3A1':href));grid.append(box);
   }
 }

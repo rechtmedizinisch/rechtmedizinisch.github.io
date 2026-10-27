@@ -1,5 +1,5 @@
-import {safeURL} from './policy.mjs?v=20261014-shared1';
-import {protectReferences} from './presentation-theme.mjs?v=20261014-shared1';
+import {safeURL} from './policy.mjs?v=20261027-update51';
+import {protectReferences} from './presentation-theme.mjs?v=20261027-update51';
 
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function source(label,url){const a=node('a',label,'reference-source');a.href=safeURL(url)||'#';a.target='_blank';a.rel='noopener noreferrer';return a;}
@@ -32,19 +32,20 @@ export function renderReferences(main,type,catalog,selectedId){
     count.textContent=`${visible.length} von ${data.length} ${cases?'Entscheidungen':'Vorschriften'}`;
     if(!visible.length)results.append(node('p','Keine passenden Einträge. Ändern Sie den Suchbegriff oder die Filter.','notice'));
     if(cases){for(const r of visible){
-      const card=node('article',null,'card judgment-card'),meta=node('div',null,'row');meta.append(node('span',`${r.tier} · ${r.area}`,'badge'),node('span',r.court,'subtle'));card.append(meta,node('h2',r.title),node('p',`${r.date} · ${r.docket}`,'judgment-docket'));
+      const card=node('article',null,'card judgment-card'),meta=node('div',null,'row');meta.append(node('span',`${r.tier} · ${r.area}`,'badge'),node('span',r.court,'subtle'));card.append(meta,node('h2',r.title),node('p',[r.decisionType,r.date,r.docket].filter(Boolean).join(' · '),'judgment-docket'));
       const tenor=detail('⚖ Leitsatzkern',r.tenor,'judgment-tenor');if(tenor)card.append(tenor);
       const more=node('details'),summary=node('summary','Einordnung & Praxistransfer lesen');more.append(summary);
       for(const d of [detail('Tragende Aussage',r.holding,'judgment-holding'),detail('💡 Praxis-Merksatz',r.practice,'notice'),detail('Rechtsstand',r.status,'subtle')])if(d)more.append(d);
-      const links=node('div',null,'reference-actions');links.append(source('Originalquelle / Fundstelle ↗',r.url));if(r.alternativeUrl)links.append(source('Alternative Quelle ↗',r.alternativeUrl));more.append(links);
+      const links=node('div',null,'reference-actions');links.append(source('Originalquelle / Fundstelle',r.url));if(r.alternativeUrl)links.append(source('Alternative Quelle',r.alternativeUrl));more.append(links);
       if(r.courseIds?.length){const courses=node('div',null,'reference-course-links');courses.append(node('p','Passende Kurse','section-number'));for(const id of r.courseIds){const c=catalog.catalog.find(c=>c.id===id);if(c){const a=node('a',`Kurs ${String(c.no).padStart(2,'0')} · ${c.title} →`);a.href=`#course/${id}`;courses.append(a);}}more.append(courses);}
+      if(r.atlasId){const a=node('a','Fall nachvollziehen · Vertiefung öffnen','button secondary');a.href='#material/'+encodeURIComponent('atlas:'+r.atlasId);more.append(a);}
       card.append(more);results.append(card);
     }}else{
       for(const category of [...new Set(visible.map(r=>r.category))].sort((a,b)=>a.localeCompare(b,'de'))){
         const group=node('section',null,'card norm-group');group.append(node('p','RECHTSGEBIET','section-number'),node('h2',`${symbol(category)} ${category}`));
-        for(const r of visible.filter(r=>r.category===category)){const row=source('',r.url);row.className='norm-link';const copy=node('span');copy.append(node('strong',r.label),node('span',r.description,'norm-description'));const icon=node('span','▤','norm-symbol');icon.setAttribute('aria-hidden','true');row.append(icon,copy,node('span','↗','norm-arrow'));group.append(row);}results.append(group);
+        for(const r of visible.filter(r=>r.category===category)){const row=source('',r.url);row.className='norm-link';const copy=node('span');copy.append(node('strong',r.label),node('span',r.description,'norm-description'));const icon=node('span','▤','norm-symbol');icon.setAttribute('aria-hidden','true');row.append(icon,copy);group.append(row);}results.append(group);
       }
-      const resources=(catalog.practicalResources??[]).filter(matches);if(resources.length){const box=node('section',null,'card norm-resources');box.append(node('p','PRAXISPORTALE','section-number'),node('h2','🌐 Weiterführende Anlaufstellen'));for(const r of resources){const a=source('',r.url);a.className='norm-link';const copy=node('span');copy.append(node('strong',r.label),node('span',r.description,'norm-description'));a.append(copy,node('span','↗','norm-arrow'));box.append(a);}results.append(box);}
+      const resources=(catalog.practicalResources??[]).filter(matches);if(resources.length){const box=node('section',null,'card norm-resources');box.append(node('p','PRAXISPORTALE','section-number'),node('h2','🌐 Weiterführende Anlaufstellen'));for(const r of resources){const a=source('',r.url);a.className='norm-link';const copy=node('span');copy.append(node('strong',r.label),node('span',r.description,'norm-description'));a.append(copy);box.append(a);}results.append(box);}
     }
   };
   for(const input of [search,area,tier])input.addEventListener(input===search?'input':'change',render);render();

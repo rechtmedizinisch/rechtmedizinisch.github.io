@@ -1,8 +1,8 @@
-import {termsSections} from './terms-data.mjs?v=20261014-shared1';
+import {termsSections} from './terms-data.mjs?v=20261027-update51';
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
 export function renderLegal(main,type){
  main.classList.add('narrow');
- const link=(title,url)=>{const a=node('a',title+' ↗');a.href=url;a.rel='noopener noreferrer';return a;};
+ const link=(title,url)=>{const a=node('a',title+'');a.href=url;a.rel='noopener noreferrer';return a;};
  main.append(node('h1',type==='terms'?'Nutzung der Lernplattform':'Datenschutzerklärung'),node('p','Stand: 15. Oktober 2026 · Web-Lernplattform Recht Medizinisch'));
  if(type==='terms'){
   for(const [title,text] of termsSections) main.append(node('h2',title),node('p',text));

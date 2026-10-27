@@ -1,4 +1,4 @@
-import {config} from './config.js?v=20261014-shared1';
+import {config} from './config.js?v=20261027-update51';
 import {sandboxContext} from './auth-client.mjs';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 const active=g=>!g.revoked_at&&Date.parse(g.starts_at)<=Date.now()&&Date.parse(g.expires_at)>Date.now();
@@ -12,7 +12,7 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
  let state={grants:knownGrants,environment:'live'};
  let unavailable=false;
  if(signedIn&&config.billingLiveEnabled){try{state=await billingRequest(auth,'status');}catch{unavailable=true;}}
- const response=await fetch(new URL('./billing-offers.json?v=20261014-shared1',import.meta.url));if(!response.ok)return null;
+ const response=await fetch(new URL('./billing-offers.json?v=20261027-update51',import.meta.url));if(!response.ok)return null;
  const offers=await response.json();
  const section=el('section',null,'card billing-panel');
  if(sandboxContext)section.append(el('p','Sandbox-Testzugang · keine echten Zahlungen','notice'));
@@ -29,7 +29,7 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
   catch(error){status.textContent=explain[error.message]??'Der Vorgang konnte nicht gestartet werden. Bitte aktualisieren Sie den Zugang und versuchen Sie es erneut.';buttons.forEach(b=>b.disabled=b.dataset.owned==='true'||!config.billingLiveEnabled);}
  }
  const refresh=el('button','↻ Freischaltungen aktualisieren','secondary');refresh.type='button';refresh.onclick=async()=>{refresh.disabled=true;try{await billingRequest(auth,'status');location.reload();}catch{status.textContent='Die Freischaltungen konnten nicht aktualisiert werden.';refresh.disabled=false;}};
- const manage=el('button','Web-Abonnement verwalten ↗','secondary');manage.type='button';manage.onclick=()=>navigate('portal',{},'billing.stripe.com');buttons.push(manage);
+ const manage=el('button','Web-Abonnement verwalten','secondary');manage.type='button';manage.onclick=()=>navigate('portal',{},'billing.stripe.com');buttons.push(manage);
  const controls=el('div',null,'row');controls.append(refresh,manage);if(signedIn&&config.billingLiveEnabled&&!unavailable)section.append(controls);
  const grants=state.grants.filter(active),premium=grants.some(g=>g.scope==='all');
  const grid=el('div',null,'billing-grid'),graphicBox=el('details'),graphicTitle=el('summary','🖼 Einzelne Schaubilder · je 0,99 €');graphicBox.append(graphicTitle);
@@ -42,6 +42,6 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
   const buy=el('button',owned?'✓ Bereits freigeschaltet':state.confirmation_pending?'Bestätigung wird zugestellt':!signedIn?'Anmelden und auswählen →':!config.billingLiveEnabled?'Zahlung in Vorbereitung':offer.interval?'Abo auswählen →':'Einmalig kaufen →');buy.type='button';buy.disabled=owned||state.confirmation_pending||(!config.billingLiveEnabled&&signedIn)||unavailable;buy.dataset.owned=String(owned||state.confirmation_pending);buy.onclick=()=>{if(!signedIn){location.hash='#account';return;}navigate('checkout',{offer:offer.key},'checkout.stripe.com');};buttons.push(buy);card.append(buy);
   if(offer.scopes[0].startsWith('diagram:'))graphicBox.append(card);else grid.append(card);
  }
- section.append(grid,graphicBox);const legal=el('p',null,'billing-legal');for(const [text,href] of [['Nutzungsbedingungen & Widerruf','#terms'],['Datenschutz','#privacy']]){const a=el('a',text+' ↗');a.href=href;legal.append(a,document.createTextNode(' · '));}section.append(legal,el('p','Endpreise in Euro. Keine gesonderte Umsatzsteuer nach § 19 UStG. Abos verlängern sich automatisch; das Jahresabo wird jährlich im Voraus bezahlt. Nach der ersten vereinbarten Laufzeit können Verbraucher mit höchstens einem Monat Frist kündigen. Ein nicht verbrauchter vorausbezahlter Zeitraum wird bei vorzeitiger Beendigung anteilig erstattet.','subtle'),el('p','Ein Konto für App und Website: Gemeinsamer Zugriff ab App-Version 1.1. Bis das Update im App Store verfügbar ist, nutzen Sie Ihren Kauf bereits hier.','notice'),el('p','Einmalige Downloads dürfen Sie für sich behalten; ein Premium-Abo eröffnet den Online-Zugriff nur während der Laufzeit. Kaufstatus wird serverseitig beim Zahlungsanbieter geprüft.','subtle'),status);
+ section.append(grid,graphicBox);const legal=el('p',null,'billing-legal');for(const [text,href] of [['Nutzungsbedingungen & Widerruf','#terms'],['Datenschutz','#privacy']]){const a=el('a',text+'');a.href=href;legal.append(a,document.createTextNode(' · '));}section.append(legal,el('p','Endpreise in Euro. Keine gesonderte Umsatzsteuer nach § 19 UStG. Abos verlängern sich automatisch; das Jahresabo wird jährlich im Voraus bezahlt. Nach der ersten vereinbarten Laufzeit können Verbraucher mit höchstens einem Monat Frist kündigen. Ein nicht verbrauchter vorausbezahlter Zeitraum wird bei vorzeitiger Beendigung anteilig erstattet.','subtle'),el('p','Ein Konto für App und Website: Verwenden Sie in der App ab Version 1.1 denselben Kontozugang. Bereits zugeordnete Zugänge gelten auf beiden Plattformen.','notice'),el('p','Einmalige Downloads dürfen Sie für sich behalten; ein Premium-Abo eröffnet den Online-Zugriff nur während der Laufzeit. Kaufstatus wird serverseitig beim Zahlungsanbieter geprüft.','subtle'),status);
  return section;
 }
