@@ -1,9 +1,9 @@
 // Per-account UI preference only. Never changes grants, session or learning data.
 export const learningUpdate = Object.freeze({
- id:'2026.10.27-learning-update',
+ id:'2026.10.27-lecture-update',
  title:'Neu für Sie',
  items:Object.freeze([
-  'Neue Fälle, Schaubilder und Vertiefungen',
+  'Neue Fälle: Geburt, Medikation und OP-Erweiterung',
   'Begriffe und Gesetzestexte direkt nachschlagen',
   'Folien und Zusatzmaterialien übersichtlicher durchsuchen',
   'Special Rettungsmedizin mit passenden Übungsfragen',

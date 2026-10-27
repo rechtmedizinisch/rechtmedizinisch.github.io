@@ -1,4 +1,4 @@
-import {hasAccess} from './policy.mjs?v=20261027-update51b';
+import {hasAccess} from './policy.mjs?v=20261027-lecture52';
 
 export function isGraphic(entry) {
   return ['podcast','system'].includes(entry?.group) || (entry?.group==='atlas' && entry.graphic===true);

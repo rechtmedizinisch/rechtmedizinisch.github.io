@@ -1,5 +1,5 @@
-import {renderSource} from './source-links.mjs?v=20261027-update51b';
-import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20261027-update51b';
+import {renderSource} from './source-links.mjs?v=20261027-lecture52';
+import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20261027-lecture52';
 export function richText(parent,text){const doc=parent.ownerDocument;let cursor=0;for(const r of emphasisRanges(text)){parent.append(doc.createTextNode(text.slice(cursor,r.start)));const strong=doc.createElement('strong');strong.textContent=text.slice(r.start,r.end);parent.append(strong);cursor=r.end;}parent.append(doc.createTextNode(text.slice(cursor)));}
 export function formatSlideText(parent,text){
  const parts=readingParts(text),doc=parent.ownerDocument;

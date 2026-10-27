@@ -1,5 +1,5 @@
-import {catalogOverall} from './progress-overview.mjs?v=20261027-update51b';
-import {resumeHref} from './learning-resume.mjs?v=20261027-update51b';
+import {catalogOverall} from './progress-overview.mjs?v=20261027-lecture52';
+import {resumeHref} from './learning-resume.mjs?v=20261027-lecture52';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 export function homeLearning(main,catalog,store){
   const overall=catalogOverall(catalog,store.snapshot),next=overall.states.find(s=>!s.isComplete)??overall.states.at(-1);
@@ -18,8 +18,9 @@ export function homeLearning(main,catalog,store){
     if(next){start.href='#course/'+next.entry.id;start.textContent=overall.isComplete?'Kurse wiederholen →':overall.completedUnits?`Weiterlernen · Kurs ${String(next.entry.no).padStart(2,'0')} →`:'Kostenlos mit Kurs 1 starten →';}
     const progress=el('a','Meinen Fortschritt ansehen →','home-progress-link');progress.href='#progress';hero.append(progress);
   }
+  const counts=catalog.learningMaterialCounts??{baseSlides:474,additionalMaterials:576};
   const groups=[
-    {label:'01 · Lernen',title:'Ihren Lernweg wählen',tone:'teal',icon:'📚',items:[['Alle 15 Kurse','#courses','Von Grundlagen bis Capstone'],['Folien & Vertiefungen','#slides','474 Basisfolien · 576 Ergänzungen'],['Üben & Wissen prüfen','#practice','Fragen und Lernrunden']]},
+    {label:'01 · Lernen',title:'Ihren Lernweg wählen',tone:'teal',icon:'📚',items:[['Alle 15 Kurse','#courses','Von Grundlagen bis Capstone'],['Folien & Vertiefungen','#slides',`${counts.baseSlides} Basisfolien · ${counts.additionalMaterials} Ergänzungen`],['Üben & Wissen prüfen','#practice','Fragen und Lernrunden']]},
     {label:'02 · Nachschlagen',title:'Wissen schnell finden',tone:'blue',icon:'🔎',items:[['Medizinrecht durchsuchen','#search','Begriffe, Fälle und Quellen'],['Begriffe & Gesundheitssystem','#library/glossary','Verständlich erklärt'],['Schaubilder','#library/diagrams','Zusammenhänge sehen']]},
     {label:'03 · Praxis',title:'Beruf und Podcast',tone:'gold',icon:'🩺',items:[['Special: PJ & Berufsstart','#library/career','Sicher in die Praxis starten'],['Special: Rettungsmedizin','#material/special%3Aspecial-rettungsmedizin','Recht im Einsatz · sieben Kapitel'],['Andere Gesundheitsberufe','#library/professions','Wissen für das ganze Team'],['Podcast & Materialien','#podcast','Hören und vertiefen']]}
   ];

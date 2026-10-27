@@ -3653,6 +3653,30 @@
       ]
     },
     {
+      "id": "cite:82de70f5cd3e523004ea",
+      "kind": "norm",
+      "title": "§ 16 StGB · § 17 StGB",
+      "aliases": [
+        "§§ 16, 17 StGB"
+      ],
+      "body": "",
+      "retrievedAt": "2026-10-24",
+      "sources": [
+        {
+          "title": "§ 16 StGB · Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/stgb/__16.html"
+        },
+        {
+          "title": "§ 17 StGB · Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/stgb/__17.html"
+        }
+      ],
+      "targetNormIds": [
+        "norm:stgb:16",
+        "norm:stgb:17"
+      ]
+    },
+    {
       "id": "cite:8448ab7542fc0de8c002",
       "kind": "norm",
       "title": "§ 630c BGB · § 630d BGB · § 630e BGB · § 630f BGB · § 630g BGB",
@@ -12051,6 +12075,25 @@
       ]
     },
     {
+      "id": "norm:bgb:1923",
+      "kind": "norm",
+      "title": "§ 1923 BGB",
+      "aliases": [],
+      "law": "BGB",
+      "number": "1923",
+      "marker": "§",
+      "body": "",
+      "text": "(1) Erbe kann nur werden, wer zur Zeit des Erbfalls lebt.\n\n(2) Wer zur Zeit des Erbfalls noch nicht lebte, aber bereits gezeugt war, gilt als vor dem Erbfall geboren.",
+      "retrievedAt": "2026-10-27",
+      "textSHA256": "b390e22cbbfa420cc16dd157063e4adc3a4d06e1776c28abd3b36027278c3557",
+      "sources": [
+        {
+          "title": "Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/bgb/__1923.html"
+        }
+      ]
+    },
+    {
       "id": "norm:bgb:194",
       "kind": "norm",
       "title": "§ 194 BGB",
@@ -18016,6 +18059,25 @@
       ]
     },
     {
+      "id": "norm:stgb:213",
+      "kind": "norm",
+      "title": "§ 213 StGB",
+      "aliases": [],
+      "law": "StGB",
+      "number": "213",
+      "marker": "§",
+      "body": "",
+      "text": "War der Totschläger ohne eigene Schuld durch eine ihm oder einem Angehörigen zugefügte Mißhandlung oder schwere Beleidigung von dem getöteten Menschen zum Zorn gereizt und hierdurch auf der Stelle zur Tat hingerissen worden oder liegt sonst ein minder schwerer Fall vor, so ist die Strafe Freiheitsstrafe von einem Jahr bis zu zehn Jahren.",
+      "retrievedAt": "2026-10-27",
+      "textSHA256": "7c47c3937ecddd63fad375cc44fc85d0953f75d52d0a87ce38ed0876453d4987",
+      "sources": [
+        {
+          "title": "Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/stgb/__213.html"
+        }
+      ]
+    },
+    {
       "id": "norm:stgb:216",
       "kind": "norm",
       "title": "§ 216 StGB",
@@ -18240,6 +18302,25 @@
         {
           "title": "Gesetze im Internet",
           "url": "https://www.gesetze-im-internet.de/stgb/__226.html"
+        }
+      ]
+    },
+    {
+      "id": "norm:stgb:227",
+      "kind": "norm",
+      "title": "§ 227 StGB",
+      "aliases": [],
+      "law": "StGB",
+      "number": "227",
+      "marker": "§",
+      "body": "",
+      "text": "(1) Verursacht der Täter durch die Körperverletzung (§§ 223 bis 226a) den Tod der verletzten Person, so ist die Strafe Freiheitsstrafe nicht unter drei Jahren.\n\n(2) In minder schweren Fällen ist auf Freiheitsstrafe von einem Jahr bis zu zehn Jahren zu erkennen.",
+      "retrievedAt": "2026-10-27",
+      "textSHA256": "7e86a6cd93c7982c31a11b4279e791ec97e83ae5347324c04c7d89fa473e9509",
+      "sources": [
+        {
+          "title": "Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/stgb/__227.html"
         }
       ]
     },
@@ -23985,6 +24066,54 @@
       ]
     },
     {
+      "id": "term-geburtsbeginn",
+      "kind": "term",
+      "title": "Geburtsbeginn",
+      "aliases": [
+        "Geburtsbeginn"
+      ],
+      "body": "Strafrechtliche Grenze zwischen Schwangerschaftsabbruch und dem Schutz durch die Tötungsdelikte. Bei regulärer natürlicher Geburt sind die Eröffnungswehen maßgeblich; beim Kaiserschnitt regelmäßig die Uterusöffnung zur dauerhaften Trennung des Kindes vom Mutterleib. Fetalchirurgie mit Fortsetzung der Schwangerschaft ist davon zu unterscheiden. Die zivilrechtliche Rechtsfähigkeit nach § 1 BGB beginnt dagegen erst mit Vollendung der Geburt.",
+      "sources": [
+        {
+          "title": "Gesetz / gerichtlicher Entscheidungstext",
+          "url": "https://www.hrr-strafrecht.de/hrr/5/20/5-256-20.php"
+        }
+      ],
+      "relatedIds": [
+        "case-berliner-zwillingsfall"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-berliner-zwillingsfall",
+          "title": "Berliner Zwillingsfall · Geburtsbeginn und Lebensschutz"
+        }
+      ]
+    },
+    {
+      "id": "term-gesundheitsschaedigung",
+      "kind": "term",
+      "title": "Gesundheitsschädigung",
+      "aliases": [
+        "Gesundheitsschädigung"
+      ],
+      "body": "Hervorrufen oder Steigern eines krankhaften Zustands; neben körperlicher Misshandlung eine Alternative des § 223 Abs. 1 StGB. Dauerhafte Organschäden sind nicht stets erforderlich. Eine Medikamentengabe oder ein zeitlich nachfolgender Befund beweist jedoch nicht für sich die konkrete krankhafte Wirkung und deren Ursache.",
+      "sources": [
+        {
+          "title": "Gesetz / gerichtlicher Entscheidungstext",
+          "url": "https://www.hrr-strafrecht.de/hrr/2/17/2-325-17.php"
+        }
+      ],
+      "relatedIds": [
+        "topic-medikation-beweis-und-folgen"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "topic-medikation-beweis-und-folgen",
+          "title": "Medikation · Eingriff, Folgen und Beweis auseinanderhalten"
+        }
+      ]
+    },
+    {
       "id": "term-grober-behandlungsfehler",
       "kind": "term",
       "title": "Grober Behandlungsfehler",
@@ -24075,6 +24204,30 @@
         {
           "title": "Anwendungsbeispiel: § 630h BGB",
           "url": "https://www.gesetze-im-internet.de/bgb/__630h.html"
+        }
+      ]
+    },
+    {
+      "id": "term-koerperliche-misshandlung",
+      "kind": "term",
+      "title": "Körperliche Misshandlung",
+      "aliases": [
+        "Körperliche Misshandlung"
+      ],
+      "body": "Eine üble, unangemessene Behandlung, durch die das körperliche Wohlbefinden oder die körperliche Unversehrtheit nicht nur unerheblich beeinträchtigt wird. Sie ist neben der Gesundheitsschädigung eine Tatbestandsalternative des § 223 Abs. 1 StGB. Eine bloße Dokumentation der Medikamentengabe ersetzt den Nachweis des konkreten Eingriffs nicht. Rechtfertigung, Vorsatz und Schuld sind zusätzlich zu prüfen.",
+      "sources": [
+        {
+          "title": "Gesetz / gerichtlicher Entscheidungstext",
+          "url": "https://www.hrr-strafrecht.de/hrr/2/17/2-325-17.php"
+        }
+      ],
+      "relatedIds": [
+        "topic-medikation-beweis-und-folgen"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "topic-medikation-beweis-und-folgen",
+          "title": "Medikation · Eingriff, Folgen und Beweis auseinanderhalten"
         }
       ]
     },
@@ -24199,6 +24352,30 @@
       ]
     },
     {
+      "id": "term-primaerverletzung",
+      "kind": "term",
+      "title": "Primärverletzung",
+      "aliases": [
+        "Primärverletzung"
+      ],
+      "body": "Die erste haftungsrechtlich relevante Verletzung, von der weitere Folgen unterschieden werden. Welche Verletzung gemeint ist, hängt vom geltend gemachten Haftungsweg ab. Bei fehlender Einwilligung kann der rechtswidrige körperliche Eingriff die Primärverletzung bilden; die Zurechnung weiterer Gesundheitsfolgen ist davon zu trennen. § 286 ZPO, § 287 ZPO und § 630h BGB beantworten unterschiedliche Beweisfragen.",
+      "sources": [
+        {
+          "title": "Gesetz / gerichtlicher Entscheidungstext",
+          "url": "https://de.openlegaldata.io/case/bgh-2025-01-21-vi-zr-20422"
+        }
+      ],
+      "relatedIds": [
+        "topic-medikation-beweis-und-folgen"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "topic-medikation-beweis-und-folgen",
+          "title": "Medikation · Eingriff, Folgen und Beweis auseinanderhalten"
+        }
+      ]
+    },
+    {
       "id": "term-rechtsfolge",
       "kind": "term",
       "title": "Rechtsfolge",
@@ -24225,6 +24402,30 @@
         {
           "title": "§ 402 ZPO · Sachverständige",
           "url": "https://www.gesetze-im-internet.de/zpo/__402.html"
+        }
+      ]
+    },
+    {
+      "id": "term-schwangerschaftsabbruch",
+      "kind": "term",
+      "title": "Schwangerschaftsabbruch",
+      "aliases": [
+        "Schwangerschaftsabbruch"
+      ],
+      "body": "Abbruch einer Schwangerschaft im Sinne des § 218 StGB. Wirkungen vor Abschluss der Einnistung sind nach § 218 Abs. 1 Satz 2 StGB davon ausgenommen. § 218a StGB unterscheidet unter anderem die Beratungsregelung und medizinische Indikation mit verschiedenen Voraussetzungen und Rechtsfolgen. Nach Geburtsbeginn gelten für die Tötung des Kindes die Tötungsdelikte; § 218a Abs. 2 StGB ist keine allgemeine Erlaubnis nach dieser Grenze.",
+      "sources": [
+        {
+          "title": "Gesetz / gerichtlicher Entscheidungstext",
+          "url": "https://www.gesetze-im-internet.de/stgb/__218.html"
+        }
+      ],
+      "relatedIds": [
+        "case-berliner-zwillingsfall"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-berliner-zwillingsfall",
+          "title": "Berliner Zwillingsfall · Geburtsbeginn und Lebensschutz"
         }
       ]
     },
