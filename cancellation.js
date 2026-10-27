@@ -1,4 +1,4 @@
-import {config} from './config.js?v=20261027-view-parity56';
+import {config} from './config.js?v=20261027-view-parity56a';
 
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 export function renderCancellation(main){

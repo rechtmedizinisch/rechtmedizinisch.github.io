@@ -1,5 +1,5 @@
 // Contextual reading help never changes the route or grants access to content.
-import {protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56';
+import {protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56a';
 const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const historicalDesignation='(?:a\\.[\\s\\u00A0]*F\\.|alter[\\s\\u00A0]+Fassung)(?![\\p{L}\\p{N}])';
 export function referenceIndex(entries){

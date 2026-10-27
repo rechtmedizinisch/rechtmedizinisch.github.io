@@ -1,4 +1,4 @@
-import {hasAccess} from './policy.mjs?v=20261027-view-parity56';
+import {hasAccess} from './policy.mjs?v=20261027-view-parity56a';
 
 export function isGraphic(entry) {
   return ['podcast','system'].includes(entry?.group) || (entry?.group==='atlas' && entry.graphic===true);

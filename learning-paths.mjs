@@ -1,5 +1,5 @@
-import {hasMaterialAccess} from './material-access.mjs?v=20261027-view-parity56';
-const validId=id=>typeof id==='string'&&/^(?:special:special-[a-z0-9-]+|atlas:(?:case|topic|schema|procedure|term|review)-[a-z0-9-]+|podcast:Podcast(?:Emergency|Defensive|Adults|Children)|slides:[1-9]\d{0,3})$/.test(id);
+import {hasMaterialAccess} from './material-access.mjs?v=20261027-view-parity56a';
+const validId=id=>typeof id==='string'&&/^(?:guide:health-system|glossary:[a-z0-9-]+|special:special-[a-z0-9-]+|atlas:(?:case|topic|schema|procedure|term|review)-[a-z0-9-]+|podcast:Podcast(?:Emergency|Defensive|Adults|Children)|slides:[1-9]\d{0,3})$/.test(id);
 const validStep=step=>typeof step==='string'&&(step==='presentation-index'||validId(step)||/^(?:atlas:(?:schema|procedure)-[a-z0-9-]+|podcast:Podcast(?:Emergency|Defensive|Adults|Children))\?stage=[1-9]\d?$/.test(step));
 export const learningTrailId=step=>String(step??'').split('?')[0];
 export function learningTrailSource(id,stage){
