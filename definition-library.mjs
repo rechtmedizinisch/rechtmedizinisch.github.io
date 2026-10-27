@@ -1,4 +1,4 @@
-import {openReferenceDialog} from './context-help.mjs?v=20261027-lecture52';
+import {openReferenceDialog} from './context-help.mjs?v=20261027-parity54';
 const node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e;};
 export async function renderDefinitions(main,isCurrent){
  const response=await fetch(new URL('./reference-help.json'+new URL(import.meta.url).search,import.meta.url));if(!response.ok)throw Error('reference-help unavailable');

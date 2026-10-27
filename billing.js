@@ -1,5 +1,6 @@
-import {config} from './config.js?v=20261027-lecture52';
+import {config} from './config.js?v=20261027-parity54';
 import {sandboxContext} from './auth-client.mjs';
+import {offerDescription} from './billing-copy.mjs?v=20261027-parity54';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 const active=g=>!g.revoked_at&&Date.parse(g.starts_at)<=Date.now()&&Date.parse(g.expires_at)>Date.now();
 export async function billingRequest(auth,action,extra={}){
@@ -12,8 +13,12 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
  let state={grants:knownGrants,environment:'live'};
  let unavailable=false;
  if(signedIn&&config.billingLiveEnabled){try{state=await billingRequest(auth,'status');}catch{unavailable=true;}}
- const response=await fetch(new URL('./billing-offers.json?v=20261027-lecture52',import.meta.url));if(!response.ok)return null;
+ const [response,catalogResponse]=await Promise.all([
+  fetch(new URL('./billing-offers.json?v=20261027-parity54',import.meta.url)),
+  fetch(new URL('./catalog.json?v=20261027-parity54',import.meta.url)).catch(()=>null)
+ ]);if(!response.ok)return null;
  const offers=await response.json();
+ let counts={};try{if(catalogResponse?.ok)counts=(await catalogResponse.json()).learningMaterialCounts??{};}catch{}
  const section=el('section',null,'card billing-panel');
  if(sandboxContext)section.append(el('p','Sandbox-Testzugang · keine echten Zahlungen','notice'));
  section.append(el('span','IHR WEB-ZUGANG','badge'),el('h2','✨ So lernen Sie weiter'),el('p','Wählen Sie den Zugang, der zu Ihrem Lernen passt. Kurse 1 und 2 bleiben kostenlos. Ein gültiger Freischaltcode ist weiterhin eine Alternative.'));
@@ -37,7 +42,7 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
   const card=el('article',null,'billing-offer');card.append(el('h3',offer.title));
   const price=(offer.cents/100).toLocaleString('de-DE',{style:'currency',currency:'EUR'});
   card.append(el('p',price+(offer.interval==='month'?' / Monat':offer.interval==='year'?' / Jahr':' einmalig'),'billing-price'));
-  card.append(el('p',offer.interval?'Alle Premium-Inhalte während der Laufzeit. Automatische Verlängerung; im Kundenportal kündbar.':offer.key==='course-edition'?'Dauerhafter Zugriff auf die 15 Kurse. Premium-Werkzeuge und Schaubilder sind nicht enthalten.':'Dauerhafter Zugriff und Download ausschließlich für dieses Schaubild.','subtle'));
+  card.append(el('p',offerDescription(offer,counts),'subtle'));
   const owned=premium||(!offer.interval&&offer.scopes.every(s=>grants.some(g=>g.scope===s)));
   const buy=el('button',owned?'✓ Bereits freigeschaltet':state.confirmation_pending?'Bestätigung wird zugestellt':!signedIn?'Anmelden und auswählen →':!config.billingLiveEnabled?'Zahlung in Vorbereitung':offer.interval?'Abo auswählen →':'Einmalig kaufen →');buy.type='button';buy.disabled=owned||state.confirmation_pending||(!config.billingLiveEnabled&&signedIn)||unavailable;buy.dataset.owned=String(owned||state.confirmation_pending);buy.onclick=()=>{if(!signedIn){location.hash='#account';return;}navigate('checkout',{offer:offer.key},'checkout.stripe.com');};buttons.push(buy);card.append(buy);
   if(offer.scopes[0].startsWith('diagram:'))graphicBox.append(card);else grid.append(card);

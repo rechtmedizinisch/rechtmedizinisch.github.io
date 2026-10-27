@@ -1,4 +1,4 @@
-import {scopeLabel,accessDuration} from './policy.mjs?v=20261027-lecture52';
+import {scopeLabel,accessDuration} from './policy.mjs?v=20261027-parity54';
 import {notify} from './feedback.mjs';
 export function codeFeedback(result){
  if(result?.ok)return {kind:result.already_redeemed?'info':'success',title:result.already_redeemed?'Code bereits eingelöst':'Code erfolgreich eingelöst',text:result.already_redeemed?'Dieser Code ist für Ihr Konto bereits eingelöst. Die Laufzeit steht bei Ihren Freischaltungen.':`Code erfolgreich eingelöst: ${scopeLabel(result.scope)} · ${accessDuration(result.expires_at)}.`};

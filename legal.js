@@ -1,4 +1,4 @@
-import {termsSections} from './terms-data.mjs?v=20261027-lecture52';
+import {termsSections} from './terms-data.mjs?v=20261027-parity54';
 const node=(tag,text)=>{const n=document.createElement(tag);n.textContent=text;return n;};
 export function renderLegal(main,type){
  main.classList.add('narrow');
