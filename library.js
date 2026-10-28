@@ -1,4 +1,4 @@
-import {renderDefinitions} from './definition-library.mjs?v=20261028-corpus60';
+import {renderDefinitions} from './definition-library.mjs?v=20261028-design61';
 import {renderPresentationIndex} from './presentation-index.mjs?v=20261027-view-parity56a';
 import {fetchPresentationDownload} from './presentation-download.mjs?v=20261027-view-parity56a';
 import {renderSource} from './source-links.mjs?v=20261027-view-parity56a';
@@ -7,7 +7,7 @@ import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261027-view-p
 import {hasAccess,safeURL} from './policy.mjs?v=20261027-view-parity56a';
 import {hasMaterialAccess} from './material-access.mjs?v=20261027-view-parity56a';
 import {fetchGraphicDownload} from './graphic-download.mjs?v=20261027-view-parity56a';
-import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261028-corpus59';
+import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261028-design61';
 import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-view-parity56a';
 import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261027-view-parity56a';
 const groups={atlas:'⚖ Fälle, Schemata & Vertiefungen',glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Folien & Vertiefungen'};
@@ -22,7 +22,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261028-corpus60');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261028-design61');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -37,7 +37,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
  if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261028-corpus60');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261028-design61');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);
@@ -152,15 +152,15 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
   const illustration=c.illustration?.asset===name?c.illustration:null;
   const figure=node('figure',null,'diagram'),img=node('img');img.src=src;img.alt=illustration?.alt??e.title;img.loading='lazy';
   if(illustration){figure.append(img,node('figcaption',illustration.caption,'subtle'));target.append(figure);return;}
-  const zoom=node('button','Grafik vergrößern ⤢','secondary');zoom.type='button';zoom.onclick=()=>{const dialog=node('dialog',null,'image-dialog'),close=node('button','Schließen ×');const full=img.cloneNode();close.onclick=()=>{dialog.close();dialog.remove();};dialog.append(close,full);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();};
-  const download=node('button','↓ Grafik herunterladen','secondary'),feedback=node('p','','subtle');download.type='button';feedback.setAttribute('role','status');
+  const zoom=node('button','Grafik vergrößern','secondary');zoom.type='button';zoom.onclick=()=>{const dialog=node('dialog',null,'image-dialog'),close=node('button','Schließen ×');const full=img.cloneNode();close.onclick=()=>{dialog.close();dialog.remove();};dialog.append(close,full);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();};
+  const download=node('button','Grafik herunterladen','secondary'),feedback=node('p','','subtle');download.type='button';feedback.setAttribute('role','status');
   download.onclick=async()=>{
    download.disabled=true;feedback.textContent='Download wird vorbereitet …';
    try{
     const file=await fetchGraphicDownload(auth,scope(e),name,c.publicAssets?.[name]);if(!isCurrent())return;
     if(download.dataset.blobUrl)URL.revokeObjectURL(download.dataset.blobUrl);
     const url=URL.createObjectURL(file.blob);download.dataset.blobUrl=url;
-    const save=anchor('↓ Grafik jetzt speichern',url);save.download=file.filename;
+    const save=anchor('Grafik jetzt speichern',url);save.download=file.filename;
     feedback.replaceChildren(save,node('span',' Auf dem iPhone über „Teilen“ in Dateien oder Fotos sichern.'));
    }catch(error){feedback.textContent=error.message||'Download derzeit nicht verfügbar. Bitte erneut versuchen.';}
    finally{download.disabled=false;}

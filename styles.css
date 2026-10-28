@@ -318,3 +318,24 @@ h1,h2,h3{overflow-wrap:anywhere;hyphens:auto}
 .atlas-role-facts,.atlas-role-reasoning{border-inline-start:4px solid #4a749a;background:color-mix(in srgb,#4a749a 8%,var(--card,#fff))}.atlas-role-facts .atlas-role-symbol,.atlas-role-reasoning .atlas-role-symbol{color:#4a749a}.atlas-role-proof{border-inline-start:4px solid #8870a4;background:color-mix(in srgb,#8870a4 9%,var(--card,#fff))}.atlas-role-proof .atlas-role-symbol{color:#8870a4}.atlas-role-source{border-inline-start:4px solid #6e7b88;background:color-mix(in srgb,#6e7b88 7%,var(--card,#fff))}.atlas-role-source .atlas-role-symbol{color:#6e7b88}.atlas-role-outcome{border-inline-start:4px solid var(--teal)}.judgment-card>.button{margin-block:14px;width:100%;text-align:left}
 .atlas-role-symbol{width:1.6rem;height:1.6rem;flex:0 0 1.6rem}.atlas-role-takeaway .atlas-role-symbol{color:#9b721e}.atlas-role-warning .atlas-role-symbol{color:#b84646}
 .atlas-reading-group{padding:16px 18px}.atlas-reading-group>summary{display:grid;grid-template-columns:minmax(0,1fr) 16px;gap:5px 14px;align-items:center;padding:8px 4px;list-style:none;text-align:left}.atlas-reading-group>summary::-webkit-details-marker{display:none}.atlas-reading-group>summary>span{grid-column:1;font-size:1.05rem;line-height:1.45}.atlas-reading-group>summary>small{grid-column:1;font-weight:400}.atlas-reading-group>summary::after{content:'';grid-column:2;grid-row:1/3;width:7px;height:7px;border-right:2px solid var(--teal);border-bottom:2px solid var(--teal);transform:rotate(-45deg);justify-self:center}.atlas-reading-group[open]>summary::after{transform:rotate(45deg)}.atlas-reading-group[open]>summary{border-bottom:1px solid var(--line,#dce5e7);padding-bottom:16px;margin-bottom:1rem}.atlas-reading-group>summary:focus-visible{outline:3px solid var(--teal);outline-offset:4px;border-radius:6px}
+
+/* Shared reader design: specific semantic roles, generous full-text cards. */
+.atlas-text-card{border:1px solid var(--line,#dce5e7);box-shadow:0 3px 14px #082c4210;padding:20px 22px}
+.atlas-text-card h2{font-size:1.13rem;line-height:1.4;margin-bottom:12px}
+.atlas-text-card p,.judgment-reading-block p{line-height:1.75;margin-block:8px 0;max-width:72ch}
+.atlas-step-badge{display:grid;place-items:center;min-width:40px;min-height:40px;padding:5px;border-radius:12px;background:color-mix(in srgb,var(--teal) 12%,var(--card,#fff));color:var(--teal);font-size:1rem;line-height:1;font-variant-numeric:tabular-nums;flex:none}
+.atlas-overview-card{border-inline-start:4px solid var(--teal)}
+.atlas-overview-card h2{align-items:center}.atlas-role-focus .atlas-step-badge{background:#f4d978;color:#493c19}
+.atlas-role-keypoint{border-inline-start:4px solid var(--teal);background:color-mix(in srgb,var(--teal) 7%,var(--card,#fff))}
+.atlas-text-card.atlas-role-explanation{background:var(--card,#fff)}
+.judgment-reading-block{padding:16px 18px;border-radius:16px;margin-block:14px;text-align:left}
+.judgment-reading-block h3{display:flex;align-items:flex-start;gap:10px;margin:0 0 8px;font-size:1rem;line-height:1.5}
+.judgment-tenor{border-inline-start:4px solid var(--teal);background:color-mix(in srgb,var(--teal) 7%,var(--card,#fff))}
+.judgment-practice{border-inline-start:4px solid #bf963d;background:color-mix(in srgb,#e3b94e 10%,var(--card,#fff))}
+.judgment-reading-block .atlas-role-symbol{margin-top:2px}
+.atlas-stage>summary{line-height:1.5;overflow-wrap:anywhere}
+.atlas-stage>summary:focus-visible,.atlas-explanations>summary:focus-visible{outline:3px solid var(--teal);outline-offset:3px;border-radius:8px}
+@media(max-width:480px){.atlas-text-card{padding:17px 16px}.atlas-text-card h2{font-size:1.08rem}.judgment-reading-block{padding:14px}.atlas-step-badge{min-width:34px;min-height:34px;font-size:.94rem}}
+@media(prefers-contrast:more){.atlas-text-card,.judgment-reading-block{border:2px solid currentColor}.atlas-role-symbol{color:currentColor}}
+/* Long official host names must wrap on compact screens as well. */
+a.button,button{overflow-wrap:anywhere;white-space:normal}

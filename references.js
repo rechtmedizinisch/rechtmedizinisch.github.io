@@ -1,5 +1,6 @@
 import {safeURL} from './policy.mjs?v=20261027-view-parity56a';
 import {protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56a';
+import {roleIcon} from './atlas-reading.mjs?v=20261028-design61';
 
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function source(label,url){const a=node('a',label,'reference-source');a.href=safeURL(url)||'#';a.target='_blank';a.rel='noopener noreferrer';return a;}
@@ -13,7 +14,7 @@ function symbol(category){
   return '§';
 }
 function select(label,values){const wrap=node('label',label),input=node('select');for(const v of values){const o=node('option',v);o.value=v;input.append(o);}wrap.append(input);return [wrap,input];}
-function detail(label,text,cls){if(!text)return null;const box=node('div',null,cls);box.append(node('h3',label),node('p',text));return box;}
+function detail(label,text,cls,role){if(!text)return null;const box=node('div',null,cls+(role?' judgment-reading-block atlas-role-'+role:'')),heading=node('h3');if(role)heading.append(roleIcon(role));heading.append(node('span',label));box.append(heading,node('p',text));return box;}
 
 export function renderReferences(main,type,catalog,selectedId){
   const cases=type==='cases',data=cases?catalog.landmarkCases:catalog.importantNorms;
@@ -33,10 +34,10 @@ export function renderReferences(main,type,catalog,selectedId){
     if(!visible.length)results.append(node('p','Keine passenden Einträge. Ändern Sie den Suchbegriff oder die Filter.','notice'));
     if(cases){for(const r of visible){
       const card=node('article',null,'card judgment-card'),meta=node('div',null,'row');meta.append(node('span',`${r.tier} · ${r.area}`,'badge'),node('span',r.court,'subtle'));card.append(meta,node('h2',r.title),node('p',[r.decisionType,r.date,r.docket].filter(Boolean).join(' · '),'judgment-docket'));
-      const tenor=detail('⚖ Leitsatzkern',r.tenor,'judgment-tenor');if(tenor)card.append(tenor);
+      const tenor=detail('Leitsatzkern',r.tenor,'judgment-tenor','outcome');if(tenor)card.append(tenor);
       if(r.atlasId){const a=node('a','Sachverhalt, Entscheidung & Gründe lesen','button');a.href='#material/'+encodeURIComponent('atlas:'+r.atlasId);card.append(a);}
       const more=node('details'),summary=node('summary','Einordnung & Praxistransfer lesen');more.append(summary);
-      for(const d of [detail('Tragende Aussage',r.holding,'judgment-holding'),detail('💡 Praxis-Merksatz',r.practice,'notice'),detail('Rechtsstand',r.status,'subtle')])if(d)more.append(d);
+      for(const d of [detail('Tragende Aussage',r.holding,'judgment-holding','reasoning'),detail('Praxis-Merksatz',r.practice,'judgment-practice','takeaway'),detail('Rechtsstand',r.status,'subtle','source')])if(d)more.append(d);
       const links=node('div',null,'reference-actions');links.append(source('Originalquelle / Fundstelle',r.url));if(r.alternativeUrl)links.append(source('Alternative Quelle',r.alternativeUrl));more.append(links);
       if(r.courseIds?.length){const courses=node('div',null,'reference-course-links');courses.append(node('p','Passende Kurse','section-number'));for(const id of r.courseIds){const c=catalog.catalog.find(c=>c.id===id);if(c){const a=node('a',`Kurs ${String(c.no).padStart(2,'0')} · ${c.title} →`);a.href=`#course/${id}`;courses.append(a);}}more.append(courses);}
       card.append(more);results.append(card);
