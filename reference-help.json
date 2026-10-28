@@ -10089,6 +10089,36 @@
       ]
     },
     {
+      "id": "help:erfuellungsgehilfe",
+      "kind": "term",
+      "title": "Erfüllungsgehilfe",
+      "aliases": [
+        "Erfüllungsgehilfe",
+        "Erfüllungsgehilfen"
+      ],
+      "body": "Eine Person, deren sich ein Schuldner zur Erfüllung seiner vertraglichen oder sonstigen Verbindlichkeit bedient. Nach § 278 BGB wird ihr Verschulden bei dieser Tätigkeit grundsätzlich wie eigenes Verschulden zugerechnet. Ein Arbeitsvertrag ist dafür nicht zwingend erforderlich.\n\nBeispiel: Ein Krankenhausträger erfüllt seine vertraglichen Behandlungspflichten durch eingesetztes Personal. Ob dessen Fehlverhalten zugerechnet wird, hängt von Pflichtenkreis und Tätigkeit ab. Das ist von der Haftung für einen Verrichtungsgehilfen nach § 831 BGB zu unterscheiden.",
+      "sources": [
+        {
+          "title": "§ 278 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__278.html"
+        },
+        {
+          "title": "§ 831 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__831.html"
+        }
+      ],
+      "relatedIds": [
+        "schema-q280"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "schema-q280",
+          "title": "Vertragliche Haftung · § 280 Abs. 1 BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
+    },
+    {
       "id": "help:gesetzliche-vermutung",
       "kind": "term",
       "title": "Gesetzliche Vermutung",
@@ -10110,6 +10140,76 @@
         {
           "id": "procedure-fehler",
           "title": "Fehlerarten & Beweisregeln · § 630h BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "id": "help:haftungsausfuellende-kausalitaet",
+      "kind": "term",
+      "title": "Haftungsausfüllende Kausalität",
+      "aliases": [
+        "haftungsausfüllende Kausalität",
+        "haftungsausfüllenden Kausalität"
+      ],
+      "body": "Der Zusammenhang zwischen einer bereits feststehenden rechtlich maßgeblichen Verletzung und den weiteren geltend gemachten Schäden. Hier kann im Zivilprozess das erleichterte Beweismaß des § 287 ZPO gelten. Dies ersetzt nicht den erforderlichen Nachweis der vorgelagerten Haftungsvoraussetzungen.\n\nBeispiel: Nach feststehender verletzungsbedingter Arbeitsunfähigkeit wird geprüft, welcher Verdienstausfall dadurch entstanden ist. Die Höhe der Forderung und ihre Ursache sind zu begründen.",
+      "sources": [
+        {
+          "title": "§ 249 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__249.html"
+        },
+        {
+          "title": "§ 287 ZPO",
+          "url": "https://www.gesetze-im-internet.de/zpo/__287.html"
+        }
+      ],
+      "relatedIds": [
+        "schema-q280",
+        "schema-q823"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "schema-q280",
+          "title": "Vertragliche Haftung · § 280 Abs. 1 BGB"
+        },
+        {
+          "id": "schema-q823",
+          "title": "Deliktische Haftung · § 823 Abs. 1 BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "id": "help:haftungsbegruendende-kausalitaet",
+      "kind": "term",
+      "title": "Haftungsbegründende Kausalität",
+      "aliases": [
+        "haftungsbegründende Kausalität",
+        "haftungsbegründenden Kausalität"
+      ],
+      "body": "Der für den jeweiligen Haftungsweg erforderliche Ursachenzusammenhang bis zur ersten rechtlich maßgeblichen Verletzung. Welche Pflichtverletzung und welche Primärverletzung gemeint sind, muss für den konkreten Anspruch bestimmt werden. Grundsätzlich gilt hierfür das Beweismaß des § 286 ZPO; besondere Beweisregeln bleiben zu prüfen.\n\nBeispiel: Zu klären ist, ob eine vorwerfbare Medikamentengabe die erste Gesundheitsverletzung verursacht hat. Davon zu unterscheiden ist, welche weiteren Schäden aus einer bereits feststehenden Verletzung entstanden sind.",
+      "sources": [
+        {
+          "title": "§ 630h BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__630h.html"
+        },
+        {
+          "title": "§ 286 ZPO",
+          "url": "https://www.gesetze-im-internet.de/zpo/__286.html"
+        }
+      ],
+      "relatedIds": [
+        "schema-q280",
+        "schema-q823"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "schema-q280",
+          "title": "Vertragliche Haftung · § 280 Abs. 1 BGB"
+        },
+        {
+          "id": "schema-q823",
+          "title": "Deliktische Haftung · § 823 Abs. 1 BGB"
         }
       ],
       "reviewedAt": "2026-10-28"
@@ -10137,6 +10237,105 @@
         {
           "id": "procedure-fehler",
           "title": "Fehlerarten & Beweisregeln · § 630h BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "id": "help:verrichtungsgehilfe",
+      "kind": "term",
+      "title": "Verrichtungsgehilfe",
+      "aliases": [
+        "Verrichtungsgehilfe",
+        "Verrichtungsgehilfen"
+      ],
+      "body": "Eine Person, die in einem übertragenen Aufgabenbereich tätig und dabei von den Weisungen eines Geschäftsherrn abhängig ist. § 831 BGB regelt unter seinen Voraussetzungen eine Haftung des Geschäftsherrn für eine widerrechtliche Schädigung bei der Ausführung dieser Aufgabe.\n\nWichtig: Anders als bei § 278 BGB geht es hier um eine eigenständige Haftungsgrundlage mit gesetzlicher Entlastungsmöglichkeit, etwa hinsichtlich sorgfältiger Auswahl und Leitung. Ein unerwünschter Verlauf beweist diese Voraussetzungen nicht automatisch.",
+      "sources": [
+        {
+          "title": "§ 831 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__831.html"
+        },
+        {
+          "title": "§ 278 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__278.html"
+        }
+      ],
+      "relatedIds": [
+        "schema-q823"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "schema-q823",
+          "title": "Deliktische Haftung · § 823 Abs. 1 BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "id": "help:verschulden",
+      "kind": "term",
+      "title": "Verschulden",
+      "aliases": [
+        "Verschulden",
+        "Verschuldens"
+      ],
+      "body": "Verschulden bezeichnet im Zivilrecht grundsätzlich Vorsatz oder Fahrlässigkeit. Nach § 276 BGB kann das Schuldverhältnis auch einen anderen Verantwortungsmaßstab vorsehen. Ein Fehler und dessen Ursächlichkeit sind von der Frage des Verschuldens zu unterscheiden.\n\nBeispiel: Ein fehlender Sicherheitsabgleich kann eine Pflichtverletzung sein. Ob und wem sie vorwerfbar ist und ob fremdes Verschulden zugerechnet wird, wird gesondert geprüft. Strafrechtliche Schuld ist ein anderer Prüfungsschritt.",
+      "sources": [
+        {
+          "title": "§ 276 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__276.html"
+        },
+        {
+          "title": "§ 280 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__280.html"
+        }
+      ],
+      "relatedIds": [
+        "schema-q280",
+        "schema-q823"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "schema-q280",
+          "title": "Vertragliche Haftung · § 280 Abs. 1 BGB"
+        },
+        {
+          "id": "schema-q823",
+          "title": "Deliktische Haftung · § 823 Abs. 1 BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "id": "help:vertretenmuessen",
+      "kind": "term",
+      "title": "Vertretenmüssen",
+      "aliases": [
+        "Vertretenmüssen",
+        "Vertretenmüssens"
+      ],
+      "body": "Die Frage, ob eine verpflichtete Person für eine Pflichtverletzung rechtlich einzustehen hat. Im Vertragsrecht bestimmen insbesondere §§ 276 und 278 BGB den Maßstab; dabei kann auch fremdes Verschulden zugerechnet werden.\n\nBei § 280 Abs. 1 Satz 2 BGB kann sich der Schuldner entlasten, wenn er die Pflichtverletzung nicht zu vertreten hat. Das ist keine allgemeine Umkehr der Beweislast für Fehler, Schaden und Ursächlichkeit. Beispiel: Die Klinik kann bei der Vertragserfüllung für das Verschulden eingesetzter Personen einzustehen haben.",
+      "sources": [
+        {
+          "title": "§ 276 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__276.html"
+        },
+        {
+          "title": "§ 278 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__278.html"
+        },
+        {
+          "title": "§ 280 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__280.html"
+        }
+      ],
+      "relatedIds": [
+        "schema-q280"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "schema-q280",
+          "title": "Vertragliche Haftung · § 280 Abs. 1 BGB"
         }
       ],
       "reviewedAt": "2026-10-28"
@@ -26014,7 +26213,7 @@
       "aliases": [
         "Anspruch"
       ],
-      "body": "Das Recht, von einer anderen Person ein Tun oder Unterlassen zu verlangen. Ein Anspruch muss nach einer konkreten Anspruchsgrundlage geprüft werden.",
+      "body": "Das Recht, von einer anderen Person ein Tun oder Unterlassen zu verlangen. Ein Anspruch muss nach einer konkreten Anspruchsgrundlage geprüft werden.\n\nBeispiel: Eine Patientin verlangt von der Klinik Ersatz zusätzlicher Behandlungskosten. Ob ihr dieser Anspruch zusteht, hängt von der passenden Anspruchsgrundlage und deren Voraussetzungen ab. Das Wort „Anspruch“ bedeutet noch nicht, dass die Forderung bereits bewiesen oder gerichtlich zugesprochen ist.",
       "sources": [
         {
           "title": "§ 194 Abs. 1 BGB · Legaldefinition",
@@ -26029,7 +26228,7 @@
       "aliases": [
         "Approbation und Berufsrecht"
       ],
-      "body": "Die Approbation betrifft die staatliche Erlaubnis zur Berufsausübung. Berufsrecht regelt die ärztlichen Berufspflichten und wird insbesondere durch Kammern und Berufsgerichte durchgesetzt.",
+      "body": "Die Approbation betrifft die staatliche Erlaubnis zur Berufsausübung. Berufsrecht regelt die ärztlichen Berufspflichten und wird insbesondere durch Kammern und Berufsgerichte durchgesetzt.\n\nBeispiel: Die Ärztekammer prüft eine Berufspflichtverletzung. Über ein Ruhen oder einen Widerruf der Approbation entscheidet dagegen die zuständige staatliche Behörde. Eine Kammerbeschwerde entzieht daher nicht schon selbst die ärztliche Zulassung.",
       "sources": [
         {
           "title": "§ 3 BÄO · Voraussetzungen der Approbation",
@@ -26064,7 +26263,7 @@
       "aliases": [
         "Begründetheit"
       ],
-      "body": "Die Frage, ob die begehrte Rechtsfolge nach der inhaltlichen Prüfung tatsächlich besteht.",
+      "body": "Die Frage, ob die begehrte Rechtsfolge nach der inhaltlichen Prüfung tatsächlich besteht.\n\nBeispiel: Das Gericht darf eine Zahlungsklage verhandeln; sie ist damit zulässig. Es muss aber zusätzlich prüfen, ob der geltend gemachte Anspruch besteht und durchgesetzt werden kann. Erst diese inhaltliche Prüfung betrifft die Begründetheit.",
       "sources": [
         {
           "title": "Beispiel einer Anspruchsgrundlage: § 280 BGB",
@@ -26081,7 +26280,7 @@
         "Behandlungsfehlers",
         "Behandlungsfehler"
       ],
-      "body": "Eine Abweichung vom geschuldeten medizinischen Standard. Ob sie einen Anspruch begründet, hängt zusätzlich unter anderem von Schaden und Kausalität ab.",
+      "body": "Eine Abweichung vom geschuldeten medizinischen Standard. Ob sie einen Anspruch begründet, hängt zusätzlich unter anderem von Schaden und Kausalität ab.\n\nBeispiel: Eine nach dem damaligen fachlichen Standard gebotene Kontrolle unterbleibt. Das kann ein Behandlungsfehler sein. Dagegen beweisen weder ein unbefriedigendes Ergebnis noch eine unvermeidbare Komplikation für sich allein einen Fehler. Fehler, Verschulden, Schaden und Ursächlichkeit sind getrennte Fragen.",
       "sources": [
         {
           "title": "§ 630a Abs. 2 BGB · fachlicher Standard",
@@ -26098,7 +26297,7 @@
         "Berufung",
         "Revision"
       ],
-      "body": "Rechtsmittel mit unterschiedlichen Prüfungsumfängen. Die Berufung kann rechtliche und unter Voraussetzungen tatsächliche Fragen erfassen. Die Revision konzentriert sich auf Rechtsfehler.\n\nIm Zivilprozess ist das Berufungsgericht an die rechtliche Beurteilung gebunden, die der Aufhebung zugrunde liegt (§ 563 Abs. 2 ZPO). Für das erneut entscheidende Strafgericht gilt die entsprechende Bindung nach § 358 Abs. 1 StPO. Die Revision eröffnet damit keine beliebige zweite rechtliche Bewertung derselben aufgehobenen Entscheidung.\n\nDer Umfang der Aufhebung begrenzt die neue Verhandlung. Im Strafprozess sind insbesondere auch die von der Aufhebung betroffenen Feststellungen zu unterscheiden (§ 353 Abs. 1–2 StPO). Neue Tatsachenklärung und fortbestehende Urteilsteile bleiben getrennt. Eine Zurückverweisung spricht für sich weder einen Geldbetrag zu noch bedeutet sie bereits einen endgültigen Freispruch oder Schuldspruch.",
+      "body": "Rechtsmittel mit unterschiedlichen Prüfungsumfängen. Die Berufung kann rechtliche und unter Voraussetzungen tatsächliche Fragen erfassen. Die Revision konzentriert sich auf Rechtsfehler.\n\nVerweist das Revisionsgericht einen Zivilprozess nach Aufhebung zurück, ist das erneut entscheidende Berufungsgericht an die der Aufhebung zugrunde liegende rechtliche Beurteilung gebunden (§ 563 Abs. 2 ZPO). Für das erneut entscheidende Strafgericht gilt die entsprechende Bindung nach § 358 Abs. 1 StPO. Die Revision eröffnet damit keine beliebige zweite rechtliche Bewertung derselben aufgehobenen Entscheidung.\n\nDer Umfang der Aufhebung begrenzt die neue Verhandlung. Im Strafprozess sind insbesondere auch die von der Aufhebung betroffenen Feststellungen zu unterscheiden (§ 353 Abs. 1–2 StPO). Neue Tatsachenklärung und fortbestehende Urteilsteile bleiben getrennt. Eine Zurückverweisung spricht für sich weder einen Geldbetrag zu noch bedeutet sie bereits einen endgültigen Freispruch oder Schuldspruch.",
       "sources": [
         {
           "title": "§ 511 ZPO · Berufung; weitere Vorschriften beachten",
@@ -26125,7 +26324,7 @@
       "aliases": [
         "Beweisbeschluss"
       ],
-      "body": "Gerichtliche Festlegung, welche streitige Tatsache mit welchem Beweismittel geklärt werden soll.",
+      "body": "Gerichtliche Festlegung, welche streitige Tatsache mit welchem Beweismittel geklärt werden soll.\n\nBeispiel: Das Gericht beauftragt eine sachverständige Person mit der Frage, ob eine bestimmte Untersuchung nach dem damaligen Standard erforderlich war. Der Beschluss bestimmt die Beweisfrage; er ist noch kein Urteil darüber, ob ein Behandlungsfehler oder ein Ersatzanspruch vorliegt.",
       "sources": [
         {
           "title": "§ 359 ZPO · Inhalt des Beweisbeschlusses",
@@ -26155,7 +26354,7 @@
       "aliases": [
         "CIRS"
       ],
-      "body": "Critical Incident Reporting System. Ein Meldesystem für kritische Ereignisse und Beinahefehler zur Verbesserung von Abläufen. Es ersetzt weder die Behandlungsdokumentation noch individuelle Verfahrensberatung.",
+      "body": "Critical Incident Reporting System. Ein Meldesystem für kritische Ereignisse und Beinahefehler zur Verbesserung von Abläufen. Es ersetzt weder die Behandlungsdokumentation noch individuelle Verfahrensberatung.\n\nBeispiel: Zwei ähnlich verpackte Arzneimittel werden beinahe verwechselt. Das Ereignis wird gemeldet, um Lagerung und Kennzeichnung zu verbessern. Ein CIRS-Bericht ersetzt nicht die notwendige Dokumentation der konkreten Behandlung und ist keine pauschale Zusage strafrechtlicher Folgenlosigkeit.",
       "sources": [
         {
           "title": "§ 135a Abs. 3 SGB V · Risikomanagement- und Fehlermeldesysteme",
@@ -26170,7 +26369,7 @@
       "aliases": [
         "Darlegungslast"
       ],
-      "body": "Welche Partei welche Tatsachen im Verfahren hinreichend konkret vortragen muss. Darlegung und Beweis sind unterschiedliche Schritte.",
+      "body": "Welche Partei welche Tatsachen im Verfahren hinreichend konkret vortragen muss. Darlegung und Beweis sind unterschiedliche Schritte.\n\nBeispiel: Eine Patientin schildert, welche Behandlung stattfand und welche Folgen sie einem Fehler zuordnet. Das ist Tatsachenvortrag. Ob die bestrittenen Angaben bewiesen werden können und wer bei verbleibender Unklarheit das Risiko trägt, sind zusätzliche Fragen.",
       "sources": [
         {
           "title": "§ 138 ZPO · Erklärung über Tatsachen",
@@ -26185,7 +26384,7 @@
       "aliases": [
         "Defensive Medizin"
       ],
-      "body": "Medizinische Entscheidungen, die wesentlich von der Angst vor rechtlichen Vorwürfen geprägt werden. Dazu gehören zusätzliche Maßnahmen und das Vermeiden von Behandlung. Medizinisch indizierte Sicherheitsdiagnostik ist gesondert zu bewerten.",
+      "body": "Medizinische Entscheidungen, die wesentlich von der Angst vor rechtlichen Vorwürfen geprägt werden. Dazu gehören zusätzliche Maßnahmen und das Vermeiden von Behandlung. Medizinisch indizierte Sicherheitsdiagnostik ist gesondert zu bewerten.\n\nBeispiel: Eine zusätzliche Untersuchung wird vor allem angeordnet, um einen späteren Vorwurf abzuwehren, obwohl ihr individueller Nutzen nicht begründet ist. Umgekehrt kann auch die Vermeidung einer gebotenen Behandlung defensiv motiviert sein. Sorgfältige, medizinisch begründete Diagnostik ist deshalb nicht schon defensive Medizin.",
       "sources": [
         {
           "title": "§ 630a Abs. 2 BGB · fachlicher Standard",
@@ -26222,7 +26421,7 @@
         "Ex ante",
         "ex ante"
       ],
-      "body": "Betrachtung aus der damaligen Entscheidungssituation. Maßgeblich ist, was zu diesem Zeitpunkt bekannt oder erkennbar war.",
+      "body": "Betrachtung aus der damaligen Entscheidungssituation. Maßgeblich ist, was zu diesem Zeitpunkt bekannt oder erkennbar war.\n\nBeispiel: Am Montag sind nur die damals vorliegenden Beschwerden und Befunde bekannt. Ob die ärztliche Entscheidung vertretbar war, wird aus dieser damaligen Sicht beurteilt. Die erst am Freitag festgestellte Diagnose darf nicht einfach als am Montag bereits sicher bekannt behandelt werden.",
       "sources": [
         {
           "title": "Anwendung: Standard zum Behandlungszeitpunkt, § 630a Abs. 2 BGB",
@@ -26238,7 +26437,7 @@
         "Ex post",
         "ex post"
       ],
-      "body": "Betrachtung nach dem Ereignis mit später hinzugewonnenem Wissen. Dieses Wissen darf nicht ohne Weiteres auf die damalige Entscheidung zurückprojiziert werden.",
+      "body": "Betrachtung nach dem Ereignis mit später hinzugewonnenem Wissen. Dieses Wissen darf nicht ohne Weiteres auf die damalige Entscheidung zurückprojiziert werden.\n\nBeispiel: Nach einer Komplikation werden zusätzliche Befunde bekannt. Dieses spätere Wissen hilft, den Verlauf aufzuklären. Für den damaligen Behandlungsstandard bleibt aber entscheidend, was zur Zeit der Entscheidung bekannt oder erkennbar war: die Ex-ante-Sicht.",
       "sources": [
         {
           "title": "Gegenüberstellung: Standard zum Behandlungszeitpunkt, § 630a Abs. 2 BGB",
@@ -26253,7 +26452,7 @@
       "aliases": [
         "Fahrlässigkeit"
       ],
-      "body": "Vorwerfbare Verletzung einer Sorgfaltspflicht bei vorhersehbarem und vermeidbarem Erfolg. Der individuelle Vorwurf muss eigenständig geprüft werden.",
+      "body": "Fahrlässig handelt im Zivilrecht, wer die im Verkehr erforderliche Sorgfalt außer Acht lässt (§ 276 Abs. 2 BGB). Strafrechtliche Fahrlässigkeit verlangt eine gesonderte Prüfung der objektiven Pflichtverletzung sowie der persönlichen Vorwerfbarkeit.\n\nBeispiel: Ein erforderlicher Sicherheitsabgleich unterbleibt und ein vorhersehbarer Fehler tritt ein. Im Zivilrecht gilt grundsätzlich der objektivierte Maßstab der erforderlichen Sorgfalt. Für eine strafrechtliche Verurteilung müssen zusätzlich insbesondere die individuelle Vorwerfbarkeit und sämtliche Voraussetzungen des konkreten Fahrlässigkeitsdelikts nachgewiesen werden. Ein schlechter Ausgang allein genügt nicht.",
       "sources": [
         {
           "title": "§ 276 Abs. 2 BGB · zivilrechtliche Definition",
@@ -26268,7 +26467,7 @@
       "aliases": [
         "Freiverantwortlichkeit"
       ],
-      "body": "Eine freie, informierte und hinreichend tragfähige Entscheidung ohne relevante Willensmängel. Am Lebensende ist eine sorgfältige Gesamtbewertung der konkreten Person und Situation erforderlich.",
+      "body": "Eine freie, informierte und hinreichend tragfähige Entscheidung ohne relevante Willensmängel. Am Lebensende ist eine sorgfältige Gesamtbewertung der konkreten Person und Situation erforderlich.\n\nBeispiel: Eine Person äußert einen Sterbewunsch. Damit steht noch nicht fest, ob sie Bedeutung und Folgen versteht und ohne entscheidenden Druck oder relevante Willensmängel entscheidet. Umgekehrt schließt eine Krankheit freie Selbstbestimmung nicht automatisch aus. Die konkrete Entscheidungsfähigkeit und Willenslage müssen sorgfältig beurteilt werden.",
       "sources": [
         {
           "title": "BVerfG · selbstbestimmtes Sterben",
@@ -26283,7 +26482,7 @@
       "aliases": [
         "Garantenstellung"
       ],
-      "body": "Eine besondere rechtliche Pflicht, einen Erfolg abzuwenden. Sie kann beispielsweise aus der Übernahme der Behandlung folgen und ist für Strafbarkeit durch Unterlassen relevant.",
+      "body": "Eine besondere rechtliche Pflicht, einen Erfolg abzuwenden. Sie kann beispielsweise aus der Übernahme der Behandlung folgen und ist für Strafbarkeit durch Unterlassen relevant.\n\nBeispiel: Wer die Behandlung einer Person tatsächlich übernimmt, kann dadurch besondere Schutzpflichten erhalten. Ob ein pflichtwidriges Unterlassen strafbar ist, verlangt daneben weitere Voraussetzungen, etwa eine mögliche und gebotene Rettungshandlung und deren Bedeutung für den Erfolg. Eine Garantenstellung erlaubt nicht automatisch eine Behandlung gegen den maßgeblichen Patientenwillen.",
       "sources": [
         {
           "title": "§ 13 StGB · Begehen durch Unterlassen",
@@ -26520,7 +26719,7 @@
       "aliases": [
         "M&M-Konferenz"
       ],
-      "body": "Mortalitäts- und Morbiditätskonferenz. Strukturierte gemeinsame Analyse unerwünschter Verläufe mit dem Ziel, aus Ursachen und Bedingungen zu lernen.",
+      "body": "Mortalitäts- und Morbiditätskonferenz. Strukturierte gemeinsame Analyse unerwünschter Verläufe mit dem Ziel, aus Ursachen und Bedingungen zu lernen.\n\nDabei bedeutet Mortalität Sterblichkeit, Morbidität Erkrankung beziehungsweise Krankheitsbelastung. Beispiel: Ein Team untersucht nach einem unerwarteten Verlauf, wie Übergabe, Kontrollen und Zuständigkeiten verbessert werden können. Die Konferenz dient dem Lernen und ersetzt keine erforderliche Behandlung, Dokumentation oder unabhängige rechtliche Prüfung.",
       "sources": [
         {
           "title": "§ 135a SGB V · Qualitätssicherung",
@@ -26535,7 +26734,7 @@
       "aliases": [
         "Materielles Recht"
       ],
-      "body": "Regeln darüber, welche Rechte, Pflichten oder strafrechtlichen Verbote bestehen. Beispiel: die Voraussetzungen eines Schadensersatzanspruchs nach § 280 BGB.",
+      "body": "Regeln darüber, welche Rechte, Pflichten oder strafrechtlichen Verbote bestehen. Beispiel: die Voraussetzungen eines Schadensersatzanspruchs nach § 280 BGB.\n\nBeispiel: Das materielle Recht bestimmt, unter welchen Voraussetzungen eine Klinik Schadensersatz leisten muss. Das Verfahrensrecht regelt dagegen, wie darüber gestritten, Beweis erhoben und entschieden wird. Ein bestehendes Recht und dessen gerichtliche Durchsetzung sind unterschiedliche Ebenen.",
       "sources": [
         {
           "title": "Beispiel: Bürgerliches Gesetzbuch",
@@ -26552,7 +26751,7 @@
         "mutmaßlichen Willen",
         "Mutmaßlicher Wille"
       ],
-      "body": "Die anhand konkreter Anhaltspunkte rekonstruierte persönliche Entscheidung des Patienten. Er entspricht nicht automatisch der ärztlichen Einschätzung des medizinisch Besten.",
+      "body": "Die anhand konkreter Anhaltspunkte rekonstruierte persönliche Entscheidung des Patienten. Er entspricht nicht automatisch der ärztlichen Einschätzung des medizinisch Besten.\n\nBeispiel: Eine Person ist nicht einwilligungsfähig und hat für die konkrete Situation keine passende Patientenverfügung hinterlassen. Frühere Äußerungen, persönliche Überzeugungen und Wertvorstellungen können helfen, ihre individuelle Entscheidung zu ermitteln. Eigene Wünsche des Teams oder der Angehörigen ersetzen diese Anhaltspunkte nicht.",
       "sources": [
         {
           "title": "§ 1827 Abs. 2 BGB · konkrete Anhaltspunkte",
@@ -26610,7 +26809,7 @@
       "aliases": [
         "Rechtsfolge"
       ],
-      "body": "Die Wirkung, die eine Norm bei erfülltem Tatbestand vorsieht. Beispiele sind Schadensersatz, Strafbarkeit oder Aufhebung eines Verwaltungsakts.",
+      "body": "Die rechtliche Wirkung, die eine Norm bei erfüllten Voraussetzungen vorsieht. Beispiele sind eine Pflicht zum Schadensersatz oder eine strafrechtliche Sanktion.\n\nBeispiel: Sind die Voraussetzungen eines Schadensersatzanspruchs erfüllt, kann die Rechtsfolge der Ersatz eines bestimmten Schadens sein. Welche Leistung verlangt werden kann, ist gesondert zu bestimmen. Ein Behandlungsfehler führt nicht automatisch zu jeder geforderten Zahlung.",
       "sources": [
         {
           "title": "Anwendungsbeispiel: § 249 BGB",
@@ -26625,7 +26824,7 @@
       "aliases": [
         "Sachverständigenbeweis"
       ],
-      "body": "Das Gericht nutzt Fachwissen zur Bewertung einer Beweisfrage. Die sachverständige Person beantwortet medizinische Fragen, das Gericht entscheidet rechtlich.",
+      "body": "Das Gericht nutzt Fachwissen zur Bewertung einer Beweisfrage. Die sachverständige Person beantwortet medizinische Fragen, das Gericht entscheidet rechtlich.\n\nBeispiel: Eine medizinisch sachverständige Person erläutert, ob eine Kontrolle geboten war und welche Folgen ihr Unterlassen haben konnte. Das Gericht würdigt das Gutachten zusammen mit den übrigen Beweisen und entscheidet selbst über die rechtlichen Voraussetzungen der Haftung.",
       "sources": [
         {
           "title": "§ 402 ZPO · Sachverständige",
@@ -26664,7 +26863,7 @@
       "aliases": [
         "Subsumtion"
       ],
-      "body": "Die begründete Anwendung eines Rechtsbegriffs auf konkrete Tatsachen. Eine Diagnose oder ein Ergebnis allein ersetzt diese Prüfung nicht.",
+      "body": "Die begründete Anwendung eines Rechtsbegriffs auf konkrete Tatsachen. Eine Diagnose oder ein Ergebnis allein ersetzt diese Prüfung nicht.\n\nBeispiel: Die rechtliche Voraussetzung lautet „Verletzung des Körpers“. Es wird erläutert, welche konkrete Handlung oder Beeinträchtigung im Fall diese Voraussetzung erfüllt. Erst die begründete Verbindung von Regel und Tatsachen ist Subsumtion; das bloße Aufzählen von Paragraphen genügt nicht.",
       "sources": [
         {
           "title": "Anwendungsbeispiel: § 280 BGB",
@@ -26679,11 +26878,15 @@
       "aliases": [
         "Tatbestand"
       ],
-      "body": "Die Voraussetzungen, die eine Norm verlangt. Bei der Subsumtion wird jede Voraussetzung mit den Tatsachen des Falls abgeglichen.",
+      "body": "Die Voraussetzungen, die eine Norm verlangt. Bei der Subsumtion wird jede Voraussetzung mit den Tatsachen des Falls abgeglichen.\n\nDas Wort hat zwei wichtige Bedeutungen: Bei einer Rechtsnorm bezeichnet es deren Voraussetzungen. Im Aufbau eines Zivilurteils heißt dagegen auch die Darstellung des Sach- und Streitstands „Tatbestand“. Ein Urteilstatbestand ist somit nicht die Liste aller Voraussetzungen eines Straftatbestands.",
       "sources": [
         {
           "title": "Anwendungsbeispiel: § 823 BGB",
           "url": "https://www.gesetze-im-internet.de/bgb/__823.html"
+        },
+        {
+          "title": "Tatbestand eines Zivilurteils · § 313 ZPO",
+          "url": "https://www.gesetze-im-internet.de/zpo/__313.html"
         }
       ]
     },
@@ -26696,7 +26899,7 @@
         "Verfahrensrecht",
         "Prozessrecht"
       ],
-      "body": "Regeln darüber, wie Behörden und Gerichte Tatsachen feststellen und rechtliche Entscheidungen treffen. ZPO, StPO, VwGO und FamFG haben jeweils eigene Rollen und Beweisregeln.",
+      "body": "Regeln darüber, wie Behörden und Gerichte Tatsachen feststellen und rechtliche Entscheidungen treffen. ZPO, StPO, VwGO und FamFG haben jeweils eigene Rollen und Beweisregeln.\n\nBeispiel: Die ZPO regelt unter anderem Klage, gerichtliche Beweisaufnahme und Rechtsmittel im Zivilprozess. Daraus folgt noch nicht, dass ein medizinischer Fehler oder ein Ersatzanspruch besteht. Straf-, Zivil-, Verwaltungs- und Betreuungsverfahren dürfen nicht als ein einheitlicher Ablauf behandelt werden.",
       "sources": [
         {
           "title": "Beispiel: Zivilprozessordnung",
@@ -26714,7 +26917,7 @@
         "Prozessvergleich",
         "Vergleichsvertrag"
       ],
-      "body": "Ein Vertrag, mit dem Beteiligte ihren Streit oder eine Unsicherheit über ein Rechtsverhältnis durch beiderseitiges Nachgeben ausräumen (§ 779 BGB). Zahlung und Kosten, erfasste Ansprüche, Vorbehalte sowie spätere Folgen vor Zustimmung klären.",
+      "body": "Ein Vertrag, mit dem Beteiligte ihren Streit oder eine Unsicherheit über ein Rechtsverhältnis durch beiderseitiges Nachgeben ausräumen (§ 779 BGB). Zahlung und Kosten, erfasste Ansprüche, Vorbehalte sowie spätere Folgen vor Zustimmung klären.\n\nBeispiel: Beteiligte einigen sich auf eine Zahlung und erledigen damit bestimmte streitige Ansprüche. Ob weitere oder künftige Schäden erfasst sind, hängt vom vereinbarten Inhalt ab. Ein privater Vergleich ist nicht automatisch ein Vollstreckungstitel; ein gerichtlicher Vergleich kann unter § 794 Abs. 1 Nr. 1 ZPO fallen.",
       "sources": [
         {
           "title": "§ 779 BGB · Vergleich",
@@ -26731,7 +26934,7 @@
         "milderes Mittel",
         "mildere Mittel"
       ],
-      "body": "Prüfung von legitimem Zweck, Geeignetheit, Erforderlichkeit und Angemessenheit eines Eingriffs. Ein milderes gleich geeignetes Mittel muss berücksichtigt werden.",
+      "body": "Prüfung von legitimem Zweck, Geeignetheit, Erforderlichkeit und Angemessenheit eines Eingriffs. Ein milderes gleich geeignetes Mittel muss berücksichtigt werden.\n\nGeeignet: Kann die Maßnahme das zulässige Ziel fördern? Erforderlich: Gibt es ein gleich geeignetes, weniger belastendes Mittel? Angemessen: Steht die Belastung noch in vertretbarem Verhältnis zum Ziel? Eine gesetzliche Grundlage und die erforderliche Einwilligung oder besondere Eingriffsbefugnis werden dadurch nicht ersetzt.",
       "sources": [
         {
           "title": "Anwendungsbeispiel: § 1832 BGB",
@@ -26748,7 +26951,7 @@
         "Verjährung",
         "Hemmung"
       ],
-      "body": "Verjährung ermöglicht nach Ablauf der Frist grundsätzlich eine Leistungsverweigerung. Hemmung hält den Fristlauf für einen gesetzlich bestimmten Zeitraum an und muss anhand eines konkreten Tatbestands geprüft werden.",
+      "body": "Verjährung ermöglicht nach Ablauf der Frist grundsätzlich eine Leistungsverweigerung. Hemmung hält den Fristlauf für einen gesetzlich bestimmten Zeitraum an und muss anhand eines konkreten Tatbestands geprüft werden.\n\nDer Anspruch erlischt durch Verjährung grundsätzlich nicht automatisch; die verpflichtete Person erhält eine Einrede. Beispiel: Eine ausdrücklich geregelte Rechtsverfolgung kann den Fristlauf hemmen. Eine bloße Beschwerde, Schadensmeldung oder unverbindliche Unterhaltung genügt dafür nicht in jedem Fall. Fristbeginn, Dauer und konkreten Hemmungsgrund gesondert prüfen.",
       "sources": [
         {
           "title": "§ 204 BGB · Hemmung durch Rechtsverfolgung",
@@ -26778,7 +26981,7 @@
       "aliases": [
         "Vorsatz"
       ],
-      "body": "Wissen und Wollen der Tatbestandsverwirklichung. Für bedingten Vorsatz genügt nicht jedes Wissen um ein abstraktes Risiko.",
+      "body": "Wissen und Wollen der Tatbestandsverwirklichung. Für bedingten Vorsatz genügt nicht jedes Wissen um ein abstraktes Risiko.\n\nBeispiel: Eine Person erkennt die konkrete Möglichkeit einer Verletzung und findet sich mit ihr ab. Das kann bedingter Vorsatz sein. Wer dagegen ernsthaft auf das Ausbleiben der erkannten Folge vertraut, kann bewusst fahrlässig handeln. Die Abgrenzung verlangt eine Bewertung aller Umstände; eine absichtlich vorgenommene Behandlung beweist noch keinen Vorsatz hinsichtlich jeder möglichen Folge.",
       "sources": [
         {
           "title": "§ 15 StGB · vorsätzliches und fahrlässiges Handeln",
@@ -26797,7 +27000,7 @@
         "Beschuldigten",
         "Beschuldigter"
       ],
-      "body": "Ein Zeuge berichtet über Wahrnehmungen und hat gesetzliche Aussagepflichten sowie Schutzrechte. Eine beschuldigte Person steht unter einem strafrechtlichen Vorwurf und darf zur Sache schweigen.",
+      "body": "Ein Zeuge berichtet über Wahrnehmungen und hat gesetzliche Aussagepflichten sowie Schutzrechte. Eine beschuldigte Person steht unter einem strafrechtlichen Vorwurf und darf zur Sache schweigen.\n\nBeispiel: Eine Pflegekraft soll einen beobachteten Ablauf schildern. Wird ihr selbst ein strafbares Verhalten vorgeworfen, ist ihre Rolle neu zu klären. Die beschuldigte Person muss sich nicht zur Sache belasten. Welche Aussage- oder Zeugnisverweigerungsrechte gelten, hängt von Rolle und Verfahren ab; eine Schweigepflicht ist zusätzlich zu beachten.",
       "sources": [
         {
           "title": "§ 136 StPO · Beschuldigtenvernehmung",
@@ -26812,7 +27015,7 @@
       "aliases": [
         "Zulässigkeit"
       ],
-      "body": "Die Voraussetzungen dafür, dass ein Gericht oder eine Behörde eine Sache inhaltlich entscheiden darf. Zuständigkeit, Antragsform und Fristen gehören dazu.",
+      "body": "Die Voraussetzungen dafür, dass ein Gericht oder eine Behörde eine Sache inhaltlich entscheiden darf. Zuständigkeit, Antragsform und Fristen gehören dazu.\n\nBeispiel: Vor der inhaltlichen Prüfung einer Klage können der richtige Rechtsweg, das zuständige Gericht, ein hinreichend bestimmter Antrag und einschlägige Fristen zu klären sein. Dass die Klage zulässig ist, bedeutet noch nicht, dass die verlangte Zahlung zusteht: Das ist die Frage der Begründetheit.",
       "sources": [
         {
           "title": "Beispiel Klageerhebung: § 253 ZPO",
