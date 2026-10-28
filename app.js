@@ -18,7 +18,8 @@ import {renderCourseLearning} from './course-learning.js?v=20261027-view-parity5
 import {progressStore} from './progress-store.mjs?v=20261027-view-parity56a';
 import {renderReferences} from './references.js?v=20261027-view-parity56a';
 import {formatSlideText} from './slide-tools.js?v=20261027-view-parity56a';
-import {loginPanel} from './email-login.js?v=20261027-view-parity56a';
+import {loginPanel} from './email-login.js?v=20261028-password57';
+import {passwordPanel} from './password-panel.mjs';
 import {renderLegal} from './legal.js?v=20261027-view-parity56a';
 import {renderPractice} from './practice.js?v=20261027-view-parity56a';
 import {accountTools} from './account-tools.js?v=20261027-view-parity56a';
@@ -122,7 +123,7 @@ async function account(){
   const grantBox=card('🔓 Ihre Freischaltungen');grantBox.classList.add('account-grants');
   for(const grant of grants.filter(g=>hasAccess(g.scope,[g])))grantBox.append(el('p',`${scopeLabel(grant.scope)} · ${accessDuration(grant.expires_at)}`));
   if(!grantBox.querySelector('p'))grantBox.append(el('p',sessionProblem?'Ihre Freischaltungen konnten gerade nicht geprüft werden.':'Noch kein zusätzlicher Web-Zugang aktiv. Kurse 1 und 2 bleiben kostenlos.'));
-  main.append(grantBox,accessCodeEntry(),accountTools(auth,()=>sessionManager.refresh(),user));
+  main.append(grantBox,accessCodeEntry(),passwordPanel(auth,user),accountTools(auth,()=>sessionManager.refresh(),user));
  }
  let purchases;
  try{purchases=await billingPanel(auth,{signedIn:!!user,grants});}
@@ -153,7 +154,7 @@ try{
  catalog=await fetch('./catalog.json?v=20261027-view-parity56a').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
-  auth=await import('./auth.js?v=20261027-view-parity56a');
+  auth=await import('./auth.js?v=20261028-password57');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
    const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});

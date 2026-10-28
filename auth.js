@@ -1,5 +1,6 @@
 import {client,sandboxContext} from './auth-client.mjs';
 import {requestDeadline} from './request-deadline.mjs';
+import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs';
 import {startGoogleLogin} from './google-login.mjs?v=20261027-view-parity56a';
 export {client,sandboxContext};
 import {config} from './config.js?v=20261027-view-parity56a';
@@ -46,3 +47,5 @@ export async function googleLogin(){if(!config.googleEnabled)throw Error('Google
 export async function getSlides(){const {data,error}=await client.from("web_content").select("payload").eq("scope","slides").order("id");if(error)throw error;return (data??[]).map(r=>r.payload).sort((a,b)=>Number(a.id)-Number(b.id));}
 
 export async function passwordLogin(email,password){const {error}=await client.auth.signInWithPassword({email,password});if(error)throw error;}
+export function setPassword(owner,password,options){return saveAccountPassword(client,owner,password,options);}
+export function requestPasswordConfirmation(owner){return confirmPassword(client,owner);}
