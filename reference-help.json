@@ -8523,6 +8523,7 @@
       "kind": "term",
       "title": "Beweislastumkehr",
       "aliases": [
+        "Beweislastumkehr für die Ursächlichkeit",
         "Beweislastumkehr"
       ],
       "body": "Abweichende Verteilung des Risikos, dass eine entscheidende Tatsache ungeklärt bleibt. Im Behandlungsrecht enthält § 630h BGB unterschiedliche Vermutungen und Beweisregeln. Bei einem geeigneten groben Behandlungsfehler betrifft § 630h Abs. 5 BGB beispielsweise den Ursachenzusammenhang zur eingetretenen Verletzung.\n\nPraxis: Nicht jede Beweiserleichterung kehrt die gesamte Beweislast um. Immer benennen, welche konkrete Tatsache und welche gesetzliche Voraussetzung gemeint sind.",
@@ -9834,11 +9835,14 @@
       "kind": "term",
       "title": "Therapeutische Information · Sicherungsaufklärung",
       "aliases": [
-        "therapeutische Information",
-        "Sicherungsaufklärung",
-        "therapeutische Aufklärung",
+        "therapeutischen Informationspflicht",
+        "therapeutische Informationspflicht",
+        "therapeutischen Information",
         "therapeutischer Information",
-        "therapeutischen Information"
+        "therapeutische Information",
+        "therapeutischen Aufklärung",
+        "therapeutische Aufklärung",
+        "Sicherungsaufklärung"
       ],
       "body": "Verständliche Hinweise, die eine fachgerechte Behandlung und das Verhalten während und nach ihr ermöglichen. § 630c Abs. 2 BGB nennt unter anderem Diagnose, voraussichtliche Entwicklung, Therapie und erforderliche Maßnahmen. Diese behandlungsbezogene Information hat einen anderen Zweck als die Selbstbestimmungsaufklärung vor einer Einwilligung.\n\nPraxis: Beispiel: Warnzeichen, richtige Medikamenteneinnahme und notwendige Wiedervorstellung erläutern. Nicht nur einen Aufklärungsbogen über Eingriffsrisiken aushändigen.",
       "sources": [
@@ -10083,6 +10087,59 @@
           "url": "https://www.gesetze-im-internet.de/sgb_5/__96.html"
         }
       ]
+    },
+    {
+      "id": "help:gesetzliche-vermutung",
+      "kind": "term",
+      "title": "Gesetzliche Vermutung",
+      "aliases": [
+        "gesetzliche Vermutung",
+        "gesetzlichen Vermutung"
+      ],
+      "body": "Eine gesetzlich geregelte Beweisregel: Stehen ihre Voraussetzungen fest, wird die ausdrücklich bezeichnete Tatsache zunächst als gegeben behandelt. Das ist weder eine bloße Vermutung im Alltag noch automatisch ein Nachweis aller Voraussetzungen eines Anspruchs. Der Beweis des Gegenteils ist grundsätzlich zulässig (§ 292 Satz 1 ZPO).\n\nBeispiel: Unter den Voraussetzungen des § 630h Abs. 3 BGB wird vermutet, dass eine nicht dokumentierte wesentliche Maßnahme nicht vorgenommen wurde. Die Ursache eines Gesundheitsschadens ist damit noch nicht automatisch geklärt.",
+      "sources": [
+        {
+          "title": "Gesetzliche Grundlage",
+          "url": "https://www.gesetze-im-internet.de/zpo/__292.html"
+        }
+      ],
+      "relatedIds": [
+        "procedure-fehler"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "procedure-fehler",
+          "title": "Fehlerarten & Beweisregeln · § 630h BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
+    },
+    {
+      "id": "help:reaktionspflichtiger-befund",
+      "kind": "term",
+      "title": "Reaktionspflichtiger Befund",
+      "aliases": [
+        "reaktionspflichtiger Befund",
+        "reaktionspflichtigen Befund",
+        "reaktionspflichtiges Ergebnis"
+      ],
+      "body": "Ein Untersuchungsergebnis, auf das nach dem medizinischen Standard mit weiteren Maßnahmen reagiert werden muss. Das kann etwa eine weitere Abklärung oder Behandlung erfordern; nicht jeder auffällige Befund verlangt dieselbe Reaktion.\n\nBei einer unterlassenen Untersuchung fragt § 630h Abs. 5 Satz 2 BGB unter anderem: Hätte sie mit hinreichender Wahrscheinlichkeit ein solches Ergebnis erbracht, und wäre das Unterlassen der gebotenen weiteren Maßnahmen grob fehlerhaft gewesen? Die fehlende Untersuchung allein genügt nicht für diese Beweisfolge.",
+      "sources": [
+        {
+          "title": "Gesetzliche Grundlage",
+          "url": "https://www.gesetze-im-internet.de/bgb/__630h.html"
+        }
+      ],
+      "relatedIds": [
+        "procedure-fehler"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "procedure-fehler",
+          "title": "Fehlerarten & Beweisregeln · § 630h BGB"
+        }
+      ],
+      "reviewedAt": "2026-10-28"
     },
     {
       "id": "historical-alias:stgb:217:2015",
@@ -10839,6 +10896,2170 @@
         {
           "title": "BGBl. 2019 I S. 2633 · Umnummerierung in § 544 ZPO",
           "url": "https://www.bgbl.de/xaver/bgbl/start.xav?jumpTo=bgbl119s2633.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:ag-hersbruck-erlanger-baby-1992",
+      "kind": "judgment",
+      "title": "AG Hersbruck · 16.10.1992 · XVII 1556/92",
+      "aliases": [
+        "AG Hersbruck · XVII 1556/92",
+        "AG Hersbruck, XVII 1556/92",
+        "XVII 1556/92",
+        "Fall R01",
+        "Fallakte R01"
+      ],
+      "body": "Entscheidung: Veröffentlichter Entscheidungskern: Das Gericht bestellte für die hirntote Frau eine vorläufige Betreuerin. Es verlangte eine gerichtliche Genehmigung für das Abschalten der funktionserhaltenden Apparate vor Entbindung oder Tod des ungeborenen Kindes; danach sollte dieser Vorbehalt entfallen.\n\nEinordnung: Das Gericht gab in seiner damaligen Abwägung dem Leben des ungeborenen Kindes Vorrang vor dem postmortalen Persönlichkeitsschutz. Es legte eine reelle Lebenschance zugrunde und leitete aus Angaben der Eltern zur Lebensführung einen mutmaßlichen Willen zur Fortführung ab.\n\nPraxis: Lehrtransfer: Akteure, Vertretungsmacht, Entscheidungsgegenstand, Zeitfenster, medizinische Prognose und Anhaltspunkte für den Willen getrennt prüfen. Dieser Prüfauftrag ist kein zusätzlicher gerichtlicher Leitsatz.",
+      "relatedIds": [
+        "case-r01"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r01",
+          "title": "Erlanger Baby und vorläufige Betreuung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://beck-online.beck.de/Bcid/Y-300-Z-NJW-B-1992-S-3245-N-1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-aufklaerungszeitpunkt-2022",
+      "kind": "judgment",
+      "title": "BGH · 20.12.2022 · VI ZR 375/21",
+      "aliases": [
+        "BGH · VI ZR 375/21",
+        "BGH, VI ZR 375/21",
+        "VI ZR 375/21",
+        "Fall R30",
+        "Fallakte R30"
+      ],
+      "body": "Entscheidung: § 630e BGB verlangt genügend Zeit für eine wohlüberlegte Entscheidung, aber keinen starren Mindestabstand zwischen Gespräch und Einwilligung.\n\nEinordnung: Ob der Patient sofort entscheiden kann oder Bedenkzeit benötigt, hängt von der konkreten Situation ab; erkennbare Überforderung oder Bedenkzeitwünsche dürfen nicht übergangen werden.\n\nPraxis: Nicht allein Datum und Uhrzeit dokumentieren, sondern Entscheidungsraum, Dringlichkeit, Fragen und geäußerten Wunsch nach Bedenkzeit.",
+      "relatedIds": [
+        "case-r30"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r30",
+          "title": "Einwilligung direkt nach dem Aufklärungsgespräch"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2021/VI_ZR_375-21.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-digitale-dokumentation-2021",
+      "kind": "judgment",
+      "title": "BGH · 27.04.2021 · VI ZR 84/19",
+      "aliases": [
+        "BGH · VI ZR 84/19",
+        "BGH, VI ZR 84/19",
+        "VI ZR 84/19",
+        "Fall R07",
+        "Fallakte R07"
+      ],
+      "body": "Entscheidung: Eine nachträglich unbemerkt veränderbare elektronische Dokumentation besitzt nicht ohne Weiteres die übliche positive Indizwirkung.\n\nEinordnung: Fehlende Änderungssicherheit führt nicht automatisch zur Vermutung des § 630h Abs. 3 BGB; das Gericht muss den Beweiswert im Einzelfall würdigen.\n\nPraxis: Audit-Trail, Zeitstempel, Autorenzuordnung und transparente Korrekturen entscheiden über die spätere Beweisqualität des KIS.",
+      "relatedIds": [
+        "case-r07"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r07",
+          "title": "Netzhautablösung und bestrittene Pupillenweitstellung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2019/VI_ZR__84-19.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-dringlichkeitshinweis-2015",
+      "kind": "judgment",
+      "title": "BGH · 17.11.2015 · VI ZR 476/14",
+      "aliases": [
+        "BGH · VI ZR 476/14",
+        "BGH, VI ZR 476/14",
+        "VI ZR 476/14",
+        "Fall R02",
+        "Fallakte R02"
+      ],
+      "body": "Entscheidung: Eine unterlassene Information über die Dringlichkeit weiterer Maßnahmen ist grundsätzlich ein Fehler therapeutischer Information, nicht automatisch ein Befunderhebungsfehler.\n\nEinordnung: Die rechtliche Fehlerkategorie entscheidet über mögliche Beweiserleichterungen; derselbe Kommunikationsmangel darf nicht ohne Prüfung umetikettiert werden.\n\nPraxis: Dringlichkeit, konkrete nächste Schritte, Warnzeichen und Rückkehrschwelle verständlich mitteilen und dokumentieren.",
+      "relatedIds": [
+        "case-r02"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r02",
+          "title": "Dringlichkeit der Abklärung einer Herzerkrankung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://dejure.org/2015,41290"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-gewuenschter-operateur-2016",
+      "kind": "judgment",
+      "title": "BGH · 19.07.2016 · VI ZR 75/15",
+      "aliases": [
+        "BGH · VI ZR 75/15",
+        "BGH, VI ZR 75/15",
+        "VI ZR 75/15",
+        "Fall R29",
+        "Fallakte R29"
+      ],
+      "body": "Entscheidung: Ist die Einwilligung erkennbar auf einen bestimmten Operateur beschränkt, rechtfertigt sie den Eingriff durch einen anderen Arzt nicht.\n\nEinordnung: Der Einwand, der Eingriff wäre durch den gewünschten Arzt ebenfalls erfolgt, ersetzt die fehlende konkrete Einwilligung nicht.\n\nPraxis: Arztwahl, Vertreterregelung und kurzfristige Änderungen vor dem Eingriff offen ansprechen und eine neue Entscheidung ermöglichen.",
+      "relatedIds": [
+        "case-r29"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r29",
+          "title": "Anderer Operateur trotz personenbezogener Einwilligung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2015/VI_ZR__75-15.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-grober-fehler-2004",
+      "kind": "judgment",
+      "title": "BGH · 27.04.2004 · VI ZR 34/03",
+      "aliases": [
+        "BGH · VI ZR 34/03",
+        "BGH, VI ZR 34/03",
+        "VI ZR 34/03",
+        "Fall R03",
+        "Fallakte R03"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung zur weiteren Prüfung. Der BGH sprach nicht bereits abschließend den gesamten geforderten Ersatz zu.\n\nEinordnung: Auch ein einfacher Befunderhebungsfehler kann unter besonderen Voraussetzungen zur vollen Kausalitätsbeweislastumkehr führen: wahrscheinlicher reaktionspflichtiger Befund, hypothetisch grob fehlerhafte Nichtreaktion und generelle Eignung für die eingetretene Verletzung. Keine bloße Ermessensabstufung.\n\nPraxis: Fehlerart, Fehlerschwere und Beweisfolge trennen. Der BGH verwies zur weiteren Prüfung zurück; damit war nicht bereits der gesamte Ersatzanspruch abschließend zugesprochen.",
+      "relatedIds": [
+        "case-r03"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r03",
+          "title": "Übersehene Beckenfraktur nach Motorradunfall"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://dejure.org/2004,174"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-hygiene-darlegung-2016",
+      "kind": "judgment",
+      "title": "BGH · 16.08.2016 · VI ZR 634/15",
+      "aliases": [
+        "BGH · VI ZR 634/15",
+        "BGH, VI ZR 634/15",
+        "VI ZR 634/15",
+        "Fall R32",
+        "Fallakte R32"
+      ],
+      "body": "Entscheidung: Patienten dürfen konkrete Anhaltspunkte für Hygieneverstöße vortragen; die Behandlungsseite muss dann die nur intern bekannten Organisations- und Hygienemaßnahmen substantiiert erläutern.\n\nEinordnung: Die Patientenseite muss nicht interne Abläufe beweisen, zu denen sie keinen Zugang hat. Die Klinik trägt aber nicht automatisch die volle Beweislast für jede Infektion.\n\nPraxis: Hygienepläne allein genügen nicht: Umsetzung, Verantwortlichkeit, Kontrollen, Schulung und Abweichungsmanagement müssen belegbar sein.",
+      "relatedIds": [
+        "case-r32"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r32",
+          "title": "Infektion nach Ellenbogenoperation und Hygienevortrag"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://dejure.org/dienste/vernetzung/rechtsprechung?Aktenzeichen=VI+ZR+634%2F15&Datum=2016-08-16&Gericht=BGH"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-kempten-1994",
+      "kind": "judgment",
+      "title": "BGH · 13.09.1994 · 1 StR 357/94",
+      "aliases": [
+        "BGH · 1 StR 357/94",
+        "BGH, 1 StR 357/94",
+        "1 StR 357/94",
+        "Fall R33",
+        "Fallakte R33"
+      ],
+      "body": "Entscheidung: Ein Behandlungsabbruch kann auch vor unmittelbarer Todesnähe zulässig sein, wenn er dem sorgfältig ermittelten mutmaßlichen Willen des nicht entscheidungsfähigen Patienten entspricht.\n\nEinordnung: Frühere Äußerungen, Wertvorstellungen und konkrete Lebensentscheidungen haben Vorrang; fehlen individuelle Anhaltspunkte, gilt eine strenge Zweifelsregel zugunsten des Lebensschutzes.\n\nPraxis: Nicht eigene Vorstellungen von Lebensqualität einsetzen: Patientenwille strukturiert ermitteln, Quellen benennen und Unsicherheiten offen dokumentieren.",
+      "relatedIds": [
+        "case-r33"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r33",
+          "title": "Kemptener Fall und mutmaßlicher Patientenwille"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.hrr-strafrecht.de/hrr/1/94/1-357-94.php"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-lebendorganspende-2019",
+      "kind": "judgment",
+      "title": "BGH · 29.01.2019 · VI ZR 495/16",
+      "aliases": [
+        "BGH · VI ZR 495/16",
+        "BGH, VI ZR 495/16",
+        "VI ZR 495/16",
+        "Fall R15",
+        "Fallakte R15"
+      ],
+      "body": "Entscheidung: Die besonderen Aufklärungs- und Verfahrensvorgaben des TPG schützen die freie Spenderentscheidung; bei inhaltlichen Defiziten greift der Einwand hypothetischer Einwilligung nicht ohne Weiteres.\n\nEinordnung: Form- und Verfahrensmängel beeinflussen die Beweiswürdigung. Bei der altruistischen Spende ist die Entscheidung besonders vor Druck, Verharmlosung und unvollständiger Risikoaufklärung zu schützen.\n\nPraxis: Spender- und Empfängerinteressen institutionell trennen, Risiken und Langzeitfolgen vollständig erklären und unabhängige Prüfung nachvollziehbar dokumentieren.",
+      "relatedIds": [
+        "case-r15"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r15",
+          "title": "Gesundheitsfolgen nach einer Lebendnierenspende"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2016/VI_ZR_495-16.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-leitlinien-standard-2014",
+      "kind": "judgment",
+      "title": "BGH · 15.04.2014 · VI ZR 382/12",
+      "aliases": [
+        "BGH · VI ZR 382/12",
+        "BGH, VI ZR 382/12",
+        "VI ZR 382/12",
+        "Fall R22",
+        "Fallakte R22"
+      ],
+      "body": "Entscheidung: Leitlinien können Erkenntnisse bündeln, ersetzen aber nicht die sachverständige Feststellung des zum Behandlungszeitpunkt geschuldeten Standards.\n\nEinordnung: Eine Leitlinie kann dem Standard voraus- oder hinterherlaufen. Entscheidend bleiben wissenschaftliche Erkenntnis, praktische Bewährung und konkrete Behandlungssituation.\n\nPraxis: Nicht nur „leitliniengerecht“ dokumentieren, sondern die patientenbezogenen Gründe für Anwendung oder begründete Abweichung.",
+      "relatedIds": [
+        "case-r22"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r22",
+          "title": "Frühgeburtliches Risiko und ärztliche Leitlinien"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2012/VI_ZR_382-12.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-patientenverfuegung-2016",
+      "kind": "judgment",
+      "title": "BGH · 06.07.2016 · XII ZB 61/16",
+      "aliases": [
+        "BGH · XII ZB 61/16",
+        "BGH, XII ZB 61/16",
+        "XII ZB 61/16",
+        "Fall R12",
+        "Fallakte R12"
+      ],
+      "body": "Entscheidung: Die bloße Formel, keine lebenserhaltenden Maßnahmen zu wünschen, bindet nicht ohne hinreichende Konkretisierung von Behandlung und Lebenssituation.\n\nEinordnung: Konkretisierung kann sich aus dem Gesamtzusammenhang der Erklärung und weiteren Äußerungen ergeben; starre medizinische Detailkenntnis wird nicht verlangt.\n\nPraxis: Patientenverfügungen nicht mit einem Satz abhaken: Maßnahmen, Situationen und ergänzende Wertäußerungen gemeinsam auslegen.",
+      "relatedIds": [
+        "case-r12"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r12",
+          "title": "Drei Töchter streiten über künstliche Ernährung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2016/XII_ZB__61-16.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-patientenverfuegung-2017",
+      "kind": "judgment",
+      "title": "BGH · 08.02.2017 · XII ZB 604/15",
+      "aliases": [
+        "BGH · XII ZB 604/15",
+        "BGH, XII ZB 604/15",
+        "XII ZB 604/15",
+        "Fall R34",
+        "Fallakte R34"
+      ],
+      "body": "Entscheidung: Eine Patientenverfügung ist bindend, wenn sie konkrete Maßnahmen in einer hinreichend bestimmten Behandlungssituation erfasst; ihr gesamter Inhalt ist auszulegen.\n\nEinordnung: Auch ergänzende schriftliche und mündliche Äußerungen können die Reichweite konkretisieren. Maßstab bleibt der individuelle Wille, nicht eine abstrakte Nutzenbewertung.\n\nPraxis: Originaldokument, Vollmachten, frühere Gespräche und aktuelle medizinische Situation in einer nachvollziehbaren Willensrekonstruktion zusammenführen.",
+      "relatedIds": [
+        "case-r34"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r34",
+          "title": "Sohn und Ehemann bei einer Patientenverfügung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2015/XII_ZB_604-15.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-pid-2010",
+      "kind": "judgment",
+      "title": "BGH · 06.07.2010 · 5 StR 386/09",
+      "aliases": [
+        "BGH · 5 StR 386/09",
+        "BGH, 5 StR 386/09",
+        "5 StR 386/09",
+        "Fall R44",
+        "Fallakte R44"
+      ],
+      "body": "Entscheidung: Die untersuchte PID-Konstellation zur Erkennung schwerer genetischer Schäden war nach der damaligen Gesetzeslage nicht strafbar.\n\nEinordnung: Der BGH legte den Embryonenbegriff und die untersuchten Zellstadien eng am Strafgesetz aus; die Entscheidung führte zu einer ausdrücklichen gesetzlichen Neuregelung.\n\nPraxis: In Spezialmaterien nie aus Ethik unmittelbar auf Strafbarkeit schließen: Tatbestand, Zellstadium, Zweck, Verfahrensvorgaben und aktuelle Gesetzesfassung getrennt prüfen.",
+      "relatedIds": [
+        "case-r44"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r44",
+          "title": "PID an pluripotenten Trophoblastzellen"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Downloads/DE/Bibliothek/Gesetzesmaterialien/17_wp/PID/5StR38609.pdf?__blob=publicationFile"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-putz-2010",
+      "kind": "judgment",
+      "title": "BGH · 25.06.2010 · 2 StR 454/09",
+      "aliases": [
+        "BGH · 2 StR 454/09",
+        "BGH, 2 StR 454/09",
+        "2 StR 454/09",
+        "Fall R13",
+        "Fallakte R13"
+      ],
+      "body": "Entscheidung: Der Abbruch einer lebenserhaltenden Behandlung kann durch Unterlassen oder aktives Tun gerechtfertigt sein, wenn er dem tatsächlichen oder mutmaßlichen Patientenwillen entspricht.\n\nEinordnung: Entscheidend ist der Bezug zur Beendigung einer medizinischen Behandlung und zum tödlichen Krankheitsprozess; eine davon gelöste gezielte Tötung bleibt unzulässig.\n\nPraxis: Indikation, Wille, Behandlungszieländerung, Zuständigkeit und konkreten Ablauf interprofessionell klären und dokumentieren.",
+      "relatedIds": [
+        "case-r13"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r13",
+          "title": "Putz-Fall: Abbruch einer künstlichen Ernährung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2009/2_StR_454-09.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-robodoc-2006",
+      "kind": "judgment",
+      "title": "BGH · 13.06.2006 · VI ZR 323/04",
+      "aliases": [
+        "BGH · VI ZR 323/04",
+        "BGH, VI ZR 323/04",
+        "VI ZR 323/04",
+        "Fall R05",
+        "Fallakte R05"
+      ],
+      "body": "Entscheidung: Bei einer neuen Methode muss der Patient eindeutig auf unbekannte Risiken und auf die etablierte Behandlungsalternative hingewiesen werden.\n\nEinordnung: Innovative Behandlung ist nicht schon wegen fehlender Langzeiterfahrung fehlerhaft. Ihre besonderen Unsicherheiten verändern aber die Vergleichs- und Risikoaufklärung.\n\nPraxis: Innovationsgrad, Evidenzlücken, Alternativen, Lernkurve und institutionelle Erfahrung ausdrücklich ansprechen; Marketingbegriffe vermeiden.",
+      "relatedIds": [
+        "case-r05"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r05",
+          "title": "Robodoc: neue Methode und unklare Risiken"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2006/2006089.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-routineimpfung-2000",
+      "kind": "judgment",
+      "title": "BGH · 15.02.2000 · VI ZR 48/99",
+      "aliases": [
+        "BGH · VI ZR 48/99",
+        "BGH, VI ZR 48/99",
+        "VI ZR 48/99",
+        "Fall R28",
+        "Fallakte R28"
+      ],
+      "body": "Entscheidung: Bei öffentlich empfohlenen Routineimpfungen kann schriftliche Information genügen, wenn eine reale Gelegenheit zum ärztlichen Gespräch besteht.\n\nEinordnung: Nicht die statistische Häufigkeit allein entscheidet über die Aufklärung, sondern Eingriffsspezifik und Gewicht des Risikos für die Lebensführung.\n\nPraxis: Informationsblatt rechtzeitig aushändigen, Gesprächsmöglichkeit aktiv eröffnen, Kontraindikationen erheben und individuelle Fragen dokumentieren.",
+      "relatedIds": [
+        "case-r28"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r28",
+          "title": "Polio-Schluckimpfung und Risikoaufklärung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/1999/VI_ZR__48-99.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-sachverstaendigenanhoerung-2019",
+      "kind": "judgment",
+      "title": "BGH · 07.05.2019 · VI ZR 257/17",
+      "aliases": [
+        "BGH · VI ZR 257/17",
+        "BGH, VI ZR 257/17",
+        "VI ZR 257/17",
+        "Fall R08",
+        "Fallakte R08"
+      ],
+      "body": "Entscheidung: Ein rechtzeitig gestellter Antrag auf Anhörung darf nicht deshalb abgelehnt werden, weil das Gericht selbst keinen weiteren Erläuterungsbedarf sieht.\n\nEinordnung: Das Fragerecht konkretisiert den Anspruch auf rechtliches Gehör und gilt unabhängig davon, ob das schriftliche Gutachten dem Gericht bereits überzeugend erscheint.\n\nPraxis: Fragen frühzeitig, fallbezogen und medizinisch präzise formulieren; Widersprüche, Anknüpfungstatsachen und Alternativhypothesen sichtbar machen.",
+      "relatedIds": [
+        "case-r08"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r08",
+          "title": "Abgebrochene Fasszange und verweigerte Anhörung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2017/VI_ZR_257-17.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-selbstbestimmungsaufklaerung-1958",
+      "kind": "judgment",
+      "title": "BGH · 09.12.1958 · VI ZR 203/57",
+      "aliases": [
+        "BGH · VI ZR 203/57",
+        "BGH, VI ZR 203/57",
+        "VI ZR 203/57",
+        "Fall R24",
+        "Fallakte R24"
+      ],
+      "body": "Entscheidung: Das therapeutische Bemühen endet dort, wo es mit dem Recht des Patienten kollidiert, selbst über den eigenen Körper zu bestimmen.\n\nEinordnung: Der Patient muss Art und Folgen des Eingriffs im Großen und Ganzen verstehen können. Das Urteil wurde zum Ausgangspunkt der zivilrechtlichen Aufklärungsrechtsprechung.\n\nPraxis: Aufklärung ist keine Unterschriftensammlung, sondern ermöglicht eine autonome Entscheidung; Inhalt, Gespräch und besondere Rückfragen müssen nachvollziehbar sein.",
+      "relatedIds": [
+        "case-r24"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r24",
+          "title": "Oberschenkelhalsbruch bei Elektroschockbehandlung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://dejure.org/1958,126"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-suizidhilfe-2022",
+      "kind": "judgment",
+      "title": "BGH · 28.06.2022 · 6 StR 68/21",
+      "aliases": [
+        "BGH · 6 StR 68/21",
+        "BGH, 6 StR 68/21",
+        "6 StR 68/21",
+        "Fall R18",
+        "Fallakte R18"
+      ],
+      "body": "Entscheidung: Ein freiverantwortlicher, ernsthafter Suizidentschluss kann eine Pflicht naher Angehöriger zur Rettung gegen den erklärten Willen entfallen lassen.\n\nEinordnung: Entscheidend ist eine normative Prüfung der Freiverantwortlichkeit; § 216 StGB und straflose Suizidhilfe müssen voneinander abgegrenzt werden.\n\nPraxis: Nicht aus einem einzelnen Satz auf Freiverantwortlichkeit schließen: Entscheidungsfähigkeit, Wissensbasis, Dauerhaftigkeit, Ambivalenz und Einfluss Dritter erfassen.",
+      "relatedIds": [
+        "case-r18"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r18",
+          "title": "Sterbewunsch eines schwer erkrankten Ehemanns"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/6_StS/2021/6_StR__68-21.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-transplantationsallokation-2017",
+      "kind": "judgment",
+      "title": "BGH · 28.06.2017 · 5 StR 20/16",
+      "aliases": [
+        "BGH · 5 StR 20/16",
+        "BGH, 5 StR 20/16",
+        "5 StR 20/16",
+        "Fall R45",
+        "Fallakte R45"
+      ],
+      "body": "Entscheidung: Richtlinienverstöße der Bundesärztekammer begründen nicht ohne Weiteres eine Strafbarkeit wegen Tötungsdelikten.\n\nEinordnung: Strafrechtliche Zurechnung verlangt gesetzliche Tatbestände, konkrete Kausalität und Vorsatz; medizinische Allokationsregeln dürfen nicht unbesehen zu Strafnormen werden.\n\nPraxis: Allokationsregeln strikt befolgen und dokumentieren, strafrechtliche Bewertung aber getrennt nach Tatbestand, Kausalität und subjektiver Seite vornehmen.",
+      "relatedIds": [
+        "case-r45"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r45",
+          "title": "Manipulierte Angaben für die Lebertransplantationsliste"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://dejure.org/dienste/vernetzung/rechtsprechung?Aktenzeichen=5+StR+20%2F16&Datum=28.06.2017&Gericht=BGH"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-verfuegung-zwangsbehandlung-2025",
+      "kind": "judgment",
+      "title": "BGH · 05.02.2025 · XII ZB 547/24",
+      "aliases": [
+        "BGH · XII ZB 547/24",
+        "BGH, XII ZB 547/24",
+        "XII ZB 547/24",
+        "Fall R35",
+        "Fallakte R35"
+      ],
+      "body": "Entscheidung: Erfasst eine wirksame Patientenverfügung die konkrete Situation und lehnt die Maßnahme ab, darf der Betreuer nicht in eine Zwangsbehandlung einwilligen.\n\nEinordnung: Die aktuelle Einwilligungsunfähigkeit beseitigt die Bindung an den vorausverfügten Willen nicht; die gerichtliche Genehmigung ersetzt keine fehlende materielle Befugnis.\n\nPraxis: Vor jedem Zwangsantrag Patientenverfügung und frühere Behandlungswünsche vollständig beiziehen und auf konkrete Passung prüfen.",
+      "relatedIds": [
+        "case-r35"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r35",
+          "title": "Patientenverfügung gegen Neuroleptika und Zwang"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2024/XII_ZB_547-24.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-verjaehrungskenntnis-2009",
+      "kind": "judgment",
+      "title": "BGH · 10.11.2009 · VI ZR 247/08",
+      "aliases": [
+        "BGH · VI ZR 247/08",
+        "BGH, VI ZR 247/08",
+        "VI ZR 247/08",
+        "Fall R09",
+        "Fallakte R09"
+      ],
+      "body": "Entscheidung: Ein negatives Behandlungsergebnis allein vermittelt noch keine Kenntnis von einer möglichen Pflichtverletzung.\n\nEinordnung: Erforderlich sind Tatsachen, aus denen sich auch für einen medizinischen Laien eine Abweichung vom geschuldeten Vorgehen ergeben kann; ein fertiges Gutachten ist nicht stets nötig.\n\nPraxis: Kenntnisereignisse mit Datum dokumentieren und Verjährung nie nur am Schadenseintritt oder erst am Gutachten festmachen.",
+      "relatedIds": [
+        "case-r09"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r09",
+          "title": "Späte Fehlerkenntnis nach einer Zangengeburt"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://dejure.org/2009,592"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bgh-voll-beherrschbares-risiko-2007",
+      "kind": "judgment",
+      "title": "BGH · 20.03.2007 · VI ZR 158/06",
+      "aliases": [
+        "BGH · VI ZR 158/06",
+        "BGH, VI ZR 158/06",
+        "VI ZR 158/06",
+        "Fall R31",
+        "Fallakte R31"
+      ],
+      "body": "Entscheidung: Verwirklicht sich ein Risiko aus einem organisatorisch vollständig beherrschbaren Bereich, muss die Behandlungsseite darlegen und beweisen, dass sie die gebotenen Maßnahmen eingehalten hat.\n\nEinordnung: Die Beweiserleichterung knüpft nicht an jedes schlechte Ergebnis, sondern an eine Gefahr an, die dem Einfluss- und Organisationsbereich der Behandlungsseite zugeordnet werden kann.\n\nPraxis: Hygiene-, Geräte-, Lagerungs- und Organisationsmaßnahmen so gestalten und dokumentieren, dass der beherrschte Risikobereich tatsächlich rekonstruierbar bleibt.",
+      "relatedIds": [
+        "case-r31"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r31",
+          "title": "Spritzenabszess und feststehende Keimüberträgerin"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2006/VI_ZR_158-06.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-217-stgb-2020",
+      "kind": "judgment",
+      "title": "BVerfG · 26.02.2020 · 2 BvR 2347/15 u. a.",
+      "aliases": [
+        "BVerfG · 2 BvR 2347/15 u. a.",
+        "BVerfG, 2 BvR 2347/15 u. a.",
+        "2 BvR 2347/15 u. a.",
+        "Fall R14",
+        "Fallakte R14"
+      ],
+      "body": "Entscheidung: § 217 StGB in der damaligen Fassung ist mit dem Grundgesetz unvereinbar und nichtig.\n\nEinordnung: Das allgemeine Persönlichkeitsrecht umfasst die Freiheit, über das eigene Lebensende zu entscheiden, das Leben eigenhändig zu beenden und hierfür freiwillige Hilfe Dritter zu suchen und anzunehmen.\n\nPraxis: Suizidwunsch, Einwilligungsfähigkeit, Freiverantwortlichkeit, Information, Alternativen und mögliche Drucklagen sorgfältig prüfen; aus der Nichtigkeit folgt weder ein Behandlungsanspruch noch eine individuelle Hilfspflicht.",
+      "relatedIds": [
+        "case-r14"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r14",
+          "title": "Verfassungsbeschwerden gegen § 217 StGB"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2020/02/rs20200226_2bvr234715.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-akteneinsicht-1998",
+      "kind": "judgment",
+      "title": "BVerfG · 16.09.1998 · 1 BvR 1130/98",
+      "aliases": [
+        "BVerfG · 1 BvR 1130/98",
+        "BVerfG, 1 BvR 1130/98",
+        "1 BvR 1130/98",
+        "Fall R26",
+        "Fallakte R26"
+      ],
+      "body": "Entscheidung: Selbstbestimmung und Menschenwürde sprechen grundsätzlich für den Zugang des Patienten zu den ihn betreffenden Krankenunterlagen.\n\nEinordnung: Gerade psychiatrische Unterlagen können widerstreitende Belange enthalten; Beschränkungen verlangen aber eine konkrete, nachvollziehbare Abwägung statt pauschaler Verweigerung.\n\nPraxis: Akteneinsicht ist der Regelfall. Ausnahmen müssen fallbezogen begründet, auf das Erforderliche begrenzt und möglichst durch mildere Formen der Einsicht umgesetzt werden.",
+      "relatedIds": [
+        "case-r26"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r26",
+          "title": "Verweigerte Einsicht nach psychiatrischer Behandlung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/1998/09/rk19980916_1bvr113098.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-fehlgeschlagene-sterilisation-1997",
+      "kind": "judgment",
+      "title": "BVerfG · 12.11.1997 · 1 BvR 479/92; 1 BvR 307/94",
+      "aliases": [
+        "BVerfG · 1 BvR 479/92; 1 BvR 307/94",
+        "BVerfG, 1 BvR 479/92; 1 BvR 307/94",
+        "1 BvR 479/92; 1 BvR 307/94",
+        "Fall R43",
+        "Fallakte R43"
+      ],
+      "body": "Entscheidung: Zivilrechtlicher Schadensersatz wegen fehlerhafter Sterilisation oder genetischer Beratung verletzt nicht die Menschenwürde des geborenen Kindes.\n\nEinordnung: Das Kind selbst wird nicht als Schaden bewertet; ersetzt werden kann die wirtschaftliche Belastung, die infolge einer ärztlichen Pflichtverletzung entgegen der Familienplanung entsteht.\n\nPraxis: Bei reproduktionsmedizinischen Haftungsfällen Personwürde, Primärverletzung, vermögensrechtliche Folgen und Schutzzweck sauber auseinanderhalten.",
+      "relatedIds": [
+        "case-r43"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r43",
+          "title": "Unterhaltskosten nach Sterilisation oder genetischer Beratung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/1997/11/rs19971112_1bvr047992.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-fixierung-2018",
+      "kind": "judgment",
+      "title": "BVerfG · 24.07.2018 · 2 BvR 309/15; 2 BvR 502/16",
+      "aliases": [
+        "BVerfG · 2 BvR 309/15; 2 BvR 502/16",
+        "BVerfG, 2 BvR 309/15; 2 BvR 502/16",
+        "2 BvR 309/15; 2 BvR 502/16",
+        "Fall R37",
+        "Fallakte R37"
+      ],
+      "body": "Entscheidung: Eine nicht nur kurzfristige Fünf- oder Sieben-Punkt-Fixierung ist eine eigenständige Freiheitsentziehung und bedarf grundsätzlich richterlicher Entscheidung.\n\nEinordnung: Auch eine bereits untergebrachte Person kann durch zusätzliche Fixierung erneut in ihrer Freiheit entzogen werden; strikte Verhältnismäßigkeit, Überwachung und Dokumentation sind erforderlich.\n\nPraxis: Akutmaßnahme, richterliche Genehmigung, Dauer, Eins-zu-eins-Betreuung, Kontrollen und Beendigungskriterien prozesssicher organisieren.",
+      "relatedIds": [
+        "case-r37"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r37",
+          "title": "Zusätzliche Fixierung bei psychiatrischer Unterbringung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2018/07/rs20180724_2bvr030915.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-masern-2022",
+      "kind": "judgment",
+      "title": "BVerfG · 21.07.2022 · 1 BvR 469/20 u. a.",
+      "aliases": [
+        "BVerfG · 1 BvR 469/20 u. a.",
+        "BVerfG, 1 BvR 469/20 u. a.",
+        "1 BvR 469/20 u. a.",
+        "Fall R41",
+        "Fallakte R41"
+      ],
+      "body": "Entscheidung: Die Nachweispflicht für eine Masernschutzimpfung bei betreuten Kindern ist verfassungsrechtlich gerechtfertigt.\n\nEinordnung: Die Eingriffe in Elternrecht und körperliche Unversehrtheit werden durch den Schutz vulnerabler Personen und des Kindeswohls getragen; Eltern können medizinische Vernunftgrenzen nicht beliebig verschieben.\n\nPraxis: Impfindikation, Kontraindikation und Nachweis sauber trennen; Konflikte respektvoll erklären und gesetzliche Folgen nicht als medizinischen Zwang missverstehen.",
+      "relatedIds": [
+        "case-r41"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r41",
+          "title": "Masernnachweis vor Betreuung in der Kita"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2022/07/rs20220721_1bvr046920.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-nikolaus-2005",
+      "kind": "judgment",
+      "title": "BVerfG · 06.12.2005 · 1 BvR 347/98",
+      "aliases": [
+        "BVerfG · 1 BvR 347/98",
+        "BVerfG, 1 BvR 347/98",
+        "1 BvR 347/98",
+        "Fall R46",
+        "Fallakte R46"
+      ],
+      "body": "Entscheidung: Bei lebensbedrohlicher oder regelmäßig tödlicher Erkrankung ohne anerkannte Standardtherapie darf eine nicht ganz fernliegende Aussicht auf Besserung nicht schematisch vom GKV-Leistungsanspruch ausgeschlossen werden.\n\nEinordnung: Grundrechtsschutz wirkt auf die Auslegung des Leistungsrechts ein, ersetzt aber weder jede Evidenzprüfung noch die Grenzen des gesetzlich ausgestalteten Versorgungssystems.\n\nPraxis: Indikation, fehlende Standardalternative, Schweregrad und belastbare Erfolgsaussicht getrennt belegen; keine Gleichsetzung mit freier Methodenwahl.",
+      "relatedIds": [
+        "case-r46"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r46",
+          "title": "Nikolausbeschluss: Therapie bei Duchenne-Muskeldystrophie"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2005/12/rs20051206_1bvr034798.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-schutzpflicht-zwangsbehandlung-2016",
+      "kind": "judgment",
+      "title": "BVerfG · 26.07.2016 · 1 BvL 8/15",
+      "aliases": [
+        "BVerfG · 1 BvL 8/15",
+        "BVerfG, 1 BvL 8/15",
+        "1 BvL 8/15",
+        "Fall R36",
+        "Fallakte R36"
+      ],
+      "body": "Entscheidung: Der Staat muss unter strengen Voraussetzungen eine Behandlung ermöglichen, wenn ein nicht einwilligungsfähiger Betroffener sonst erhebliche Gesundheitsschäden erleidet.\n\nEinordnung: Autonomie und Schutzpflicht stehen nicht schematisch gegeneinander. Maßgeblich sind natürlicher Wille, frühere autonome Entscheidung, Dringlichkeit, Erfolgsaussicht und Verhältnismäßigkeit.\n\nPraxis: Zwang nie allein mit „Patientenwohl“ begründen; vorausverfügten Willen, Einwilligungsfähigkeit und konkrete Schadensprognose priorisiert klären.",
+      "relatedIds": [
+        "case-r36"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r36",
+          "title": "Behandlungsbedürftig, aber körperlich nicht fluchtfähig"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2016/07/ls20160726_1bvl000815.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-schwangerschaftsabbruch-1993",
+      "kind": "judgment",
+      "title": "BVerfG · 28.05.1993 · 2 BvF 2/90 u. a.",
+      "aliases": [
+        "BVerfG · 2 BvF 2/90 u. a.",
+        "BVerfG, 2 BvF 2/90 u. a.",
+        "2 BvF 2/90 u. a.",
+        "Fall R42",
+        "Fallakte R42"
+      ],
+      "body": "Entscheidung: Das Grundgesetz verpflichtet den Staat zum Schutz ungeborenen Lebens; ein Beratungskonzept ist nur bei effektiver Schutzorientierung verfassungsrechtlich tragfähig.\n\nEinordnung: Die Entscheidung ordnet Lebensschutz, Selbstbestimmung, Beratung, Indikationslagen und ärztliche Mitwirkung in ein abgestuftes Schutzkonzept ein.\n\nPraxis: Medizinische Beratung, psychosoziale Beratung, gesetzliche Fristen und strafrechtliche Voraussetzungen strikt unterscheiden; keine moralische Kurzformel ersetzt die Normprüfung.",
+      "relatedIds": [
+        "case-r42"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r42",
+          "title": "Schwangerschaftsabbruch II: Prüfung eines Schutzkonzepts"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/1993/05/fs19930528_2bvf000290.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-schweigepflicht-1972",
+      "kind": "judgment",
+      "title": "BVerfG · 08.03.1972 · 2 BvR 28/71",
+      "aliases": [
+        "BVerfG · 2 BvR 28/71",
+        "BVerfG, 2 BvR 28/71",
+        "2 BvR 28/71",
+        "Fall R25",
+        "Fallakte R25"
+      ],
+      "body": "Entscheidung: Gesundheitsdaten gehören zur geschützten Privatsphäre; Zeugnisverweigerungs- und Beschlagnahmeschutz sichern das für Behandlung notwendige Vertrauen.\n\nEinordnung: Das Vertrauensverhältnis zwischen Arzt und Patient besitzt verfassungsrechtliches Gewicht. Staatliche Informationszugriffe benötigen eine tragfähige gesetzliche Grundlage und Verhältnismäßigkeit.\n\nPraxis: Bei Polizei-, Staatsanwaltschafts- oder Gerichtsankontakt keine Akten spontan herausgeben: Rolle, Rechtsgrundlage, Beschlagnahmeschutz und Freigabe durch zuständige Stellen prüfen.",
+      "relatedIds": [
+        "case-r25"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r25",
+          "title": "Beschlagnahmte Patientenkartei beim Praxisnachfolger"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.servat.unibe.ch/dfr/bv032373.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-triage-2021",
+      "kind": "judgment",
+      "title": "BVerfG · 16.12.2021 · 1 BvR 1541/20",
+      "aliases": [
+        "BVerfG · 1 BvR 1541/20",
+        "BVerfG, 1 BvR 1541/20",
+        "1 BvR 1541/20",
+        "Fall R39",
+        "Fallakte R39"
+      ],
+      "body": "Entscheidung: Der Gesetzgeber verletzte seine Schutzpflicht, weil hinreichende Vorkehrungen gegen behinderungsbedingte Benachteiligung bei pandemischer Zuteilung knapper Intensivressourcen fehlten.\n\nEinordnung: Art. 3 Abs. 3 Satz 2 GG begründet in der extremen Zuteilungslage eine konkrete Schutzpflicht; behinderungsbezogene Vorannahmen dürfen die Erfolgsaussicht nicht verzerren.\n\nPraxis: Klinische Kriterien, Mehr-Augen-Prinzip, Dokumentation und diskriminierungssensible Prognostik verbinden; keine pauschalen Lebensqualitäts- oder Langzeitprognosen.",
+      "relatedIds": [
+        "case-r39"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r39",
+          "title": "Triage I: vorbeugender Diskriminierungsschutz"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2021/12/rs20211216_1bvr154120.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-triage-2025",
+      "kind": "judgment",
+      "title": "BVerfG · 23.09.2025 · 1 BvR 2284/23; 1 BvR 2285/23",
+      "aliases": [
+        "BVerfG · 1 BvR 2284/23; 1 BvR 2285/23",
+        "BVerfG, 1 BvR 2284/23; 1 BvR 2285/23",
+        "1 BvR 2284/23; 1 BvR 2285/23",
+        "Fall R40",
+        "Fallakte R40"
+      ],
+      "body": "Entscheidung: § 5c IfSG ist mangels Gesetzgebungskompetenz des Bundes nichtig.\n\nEinordnung: Art. 12 Abs. 1 GG schützt die ärztliche Therapiefreiheit einschließlich der Entscheidung, ob und nach welchen fachlichen Kriterien behandelt wird; Beschränkungen benötigen die zuständige Gesetzgebungsebene.\n\nPraxis: Die Nichtigkeit beseitigt weder Diskriminierungsschutz noch Berufsrecht: aktuelle Landes-, Klinik- und Fachstandards prüfen und Zuteilungsentscheidungen transparent absichern.",
+      "relatedIds": [
+        "case-r40"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r40",
+          "title": "Triage II: ärztliche Beschwerden gegen Bundesrecht"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2025/09/rs20250923_1bvr228423.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-zwangsbehandlung-2011",
+      "kind": "judgment",
+      "title": "BVerfG · 23.03.2011 · 2 BvR 882/09",
+      "aliases": [
+        "BVerfG · 2 BvR 882/09",
+        "BVerfG, 2 BvR 882/09",
+        "2 BvR 882/09",
+        "Fall R16",
+        "Fallakte R16"
+      ],
+      "body": "Entscheidung: Die damalige gesetzliche Grundlage für die Zwangsbehandlung im Maßregelvollzug genügte den verfassungsrechtlichen Anforderungen nicht.\n\nEinordnung: Zwangsbehandlung verlangt krankheitsbedingte Einsichtsunfähigkeit, letzte Mittel, ernsthaften Überzeugungsversuch, Erfolgsaussicht, strikte Verhältnismäßigkeit und wirksame Verfahrenssicherungen.\n\nPraxis: Ziel, Einwilligungsfähigkeit, Überzeugungsversuche, mildere Mittel, Nutzen-Risiko-Abwägung, Genehmigung und Überwachung einzeln dokumentieren.",
+      "relatedIds": [
+        "case-r16"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r16",
+          "title": "Angekündigte Zwangsmedikation im Maßregelvollzug"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2011/03/rs20110323_2bvr088209.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverfg-zwangsbehandlung-ort-2024",
+      "kind": "judgment",
+      "title": "BVerfG · 26.11.2024 · 1 BvL 1/24",
+      "aliases": [
+        "BVerfG · 1 BvL 1/24",
+        "BVerfG, 1 BvL 1/24",
+        "1 BvL 1/24",
+        "Fall R38",
+        "Fallakte R38"
+      ],
+      "body": "Entscheidung: § 1832 Abs. 1 Satz 1 Nr. 7 BGB ist teilweise unvereinbar mit dem Grundgesetz, soweit er eine Behandlung außerhalb des Krankenhauses ausnahmslos ausschließt.\n\nEinordnung: Die Krankenhausbindung kann in atypischen Fällen unverhältnismäßig sein, wenn ein anderer geeigneter Ort weniger belastend und gleich sicher ist.\n\nPraxis: Bis zur Neuregelung gilt die Übergangsregelung; Ort, Sicherheit, Belastung, Alternativen und Versorgungsfähigkeit konkret prüfen.",
+      "relatedIds": [
+        "case-r38"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r38",
+          "title": "Zwangsmedikation im vertrauten Wohnverbund?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2024/11/ls20241126_1bvl000124.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:bverwg-approbationsruhen-2020",
+      "kind": "judgment",
+      "title": "BVerwG · 10.09.2020 · 3 C 13.19",
+      "aliases": [
+        "BVerwG · 3 C 13.19",
+        "BVerwG, 3 C 13.19",
+        "3 C 13.19",
+        "Fall R11",
+        "Fallakte R11"
+      ],
+      "body": "Entscheidung: Eine Anklage führt nicht automatisch zum Ruhen der Approbation; die Behörde muss Tatgrundlage, Berufsbezug, Prognose und Verhältnismäßigkeit eigenständig prüfen.\n\nEinordnung: Die vorläufige Gefahrenabwehr darf das Strafverfahren berücksichtigen, aber dessen bloße Existenz ersetzt keine eigene Sachverhalts- und Gefahrenbewertung.\n\nPraxis: Strafverteidigung, Berufsrecht, Arbeitsverhältnis und Approbationsverfahren früh koordinieren; Akteneinsicht und Stellungnahmefristen sichern.",
+      "relatedIds": [
+        "case-r11"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r11",
+          "title": "Ruhen der Approbation nach Betrugsvorwürfen"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bverwg.de/100920U3C13.19.0"
+        }
+      ]
+    },
+    {
+      "id": "judgment:eugh-kostenlose-erstkopie-2023",
+      "kind": "judgment",
+      "title": "EuGH · 26.10.2023 · C-307/22",
+      "aliases": [
+        "EuGH · C-307/22",
+        "EuGH, C-307/22",
+        "C-307/22",
+        "Fall R27",
+        "Fallakte R27"
+      ],
+      "body": "Entscheidung: Die erste Kopie personenbezogener Daten in der Patientenakte ist grundsätzlich kostenlos; ein Patient muss seinen Antrag nicht begründen.\n\nEinordnung: Die Kopie muss vollständig und verständlich genug sein, damit die betroffene Person ihre Datenschutzrechte wirksam ausüben kann; nationale Kostenvorschriften dürfen dieses Recht nicht aushöhlen.\n\nPraxis: Auskunfts- und Kopieprozesse organisatorisch trennen, Identität prüfen, Fristen steuern und eine verständliche, vollständige Erstkopie ohne pauschale Kostenforderung bereitstellen.",
+      "relatedIds": [
+        "case-r27"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r27",
+          "title": "Kosten der ersten Kopie einer zahnärztlichen Akte"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://curia.europa.eu/jcms/upload/docs/application/pdf/2023-10/cp230161en.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-lecture-med2008",
+      "kind": "judgment",
+      "title": "BGH · 27.05.2008 · VI ZR 69/07",
+      "aliases": [
+        "BGH · VI ZR 69/07",
+        "BGH, VI ZR 69/07",
+        "VI ZR 69/07"
+      ],
+      "body": "Entscheidung: Revision gegen die bejahte internationale Zuständigkeit zurückgewiesen.\n\nEinordnung: Die Entscheidung behandelt den Deliktsgerichtsstand nach damaligem Lugano-Recht und trennt Aufklärungsdefizit von behandlungsbedingten gesundheitlichen Folgen.\n\nPraxis: Festgestellte Tatsachen, Beweisfragen und Reichweite des Tenors getrennt prüfen.",
+      "relatedIds": [
+        "case-medikamente-zustaendigkeit-2008"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-medikamente-zustaendigkeit-2008",
+          "title": "Medikamententherapie zuhause · Zuständigkeit und Gesundheitsschaden"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.anwalt24.de/urteile/bgh/2008-05-27/vi-zr-69_07"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-lecture-med2018",
+      "kind": "judgment",
+      "title": "OLG Dresden · 15.05.2018 · 4 U 248/16",
+      "aliases": [
+        "OLG Dresden · 4 U 248/16",
+        "OLG Dresden, 4 U 248/16",
+        "4 U 248/16"
+      ],
+      "body": "Entscheidung: Berufung zurückgewiesen; Revision nicht zugelassen.\n\nEinordnung: Vertretbarer Off-Label-Use, erforderliche Aufklärung und Nachweis konkreter Folgen sind gesonderte Fragen; aus dem Einzelfall folgt kein allgemeiner Nulltarif.\n\nPraxis: Festgestellte Tatsachen, Beweisfragen und Reichweite des Tenors getrennt prüfen.",
+      "relatedIds": [
+        "case-schmerztherapie-off-label-dresden"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-schmerztherapie-off-label-dresden",
+          "title": "Off-Label-Schmerztherapie · Aufklärung und konkrete Folgen"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://beck-online.beck.de/?typ=reference&y=300&z=BeckRS&b=2018&n=10791"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-lecture-ov2019",
+      "kind": "judgment",
+      "title": "BGH · 21.05.2019 · VI ZR 119/18",
+      "aliases": [
+        "BGH · VI ZR 119/18",
+        "BGH, VI ZR 119/18",
+        "VI ZR 119/18"
+      ],
+      "body": "Entscheidung: Klageabweisendes Berufungsurteil aufgehoben und zurückverwiesen.\n\nEinordnung: Hypothetische Einwilligung setzt rechtzeitige und vollständige Aufklärung als gedankliche Ausgangslage voraus; mutmaßliche Einwilligung betrifft eine andere Frage.\n\nPraxis: Festgestellte Tatsachen, Beweisfragen und Reichweite des Tenors getrennt prüfen.",
+      "relatedIds": [
+        "case-op-erweiterung-oldenburg"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-op-erweiterung-oldenburg",
+          "title": "OP-Erweiterung · der Oldenburger Hysterektomiefall"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.anwalt24.de/urteile/bgh/2019-05-21/vi-zr-119_18"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-lecture-zw2020",
+      "kind": "judgment",
+      "title": "BGH · 11.11.2020 · 5 StR 256/20",
+      "aliases": [
+        "BGH · 5 StR 256/20",
+        "BGH, 5 StR 256/20",
+        "5 StR 256/20"
+      ],
+      "body": "Entscheidung: Schuldsprüche bestätigt; nur Strafaussprüche aufgehoben und zurückverwiesen.\n\nEinordnung: Geburtsbeginn beim Kaiserschnitt regelmäßig mit zweckgerichteter Uterusöffnung; § 218a Abs. 2 StGB rechtfertigt die Tötung nach dieser Grenze nicht.\n\nPraxis: Festgestellte Tatsachen, Beweisfragen und Reichweite des Tenors getrennt prüfen.",
+      "relatedIds": [
+        "case-berliner-zwillingsfall"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-berliner-zwillingsfall",
+          "title": "Berliner Zwillingsfall · Geburtsbeginn und Lebensschutz"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.hrr-strafrecht.de/hrr/5/20/5-256-20.php"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-lecture-zw2023",
+      "kind": "judgment",
+      "title": "BGH · 02.11.2023 · 6 StR 128/23",
+      "aliases": [
+        "BGH · 6 StR 128/23",
+        "BGH, 6 StR 128/23",
+        "6 StR 128/23"
+      ],
+      "body": "Entscheidung: Urteil vollständig aufgehoben und zur neuen Verhandlung zurückverwiesen.\n\nEinordnung: Geburtsbeginn bei regulärem Verlauf mit Eröffnungswehen. Vorsatz und noch erfolgsabwendende Handlungsmöglichkeit müssen zeitlich zusammenpassen.\n\nPraxis: Festgestellte Tatsachen, Beweisfragen und Reichweite des Tenors getrennt prüfen.",
+      "relatedIds": [
+        "case-hausgeburt-2023"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-hausgeburt-2023",
+          "title": "Hausgeburt 2023 · Geburtsbeginn, Vorsatz und Rettungsmöglichkeit"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.hrr-strafrecht.de/hrr/6/23/6-128-23.php"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-lecture-zw2025",
+      "kind": "judgment",
+      "title": "BGH · 21.08.2025 · 6 StR 652/24",
+      "aliases": [
+        "BGH · 6 StR 652/24",
+        "BGH, 6 StR 652/24",
+        "6 StR 652/24"
+      ],
+      "body": "Entscheidung: Schuldspruch klargestellt und aufrechterhalten; Strafausspruch aufgehoben.\n\nEinordnung: Körperverletzung mit Todesfolge unterscheidet sich von vorsätzlicher Tötung. Ein vor Geburtsbeginn ansetzender Tatzeitraum durfte den kindbezogenen Schuldumfang nicht erhöhen.\n\nPraxis: Festgestellte Tatsachen, Beweisfragen und Reichweite des Tenors getrennt prüfen.",
+      "relatedIds": [
+        "case-hausgeburt-2025"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-hausgeburt-2025",
+          "title": "Hausgeburt 2025 · Schuldspruch und Strafzumessung trennen"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.hrr-strafrecht.de/hrr/6/24/6-652-24.php"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r04",
+      "kind": "judgment",
+      "title": "BGH · 07.06.2011 · VI ZR 87/10",
+      "aliases": [
+        "BGH · VI ZR 87/10",
+        "BGH, VI ZR 87/10",
+        "VI ZR 87/10",
+        "Fall R04",
+        "Fallakte R04"
+      ],
+      "body": "Entscheidung: Der BGH hob die Berufungsentscheidung auf und verwies die Sache zur weiteren Aufklärung zurück.\n\nEinordnung: Auch eine einfache unterlassene Befunderhebung kann unter zusätzlichen Voraussetzungen die Kausalitätsbeweislast umkehren. Wahrscheinlicher Befund und hypothetisch grob fehlerhafte Nichtreaktion müssen konkret geprüft werden.\n\nPraxis: Diagnoseirrtum und unterlassene Abklärung unterscheiden. Aus der Zurückverweisung folgt noch keine abschließend festgestellte Ersatzpflicht.",
+      "relatedIds": [
+        "case-r04"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r04",
+          "title": "Thalamusinfarkt statt psychiatrischer Erstdiagnose"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=56802&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r06",
+      "kind": "judgment",
+      "title": "BGH · 25.11.2025 · VI ZR 165/23",
+      "aliases": [
+        "BGH · VI ZR 165/23",
+        "BGH, VI ZR 165/23",
+        "VI ZR 165/23",
+        "Fall R06",
+        "Fallakte R06"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung zur erneuten Prüfung des Aufklärungs- und Kausalitätsstreits.\n\nEinordnung: Hypothetische Einwilligung betrifft die tatsächlich vorgenommene Maßnahme zu ihrem konkreten Zeitpunkt. Eine mögliche spätere Zustimmung kann davon getrennt beim rechtmäßigen Alternativverhalten eine Rolle spielen; die Behandlungsseite trägt dessen Beweislast.\n\nPraxis: Die beiden Einwände getrennt prüfen. Nicht aus denkbarer späterer Zustimmung auf eine wirksame Einwilligung in den tatsächlich erfolgten Eingriff schließen.",
+      "relatedIds": [
+        "case-r06"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r06",
+          "title": "Tumoroperation und hypothetische spätere Zustimmung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=143893&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r10",
+      "kind": "judgment",
+      "title": "BGH · 16.03.2022 · 5 StR 394/21",
+      "aliases": [
+        "BGH · 5 StR 394/21",
+        "BGH, 5 StR 394/21",
+        "5 StR 394/21",
+        "Fall R10",
+        "Fallakte R10"
+      ],
+      "body": "Entscheidung: Die Revision der Staatsanwaltschaft gegen die Verurteilung wegen fahrlässiger Tötung blieb erfolglos.\n\nEinordnung: Objektive Lebensgefahr und späteres Verschleiern erzwingen für sich noch nicht den Nachweis eines Tötungsvorsatzes. Maßgeblich bleibt die Gesamtwürdigung der konkreten Tatsachen.\n\nPraxis: Das versehentliche Nichtwiedereinschalten eines Beatmungsgeräts von einer am Patientenwillen ausgerichteten Therapiebegrenzung unterscheiden.",
+      "relatedIds": [
+        "case-r10"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r10",
+          "title": "Beatmungsgerät nicht wieder eingeschaltet"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=128045&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r17",
+      "kind": "judgment",
+      "title": "BGH · 29.01.2025 · 4 StR 265/24",
+      "aliases": [
+        "BGH · 4 StR 265/24",
+        "BGH, 4 StR 265/24",
+        "4 StR 265/24",
+        "Fall R17",
+        "Fallakte R17"
+      ],
+      "body": "Entscheidung: Der BGH verwarf die Revision gegen die Verurteilung wegen Totschlags in mittelbarer Täterschaft.\n\nEinordnung: Entscheidend waren konkret festgestellte fehlende Freiverantwortlichkeit, deren Kenntnis und die steuernde Rolle des Arztes. Eine psychische Diagnose allein ersetzt diese Prüfung nicht.\n\nPraxis: Eigenhändige Selbsttötung bedeutet nicht automatisch straflose Hilfe. Freiverantwortlichkeit, Wissen und Tatherrschaft sorgfältig auseinanderhalten.",
+      "relatedIds": [
+        "case-r17"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r17",
+          "title": "Ärztliche Suizidhilfe bei krankheitsgeprägtem Entschluss"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=141435&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r19",
+      "kind": "judgment",
+      "title": "BGH · 02.04.2019 · VI ZR 13/18",
+      "aliases": [
+        "BGH · VI ZR 13/18",
+        "BGH, VI ZR 13/18",
+        "VI ZR 13/18",
+        "Fall R19",
+        "Fallakte R19"
+      ],
+      "body": "Entscheidung: Der BGH wies die auf behauptete Leidensverlängerung gestützten Ansprüche ab.\n\nEinordnung: Das Weiterleben selbst ist kein ersatzfähiger Schaden. Aus dem Urteil folgt weder eine allgemeine Behandlungspflicht gegen den Patientenwillen noch eine Freistellung von Aufklärungs- und Behandlungspflichten.\n\nPraxis: Patientenwille, Pflichtverletzung, Gesundheitsverletzung, Schaden und Schutzzweckzusammenhang jeweils eigenständig prüfen.",
+      "relatedIds": [
+        "case-r19"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r19",
+          "title": "Schadensersatz wegen behaupteter Leidensverlängerung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=95016&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r20",
+      "kind": "judgment",
+      "title": "BGH · 11.01.2011 · 5 StR 491/10",
+      "aliases": [
+        "BGH · 5 StR 491/10",
+        "BGH, 5 StR 491/10",
+        "5 StR 491/10",
+        "Fall R20",
+        "Fallakte R20"
+      ],
+      "body": "Entscheidung: Das Urteil wurde mit den Feststellungen aufgehoben und an eine andere Schwurgerichtskammer zurückverwiesen.\n\nEinordnung: Das wissentlich eingegangene allgemeine MDMA-Risiko und eine unbekannte massive Überdosierung sind verschiedene Gefährdungen. Die angenommene versehentliche Überdosierung verlangte eine genaue Vorsatz- und Fahrlässigkeitsprüfung.\n\nPraxis: Aus fehlendem Vorsatz nicht auf fehlende Fahrlässigkeit schließen. Der BGH-Beschluss enthält keinen abschließenden Freispruch.",
+      "relatedIds": [
+        "case-r20"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r20",
+          "title": "MDMA-Überdosierung bei psycholytischer Sitzung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=54942&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r21",
+      "kind": "judgment",
+      "title": "BGH · 19.08.2020 · 1 StR 474/19",
+      "aliases": [
+        "BGH · 1 StR 474/19",
+        "BGH, 1 StR 474/19",
+        "1 StR 474/19",
+        "Fall R21",
+        "Fallakte R21"
+      ],
+      "body": "Entscheidung: Aufhebung des Urteils mit den Feststellungen; Erstreckung auf nicht revidierende Mitangeklagte nach § 357 StPO.\n\nEinordnung: Bei behauptetem Verdeckungsmord durch Unterlassen nach Medikamentenverwechslung müssen auch entlastende Umstände und das Motivbündel gewürdigt werden. Tod, Todesursächlichkeit und Tötungsvorsatz sind getrennte Fragen.\n\nPraxis: Nicht aus Vertuschung allein auf bedingten Tötungsvorsatz schließen. Umgekehrt ersetzt ein nicht bewiesener Todeseintritt durch die Verwechslung nicht die Prüfung eines Versuchs.",
+      "relatedIds": [
+        "case-r21"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r21",
+          "title": "Medikamentenverwechslung bei einem Palliativpatienten"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=112583&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r47",
+      "kind": "judgment",
+      "title": "BGH · 08.07.2003 · VI ZR 304/02",
+      "aliases": [
+        "BGH · VI ZR 304/02",
+        "BGH, VI ZR 304/02",
+        "VI ZR 304/02",
+        "Fall R47",
+        "Fallakte R47"
+      ],
+      "body": "Entscheidung: Der BGH verlangte weitere Klärung des diagnostischen Vorgehens und verwies zurück.\n\nEinordnung: Ein im Rückblick erkennbar falscher Befundschluss beweist noch keine vorwerfbare Diagnoseabweichung. Maßgeblich sind die damaligen Erkenntnismöglichkeiten und der fachliche Standard.\n\nPraxis: Ex-ante-Perspektive, Deutung vorhandener Befunde und Pflicht zu zusätzlicher Befunderhebung unterscheiden.",
+      "relatedIds": [
+        "case-r47"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r47",
+          "title": "Brustwirbelbruch: Diagnoseirrtum ist nicht automatisch ein Fehler"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.anwalt24.de/urteile/bgh/2003-07-08/vi-zr-304_02"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r48",
+      "kind": "judgment",
+      "title": "BGH · 07.05.1985 · VI ZR 224/83",
+      "aliases": [
+        "BGH · VI ZR 224/83",
+        "BGH, VI ZR 224/83",
+        "VI ZR 224/83",
+        "Fall R48",
+        "Fallakte R48"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung zur weiteren Aufklärung von Operation, Qualifikation und Dokumentation.\n\nEinordnung: Bei selbstständiger Operation am Ausbildungsanfang kommt es auf die konkret nachgewiesene Erfahrung und Eignung für diesen Eingriff an. Ein allgemeines Statusetikett genügt nicht.\n\nPraxis: Aufsicht und Assistenz nach tatsächlicher Kompetenz organisieren. Heutige Kausalitätsvermutung nach § 630h Abs. 4 BGB erst bei festgestellter fehlender Befähigung prüfen.",
+      "relatedIds": [
+        "case-r48"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r48",
+          "title": "Lymphknotenoperation: konkrete Erfahrung statt Statusetikett"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.anwalt24.de/urteile/bgh/1985-05-07/vi-zr-224_83"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r49",
+      "kind": "judgment",
+      "title": "BGH · 12.02.2008 · VI ZR 221/06",
+      "aliases": [
+        "BGH · VI ZR 221/06",
+        "BGH, VI ZR 221/06",
+        "VI ZR 221/06",
+        "Fall R49",
+        "Fallakte R49"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung wegen unzureichender sachverständiger Klärung und zu strengem Beweismaßstab.\n\nEinordnung: Für einen als Folgeschaden geltend gemachten Morbus Sudeck kann § 287 ZPO maßgeblich sein. Primärverletzung und haftungsausfüllende Folgen dürfen beim Beweismaß nicht vermischt werden.\n\nPraxis: Zuerst bestimmen, welche konkrete Gesundheitsbeeinträchtigung mit welchem Ursachenzusammenhang bewiesen werden soll. Der BGH stellte nicht selbst abschließend einen groben Diagnosefehler fest.",
+      "relatedIds": [
+        "case-r49"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r49",
+          "title": "Übersehener Fingerbruch und Morbus Sudeck"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=43235&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r50",
+      "kind": "judgment",
+      "title": "BGH · 04.10.1999 · 5 StR 712/98",
+      "aliases": [
+        "BGH · 5 StR 712/98",
+        "BGH, 5 StR 712/98",
+        "5 StR 712/98",
+        "Fall R50",
+        "Fallakte R50"
+      ],
+      "body": "Entscheidung: Die staatsanwaltschaftlichen Revisionen führten zur Aufhebung der Schuldsprüche; die Revisionen der Ärzte blieben erfolglos.\n\nEinordnung: Eine vorsorgliche Sterilisation gegen die vorab erklärte Ablehnung verlangt eine andere Prüfung als eine unaufschiebbare Erweiterung eines Eingriffs. Vorsatz und Irrtum waren unzureichend aufgeklärt.\n\nPraxis: Individuellen Patientenwillen und konkrete Dringlichkeit prüfen. Der Fall rechtfertigt keine allgemeine Operationserweiterung zur Vermeidung späterer Belastungen.",
+      "relatedIds": [
+        "case-r50"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r50",
+          "title": "Sterilisation bei Kaiserschnitt: Grenzen eigenmächtiger Erweiterung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.hrr-strafrecht.de/hrr/5/98/5-712-98.php"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r51",
+      "kind": "judgment",
+      "title": "BGH · 15.03.2005 · VI ZR 289/03",
+      "aliases": [
+        "BGH · VI ZR 289/03",
+        "BGH, VI ZR 289/03",
+        "VI ZR 289/03",
+        "Fall R51",
+        "Fallakte R51"
+      ],
+      "body": "Entscheidung: Der BGH hob die Berufungsentscheidung auf und verwies zurück.\n\nEinordnung: Bei möglichen schwerwiegenden Arzneimittelnebenwirkungen kann der Beipackzettel die erforderliche ärztliche Information nicht ersetzen. Behandlungspflicht, Selbstbestimmungsaufklärung und hypothetischer Verlauf sind sorgfältig zu unterscheiden.\n\nPraxis: Konkrete Risiken und Begleitumstände besprechen. Ein Arzneimittelrisiko beweist weder automatisch einen Verordnungsfehler noch alle weiteren Haftungsvoraussetzungen.",
+      "relatedIds": [
+        "case-r51"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r51",
+          "title": "Cyclosa, Rauchen und Aufklärung über Schlaganfallrisiken"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=32468&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r52",
+      "kind": "judgment",
+      "title": "BGH · 30.01.2019 · 2 StR 325/17",
+      "aliases": [
+        "BGH · 2 StR 325/17",
+        "BGH, 2 StR 325/17",
+        "2 StR 325/17",
+        "Fall R52",
+        "Fallakte R52"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung nach einer nicht ausreichend begründeten Verurteilung wegen Körperverletzung.\n\nEinordnung: Die Medikamentengabe allein beweist nicht jede behauptete Gesundheitsschädigung. Konkrete Wirkungen, die Injektion als Handlung und eine mögliche Einwilligung sind eigenständig zu prüfen.\n\nPraxis: Fehlerhafte Dosis, Tatbestand, Todesursächlichkeit und Rechtfertigung nicht gleichsetzen. Das Urteil ist kein Freibrief für eigenmächtige Dosisänderungen.",
+      "relatedIds": [
+        "case-r52"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r52",
+          "title": "Morphin: Medikamentengabe, Verletzungserfolg und Einwilligung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=99529&Blank=1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r53",
+      "kind": "judgment",
+      "title": "BGH · 19.08.2026 · XII ZB 149/26",
+      "aliases": [
+        "BGH · XII ZB 149/26",
+        "BGH, XII ZB 149/26",
+        "XII ZB 149/26",
+        "Fall R53",
+        "Fallakte R53"
+      ],
+      "body": "Entscheidung: Nach Erledigung der Maßnahme stellte der BGH eine Verletzung der Rechte der Betroffenen fest.\n\nEinordnung: Freiwillige Einnahme einer geeigneten oralen Medikation und natürlicher Wille müssen bei einer beantragten Depot-Zwangsbehandlung konkret berücksichtigt werden. Eine bloße Vorratsgenehmigung ist keine Lösung.\n\nPraxis: Natürliche Willensäußerung, rechtliche Einwilligungsfähigkeit und mildere geeignete Mittel getrennt prüfen. Nicht jede Depotmedikation ist dadurch unzulässig.",
+      "relatedIds": [
+        "case-r53"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r53",
+          "title": "Freiwillige Tablette statt zwangsweiser Depotspritze"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.rechtsprechung-im-internet.de/jportal/?docid=jb-KORE310382026&max=true&psml=bsjrsprod.psml&quelle=jlink"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r54",
+      "kind": "judgment",
+      "title": "LG Bielefeld · 14.08.2013 · 011 Ns-16 Js 279/11-11/13",
+      "aliases": [
+        "LG Bielefeld · 011 Ns-16 Js 279/11-11/13",
+        "LG Bielefeld, 011 Ns-16 Js 279/11-11/13",
+        "011 Ns-16 Js 279/11-11/13",
+        "Fall R54",
+        "Fallakte R54"
+      ],
+      "body": "Entscheidung: Das LG bestätigte den Schuldspruch wegen fahrlässiger Tötung und setzte die Geldstrafe auf 90 Tagessätze zu je 20 Euro herab.\n\nEinordnung: Unklarer Auftrag und systemische Verwechslungsrisiken beseitigen die eigene Pflicht zur Klärung von Inhalt, Applikationsweg und Kompetenz nicht automatisch.\n\nPraxis: Bei einer unbeschrifteten Spritze vor der Gabe stoppen und verlässlich klären. Aus diesem Strafurteil folgt keine automatisch feststehende zivilrechtliche Haftung aller Beteiligten.",
+      "relatedIds": [
+        "case-r54"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r54",
+          "title": "Die unbeschriftete Spritze: Ein PJ-Student vor dem Strafgericht"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://nrwe.justiz.nrw.de/pdfdownload/downloadEntscheidung.php?entscheidung=%2Fnrwe%2Flgs%2Fbielefeld%2Flg_bielefeld%2Fj2013%2F011_Ns_16_Js_279_11_11_13_Urteil_20130814.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-r55",
+      "kind": "judgment",
+      "title": "LG Frankfurt a.M. · 04.04.2017 · 5/27 KLs 16/16",
+      "aliases": [
+        "LG Frankfurt a.M. · 5/27 KLs 16/16",
+        "LG Frankfurt a.M., 5/27 KLs 16/16",
+        "5/27 KLs 16/16",
+        "Fall R55",
+        "Fallakte R55"
+      ],
+      "body": "Entscheidung: Verurteilung wegen fahrlässiger Tötung zu 18 Monaten Freiheitsstrafe mit Bewährung.\n\nEinordnung: Die Verwechslung Melperon/Methadon verlangte die konkrete Prüfung von Sorgfaltspflicht, Ursächlichkeit und persönlicher Vorwerfbarkeit. Ein Dokumentationshaken ersetzt die Prüfung der tatsächlichen Medikamentengabe nicht.\n\nPraxis: Verordnung, Arzneimittel und Dosis aktiv abgleichen. Systemische Schwächen und individuelle Verantwortlichkeit gesondert untersuchen; das Strafmaß ist keine allgemeine Prognose.",
+      "relatedIds": [
+        "case-r55"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r55",
+          "title": "Ein Haken um 15:33 Uhr: Melperon mit Methadon verwechselt"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://beck-online.beck.de/Bcid/Y-300-Z-RDG-B-2017-S-250-N-1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-blaulicht",
+      "kind": "judgment",
+      "title": "VG Göttingen · 12.03.2026 · 1 A 377/24",
+      "aliases": [
+        "VG Göttingen · 1 A 377/24",
+        "VG Göttingen, 1 A 377/24",
+        "1 A 377/24"
+      ],
+      "body": "Entscheidung: Verfahren im zurückgenommenen Teil eingestellt; Klage auf Ausnahmen für die übrigen sieben Fahrzeuge abgewiesen.\n\nEinordnung: Genehmigter privater qualifizierter Krankentransport war im geprüften Fall nicht bereits eine Beauftragung im öffentlichen Rettungsdienst; kein Anspruch auf die verlangten Blaulichtausnahmen.\n\nPraxis: Zulassungsrecht, konkrete Sonderrechte und freie Bahn getrennt prüfen.",
+      "relatedIds": [
+        "case-rescue-blaulicht"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-blaulicht",
+          "title": "Blaulicht: Der Fahrzeugstatus entscheidet"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://voris.wolterskluwer-online.de/browse/document/eb751a5e-778c-4075-a468-483147028949"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-brustschmerz",
+      "kind": "judgment",
+      "title": "KG Berlin · 19.05.2016 · 20 U 122/15",
+      "aliases": [
+        "KG Berlin · 20 U 122/15",
+        "KG Berlin, 20 U 122/15",
+        "20 U 122/15"
+      ],
+      "body": "Entscheidung: Berufung des öffentlichen Trägers zurückgewiesen; Revision nicht zugelassen.\n\nEinordnung: Unzureichend abgesicherte herzfremde Diagnose als Pflichtverletzung; im konkreten medizinischen Entscheidungsbereich Beweiserleichterung entsprechend grobem Behandlungsfehler.\n\nPraxis: Falsche Entwarnung von informierter Ablehnung unterscheiden; historischen Kompetenzrahmen und aktuelle Eigenbefugnis getrennt prüfen.",
+      "relatedIds": [
+        "case-rescue-brustschmerz"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-brustschmerz",
+          "title": "Brustschmerz: Entwarnung braucht eine tragfähige Grundlage"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://gesetze.berlin.de/bsbe/document/NJRE001261656"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-celle",
+      "kind": "judgment",
+      "title": "OLG Celle · 29.09.2010 · 14 U 27/10",
+      "aliases": [
+        "OLG Celle · 14 U 27/10",
+        "OLG Celle, 14 U 27/10",
+        "14 U 27/10"
+      ],
+      "body": "Entscheidung: Weitere 2.137,66 Euro auf den vollen Sachschaden zugesprochen; Revision nicht zugelassen.\n\nEinordnung: Keine nachgewiesene alkoholbedingte Mitverursachung; Betriebsgefahr des Pkw tritt hinter dem gravierenden Verursachungsbeitrag des Rettungswagens zurück.\n\nPraxis: Signalzustand, Reaktionsmöglichkeit und alle Fahrspuren konkret prüfen.",
+      "relatedIds": [
+        "case-rescue-celle"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-celle",
+          "title": "Blaulicht, Alkohol und der Unfallbeweis"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://voris.wolterskluwer-online.de/browse/document/16d36e23-78b4-4171-9c5f-8882f62525a1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-hausnotruf",
+      "kind": "judgment",
+      "title": "BGH · 11.05.2017 · III ZR 92/16",
+      "aliases": [
+        "BGH · III ZR 92/16",
+        "BGH, III ZR 92/16",
+        "III ZR 92/16"
+      ],
+      "body": "Entscheidung: Überwiegende Aufhebung der Klageabweisung und Zurückverweisung; der Antrag wegen weiterer künftiger materieller Schäden des Verstorbenen blieb erfolglos.\n\nEinordnung: Bei grober Verletzung besonderer Schutz- und Organisationspflichten für Leben und Gesundheit kann die Kausalitätsbeweislast umkehren. Im konkreten Notruf war unverzüglich Rettungsdienst zu vermitteln.\n\nPraxis: Alarmierungsentscheidung und Schadensvermeidbarkeit getrennt prüfen; keine zugesprochene Schmerzensgeldsumme.",
+      "relatedIds": [
+        "case-rescue-hausnotruf"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-hausnotruf",
+          "title": "Nur Stöhnen am Hausnotruf"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/III_ZS/2016/III_ZR__92-16.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-hildesheim",
+      "kind": "judgment",
+      "title": "LG Hildesheim · 20.01.2026 · 9 T 12/26",
+      "aliases": [
+        "LG Hildesheim · 9 T 12/26",
+        "LG Hildesheim, 9 T 12/26",
+        "9 T 12/26"
+      ],
+      "body": "Entscheidung: Beschwerde gegen die vorläufigen Maßnahmen zurückgewiesen; Faxantrag im geprüften Verfahren wirksam.\n\nEinordnung: Das LG sah die zwingende elektronische Form des § 14b Abs. 1 FamFG bei diesem Unterbringungsantrag nicht als eröffnet an.\n\nPraxis: Zeugnis, Antrag, Entscheidung und gesonderte Eingriffsbefugnis auseinanderhalten; sichere örtliche Übermittlungswege beachten.",
+      "relatedIds": [
+        "case-rescue-hildesheim"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-hildesheim",
+          "title": "Unterbringungsantrag: Warum das Fax hier genügte"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://voris.wolterskluwer-online.de/browse/document/416a83cb-a48d-493b-bf90-e2f1fde30e4b"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-intubation",
+      "kind": "judgment",
+      "title": "BGH · 16.09.2004 · III ZR 346/03",
+      "aliases": [
+        "BGH · III ZR 346/03",
+        "BGH, III ZR 346/03",
+        "III ZR 346/03"
+      ],
+      "body": "Entscheidung: Revision zurückgewiesen; Abweisung gegen Arzt und Arbeitgeberlandkreis bestätigt.\n\nEinordnung: Im damaligen bayerischen öffentlichen Rettungsdienst galt auch für den Einsatz von 1995 Amtshaftung; hier war der Rettungszweckverband passiv legitimiert.\n\nPraxis: Nicht allein Arbeitgeber oder Rechnungsteller wählen; konkrete öffentliche Aufgabenübertragung prüfen.",
+      "relatedIds": [
+        "case-rescue-intubation"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-intubation",
+          "title": "Schwerer Schaden, falsche Beklagte"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/III_ZS/2003/III_ZR_346-03.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-krampfanfall-bgh",
+      "kind": "judgment",
+      "title": "BGH · 22.05.2025 · III ZR 99/24",
+      "aliases": [
+        "BGH · III ZR 99/24",
+        "BGH, III ZR 99/24",
+        "III ZR 99/24"
+      ],
+      "body": "Entscheidung: Nichtzulassungsbeschwerde zurückgewiesen.\n\nEinordnung: Mögliche Gehörsverletzung durch Gutachtenverwechslung nach BGH nicht ergebniswirksam; entscheidendes weiteres Beatmungszeitfenster nicht feststellbar.\n\nPraxis: Eine erfolglose Nichtzulassungsbeschwerde bestätigt nicht pauschal alle Gründe des Berufungsurteils.",
+      "relatedIds": [
+        "case-rescue-krampfanfall"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-krampfanfall",
+          "title": "Krampfanfall: Was beweisen Verlauf, Dokumentation und Gutachten?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/III_ZS/2024/III_ZR__99-24.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-krampfanfall-olg",
+      "kind": "judgment",
+      "title": "OLG Düsseldorf · 10.07.2024 · 18 U 47/23",
+      "aliases": [
+        "OLG Düsseldorf · 18 U 47/23",
+        "OLG Düsseldorf, 18 U 47/23",
+        "18 U 47/23"
+      ],
+      "body": "Entscheidung: Berufung des Vaters gegen die Klageabweisung zurückgewiesen; Revision nicht zugelassen.\n\nEinordnung: Ein konkreter Amtspflichtfehler der Rettungswagenbesatzung war nach der gerichtlichen Würdigung nicht bewiesen.\n\nPraxis: Behandlungsfehler und Kausalitätsvermutung unterscheiden; Tatsachenbasis, Dokumentation und substantiierte Gutachteneinwände klären.",
+      "relatedIds": [
+        "case-rescue-krampfanfall"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-krampfanfall",
+          "title": "Krampfanfall: Was beweisen Verlauf, Dokumentation und Gutachten?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://nrwe.justiz.nrw.de/pdfdownload/downloadEntscheidung.php?entscheidung=%2Fnrwe%2Folgs%2Fduesseldorf%2Fj2024%2F18_U_47_23_Urteil_20240710.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-leitstelle",
+      "kind": "judgment",
+      "title": "BGH · 15.05.2025 · III ZR 417/23",
+      "aliases": [
+        "BGH · III ZR 417/23",
+        "BGH, III ZR 417/23",
+        "III ZR 417/23"
+      ],
+      "body": "Entscheidung: Aufhebung des Berufungsurteils und Zurückverweisung an einen anderen Senat des OLG Schleswig.\n\nEinordnung: Die Notarztindikation kann medizinisch-rettungsdienstliche Sachkunde erfordern. Grobe rettungsdienstliche Amtspflichtverletzungen können eine Kausalitätsbeweislastumkehr begründen.\n\nPraxis: Wesentliche Informationen bei Amtshilfe vollständig übergeben. Die konkrete Notarztindikation und Grobheit waren weiter aufzuklären.",
+      "relatedIds": [
+        "case-rescue-leitstelle"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-leitstelle",
+          "title": "Drei Leitstellen, eine verlorene Dringlichkeit"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/III_ZS/2023/III_ZR_417-23.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-narkose-2026",
+      "kind": "judgment",
+      "title": "BGH · 14.01.2026 · 2 StR 277/25",
+      "aliases": [
+        "BGH · 2 StR 277/25",
+        "BGH, 2 StR 277/25",
+        "2 StR 277/25"
+      ],
+      "body": "Entscheidung: Teilaufhebung der angegriffenen Schuldsprüche und Rechtsfolgen; Zurückverweisung. Die äußeren Tatabläufe und die nicht angegriffenen Verurteilungen blieben im bezeichneten Umfang bestehen.\n\nEinordnung: Verdeckungsabsicht kann spontan entstehen. Die konkrete Vorstellung hinter unterlassener Rettung ist vollständig zu prüfen; eine mögliche Genesung schließt das Mordmerkmal nicht automatisch aus.\n\nPraxis: Ursprünglichen Behandlungsfehler und spätere Verhinderung von Hilfe getrennt prüfen. Kein vom BGH selbst ausgesprochenes Mordurteil.",
+      "relatedIds": [
+        "case-rescue-narkose"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-narkose",
+          "title": "Vier Kinder nach ambulanter Narkose"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2025/2_StR_277-25.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-notarzt",
+      "kind": "judgment",
+      "title": "BGH · 09.01.2003 · III ZR 217/01",
+      "aliases": [
+        "BGH · III ZR 217/01",
+        "BGH, III ZR 217/01",
+        "III ZR 217/01"
+      ],
+      "body": "Entscheidung: Zurückweisung der Revision; die Klageabweisung gegen die persönlich verklagte Notärztin blieb bestehen.\n\nEinordnung: Die im damaligen bayerischen öffentlichen Rettungsdienst hoheitlich ausgeübte Notarztbehandlung war nach Amtshaftungsgrundsätzen zu beurteilen.\n\nPraxis: Zuerst konkrete Aufgabe und haftende Körperschaft klären; die Klageabweisung beweist keine medizinische Fehlerfreiheit.",
+      "relatedIds": [
+        "case-rescue-notarzt"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-notarzt",
+          "title": "Notarztbehandlung – die falsche Beklagte"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/III_ZS/2001/III_ZR_217-01.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-patientenverfuegung-2018",
+      "kind": "judgment",
+      "title": "BGH · 14.11.2018 · XII ZB 107/18",
+      "aliases": [
+        "BGH · XII ZB 107/18",
+        "BGH, XII ZB 107/18",
+        "XII ZB 107/18"
+      ],
+      "body": "Entscheidung: Rechtsbeschwerde des Ehemanns gegen den Beschluss des LG Landshut vom 08.02.2018 zurückgewiesen.\n\nEinordnung: Die nach weiterer Aufklärung festgestellte passende Patientenverfügung enthielt bereits die eigene Entscheidung. Es bedurfte keiner ersetzenden Betreuereinwilligung und deren gerichtlicher Genehmigung.\n\nPraxis: Gesamttext und medizinische Passung prüfen; frühere Äußerungen nur textgebunden zur Auslegung heranziehen. Eigenen Patientenwillen und Vertreterentscheidung trennen.",
+      "relatedIds": [
+        "case-rescue-patientenverfuegung-2018"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-patientenverfuegung-2018",
+          "title": "Patientenverfügung 2018: Die geklärte Fortsetzung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/XII_ZS/2018/XII_ZB_107-18.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-schweigepflicht",
+      "kind": "judgment",
+      "title": "BGH · 10.03.2025 · 5 StR 682/24",
+      "aliases": [
+        "BGH · 5 StR 682/24",
+        "BGH, 5 StR 682/24",
+        "5 StR 682/24"
+      ],
+      "body": "Entscheidung: Revision als unbegründet verworfen; ärztliche Zeugenaussage in der geprüften Konstellation verwertbar.\n\nEinordnung: Für Informationen aus der Beobachtung während der strafprozessualen Unterbringung nach § 126a StPO bestand gegenüber der Strafkammer insoweit kein ärztliches Zeugnisverweigerungsrecht.\n\nPraxis: Die rechtliche Rolle und Informationsherkunft prüfen; keine allgemeine Datenfreigabe im Rettungseinsatz.",
+      "relatedIds": [
+        "case-rescue-schweigepflicht"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-schweigepflicht",
+          "title": "Behandler als Zeuge: Die rechtliche Rolle zählt"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/5_StS/2024/5_StR_682-24.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-suizid",
+      "kind": "judgment",
+      "title": "BGH · 03.07.2019 · 5 StR 132/18",
+      "aliases": [
+        "BGH · 5 StR 132/18",
+        "BGH, 5 StR 132/18",
+        "5 StR 132/18"
+      ],
+      "body": "Entscheidung: Verwerfung der Revision der Staatsanwaltschaft; der Freispruch des LG Hamburg blieb bestehen.\n\nEinordnung: Im festgestellten freiverantwortlichen Fall war eine dem bekannten konkreten Willen widersprechende Rettung dem begleitenden Arzt nicht zumutbar.\n\nPraxis: Die festgestellte Vorgeschichte nicht in einer unbekannten akuten Krise unterstellen; Unterlassen, Willensgrundlage und § 323c StGB getrennt prüfen.",
+      "relatedIds": [
+        "case-rescue-suizid"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-suizid",
+          "title": "Freier Wille und abgelehnte Rettung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/5_StS/2018/5_StR_132-18C.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-trage",
+      "kind": "judgment",
+      "title": "BGH · 27.05.2021 · III ZR 329/20",
+      "aliases": [
+        "BGH · III ZR 329/20",
+        "BGH, III ZR 329/20",
+        "III ZR 329/20"
+      ],
+      "body": "Entscheidung: Nichtzulassungsbeschwerde zurückgewiesen.\n\nEinordnung: Übertragung der Beweiserleichterung für voll beherrschbare Risiken offengelassen; selbst unterstellte Beweislastumkehr änderte hier das Ergebnis nicht.\n\nPraxis: Konkrete Pflichtverletzung, Beweisregel und Widerlegung unterscheiden; heutige Medizinproduktepflichten gesondert prüfen.",
+      "relatedIds": [
+        "case-rescue-trage"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-trage",
+          "title": "Tragensturz: Schaden ist nicht schon Pflichtverletzung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/III_ZS/2020/III_ZR_329-20.pdf?__blob=publicationFile&v=1"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-weimar-ovg",
+      "kind": "judgment",
+      "title": "Thüringer OVG · 23.10.2025 · 3 EO 357/25",
+      "aliases": [
+        "Thüringer OVG · 3 EO 357/25",
+        "Thüringer OVG, 3 EO 357/25",
+        "3 EO 357/25"
+      ],
+      "body": "Entscheidung: Beschwerde gegen den VG-Beschluss zurückgewiesen.\n\nEinordnung: Weitgehend unzureichende Darlegung der Beschwerdegründe und fehlende erkennbare eigene rechtliche Durchdringung im Vertretungsprozess; keine pauschale neue Sperrregel für § 2a NotSanG.\n\nPraxis: Tragende Erwägungen substantiiert angreifen; prozessuale Prüfung, Eilentscheidung und materielle Rechtslage auseinanderhalten.",
+      "relatedIds": [
+        "case-rescue-weimar"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-weimar",
+          "title": "Delegationsentzug: guter Verlauf allein genügt nicht"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://landesrecht.thueringen.de/bsth/document/NJRE001647393"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-weimar-vg",
+      "kind": "judgment",
+      "title": "VG Weimar · 23.07.2025 · 8 E 676/25 We",
+      "aliases": [
+        "VG Weimar · 8 E 676/25 We",
+        "VG Weimar, 8 E 676/25 We",
+        "8 E 676/25 We"
+      ],
+      "body": "Entscheidung: Antrag auf Wiederherstellung der aufschiebenden Wirkung abgelehnt.\n\nEinordnung: Nach summarischer Prüfung konnte bereits die fehlende persönliche Eignung zur Durchführung delegierter Maßnahmen den vorläufig vollziehbaren Entzug tragen.\n\nPraxis: Delegation, gesetzliche Eigenbefugnis, Zuverlässigkeit und Patientenwillen gesondert prüfen; guten Ausgang nicht mit uneingeschränkter Befugnis gleichsetzen.",
+      "relatedIds": [
+        "case-rescue-weimar"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-weimar",
+          "title": "Delegationsentzug: guter Verlauf allein genügt nicht"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://landesrecht.thueringen.de/bsth/document/NJRE001633014"
+        }
+      ]
+    },
+    {
+      "id": "judgment:revision-rescue-wuerzburg",
+      "kind": "judgment",
+      "title": "AG Würzburg · 13.02.2018 · 25 XVII 208/18",
+      "aliases": [
+        "AG Würzburg · 25 XVII 208/18",
+        "AG Würzburg, 25 XVII 208/18",
+        "25 XVII 208/18"
+      ],
+      "body": "Entscheidung: Vorläufige Fortsetzung der Behandlung angeordnet und Verfahrenspfleger bestellt; noch keine Betreuerbestellung.\n\nEinordnung: Das AG bejahte trotz IHA betreuungsrechtlichen Fürsorgebedarf. Dies ist seine kontroverse damalige Begründung, kein heutiger medizinischer Standard.\n\nPraxis: Tenor, konkrete Rolle und vorläufige Maßnahme getrennt lesen. Die Verfahrenspflege schafft keine umfassende Gesundheitsvertretung.",
+      "relatedIds": [
+        "case-rescue-wuerzburg"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-rescue-wuerzburg",
+          "title": "Würzburg: Verfahrenspfleger ist noch kein Betreuer"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.lexika.de/europarecht/anordnung-einer-betreuung-fuer-eine-schwangere-mit-ausfall-der-hirnfunktionen/"
+        }
+      ]
+    },
+    {
+      "id": "judgment:rg-fussamputation-1894",
+      "kind": "judgment",
+      "title": "Reichsgericht · 31.05.1894 · RGSt 25, 375",
+      "aliases": [
+        "Reichsgericht · RGSt 25, 375",
+        "Reichsgericht, RGSt 25, 375",
+        "RGSt 25, 375",
+        "Fall R23",
+        "Fallakte R23"
+      ],
+      "body": "Entscheidung: Historischer Ausgangspunkt: Auch ein fachgerecht und heilend vorgenommener körperlicher Eingriff erfüllt den Körperverletzungstatbestand; legitimiert wird er grundsätzlich durch wirksame Einwilligung.\n\nEinordnung: Der ärztliche Zweck beseitigt den Eingriffscharakter nicht. Damit wurden Einwilligung und Patientenwille zu eigenständigen Voraussetzungen rechtmäßiger Behandlung.\n\nPraxis: Vor jeder nicht notfallbedingten invasiven Maßnahme müssen Indikation, Einwilligungsfähigkeit, Aufklärung und Einwilligung getrennt geprüft und dokumentiert werden.",
+      "relatedIds": [
+        "case-r23"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-r23",
+          "title": "Fußamputation trotz elterlicher Ablehnung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://www.jura.uni-wuerzburg.de/fileadmin/02150400/2021/Schuster_OstAStrR_4_2018_213-227.pdf"
         }
       ]
     },
@@ -23821,13 +26042,18 @@
       "kind": "term",
       "title": "Befunderhebungsfehler",
       "aliases": [
+        "Fehler der Befunderhebung",
         "Befunderhebungsfehler"
       ],
-      "body": "Ein medizinisch gebotener Befund wird nicht erhoben oder gesichert. Das ist von der fehlerhaften Bewertung eines tatsächlich erhobenen Befunds zu unterscheiden.",
+      "body": "Ein medizinisch erforderliches Untersuchungsergebnis wird nicht oder nicht rechtzeitig erhoben oder gesichert. Dazu gehört auch, eine notwendige Untersuchung nicht zu veranlassen. Davon zu unterscheiden ist ein Diagnosefehler: Hier sind Befunde vorhanden, werden aber vorwerfbar falsch ausgewertet. Maßgeblich sind der medizinische Standard und der Schwerpunkt des Fehlverhaltens.\n\nVereinfachtes Beispiel: Eine gebotene Bildgebung wird gar nicht veranlasst. Das kann ein Befunderhebungsfehler sein. Wird eine vorhandene Aufnahme vorwerfbar falsch gedeutet, spricht das für einen Diagnosefehler. Eine Beweislastumkehr nach § 630h Abs. 5 Satz 2 BGB verlangt zusätzliche Voraussetzungen; sie folgt nicht aus jeder fehlenden Untersuchung.",
       "sources": [
         {
           "title": "§ 630h Abs. 5 Satz 2 BGB · besondere Beweisfolge",
           "url": "https://www.gesetze-im-internet.de/bgb/__630h.html"
+        },
+        {
+          "title": "BGH 04.06.2024 · VI ZR 108/23 · Abgrenzung und Beweisfolge",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=138244&Blank=1.pdf"
         }
       ]
     },
@@ -23914,7 +26140,7 @@
       "aliases": [
         "Beweismaß"
       ],
-      "body": "Der Grad gerichtlicher Überzeugung, den das jeweilige Recht verlangt. § 286 ZPO und § 287 ZPO haben unterschiedliche Anwendungsbereiche.",
+      "body": "Das Beweismaß beschreibt, wie sicher das Gericht von einer Tatsache überzeugt sein muss. Es ist von der Beweislast zu unterscheiden: Diese regelt, wer das Risiko einer am Ende ungeklärten Tatsache trägt. Im Zivilprozess verlangt § 286 ZPO grundsätzlich volle richterliche Überzeugung; nicht jede theoretische Unsicherheit muss ausgeschlossen sein. § 287 ZPO erlaubt in seinem Anwendungsbereich eine erleichterte Überzeugungsbildung und Schätzung.\n\nIm Arzthaftungsrecht werden der Nachweis der ersten Verletzung und die daraus entstandenen weiteren Schäden unterschieden. Für die haftungsbegründende Ursächlichkeit gilt grundsätzlich § 286 ZPO; für weitere Schadensfolgen kann § 287 ZPO eingreifen. Erst die konkrete Beweisfrage festlegen, dann Beweismaß und mögliche Vermutungen prüfen. § 287 ZPO ist keine allgemeine Erlaubnis, jeden ungeklärten Behandlungsfehler zu schätzen.",
       "sources": [
         {
           "title": "§ 286 ZPO · freie Beweiswürdigung",
@@ -24118,7 +26344,9 @@
       "kind": "term",
       "title": "Grober Behandlungsfehler",
       "aliases": [
-        "Grober Behandlungsfehler"
+        "Grober Behandlungsfehler",
+        "grobem Behandlungsfehler",
+        "groben Behandlungsfehler"
       ],
       "body": "Ein eindeutiger Verstoß gegen bewährte ärztliche Regeln oder gesicherte Erkenntnisse, der aus objektiver medizinischer Sicht nicht mehr verständlich erscheint. Unter den Voraussetzungen von § 630h Abs. 5 BGB kann sich die Beweislast für die Kausalität umkehren.",
       "sources": [
@@ -24199,7 +26427,7 @@
         "Ursächlichkeit",
         "Kausalität"
       ],
-      "body": "Der Ursachenzusammenhang zwischen Verhalten und Schaden oder strafrechtlichem Erfolg. Juristische Zurechnung und Beweismaß sind zusätzlich zu prüfen.",
+      "body": "Kausalität bedeutet Ursächlichkeit: Besteht ein Zusammenhang zwischen einer Handlung oder Unterlassung und einer bestimmten Folge? Ein zeitliches Nacheinander genügt für sich allein nicht. Welche Ursache rechtlich relevant ist und wie sie zu beweisen ist, hängt vom jeweiligen Anspruch oder Straftatbestand ab.\n\nBeispiel: Nach einer Medikamentengabe tritt eine Nierenschädigung auf. Daraus folgt noch nicht, dass das Medikament sie verursacht hat. Andere Ursachen, der konkrete medizinische Verlauf und die anwendbaren Beweisregeln müssen geprüft werden. Auch ein bewiesener Zusammenhang beantwortet noch nicht jede Frage der rechtlichen Zurechnung.",
       "sources": [
         {
           "title": "Anwendungsbeispiel: § 630h BGB",

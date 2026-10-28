@@ -3,11 +3,17 @@ import {safeURL} from './policy.mjs?v=20261027-view-parity56a';
 import {protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56a';
 import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-view-parity56a';
 import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261027-view-parity56a';
+import {readingRole} from './reading-style.mjs?v=20261028-reader58';
 const element=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
-const symbols={facts:'▤',question:'?',solution:'✓',warning:'!',takeaway:'💡',focus:'◎'};
+const symbols={facts:'M7 3h7l4 4v14H6V3z M14 3v5h4 M9 12h6 M9 16h6',question:'M9 8a3 3 0 0 1 6 0c0 2-3 2-3 5 M12 17v.1 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0',solution:'M8 12l3 3 5-6 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0',warning:'M12 3 2 21h20L12 3z M12 9v5 M12 17v.1',takeaway:'M9 18h6 M10 21h4 M8 14a6 6 0 1 1 8 0l-1 3H9z M12 1v2',focus:'M3 8V3h5 M16 3h5v5 M21 16v5h-5 M8 21H3v-5 M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',proof:'M15 15l6 6 M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0',outcome:'M8 12l3 3 5-6 M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0',reasoning:'M12 3v18 M7 21h10 M4 6h16 M5 6 2 14h6L5 6z M19 6l-3 8h6l-3-8z',source:'M3 4h5v17H3z M10 4h4v17h-4z M16 5l3-1 4 16-3 1z'};
+function roleIcon(role){
+ const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('aria-hidden','true');svg.setAttribute('class','atlas-role-symbol');
+ const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',symbols[role]);path.setAttribute('fill','none');path.setAttribute('stroke','currentColor');path.setAttribute('stroke-width','1.7');path.setAttribute('stroke-linecap','round');path.setAttribute('stroke-linejoin','round');svg.append(path);return svg;
+}
 function card(title,text,role='explanation'){
+ role=readingRole(title,role);
  const section=element('section',null,'card atlas-text-card atlas-role-'+role),heading=element('h2');
- if(symbols[role]){const icon=element('span',symbols[role],'atlas-role-symbol');icon.setAttribute('aria-hidden','true');heading.append(icon);}
+ if(symbols[role])heading.append(roleIcon(role));
  if(title){heading.append(element('span',title));section.append(heading);}
  if(text)formatSlideText(section,text);
  if(role==='solution'){const details=element('details',null,'atlas-stage');details.append(element('summary',title||'Lösung & Einordnung'),section);return details;}return section;
@@ -28,6 +34,7 @@ export function renderAtlasReading(main,content,library=[],options={}){
  if(content.subtitle)main.append(element('p',content.subtitle,'subtle'));
  const focus=focusedAtlasNode(content,options.focusedStage);
  if(!options.hideFocusBanner)renderAtlasFocus(main,content,options.focusedStage);
+ if(content.id==='procedure-fehler')main.append(card('Begriffe direkt nachschlagen','Beweislast · gesetzliche Vermutung · Ursächlichkeit · reaktionspflichtiger Befund. Tippen Sie auf einen hervorgehobenen Begriff. Die Erklärung öffnet sich hier; nach dem Schließen lesen Sie an derselben Stelle weiter.','focus'));
  if(content.overview?.length){
   if(content.overviewNote)main.append(element('p',content.overviewNote,'notice'));
   for(const [i,n] of content.overview.entries()){

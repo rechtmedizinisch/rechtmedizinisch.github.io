@@ -34,11 +34,11 @@ export function renderReferences(main,type,catalog,selectedId){
     if(cases){for(const r of visible){
       const card=node('article',null,'card judgment-card'),meta=node('div',null,'row');meta.append(node('span',`${r.tier} · ${r.area}`,'badge'),node('span',r.court,'subtle'));card.append(meta,node('h2',r.title),node('p',[r.decisionType,r.date,r.docket].filter(Boolean).join(' · '),'judgment-docket'));
       const tenor=detail('⚖ Leitsatzkern',r.tenor,'judgment-tenor');if(tenor)card.append(tenor);
+      if(r.atlasId){const a=node('a','Sachverhalt, Entscheidung & Gründe lesen','button');a.href='#material/'+encodeURIComponent('atlas:'+r.atlasId);card.append(a);}
       const more=node('details'),summary=node('summary','Einordnung & Praxistransfer lesen');more.append(summary);
       for(const d of [detail('Tragende Aussage',r.holding,'judgment-holding'),detail('💡 Praxis-Merksatz',r.practice,'notice'),detail('Rechtsstand',r.status,'subtle')])if(d)more.append(d);
       const links=node('div',null,'reference-actions');links.append(source('Originalquelle / Fundstelle',r.url));if(r.alternativeUrl)links.append(source('Alternative Quelle',r.alternativeUrl));more.append(links);
       if(r.courseIds?.length){const courses=node('div',null,'reference-course-links');courses.append(node('p','Passende Kurse','section-number'));for(const id of r.courseIds){const c=catalog.catalog.find(c=>c.id===id);if(c){const a=node('a',`Kurs ${String(c.no).padStart(2,'0')} · ${c.title} →`);a.href=`#course/${id}`;courses.append(a);}}more.append(courses);}
-      if(r.atlasId){const a=node('a','Fall nachvollziehen · Vertiefung öffnen','button secondary');a.href='#material/'+encodeURIComponent('atlas:'+r.atlasId);more.append(a);}
       card.append(more);results.append(card);
     }}else{
       for(const category of [...new Set(visible.map(r=>r.category))].sort((a,b)=>a.localeCompare(b,'de'))){

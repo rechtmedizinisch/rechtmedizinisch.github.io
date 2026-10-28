@@ -314,3 +314,6 @@ h1,h2,h3{overflow-wrap:anywhere;hyphens:auto}
 /* Answers and explanations must also contain long German compound words. */
 .answer,.practice-panel{overflow-wrap:anywhere;hyphens:auto}
 .practice-answer>span:last-child{min-width:0}
+/* Reading cues share the same roles as the native readers. */
+.atlas-role-facts,.atlas-role-reasoning{border-inline-start:4px solid #4a749a;background:color-mix(in srgb,#4a749a 8%,var(--card,#fff))}.atlas-role-facts .atlas-role-symbol,.atlas-role-reasoning .atlas-role-symbol{color:#4a749a}.atlas-role-proof{border-inline-start:4px solid #8870a4;background:color-mix(in srgb,#8870a4 9%,var(--card,#fff))}.atlas-role-proof .atlas-role-symbol{color:#8870a4}.atlas-role-source{border-inline-start:4px solid #6e7b88;background:color-mix(in srgb,#6e7b88 7%,var(--card,#fff))}.atlas-role-source .atlas-role-symbol{color:#6e7b88}.atlas-role-outcome{border-inline-start:4px solid var(--teal)}.judgment-card>.button{margin-block:14px;width:100%;text-align:left}
+.atlas-role-symbol{width:1.6rem;height:1.6rem;flex:0 0 1.6rem}.atlas-role-takeaway .atlas-role-symbol{color:#9b721e}.atlas-role-warning .atlas-role-symbol{color:#b84646}

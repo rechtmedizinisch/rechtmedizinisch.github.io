@@ -2,6 +2,7 @@
 import {protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56a';
 const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const historicalDesignation='(?:a\\.[\\s\\u00A0]*F\\.|alter[\\s\\u00A0]+Fassung)(?![\\p{L}\\p{N}])';
+const folded=value=>value.toLocaleLowerCase('de').replace(/\s+/gu,' ');
 export function referenceIndex(entries){
  const patterns=[];
  for(const entry of entries){
@@ -17,14 +18,31 @@ export function referenceIndex(entries){
    const law=entry.law.split(' ').map(escape).join(space+'+');
    const edition=entry.historical?'(?:'+space+'+'+historicalDesignation+')?':'(?!'+space+'+'+historicalDesignation+')';
    alternatives.push(marker+space+'*'+escape(entry.number)+'(?![0-9a-z])'+tail+space+'*'+law+edition+'(?![\\p{L}\\p{N}])');
-  }else if(entry.kind==='term')alternatives=(entry.aliases??[]).map(escape);
-  for(const pattern of alternatives)patterns.push({entry,regex:new RegExp('(?<![\\p{L}\\p{N}])(?:'+pattern+')(?![\\p{L}\\p{N}])','giu')});
+  }else if(['term','judgment'].includes(entry.kind))alternatives=(entry.aliases??[]).map(escape);
+  const aliases=(entry.aliases??[]).map(folded),law=folded(entry.law??''),number=folded(entry.number??'');
+  const mayMatch=text=>aliases.some(alias=>text.includes(alias))||(entry.kind==='norm'&&number&&!number.includes('_')&&law&&text.includes(number)&&text.includes(law)&&text.includes(entry.marker==='Art.'?'art.':'§'));
+  for(const pattern of alternatives)patterns.push({entry,mayMatch,regex:new RegExp('(?<![\\p{L}\\p{N}])(?:'+pattern+')(?![\\p{L}\\p{N}])','giu')});
  }
  return patterns;
 }
 export function referenceMatches(text,index){
- const candidates=[],webLinks=[...text.matchAll(/https?:\/\/[^\s<>]+/giu)].map(m=>({start:m.index,end:m.index+m[0].length}));
- for(const {entry,regex} of index){regex.lastIndex=0;for(const match of text.matchAll(regex)){const hit={start:match.index,end:match.index+match[0].length,entry};const suffix=text.slice(hit.end),lawWords=(entry.law??'').split(/\s+/u).filter(Boolean);const historicalTails=['',...lawWords.slice(1).map((_,i)=>lawWords.slice(i+1).map(escape).join('\\s+'))];const historical=/(?:damalig|früher|historisch)\p{L}*\s*$/iu.test(text.slice(Math.max(0,hit.start-45),hit.start))||historicalTails.some(tail=>new RegExp('^\\s*'+(tail?tail+'\\s+':'')+historicalDesignation,'iu').test(suffix))||new RegExp(historicalDesignation+'$','iu').test(match[0]);const editionMatches=entry.kind!=='norm'||historical===Boolean(entry.historical);if(editionMatches&&!webLinks.some(url=>url.start<hit.end&&url.end>hit.start))candidates.push(hit);}}
+ const candidates=[],hintText=folded(text),possible=new Map(),webLinks=[...text.matchAll(/https?:\/\/[^\s<>]+/giu)].map(m=>({start:m.index,end:m.index+m[0].length}));
+ for(const {entry,regex,mayMatch} of index){
+  if(!possible.has(entry.id))possible.set(entry.id,mayMatch?mayMatch(hintText):true);
+  if(!possible.get(entry.id))continue;
+  regex.lastIndex=0;
+  for(const match of text.matchAll(regex)){
+   const hit={start:match.index,end:match.index+match[0].length,entry};
+   if(webLinks.some(url=>url.start<hit.end&&url.end>hit.start))continue;
+   if(entry.kind==='norm'){
+    const suffix=text.slice(hit.end),lawWords=(entry.law??'').split(/\s+/u).filter(Boolean);
+    const historicalTails=['',...lawWords.slice(1).map((_,i)=>lawWords.slice(i+1).map(escape).join('\\s+'))];
+    const historical=/(?:damalig|früher|historisch)\p{L}*\s*$/iu.test(text.slice(Math.max(0,hit.start-45),hit.start))||historicalTails.some(tail=>new RegExp('^\\s*'+(tail?tail+'\\s+':'')+historicalDesignation,'iu').test(suffix))||new RegExp(historicalDesignation+'$','iu').test(match[0]);
+    if(historical!==Boolean(entry.historical))continue;
+   }
+   candidates.push(hit);
+  }
+ }
  candidates.sort((a,b)=>a.start-b.start||(b.end-b.start)-(a.end-a.start)||(a.entry.kind==='norm'?0:1)-(b.entry.kind==='norm'?0:1)||a.entry.id.localeCompare(b.entry.id));
  const result=[];for(const candidate of candidates){const nearby=text.slice(Math.max(0,candidate.start-90),candidate.end+90);const editions=candidate.entry.editionYears??[candidate.entry.edition];const wrongEdition=candidate.entry.historical&&[...nearby.matchAll(/Fassung\s+(?:(?:von|vom)\s+)?(?:\d{1,2}\.\d{1,2}\.\s*)?(\d{4})/giu)].some(m=>!editions.includes(m[1]));if(!wrongEdition&&candidate.start>=(result.at(-1)?.end??0))result.push(candidate);}
  return result;
@@ -36,7 +54,7 @@ export function openReferenceDialog(owner,entry,catalog=[]){
  const header=doc.createElement('div');header.className='context-dialog-header';
  const title=doc.createElement('h2');title.textContent=protectReferences(entry.title);title.id='context-reference-title';dialog.setAttribute('aria-labelledby',title.id);
  const close=doc.createElement('button');close.type='button';close.textContent='Schließen ×';close.onclick=()=>dialog.close();header.append(title,close);dialog.append(header);
- const kind=doc.createElement('p');kind.className='section-number';kind.textContent=entry.kind==='norm'?'NORM NACHSCHLAGEN':'KURZ ERKLÄRT';dialog.append(kind);
+ const kind=doc.createElement('p');kind.className='section-number';kind.textContent=entry.kind==='norm'?'NORM NACHSCHLAGEN':entry.kind==='judgment'?'ENTSCHEIDUNG IM ÜBERBLICK':'KURZ ERKLÄRT';dialog.append(kind);
  let index=dialogIndexes.get(catalog);if(!index){index=referenceIndex(catalog);dialogIndexes.set(catalog,index);}
  for(const paragraph of entry.body.split(/\n\s*\n/).filter(p=>p.trim())){
   const p=doc.createElement('p'),text=protectReferences(paragraph);let at=0;
