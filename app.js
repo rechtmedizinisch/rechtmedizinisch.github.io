@@ -11,22 +11,22 @@ import {homeLearning} from './home-learning.mjs?v=20261027-view-parity56a';
 import {progressActions} from './progress-actions.mjs?v=20261027-view-parity56a';
 import {progressSync} from './progress-sync.mjs?v=20261027-view-parity56a';
 import {syncPanel} from './progress-sync-ui.mjs?v=20261027-view-parity56a';
-import {renderSearch} from './search.js?v=20261028-design61';
+import {renderSearch} from './search.js?v=20261029-klaro62';
 import {renderPodcast} from './podcast.js?v=20261027-view-parity56a';
 import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261027-view-parity56a';
 import {renderCourseLearning} from './course-learning.js?v=20261027-view-parity56a';
 import {progressStore} from './progress-store.mjs?v=20261027-view-parity56a';
-import {renderReferences} from './references.js?v=20261028-design61';
+import {renderReferences} from './references.js?v=20261029-klaro62';
 import {formatSlideText} from './slide-tools.js?v=20261027-view-parity56a';
 import {loginPanel} from './email-login.js?v=20261028-password57';
 import {passwordPanel} from './password-panel.mjs';
 import {renderLegal} from './legal.js?v=20261027-view-parity56a';
 import {renderPractice} from './practice.js?v=20261027-view-parity56a';
 import {accountTools} from './account-tools.js?v=20261027-view-parity56a';
-import {renderLibrary,courseMaterials} from './library.js?v=20261028-design61';
+import {renderLibrary,courseMaterials} from './library.js?v=20261029-klaro62';
 import {readingViewState} from './reading-view-state.mjs?v=20261027-view-parity56a';
 import {config} from './config.js?v=20261027-view-parity56a';
-import {installContextHelp} from './context-help.mjs?v=20261028-design61';
+import {installContextHelp} from './context-help.mjs?v=20261029-klaro62';
 import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261027-view-parity56a';
 const main=document.querySelector('main');
 const learningUpdateNotice=createLearningUpdateNotice();
@@ -151,7 +151,7 @@ async function route(){
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261028-design61').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261029-klaro62').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
   auth=await import('./auth.js?v=20261028-password57');

@@ -1,4 +1,4 @@
-import {renderDefinitions} from './definition-library.mjs?v=20261028-design61';
+import {renderDefinitions} from './definition-library.mjs?v=20261029-klaro62';
 import {renderPresentationIndex} from './presentation-index.mjs?v=20261027-view-parity56a';
 import {fetchPresentationDownload} from './presentation-download.mjs?v=20261027-view-parity56a';
 import {renderSource} from './source-links.mjs?v=20261027-view-parity56a';
@@ -7,7 +7,7 @@ import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261027-view-p
 import {hasAccess,safeURL} from './policy.mjs?v=20261027-view-parity56a';
 import {hasMaterialAccess} from './material-access.mjs?v=20261027-view-parity56a';
 import {fetchGraphicDownload} from './graphic-download.mjs?v=20261027-view-parity56a';
-import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261028-design61';
+import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261029-klaro62';
 import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-view-parity56a';
 import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261027-view-parity56a';
 const groups={atlas:'⚖ Fälle, Schemata & Vertiefungen',glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Folien & Vertiefungen'};
@@ -22,7 +22,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261028-design61');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261029-klaro62');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -37,7 +37,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
  if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261028-design61');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261029-klaro62');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);

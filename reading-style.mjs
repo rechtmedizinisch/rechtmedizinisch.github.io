@@ -15,6 +15,6 @@ export function readingRole(title,role='explanation'){
 export function readingHeading(title,marker=null){
  const prefix=title.startsWith('Prüfungsort · ')?'Prüfungsort · ':'',base=title.slice(prefix.length);
  if(/^\d{1,2}\.\s+(?:Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember)\b/u.test(base))return {marker,title};
- const match=/^(\d{1,2}|[A-C])\s*[·.)]\s+(.+)$/u.exec(base);
+ const match=/^(\d{1,2}|[A-C]|[KLRO](?=\s*·))\s*[·.)]\s+(.+)$/u.exec(base);
  return match?{marker:match[1].padStart(/^\d+$/.test(match[1])?2:1,'0'),title:prefix+match[2]}:{marker,title};
 }

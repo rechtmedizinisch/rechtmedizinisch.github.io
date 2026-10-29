@@ -8983,6 +8983,75 @@
       ]
     },
     {
+      "id": "glossary:klaro",
+      "kind": "term",
+      "title": "KLARO-Rechtskompass",
+      "aliases": [
+        "KLARO-Rechtskompass",
+        "KLARO Rechtskompass",
+        "Rechtskompass",
+        "KLARO"
+      ],
+      "body": "Eigene didaktische Merkhilfe für unklare Einsatzlagen: K = Klinik, L = Legitimation, A = Aufklärung, R = Rückversicherung, O = Organisation. Sie verbindet medizinische Erforderlichkeit, Patientenentscheidung, Handlungsbefugnis und sichere Umsetzung. Kein gesetzlicher Begriff und kein extern validierter medizinischer Algorithmus. Die Gesamtübersicht und die einzelnen Grundlagen sind direkt verlinkt.",
+      "sources": [
+        {
+          "title": "§ 2a NotSanG · eigenverantwortliche heilkundliche Maßnahmen",
+          "url": "https://www.gesetze-im-internet.de/notsang/__2a.html"
+        },
+        {
+          "title": "§ 630c BGB · Information",
+          "url": "https://www.gesetze-im-internet.de/bgb/__630c.html"
+        },
+        {
+          "title": "§ 630d BGB · Einwilligung",
+          "url": "https://www.gesetze-im-internet.de/bgb/__630d.html"
+        },
+        {
+          "title": "§ 630e BGB · Aufklärung",
+          "url": "https://www.gesetze-im-internet.de/bgb/__630e.html"
+        },
+        {
+          "title": "§ 630f BGB · Dokumentation",
+          "url": "https://www.gesetze-im-internet.de/bgb/__630f.html"
+        }
+      ],
+      "relatedIds": [
+        "schema-klaro-rechtskompass",
+        "topic-rettungsdienst-eigenverantwortliches-handeln-nach-2a-notsang",
+        "topic-patientenwille-im-zeitkritischen-einsatz",
+        "topic-aufklarungspflichten",
+        "topic-einwilligungsfahigkeit-konkret-prufen",
+        "topic-einsatzdokumentation-und-ubergabe"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "schema-klaro-rechtskompass",
+          "title": "KLARO-Rechtskompass · Recht im Einsatz"
+        },
+        {
+          "id": "topic-rettungsdienst-eigenverantwortliches-handeln-nach-2a-notsang",
+          "title": "Rettungsdienst: eigenverantwortliches Handeln nach § 2a NotSanG"
+        },
+        {
+          "id": "topic-patientenwille-im-zeitkritischen-einsatz",
+          "title": "Patientenwille im zeitkritischen Einsatz"
+        },
+        {
+          "id": "topic-aufklarungspflichten",
+          "title": "Aufklärungspflichten"
+        },
+        {
+          "id": "topic-einwilligungsfahigkeit-konkret-prufen",
+          "title": "Einwilligungsfähigkeit konkret prüfen"
+        },
+        {
+          "id": "topic-einsatzdokumentation-und-ubergabe",
+          "title": "Einsatzdokumentation und Übergabe"
+        }
+      ],
+      "reviewedAt": "2026-10-29"
+    },
+    {
       "id": "glossary:kosteninformation",
       "kind": "term",
       "title": "Kosteninformation · wirtschaftliche Information",
