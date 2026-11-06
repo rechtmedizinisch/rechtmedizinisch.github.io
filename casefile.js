@@ -1,12 +1,12 @@
-import {hasAccess} from './policy.mjs?v=20261106-practice13b';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-practice13b';
-import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-practice13b';
-import {notify} from './feedback.mjs?v=20261106-practice13b';
-import {casefileCatalog,casefileBundleHash} from './casefile-catalog.mjs?v=20261106-practice13b';
-import {casefileStore} from './casefile-store.mjs?v=20261106-practice13b';
-import {casefileWorker} from './casefile-worker.mjs?v=20261106-practice13b';
-import {casefileSession} from './casefile-session.mjs?v=20261106-practice13b';
-import {casefileInput} from './casefile-form.mjs?v=20261106-practice13b';
+import {hasAccess} from './policy.mjs?v=20261106-zivil40';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-zivil40';
+import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-zivil40';
+import {notify} from './feedback.mjs?v=20261106-zivil40';
+import {casefileCatalog,casefileBundleHash} from './casefile-catalog.mjs?v=20261106-zivil40';
+import {casefileStore} from './casefile-store.mjs?v=20261106-zivil40';
+import {casefileWorker} from './casefile-worker.mjs?v=20261106-zivil40';
+import {casefileSession} from './casefile-session.mjs?v=20261106-zivil40';
+import {casefileInput} from './casefile-form.mjs?v=20261106-zivil40';
 let activeClose=()=>{};
 export function closeActiveCasefile(){activeClose();activeClose=()=>{};}
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};

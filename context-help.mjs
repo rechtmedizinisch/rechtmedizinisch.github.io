@@ -1,5 +1,5 @@
 // Contextual reading help never changes the route or grants access to content.
-import {protectReferences} from './presentation-theme.mjs?v=20261106-practice13b';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-zivil40';
 const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const historicalDesignation='(?:a\\.[\\s\\u00A0]*F\\.|alter[\\s\\u00A0]+Fassung)(?![\\p{L}\\p{N}])';
 const folded=value=>value.toLocaleLowerCase('de').replace(/\s+/gu,' ');
@@ -13,11 +13,11 @@ export function referenceIndex(entries){
   }
   if(entry.kind==='norm'&&entry.number&&!entry.number.includes('_')&&entry.law){
    const space='[\\s\\u00A0]',marker=entry.marker==='Art.'?'Art\\.':'(?<!§)§(?!§)';
-   const coordinate='(?:(?:Abs\\.|Absatz|Absätze|Halbsatz|Halbsätze|Satz|Sätze|S\\.|Nr\\.|Alt\\.|Buchst\\.|Doppelbuchst\\.|lit\\.)[\\s\\u00A0]*[0-9a-z]+(?:[\\s\\u00A0]*(?:,|und|oder|–|-|/)[\\s\\u00A0]*[0-9a-z]+)*)';
+   const coordinate='(?:(?:Abs\\.|Absatz|Absätze|Halbsatz|Halbsätze|Satz|Sätze|Fall|Fälle|S\\.|Nr\\.|Alt\\.|Buchst\\.|Doppelbuchst\\.|lit\\.)[\\s\\u00A0]*[0-9a-z]+(?:[\\s\\u00A0]*(?:,|und|oder|–|-|/)[\\s\\u00A0]*[0-9a-z]+)*)';
    const tail='(?:(?:'+space+'*(?:(?:,|und|oder)'+space+'*)?'+coordinate+')|(?:'+space+'+[IVX]+))*';
    const law=entry.law.split(' ').map(escape).join(space+'+');
    const edition=entry.historical?'(?:'+space+'+'+historicalDesignation+')?':'(?!'+space+'+'+historicalDesignation+')';
-   alternatives.push(marker+space+'*'+escape(entry.number)+'(?![0-9a-z])'+tail+space+'*'+law+edition+'(?![\\p{L}\\p{N}])');
+   alternatives.push(marker+space+'*'+escape(entry.number)+'(?![0-9a-z])'+tail+space+'*'+law+'(?![-–]E\\b)'+edition+'(?![\\p{L}\\p{N}])');
   }else if(['term','judgment'].includes(entry.kind))alternatives=(entry.aliases??[]).map(escape);
   const aliases=(entry.aliases??[]).map(folded),law=folded(entry.law??''),number=folded(entry.number??'');
   const mayMatch=text=>aliases.some(alias=>text.includes(alias))||(entry.kind==='norm'&&number&&!number.includes('_')&&law&&text.includes(number)&&text.includes(law)&&text.includes(entry.marker==='Art.'?'art.':'§'));
@@ -80,7 +80,7 @@ export function openReferenceDialog(owner,entry,catalog=[]){
 
 let referenceHelpPromise;
 export function loadReferenceHelp(){
- if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-practice13b'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
+ if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-zivil40'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
  return referenceHelpPromise;
 }
 export function installContextHelp(root,{load=loadReferenceHelp}={}){

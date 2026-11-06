@@ -1,9 +1,9 @@
 // Per-account UI preference only. Never changes grants, session or learning data.
 export const learningUpdate = Object.freeze({
- id:'2026.11.06-casework-procedures',
+ id:'2026.11.06-zivil40',
  title:'Neu für Sie',
  items:Object.freeze([
-  "Fallwerkstatt: 20 Originalfälle mit eigenen Antworten und Entscheidungsgründen",
+  "Fallwerkstatt: 40 Originalfälle mit eigenen Antworten und Entscheidungsgründen",
   "Interaktive Strafakte: drei Varianten mit Ermittlungen und Gerichtsverfahren",
   "Elf neue Verfahrensgrafiken mit Lesefassung und Rechtsgrundlagen",
   "Mehr Begriffe, Normen und verknüpfte Entscheidungen direkt nachschlagen",

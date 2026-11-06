@@ -11208,20 +11208,24 @@
         "Fall R30",
         "Fallakte R30"
       ],
-      "body": "Entscheidung: § 630e BGB verlangt genügend Zeit für eine wohlüberlegte Entscheidung, aber keinen starren Mindestabstand zwischen Gespräch und Einwilligung.\n\nEinordnung: Ob der Patient sofort entscheiden kann oder Bedenkzeit benötigt, hängt von der konkreten Situation ab; erkennbare Überforderung oder Bedenkzeitwünsche dürfen nicht übergangen werden.\n\nPraxis: Nicht allein Datum und Uhrzeit dokumentieren, sondern Entscheidungsraum, Dringlichkeit, Fragen und geäußerten Wunsch nach Bedenkzeit.",
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Die unmittelbar nach dem Gespräch erklärte Einwilligung war nicht allein wegen der fehlenden Wartezeit unwirksam.\n\nEinordnung: Rechtzeitig aufklären bedeutet, eine wohlüberlegte Entscheidung zu ermöglichen. Die Entscheidung darf anschließend sofort fallen; eine gesetzliche Mindestbedenkzeit zwischen Gespräch und Einwilligung besteht nicht (Rn. 16–21). Das Urteil billigt nicht jede Aufklärung am Operationstag. Es bewertet auch nicht die gesamte Operation als fehlerfrei; über weitere Vorwürfe war noch zu entscheiden (Rn. 23–27).\n\nPraxis: Ausreichende Entscheidungsfreiheit ist entscheidend, nicht eine schematische Stundenzahl vor der Unterschrift.",
       "relatedIds": [
         "case-r30"
       ],
       "relatedMaterials": [
         {
           "id": "case-r30",
-          "title": "Einwilligung direkt nach dem Aufklärungsgespräch"
+          "title": "Unterschrift direkt nach der Aufklärung: zu früh?"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2021/VI_ZR_375-21.pdf?__blob=publicationFile&v=1"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://de.openlegaldata.io/case/bgh-2022-12-20-vi-zr-37521"
         }
       ]
     },
@@ -11236,20 +11240,24 @@
         "Fall R07",
         "Fallakte R07"
       ],
-      "body": "Entscheidung: Eine nachträglich unbemerkt veränderbare elektronische Dokumentation besitzt nicht ohne Weiteres die übliche positive Indizwirkung.\n\nEinordnung: Fehlende Änderungssicherheit führt nicht automatisch zur Vermutung des § 630h Abs. 3 BGB; das Gericht muss den Beweiswert im Einzelfall würdigen.\n\nPraxis: Audit-Trail, Zeitstempel, Autorenzuordnung und transparente Korrekturen entscheiden über die spätere Beweisqualität des KIS.",
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Der Beweiswert des veränderbaren elektronischen Eintrags musste neu gewürdigt werden.\n\nEinordnung: Änderungen müssen erkennbar bleiben. Ein ohne verlässliche Spur veränderbarer Eintrag erhält nicht die sonst mögliche positive Indizwirkung. Er ist dennoch Teil der gesamten Beweiswürdigung (Rn. 18–32). Die therapeutische Information über Warnzeichen war eigenständig zu prüfen. Nicht jede fehlende Notiz beweist, dass jedes Gespräch unterblieben ist; Dokumentationspflicht und Kausalität haben jeweils eigene Voraussetzungen (Rn. 9–17).\n\nPraxis: Ein Dokumentationseintrag ist ein Beweisanzeichen, kein unangreifbarer Wahrheitsnachweis.",
       "relatedIds": [
         "case-r07"
       ],
       "relatedMaterials": [
         {
           "id": "case-r07",
-          "title": "Netzhautablösung und bestrittene Pupillenweitstellung"
+          "title": "Elektronisch dokumentiert · nachträglich veränderbar?"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2019/VI_ZR__84-19.pdf?__blob=publicationFile&v=1"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://de.openlegaldata.io/case/bgh-2021-04-27-vi-zr-8419"
         }
       ]
     },
@@ -11292,20 +11300,24 @@
         "Fall R29",
         "Fallakte R29"
       ],
-      "body": "Entscheidung: Ist die Einwilligung erkennbar auf einen bestimmten Operateur beschränkt, rechtfertigt sie den Eingriff durch einen anderen Arzt nicht.\n\nEinordnung: Der Einwand, der Eingriff wäre durch den gewünschten Arzt ebenfalls erfolgt, ersetzt die fehlende konkrete Einwilligung nicht.\n\nPraxis: Arztwahl, Vertreterregelung und kurzfristige Änderungen vor dem Eingriff offen ansprechen und eine neue Entscheidung ermöglichen.",
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Der nicht von der Einwilligung gedeckte operative Eingriff war rechtswidrig.\n\nEinordnung: Der operative Eingriff berührte die körperliche Integrität; es ging nicht nur um eine enttäuschte Vertragspräferenz. Die personenbezogene Einwilligung schützt die Entscheidung, welcher Arzt operieren darf (Rn. 8–12). Das rechtmäßige Alternativverhalten beim gewünschten Operateur konnte hier nicht entgegengehalten werden. Damit waren aber nicht sämtliche behaupteten Dauerfolgen und ihre Höhe bereits bewiesen (Rn. 13–15).\n\nPraxis: Qualifikation ersetzt keine fehlende Einwilligung in die Person des Operateurs.",
       "relatedIds": [
         "case-r29"
       ],
       "relatedMaterials": [
         {
           "id": "case-r29",
-          "title": "Anderer Operateur trotz personenbezogener Einwilligung"
+          "title": "Der vereinbarte Chefarzt operiert nicht"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2015/VI_ZR__75-15.pdf?__blob=publicationFile&v=1"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2016-07-19/vi-zr-75-15"
         }
       ]
     },
@@ -11404,20 +11416,24 @@
         "Fall R15",
         "Fallakte R15"
       ],
-      "body": "Entscheidung: Die besonderen Aufklärungs- und Verfahrensvorgaben des TPG schützen die freie Spenderentscheidung; bei inhaltlichen Defiziten greift der Einwand hypothetischer Einwilligung nicht ohne Weiteres.\n\nEinordnung: Form- und Verfahrensmängel beeinflussen die Beweiswürdigung. Bei der altruistischen Spende ist die Entscheidung besonders vor Druck, Verharmlosung und unvollständiger Risikoaufklärung zu schützen.\n\nPraxis: Spender- und Empfängerinteressen institutionell trennen, Risiken und Langzeitfolgen vollständig erklären und unabhängige Prüfung nachvollziehbar dokumentieren.",
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Die besonderen Aufklärungsanforderungen an die Lebendorganspende mussten beachtet werden.\n\nEinordnung: Spenderschutz ist eigenständig. Eigene Risiken und die Erfolgsaussichten für den Empfänger können entscheidungserheblich sein. Verfahrensmäßige Sicherungen beeinflussen die Beweiswürdigung; nicht jeder formelle Verstoß macht allein die Einwilligung unwirksam (Rn. 34–40). Die hypothetische Einwilligung wurde im besonderen gesetzlichen Schutzsystem nicht zugelassen. Das ersetzt aber nicht den Nachweis eigener zurechenbarer Gesundheitsfolgen; eine allgemeine Fatigue-Aufklärungspflicht blieb ausdrücklich offen (Rn. 39–51).\n\nPraxis: Eine fremdnützige Organentnahme ist kein gewöhnlicher Heilbehandlungsfall der spendenden Person.",
       "relatedIds": [
         "case-r15"
       ],
       "relatedMaterials": [
         {
           "id": "case-r15",
-          "title": "Gesundheitsfolgen nach einer Lebendnierenspende"
+          "title": "Nierenspende für den Vater: Aufklärung besonders ernst nehmen"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2016/VI_ZR_495-16.pdf?__blob=publicationFile&v=1"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2019-01-29/vi-zr-495-16"
         }
       ]
     },
@@ -11432,20 +11448,24 @@
         "Fall R22",
         "Fallakte R22"
       ],
-      "body": "Entscheidung: Leitlinien können Erkenntnisse bündeln, ersetzen aber nicht die sachverständige Feststellung des zum Behandlungszeitpunkt geschuldeten Standards.\n\nEinordnung: Eine Leitlinie kann dem Standard voraus- oder hinterherlaufen. Entscheidend bleiben wissenschaftliche Erkenntnis, praktische Bewährung und konkrete Behandlungssituation.\n\nPraxis: Nicht nur „leitliniengerecht“ dokumentieren, sondern die patientenbezogenen Gründe für Anwendung oder begründete Abweichung.",
+      "body": "Entscheidung: Die Revision hinsichtlich der Geburtsklinik wurde zurückgewiesen. Die bereits rechtskräftige Haftung der anderen Klinik blieb unberührt.\n\nEinordnung: Leitlinien ersetzen kein Gutachten zum damaligen Standard. Sie können dem medizinischen Standard vorausgehen oder hinter ihm zurückbleiben. Entscheidend war, welche Versorgung im Juni 1995 geboten war (Rn. 11–19). Die Würdigung von Personalbesetzung und Nabelschnurvorfall beruhte auf den konkreten medizinischen Feststellungen. Das Urteil erlaubt weder generell Unterbesetzung noch erklärt es jede Nabelschnurverletzung für unvermeidbar (Rn. 21–26).\n\nPraxis: Leitlinie, medizinischer Standard und grober Behandlungsfehler sind unterschiedliche Prüfungsschritte.",
       "relatedIds": [
         "case-r22"
       ],
       "relatedMaterials": [
         {
           "id": "case-r22",
-          "title": "Frühgeburtliches Risiko und ärztliche Leitlinien"
+          "title": "Frühgeborene Zwillinge: Leitlinie oder damaliger Standard?"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2012/VI_ZR_382-12.pdf?__blob=publicationFile&v=1"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2014-04-15/vi-zr-382-12"
         }
       ]
     },
@@ -11572,20 +11592,24 @@
         "Fall R05",
         "Fallakte R05"
       ],
-      "body": "Entscheidung: Bei einer neuen Methode muss der Patient eindeutig auf unbekannte Risiken und auf die etablierte Behandlungsalternative hingewiesen werden.\n\nEinordnung: Innovative Behandlung ist nicht schon wegen fehlender Langzeiterfahrung fehlerhaft. Ihre besonderen Unsicherheiten verändern aber die Vergleichs- und Risikoaufklärung.\n\nPraxis: Innovationsgrad, Evidenzlücken, Alternativen, Lernkurve und institutionelle Erfahrung ausdrücklich ansprechen; Marketingbegriffe vermeiden.",
+      "body": "Entscheidung: Der BGH wies die Revision zurück; die Klageabweisung blieb bestehen.\n\nEinordnung: Der Einsatz des neuen Verfahrens und die lange Operationsdauer bewiesen unter den festgestellten Umständen noch keinen Behandlungsfehler (Rn. 6–10). Die Patientin musste auch über die Unsicherheit unbekannter Risiken informiert werden. Dennoch ist der Schutzzweck der konkret verletzten Aufklärungspflicht zu beachten: Verwirklicht hatte sich das aufgeklärte Nervenschädigungsrisiko (Rn. 13–19).\n\nPraxis: Ein Aufklärungsdefizit macht die Behandlungsseite nicht automatisch für jeden späteren Schaden verantwortlich.",
       "relatedIds": [
         "case-r05"
       ],
       "relatedMaterials": [
         {
           "id": "case-r05",
-          "title": "Robodoc: neue Methode und unklare Risiken"
+          "title": "Robodoc: neue Methode, bekanntes Risiko"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://www.bundesgerichtshof.de/SharedDocs/Pressemitteilungen/DE/2006/2006089.html"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://medizinrecht.uni-koeln.de/fileadmin/sites/medizinrecht/Forschung/BGH/VI_ZR_323-04.pdf"
         }
       ]
     },
@@ -12216,20 +12240,24 @@
         "Fall R27",
         "Fallakte R27"
       ],
-      "body": "Entscheidung: Die erste Kopie personenbezogener Daten in der Patientenakte ist grundsätzlich kostenlos; ein Patient muss seinen Antrag nicht begründen.\n\nEinordnung: Die Kopie muss vollständig und verständlich genug sein, damit die betroffene Person ihre Datenschutzrechte wirksam ausüben kann; nationale Kostenvorschriften dürfen dieses Recht nicht aushöhlen.\n\nPraxis: Auskunfts- und Kopieprozesse organisatorisch trennen, Identität prüfen, Fristen steuern und eine verständliche, vollständige Erstkopie ohne pauschale Kostenforderung bereitstellen.",
+      "body": "Entscheidung: Der EuGH bestätigt grundsätzlich die kostenlose erste Kopie und beantwortet Umfang und Grenzen des datenschutzrechtlichen Auskunftsrechts.\n\nEinordnung: Die erste Kopie ist grundsätzlich kostenlos. Art. 12 Abs. 5 sowie Art. 15 Abs. 1 und Abs. 3 DSGVO verlangen keine Begründung, die einen späteren Haftungsprozess ausschließt (Rn. 38, 52; Tenor Nr. 1). Je nach Kontext gehören vollständige Unterlagen zur verständlichen Wiedergabe. Rechte Dritter, weitere Kopien und offenkundig unbegründete oder exzessive Anträge bleiben gesonderte Fragen (Rn. 58, 71–79).\n\nPraxis: Die Aktenkopie ermöglicht die Haftungsprüfung; sie ersetzt deren Ergebnis nicht.",
       "relatedIds": [
         "case-r27"
       ],
       "relatedMaterials": [
         {
           "id": "case-r27",
-          "title": "Kosten der ersten Kopie einer zahnärztlichen Akte"
+          "title": "Die erste Aktenkopie: kostenlos auch für eine Haftungsklage?"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://curia.europa.eu/jcms/upload/docs/application/pdf/2023-10/cp230161en.pdf"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/eugh/2023-10-26/c-307-22"
         }
       ]
     },
@@ -12428,20 +12456,24 @@
         "Fall R06",
         "Fallakte R06"
       ],
-      "body": "Entscheidung: Aufhebung und Zurückverweisung zur erneuten Prüfung des Aufklärungs- und Kausalitätsstreits.\n\nEinordnung: Hypothetische Einwilligung betrifft die tatsächlich vorgenommene Maßnahme zu ihrem konkreten Zeitpunkt. Eine mögliche spätere Zustimmung kann davon getrennt beim rechtmäßigen Alternativverhalten eine Rolle spielen; die Behandlungsseite trägt dessen Beweislast.\n\nPraxis: Die beiden Einwände getrennt prüfen. Nicht aus denkbarer späterer Zustimmung auf eine wirksame Einwilligung in den tatsächlich erfolgten Eingriff schließen.",
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Die mögliche Zustimmung zu einer späteren Operation erledigte den Entscheidungskonflikt bei der tatsächlich durchgeführten Operation nicht.\n\nEinordnung: Bei hypothetischer Einwilligung bleiben der gewünschte Aufschub und die Zweitmeinung bedeutsam. Die konkrete damalige Entscheidung darf nicht durch eine abstrakte spätere Operationsbereitschaft ersetzt werden (Rn. 15–18). Der rechtmäßige Alternativverlauf ist davon zu trennen. Die bloße spätere Bereitschaft beweist weder denselben Eingriff noch denselben Schaden. Auch die Voraussetzungen einer aufklärungspflichtigen Strahlentherapiealternative waren gesondert zu beurteilen (Rn. 13, 19–22).\n\nPraxis: „Später vielleicht ja“ bedeutet nicht „zu diesem Eingriff unter diesen Bedingungen ja“.",
       "relatedIds": [
         "case-r06"
       ],
       "relatedMaterials": [
         {
           "id": "case-r06",
-          "title": "Tumoroperation und hypothetische spätere Zustimmung"
+          "title": "„Ich hätte mich später operieren lassen“"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=143893&Blank=1.pdf"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2025-11-25/vi-zr-165-23"
         }
       ]
     },
@@ -12512,20 +12544,24 @@
         "Fall R19",
         "Fallakte R19"
       ],
-      "body": "Entscheidung: Der BGH wies die auf behauptete Leidensverlängerung gestützten Ansprüche ab.\n\nEinordnung: Das Weiterleben selbst ist kein ersatzfähiger Schaden. Aus dem Urteil folgt weder eine allgemeine Behandlungspflicht gegen den Patientenwillen noch eine Freistellung von Aufklärungs- und Behandlungspflichten.\n\nPraxis: Patientenwille, Pflichtverletzung, Gesundheitsverletzung, Schaden und Schutzzweckzusammenhang jeweils eigenständig prüfen.",
+      "body": "Entscheidung: Der BGH wies die Klage insgesamt ab; das vom Oberlandesgericht zugesprochene Schmerzensgeld blieb nicht bestehen.\n\nEinordnung: Das menschliche Leben darf auch bei schwerem Leiden nicht als Schaden gegenüber dem Tod bewertet werden. Die bloße Lebens- und Leidensverlängerung begründete hier keinen Schmerzensgeldanspruch (Rn. 14–21). Das ist keine Freigabe zur Behandlung gegen den Willen. Ebenso wenig genügt die bloße Entstehung von Kosten: Der Schutz der Indikations- und Erörterungspflichten dient hier nicht dem späteren Erbe (Rn. 19, 23, 28–33).\n\nPraxis: Pflichtverletzung, ersatzfähiger Nachteil und Schutzzweck müssen zusammenpassen.",
       "relatedIds": [
         "case-r19"
       ],
       "relatedMaterials": [
         {
           "id": "case-r19",
-          "title": "Schadensersatz wegen behaupteter Leidensverlängerung"
+          "title": "Lebensverlängerung als Schaden?"
         }
       ],
       "sources": [
         {
           "title": "Originalquelle / Fundstelle (extern)",
           "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=95016&Blank=1.pdf"
+        },
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2019-04-02/vi-zr-13-18"
         }
       ]
     },
@@ -31026,6 +31062,458 @@
           "title": "Gesetze im Internet",
           "url": "https://www.gesetze-im-internet.de/famfg/__320.html"
         }
+      ]
+    },
+    {
+      "id": "norm:dsgvo:12",
+      "kind": "norm",
+      "title": "Art. 12 DSGVO",
+      "law": "DSGVO",
+      "number": "12",
+      "marker": "Art.",
+      "aliases": [],
+      "body": "Informationen müssen verständlich und zugänglich sein. Absatz 5 regelt die grundsätzliche Unentgeltlichkeit und die engen Ausnahmen für offenkundig unbegründete oder exzessive Anträge.",
+      "text": "(1) Der Verantwortliche trifft geeignete Maßnahmen, um der betroffenen Person alle Informationen gemäß den Artikeln 13 und 14 und alle Mitteilungen gemäß den Artikeln 15 bis 22 und Artikel 34, die sich auf die Verarbeitung beziehen, in präziser, transparenter, verständlicher und leicht zugänglicher Form in einer klaren und einfachen Sprache zu übermitteln; dies gilt insbesondere für Informationen, die sich speziell an Kinder richten. Die Übermittlung der Informationen erfolgt schriftlich oder in anderer Form, gegebenenfalls auch elektronisch. Falls von der betroffenen Person verlangt, kann die Information mündlich erteilt werden, sofern die Identität der betroffenen Person in anderer Form nachgewiesen wurde.\n\n(2) Der Verantwortliche erleichtert der betroffenen Person die Ausübung ihrer Rechte gemäß den Artikeln 15 bis 22. In den in Artikel 11 Absatz 2 genannten Fällen darf sich der Verantwortliche nur dann weigern, aufgrund des Antrags der betroffenen Person auf Wahrnehmung ihrer Rechte gemäß den Artikeln 15 bis 22 tätig zu werden, wenn er glaubhaft macht, dass er nicht in der Lage ist, die betroffene Person zu identifizieren.\n\n(3) Der Verantwortliche stellt der betroffenen Person Informationen über die auf Antrag gemäß den Artikeln 15 bis 22 ergriffenen Maßnahmen unverzüglich, in jedem Fall aber innerhalb eines Monats nach Eingang des Antrags zur Verfügung. Diese Frist kann um weitere zwei Monate verlängert werden, wenn dies unter Berücksichtigung der Komplexität und der Anzahl von Anträgen erforderlich ist. Der Verantwortliche unterrichtet die betroffene Person innerhalb eines Monats nach Eingang des Antrags über eine Fristverlängerung, zusammen mit den Gründen für die Verzögerung. Stellt die betroffene Person den Antrag elektronisch, so ist sie nach Möglichkeit auf elektronischem Weg zu unterrichten, sofern sie nichts anderes angibt.\n\n(4) Wird der Verantwortliche auf den Antrag der betroffenen Person hin nicht tätig, so unterrichtet er die betroffene Person ohne Verzögerung, spätestens aber innerhalb eines Monats nach Eingang des Antrags über die Gründe hierfür und über die Möglichkeit, bei einer Aufsichtsbehörde Beschwerde einzulegen oder einen gerichtlichen Rechtsbehelf einzulegen.\n\n(5) Informationen gemäß den Artikeln 13 und 14 sowie alle Mitteilungen und Maßnahmen gemäß den Artikeln 15 bis 22 und Artikel 34 werden unentgeltlich zur Verfügung gestellt. Bei offenkundig unbegründeten oder – insbesondere im Fall von häufiger Wiederholung – exzessiven Anträgen einer betroffenen Person kann der Verantwortliche entweder\n\na) ein angemessenes Entgelt verlangen, bei dem die Verwaltungskosten für die Unterrichtung oder die Mitteilung oder die Durchführung der beantragten Maßnahme berücksichtigt werden, oder\n\nb) sich weigern, aufgrund des Antrags tätig zu werden. Der Verantwortliche hat den Nachweis für den offenkundig unbegründeten oder exzessiven Charakter des Antrags zu erbringen.\n\n(6) Hat der Verantwortliche begründete Zweifel an der Identität der natürlichen Person, die den Antrag gemäß den Artikeln 15 bis 21 stellt, so kann er unbeschadet des Artikels 11 zusätzliche Informationen anfordern, die zur Bestätigung der Identität der betroffenen Person erforderlich sind.\n\n(7) Die Informationen, die den betroffenen Personen gemäß den Artikeln 13 und 14 bereitzustellen sind, können in Kombination mit standardisierten Bildsymbolen bereitgestellt werden, um in leicht wahrnehmbarer, verständlicher und klar nachvollziehbarer Form einen aussagekräftigen Überblick über die beabsichtigte Verarbeitung zu vermitteln. Werden die Bildsymbole in elektronischer Form dargestellt, müssen sie maschinenlesbar sein.\n\n(8) Der Kommission wird die Befugnis übertragen, gemäß Artikel 92 delegierte Rechtsakte zur Bestimmung der Informationen, die durch Bildsymbole darzustellen sind, und der Verfahren für die Bereitstellung standardisierter Bildsymbole zu erlassen.",
+      "textSHA256": "8055a252818d9ed42efaa304f8b2797861b1b38c3fa9873bbf807895363ae40e",
+      "retrievedAt": "2026-11-06",
+      "sourceLabel": "Berliner Beauftragte für Datenschutz · DSGVO-Textausgabe Dezember 2025",
+      "sources": [
+        {
+          "title": "DSGVO · amtliche EU-Veröffentlichung",
+          "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=de"
+        },
+        {
+          "title": "Art. 12 DSGVO · Textausgabe der Berliner Datenschutzbehörde",
+          "url": "https://www.datenschutz-berlin.de/fileadmin/user_upload/pdf/gesetzestexte/2025-BlnBDI_DSGVO.pdf#page=125"
+        }
+      ]
+    },
+    {
+      "id": "norm:dsgvo:15",
+      "kind": "norm",
+      "title": "Art. 15 DSGVO",
+      "law": "DSGVO",
+      "number": "15",
+      "marker": "Art.",
+      "aliases": [],
+      "body": "Auskunft über verarbeitete personenbezogene Daten und eine Kopie dieser Daten. Die erste Kopie ist grundsätzlich kostenlos; weitere Kopien und Rechte Dritter sind gesondert zu beachten.",
+      "text": "(1) Die betroffene Person hat das Recht, von dem Verantwortlichen eine Bestätigung darüber zu verlangen, ob sie betreffende personenbezogene Daten verarbeitet werden; ist dies der Fall, so hat sie ein Recht auf Auskunft über diese personenbezogenen Daten und auf folgende Informationen:\n\na) die Verarbeitungszwecke;\n\nb) die Kategorien personenbezogener Daten, die verarbeitet werden;\n\nc) die Empfänger oder Kategorien von Empfängern, gegenüber denen die personenbezogenen Daten offengelegt worden sind oder noch offengelegt werden, insbesondere bei Empfängern in Drittländern oder bei internationalen Organisationen;\n\nd) falls möglich die geplante Dauer, für die die personenbezogenen Daten gespeichert werden, oder, falls dies nicht möglich ist, die Kriterien für die Festlegung dieser Dauer;\n\ne) das Bestehen eines Rechts auf Berichtigung oder Löschung der sie betreffenden personenbezogenen Daten oder auf Einschränkung der Verarbeitung durch den Verantwortlichen oder eines Widerspruchsrechts gegen diese Verarbeitung;\n\nf) das Bestehen eines Beschwerderechts bei einer Aufsichtsbehörde;\n\ng) wenn die personenbezogenen Daten nicht bei der betroffenen Person erhoben werden, alle verfügbaren Informationen über die Herkunft der Daten;\n\nh) das Bestehen einer automatisierten Entscheidungsfindung einschließlich Profiling gemäß Artikel 22 Absätze 1 und 4 und – zumindest in diesen Fällen – aussagekräftige Informationen über die involvierte Logik sowie die Tragweite und die angestrebten Auswirkungen einer derartigen Verarbeitung für die betroffene Person.\n\n(2) Werden personenbezogene Daten an ein Drittland oder an eine internationale Organisation übermittelt, so hat die betroffene Person das Recht, über die geeigneten Garantien gemäß Artikel 46 im Zusammenhang mit der Übermittlung unterrichtet zu werden.\n\n(3) Der Verantwortliche stellt eine Kopie der personenbezogenen Daten, die Gegenstand der Verarbeitung sind, zur Verfügung. Für alle weiteren Kopien, die die betroffene Person beantragt, kann der Verantwortliche ein angemessenes Entgelt auf der Grundlage der Verwaltungskosten verlangen. Stellt die betroffene Person den Antrag elektronisch, so sind die Informationen in einem gängigen elektronischen Format zur Verfügung zu stellen, sofern sie nichts anderes angibt.\n\n(4) Das Recht auf Erhalt einer Kopie gemäß Absatz 3 darf die Rechte und Freiheiten anderer Personen nicht beeinträchtigen.",
+      "textSHA256": "4f8bf459b626f8def3317a8b870e18f81aa0002f5144c0c01fe819facbcf86aa",
+      "retrievedAt": "2026-11-06",
+      "sourceLabel": "Berliner Beauftragte für Datenschutz · DSGVO-Textausgabe Dezember 2025",
+      "sources": [
+        {
+          "title": "DSGVO · amtliche EU-Veröffentlichung",
+          "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=de"
+        },
+        {
+          "title": "Art. 15 DSGVO · Textausgabe der Berliner Datenschutzbehörde",
+          "url": "https://www.datenschutz-berlin.de/fileadmin/user_upload/pdf/gesetzestexte/2025-BlnBDI_DSGVO.pdf#page=134"
+        }
+      ]
+    },
+    {
+      "id": "casehelp:ee-zeit",
+      "kind": "term",
+      "title": "Entschluss-Entwicklungs-Zeit (E-E-Zeit)",
+      "aliases": [
+        "E-E-Zeit",
+        "Entschluss-Entwicklungs-Zeit"
+      ],
+      "body": "Zeit zwischen dem Entschluss zur Kaiserschnittentbindung und der Entwicklung, also der Geburt des Kindes. Im konkreten Fall müssen unter anderem Indikation, Dringlichkeit und dokumentierter Ablauf geklärt werden. Der Zeitpunkt einer auffälligen CTG-Veränderung ist nicht automatisch der nachgewiesene Zeitpunkt des ärztlichen Operationsentschlusses.",
+      "sources": [
+        {
+          "title": "BGH · 28.08.2018 · VI ZR 509/17",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2018-08-28/vi-zr-509-17"
+        }
+      ]
+    },
+    {
+      "id": "casehelp:grobe-fahrlaessigkeit",
+      "kind": "term",
+      "title": "Grobe Fahrlässigkeit",
+      "aliases": [
+        "grobe Fahrlässigkeit",
+        "grob fahrlässig",
+        "grob fahrlässige"
+      ],
+      "body": "Die erforderliche Sorgfalt wird in besonders schwerem Maße verletzt. Hinzukommen muss, dass das Verhalten auch subjektiv schlechthin unentschuldbar ist. Davon zu unterscheiden ist der objektiv grobe Behandlungsfehler: Dieser kann unter den Voraussetzungen des § 630h Abs. 5 BGB eine Beweislastumkehr begründen, ohne damit bereits grobe Fahrlässigkeit der handelnden Person zu beweisen.",
+      "sources": [
+        {
+          "title": "BGH · 08.02.2022 · VI ZR 409/19 · Rn. 14–19",
+          "url": "https://de.openlegaldata.io/case/bgh-2022-02-08-vi-zr-40919"
+        },
+        {
+          "title": "Fahrlässigkeit · § 276 BGB",
+          "url": "https://www.gesetze-im-internet.de/bgb/__276.html"
+        }
+      ]
+    },
+    {
+      "id": "norm:bgb:627",
+      "kind": "norm",
+      "title": "§ 627 BGB",
+      "law": "BGB",
+      "number": "627",
+      "marker": "§",
+      "aliases": [],
+      "body": "Besondere Kündigungsmöglichkeit bei Diensten höherer Art; die Voraussetzungen im konkreten Vertragsverhältnis prüfen.",
+      "text": "(1) Bei einem Dienstverhältnis, das kein Arbeitsverhältnis im Sinne des § 622 ist, ist die Kündigung auch ohne die in § 626 bezeichnete Voraussetzung zulässig, wenn der zur Dienstleistung Verpflichtete, ohne in einem dauernden Dienstverhältnis mit festen Bezügen zu stehen, Dienste höherer Art zu leisten hat, die auf Grund besonderen Vertrauens übertragen zu werden pflegen.\n\n(2) Der Verpflichtete darf nur in der Art kündigen, dass sich der Dienstberechtigte die Dienste anderweit beschaffen kann, es sei denn, dass ein wichtiger Grund für die unzeitige Kündigung vorliegt. Kündigt er ohne solchen Grund zur Unzeit, so hat er dem Dienstberechtigten den daraus entstehenden Schaden zu ersetzen.",
+      "textSHA256": "626f136c808a0d3b2f7f1be182194eb210b87771d2611b9d6f424f5da8c905ba",
+      "retrievedAt": "2026-11-06",
+      "sources": [
+        {
+          "title": "Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/bgb/__627.html"
+        }
+      ]
+    },
+    {
+      "id": "norm:bgb:628",
+      "kind": "norm",
+      "title": "§ 628 BGB",
+      "law": "BGB",
+      "number": "628",
+      "marker": "§",
+      "aliases": [],
+      "body": "Vergütung nach Beginn der Tätigkeit und anschließender Kündigung. Absatz 1 Satz 2 regelt besondere Fälle fehlenden Interesses an den bisherigen Leistungen.",
+      "text": "(1) Wird nach dem Beginn der Dienstleistung das Dienstverhältnis auf Grund des § 626 oder des § 627 gekündigt, so kann der Verpflichtete einen seinen bisherigen Leistungen entsprechenden Teil der Vergütung verlangen. Kündigt er, ohne durch vertragswidriges Verhalten des anderen Teiles dazu veranlasst zu sein, oder veranlasst er durch sein vertragswidriges Verhalten die Kündigung des anderen Teiles, so steht ihm ein Anspruch auf die Vergütung insoweit nicht zu, als seine bisherigen Leistungen infolge der Kündigung für den anderen Teil kein Interesse haben. Ist die Vergütung für eine spätere Zeit im Voraus entrichtet, so hat der Verpflichtete sie nach Maßgabe des § 346 oder, wenn die Kündigung wegen eines Umstands erfolgt, den er nicht zu vertreten hat, nach den Vorschriften über die Herausgabe einer ungerechtfertigten Bereicherung zurückzuerstatten.\n\n(2) Wird die Kündigung durch vertragswidriges Verhalten des anderen Teiles veranlasst, so ist dieser zum Ersatz des durch die Aufhebung des Dienstverhältnisses entstehenden Schadens verpflichtet.",
+      "textSHA256": "887ea1984c2e005010196e4e293057933fd8700ab36120a0ab428e5bb85855fb",
+      "retrievedAt": "2026-11-06",
+      "sources": [
+        {
+          "title": "Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/bgb/__628.html"
+        }
+      ]
+    },
+    {
+      "id": "norm:zpo:485",
+      "kind": "norm",
+      "title": "§ 485 ZPO",
+      "law": "ZPO",
+      "number": "485",
+      "marker": "§",
+      "aliases": [],
+      "body": "Zulässigkeit des selbständigen Beweisverfahrens. Eine vorprozessuale Begutachtung entscheidet noch nicht abschließend über die Haftung.",
+      "text": "(1) Während oder außerhalb eines Streitverfahrens kann auf Antrag einer Partei die Einnahme des Augenscheins, die Vernehmung von Zeugen oder die Begutachtung durch einen Sachverständigen angeordnet werden, wenn der Gegner zustimmt oder zu besorgen ist, dass das Beweismittel verloren geht oder seine Benutzung erschwert wird.\n\n(2) Ist ein Rechtsstreit noch nicht anhängig, kann eine Partei die schriftliche Begutachtung durch einen Sachverständigen beantragen, wenn sie ein rechtliches Interesse daran hat, dass\n1.\nder Zustand einer Person oder der Zustand oder Wert einer Sache,\n2.\ndie Ursache eines Personenschadens, Sachschadens oder Sachmangels,\n3.\nder Aufwand für die Beseitigung eines Personenschadens, Sachschadens oder Sachmangels\nfestgestellt wird. Ein rechtliches Interesse ist anzunehmen, wenn die Feststellung der Vermeidung eines Rechtsstreits dienen kann.\n\n(3) Soweit eine Begutachtung bereits gerichtlich angeordnet worden ist, findet eine neue Begutachtung nur statt, wenn die Voraussetzungen des § 412 erfüllt sind.",
+      "textSHA256": "806b09151b05a6009cc97719be1a0b50c34076290661bc8bab60b1ad4f6a2ad7",
+      "retrievedAt": "2026-11-06",
+      "sources": [
+        {
+          "title": "Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/zpo/__485.html"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-188-23",
+      "kind": "judgment",
+      "title": "BGH · 05.11.2024 · VI ZR 188/23",
+      "aliases": [
+        "BGH · VI ZR 188/23",
+        "BGH, VI ZR 188/23",
+        "VI ZR 188/23"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung, soweit auf Aufklärungsfehler gestützte Ansprüche verneint worden waren.\n\nEinordnung: Mündliche Aufklärung bleibt erforderlich. Die Erwähnung im Formular ersetzt sie nicht. Ein wortgetreues Vorlesen sämtlicher Formularsätze ist dagegen nicht verlangt (Rn. 12–16). Der BGH ging für die Revision vom Vortrag zum fehlenden Risikogespräch aus. Ob und wie das Gespräch tatsächlich geführt wurde, war erneut zu würdigen. Auch die hypothetische Einwilligung war hinsichtlich des Nervenschädigungsrisikos noch nicht geklärt (Rn. 17–19).\n\nPraxis: Bogen, Gespräch und Beweis der Aufklärung sind drei verschiedene Dinge.",
+      "relatedIds": [
+        "case-bgh-vi-zr-188-23"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-188-23",
+          "title": "Das Risiko steht im Bogen · reicht das?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://de.openlegaldata.io/case/bgh-2024-11-05-vi-zr-18823"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-51-24",
+      "kind": "judgment",
+      "title": "BGH · 25.11.2025 · VI ZR 51/24",
+      "aliases": [
+        "BGH · VI ZR 51/24",
+        "BGH, VI ZR 51/24",
+        "VI ZR 51/24"
+      ],
+      "body": "Entscheidung: Aufhebung im angegriffenen Umfang und Zurückverweisung. Die Haftung konnte nicht auf fehlende Selbstbestimmungsaufklärung über Organisationsmängel gestützt werden.\n\nEinordnung: Die Klinik muss die fachgerechte Versorgung organisieren. Über die Gefahr eigener Organisationsfehler besteht keine Selbstbestimmungsaufklärungspflicht, durch deren Erfüllung eine fehlerhafte Versorgung legitimiert würde (Rn. 10–12). Zu prüfen bleiben Nacht- und Hintergrunddienst, konkrete Befähigung, der hypothetische Verlauf bei richtiger Organisation und die Beweisregeln. Eine Kausalitätsvermutung ist widerlegbar; der Gegenbeweis nach § 292 ZPO ist nicht ausgeschlossen (Rn. 15–19).\n\nPraxis: Ein Aufklärungsgespräch repariert keinen fehlenden Dienstplan und keine unzureichende Hilfe im Notfall.",
+      "relatedIds": [
+        "case-bgh-vi-zr-51-24"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-51-24",
+          "title": "Augenklinik nachts ohne geregelten Hintergrunddienst"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=Aktuell&Gericht=bgh&Sort=12288&anz=1005&nr=143829&pos=21"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-505-17",
+      "kind": "judgment",
+      "title": "BGH · 19.02.2019 · VI ZR 505/17",
+      "aliases": [
+        "BGH · VI ZR 505/17",
+        "BGH, VI ZR 505/17",
+        "VI ZR 505/17"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Organisationsvorwurf und Hygienedarlegung mussten rechtlich zutreffend geprüft werden.\n\nEinordnung: Die richtige Entscheidung ohne Umsetzung ist etwas anderes als eine medizinisch begründete Entscheidung gegen eine Prophylaxe. Die mögliche Grobheit war auch unter dem Gesichtspunkt der Organisation zu beurteilen (Rn. 9–13). Der BGH verlangte gerade keine zusätzlichen konkreten Hygieneindizien. Bei ausreichendem Patientenvortrag und zumutbarer Aufklärung musste die Klinik zu ihren Hygienemaßnahmen näher vortragen. Das ist noch keine automatische Kausalitätsumkehr (Rn. 15–21).\n\nPraxis: Zuerst klären, ob die falsche Entscheidung getroffen oder eine richtige Entscheidung nicht umgesetzt wurde.",
+      "relatedIds": [
+        "case-bgh-vi-zr-505-17"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-505-17",
+          "title": "Wundinfektion, schmutzige Zimmer und eine ausgebliebene Prophylaxe"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2019-02-19/vi-zr-505-17"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-285-17",
+      "kind": "judgment",
+      "title": "BGH · 26.06.2018 · VI ZR 285/17",
+      "aliases": [
+        "BGH · VI ZR 285/17",
+        "BGH, VI ZR 285/17",
+        "VI ZR 285/17"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Der BGH beanstandete auch die Begründung, mit der die Vorinstanz einen groben Fehler verneint hatte.\n\nEinordnung: Bedrohliche Befunde brauchen einen sicheren Informationsweg. Die Schutzpflicht kann über den letzten Kontakt hinausreichen (§ 241 Abs. 2 BGB; Rn. 11–16). Dass ein Versäumnis im Alltag vorkommen kann, beantwortet nicht die Frage seiner objektiven Unverständlichkeit. Grobheit und zusätzliche ursächliche Folgen brauchten eine tragfähige weitere Bewertung (Rn. 17–26).\n\nPraxis: Ein fertiger, aber nicht weitergegebener Befund verlangt eine andere Fehleranalyse als ein nie erhobener Befund.",
+      "relatedIds": [
+        "case-bgh-vi-zr-285-17"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-285-17",
+          "title": "Der Krebsbefund bleibt im Arztbrief liegen"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2018-06-26/vi-zr-285-17"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-409-19",
+      "kind": "judgment",
+      "title": "BGH · 08.02.2022 · VI ZR 409/19",
+      "aliases": [
+        "BGH · VI ZR 409/19",
+        "BGH, VI ZR 409/19",
+        "VI ZR 409/19"
+      ],
+      "body": "Entscheidung: Aufhebung im angegriffenen Umfang der Schmerzensgeldbemessung und Zurückverweisung. Der BGH setzte nicht selbst 30.000 Euro fest.\n\nEinordnung: Fehlerbewertung und persönlicher Verschuldensgrad sind verschieden. Der objektiv grobe Behandlungsfehler darf weder mit grober Fahrlässigkeit gleichgesetzt noch als deren Indiz verwendet werden (Rn. 14–16). Für das Schmerzensgeld zählen Ausgleich und Genugtuung. Daher kann persönliches Verschulden für die Höhe bedeutsam sein, obwohl die Kausalitätsbeweislast einem anderen Zweck dient. Vor dem Tod erlittene eigene Gesundheitsbeeinträchtigungen bleiben eigenständig zu bewerten (Rn. 17–25).\n\nPraxis: Beweislast und Schmerzensgeldbemessung fragen nach unterschiedlichen Voraussetzungen.",
+      "relatedIds": [
+        "case-bgh-vi-zr-409-19"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-409-19",
+          "title": "Herzinfarkt zu spät behandelt: grob ist nicht gleich grob fahrlässig"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://de.openlegaldata.io/case/bgh-2022-02-08-vi-zr-40919"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zb-12-13",
+      "kind": "judgment",
+      "title": "BGH · 24.09.2013 · VI ZB 12/13",
+      "aliases": [
+        "BGH · VI ZB 12/13",
+        "BGH, VI ZB 12/13",
+        "VI ZB 12/13"
+      ],
+      "body": "Entscheidung: Aufhebung beider ablehnender Beschlüsse und Anordnung der beantragten Beweiserhebung; die weiteren Maßnahmen waren vom Landgericht zu treffen.\n\nEinordnung: § 485 Abs. 2 ZPO erfasst ein weit verstandenes rechtliches Interesse. Es genügt, dass die Klärung der Vermeidung eines Rechtsstreits dienen kann; nicht sämtliche späteren Haftungsfragen müssen schon erledigt werden (Rn. 18–21). Die medizinischen Grundlagen eines möglichen groben Fehlers dürfen aufgeklärt werden, ohne die rechtliche Bewertung vorwegzunehmen. Das Beweisverfahren ersetzt kein Haftungsurteil (Rn. 22–23).\n\nPraxis: Ein Beweisverfahren kann eine Klage vorbereiten oder vermeiden; es spricht noch keinen Schadensersatz zu.",
+      "relatedIds": [
+        "case-bgh-vi-zb-12-13"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zb-12-13",
+          "title": "Die PEG-Sonde und der Weg zur Beweissicherung"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://medizinrecht.uni-koeln.de/fileadmin/sites/medizinrecht/Forschung/BGH/VI_ZB_12-13.pdf"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-594-15",
+      "kind": "judgment",
+      "title": "BGH · 08.11.2016 · VI ZR 594/15",
+      "aliases": [
+        "BGH · VI ZR 594/15",
+        "BGH, VI ZR 594/15",
+        "VI ZR 594/15"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Die auf Aufklärungsfehler gestützten Ansprüche waren verjährt; zum Beginn der Verjährung der Behandlungsfehleransprüche waren weitere Feststellungen nötig.\n\nEinordnung: Kenntnis anspruchsbezogen prüfen. Dem Bericht über die Geburt lässt sich nicht ohne Weiteres ausreichendes Wissen über einen medizinischen Standardverstoß entnehmen (Rn. 10–18). Die Hemmung der Verjährung durch Verhandlungen endete im Streitfall mit Zugang der Ablehnung. Weitere einseitige Bitten verlängerten sie nicht. Offen blieb die erforderliche Kenntnis hinsichtlich der Behandlungsfehleransprüche (Rn. 19–23, 27).\n\nPraxis: Nicht pauschal nach der Verjährung „des Falls“ fragen, sondern nach jedem Anspruch und seiner konkreten Kenntnisgrundlage.",
+      "relatedIds": [
+        "case-bgh-vi-zr-594-15"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-594-15",
+          "title": "Geburtsschaden: Wann beginnt die Verjährung?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2016-11-08/vi-zr-594-15"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-186-17",
+      "kind": "judgment",
+      "title": "BGH · 26.05.2020 · VI ZR 186/17",
+      "aliases": [
+        "BGH · VI ZR 186/17",
+        "BGH, VI ZR 186/17",
+        "VI ZR 186/17"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Die angenommene grob fahrlässige Unkenntnis der Anwälte vor Ende 2006 trug die Verjährungsentscheidung nicht.\n\nEinordnung: Das Urteil unterscheidet juristische Spezialisierung von medizinischer Erkenntnis. Die bloße Verfügbarkeit von Unterlagen ersetzt nicht ohne Weiteres die Kenntnis eines medizinischen Fehlers (Rn. 24–30). Kenntniszurechnung ist nach dem konkreten Mandat zu beurteilen. Das Urteil klärt nicht jede denkbare Kanzleikonstellation abschließend und befreit Anwälte nicht von ihren Berufspflichten. Streitgegenstand bleiben die Ansprüche gegen die Behandlungsseite.\n\nPraxis: Aktenbesitz, medizinisches Fehlerverständnis und rechtlich zurechenbare Kenntnis sind verschiedene Ebenen.",
+      "relatedIds": [
+        "case-bgh-vi-zr-186-17"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-186-17",
+          "title": "Dasselbe Kind, zweite Revision: Was muss ein Patientenanwalt wissen?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2020-05-26/vi-zr-186-17"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-509-17",
+      "kind": "judgment",
+      "title": "BGH · 28.08.2018 · VI ZR 509/17",
+      "aliases": [
+        "BGH · VI ZR 509/17",
+        "BGH, VI ZR 509/17",
+        "VI ZR 509/17"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung wegen der noch unzureichend geprüften früheren Aufklärung über die Sectioalternative. Nicht sämtliche organisatorischen Einwendungen waren damit erneut offen.\n\nEinordnung: Indikation, Entscheidung und Entbindung genau trennen. Die bereits geprüften Verzögerungen und die erfüllte sekundäre Darlegungslast sind von der Frage früherer Alternativenaufklärung zu unterscheiden (Rn. 27–30, 34–40). Offen waren gebotene frühere Aufklärung und deren möglicher Einfluss auf Geburtszeitpunkt und Schaden. Der BGH stellte weder eine sichere Schadensvermeidung zu einer bestimmten Minute noch ein Mitverschulden der Mutter fest.\n\nPraxis: Eine Zeitübersicht hilft nur, wenn jede Uhrzeit dem richtigen medizinischen und rechtlichen Ereignis zugeordnet ist.",
+      "relatedIds": [
+        "case-bgh-vi-zr-509-17"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-509-17",
+          "title": "Eilige Sectio: Organisation, Aufklärung und Entscheidungszeit"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2018-08-28/vi-zr-509-17"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-vi-zr-576-15",
+      "kind": "judgment",
+      "title": "BGH · 11.04.2017 · VI ZR 576/15",
+      "aliases": [
+        "BGH · VI ZR 576/15",
+        "BGH, VI ZR 576/15",
+        "VI ZR 576/15"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung. Fehlerart und Teilurteilsvoraussetzungen waren rechtlich zutreffend zu beurteilen.\n\nEinordnung: Bereits erhobener Befund und weitere Untersuchung sind nicht dasselbe. Ob es um Beratung oder unterlassene Befunderhebung geht, hängt von den festgestellten Pflichten und Tatsachen ab (Rn. 13–20). Die besondere Kausalitätsumkehr für einen qualifizierten einfachen Befunderhebungsfehler darf nicht auf jede therapeutische Beratung übertragen werden. Eine tatsächlich grobe Pflichtverletzung ist unabhängig davon gesondert zu prüfen.\n\nPraxis: Die Fehlerart aus dem konkreten Versäumnis bestimmen, nicht aus der gewünschten Beweisfolge.",
+      "relatedIds": [
+        "case-bgh-vi-zr-576-15"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-vi-zr-576-15",
+          "title": "Pap III: Befund nicht erhoben oder Dringlichkeit nicht erklärt?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2017-04-11/vi-zr-576-15"
+        }
+      ]
+    },
+    {
+      "id": "judgment:workshop-bgh-iii-zr-294-16",
+      "kind": "judgment",
+      "title": "BGH · 13.09.2018 · III ZR 294/16",
+      "aliases": [
+        "BGH · III ZR 294/16",
+        "BGH, III ZR 294/16",
+        "III ZR 294/16"
+      ],
+      "body": "Entscheidung: Aufhebung und Zurückverweisung zur Berechnung des noch berechtigten Rechnungsrests und zur Prüfung streitiger Gebührenvereinbarungen. Die Vergütung für die bereits als nutzlos bewerteten Positionen war dabei auszuscheiden.\n\nEinordnung: Völlig nutzlose Implantatleistungen wurden bereits mit Null bewertet. Das vertragswidrige Verhalten musste die Kündigung veranlasst haben; der Verbleib der Implantate rettete ihren wirtschaftlichen Nutzen hier nicht (Rn. 18–30). Unnötige Keramik-Inlays und fehlerhaft eingesetztes Emdogain waren über § 280 Abs. 1 BGB zu behandeln, weil diese Fehler nicht die Kündigung ausgelöst hatten. Der BGH entschied diese Ausschlüsse selbst; offen waren der verbleibende berechtigte Rest und Gebührenabreden (Rn. 31–38).\n\nPraxis: Kündigung, Wegfall des Vergütungsinteresses und Befreiung von einer nutzlosen Rechnung haben unterschiedliche Voraussetzungen.",
+      "relatedIds": [
+        "case-bgh-iii-zr-294-16"
+      ],
+      "relatedMaterials": [
+        {
+          "id": "case-bgh-iii-zr-294-16",
+          "title": "Unbrauchbare Zahnimplantate: Muss der Patient trotzdem zahlen?"
+        }
+      ],
+      "sources": [
+        {
+          "title": "Originalquelle / Fundstelle (extern)",
+          "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2018-09-13/iii-zr-294-16"
+        }
+      ]
+    },
+    {
+      "id": "cite:b606dec18d6287c8f92c",
+      "kind": "norm",
+      "title": "§ 280 BGB · § 241 BGB",
+      "aliases": [
+        "§§ 280 Abs. 1 und 241 Abs. 2 BGB"
+      ],
+      "body": "",
+      "retrievedAt": "2026-10-24",
+      "sources": [
+        {
+          "title": "§ 280 BGB · Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/bgb/__280.html"
+        },
+        {
+          "title": "§ 241 BGB · Gesetze im Internet",
+          "url": "https://www.gesetze-im-internet.de/bgb/__241.html"
+        }
+      ],
+      "targetNormIds": [
+        "norm:bgb:280",
+        "norm:bgb:241"
       ]
     }
   ]

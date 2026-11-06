@@ -1,14 +1,14 @@
-import {hasAccess} from './policy.mjs?v=20261106-practice13b';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-practice13b';
-import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-practice13b';
-import {notify} from './feedback.mjs?v=20261106-practice13b';
+import {hasAccess} from './policy.mjs?v=20261106-zivil40';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-zivil40';
+import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-zivil40';
+import {notify} from './feedback.mjs?v=20261106-zivil40';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(label,action,cls='secondary')=>{const n=el('button',label,cls);n.type='button';n.onclick=action;return n;};
 const link=(label,href,cls='button secondary')=>{const n=el('a',label,cls);n.href=href;return n;};
 export async function renderCasework(main,auth,grants,isCurrent,store,id=''){
  main.append(link('Zurück zu Üben','#practice'));
  if(!auth||!hasAccess('practice',grants)){
-  const gate=el('section',null,'card');gate.append(el('h1','Fallwerkstatt'),el('p','20 Originalfälle · Sachverhalt, eigene Überlegungen und Entscheidung.'),el('p','Die Fallwerkstatt ist in Premium enthalten.','notice'),link('Anmelden & Zugang wählen','#account'));main.append(gate);return;
+  const gate=el('section',null,'card');gate.append(el('h1','Fallwerkstatt'),el('p','40 Originalfälle · Sachverhalt, eigene Überlegungen und Entscheidung.'),el('p','Die Fallwerkstatt ist in Premium enthalten.','notice'),link('Anmelden & Zugang wählen','#account'));main.append(gate);return;
  }
  const loading=el('p','Die Fallwerkstatt wird geladen …','notice');main.append(loading);
  let data;try{data=await auth.getCourse('practice:casework-202611');}catch{}
@@ -53,6 +53,9 @@ export function renderCaseworkContent(main,data,{auth,isCurrent,store,id=''}){
   }catch{if(isCurrent()&&dialog.isConnected)target.append(el('p','Die Grafik konnte gerade nicht geladen werden. Die Erläuterungen stehen darunter bereit.','notice'));}
  }
  function helpButton(id,label){const entry=helpers.get(id);if(!entry)return el('span',label);const b=button(label,()=>openHelp(b,entry),'context-reference');b.setAttribute('aria-haspopup','dialog');return b;}
+ if(!id&&helpers.has('casehelp:pruefpfad')){
+  const guide=helpers.get('casehelp:pruefpfad'),b=button(guide.title,()=>openHelp(b,guide),'button secondary');b.setAttribute('aria-haspopup','dialog');header.append(b);
+ }
  function plain(parent,value){const text=protectReferences(value);let at=0;for(const hit of referenceMatches(text,index)){parent.append(document.createTextNode(text.slice(at,hit.start)),helpButton(hit.entry.id,text.slice(hit.start,hit.end)));at=hit.end;}parent.append(document.createTextNode(text.slice(at)));}
  function rich(parent,text){let at=0;for(const match of text.matchAll(/\[\[([^|\]]+)\|([^\]]+)\]\]|\*\*([^*]+)\*\*/g)){plain(parent,text.slice(at,match.index));if(match[1])parent.append(helpButton(match[1],match[2]));else{const strong=el('strong');rich(strong,match[3]);parent.append(strong);}at=match.index+match[0].length;}plain(parent,text.slice(at));return parent;}
  function paragraph(text,cls){return rich(el('p',null,cls),text??'');}
