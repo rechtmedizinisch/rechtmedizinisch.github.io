@@ -1,7 +1,7 @@
-import {hasAccess} from './policy.mjs?v=20261106-practice13';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-practice13';
-import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-practice13';
-import {notify} from './feedback.mjs?v=20261106-practice13';
+import {hasAccess} from './policy.mjs?v=20261106-practice13b';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-practice13b';
+import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-practice13b';
+import {notify} from './feedback.mjs?v=20261106-practice13b';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(label,action,cls='secondary')=>{const n=el('button',label,cls);n.type='button';n.onclick=action;return n;};
 const link=(label,href,cls='button secondary')=>{const n=el('a',label,cls);n.href=href;return n;};

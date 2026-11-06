@@ -1,5 +1,5 @@
-import {notify} from './feedback.mjs?v=20261106-practice13';
-import {passwordError} from './password-account.mjs?v=20261106-practice13';
+import {notify} from './feedback.mjs?v=20261106-practice13b';
+import {passwordError} from './password-account.mjs?v=20261106-practice13b';
 const el=(tag,text)=>{const node=document.createElement(tag);if(text!=null)node.textContent=text;return node;};
 export function passwordPanel(auth,user){
  const owner=user?.id,box=el('section');box.className='card account-password';

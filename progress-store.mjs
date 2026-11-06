@@ -1,6 +1,6 @@
-import {initialState,restore,transition} from './casework-state.mjs?v=20261106-practice13';
-import {emptyCourseProgress} from './progress-engine.mjs?v=20261106-practice13';
-import {resumeStore} from './learning-resume.mjs?v=20261106-practice13';
+import {initialState,restore,transition} from './casework-state.mjs?v=20261106-practice13b';
+import {emptyCourseProgress} from './progress-engine.mjs?v=20261106-practice13b';
+import {resumeStore} from './learning-resume.mjs?v=20261106-practice13b';
 export const progressKey=owner=>'rm-web-learning-v1:'+(owner||'guest');
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
 function normalizeCourse(value){
