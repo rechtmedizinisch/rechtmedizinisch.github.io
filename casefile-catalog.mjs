@@ -1,0 +1,2 @@
+export const casefileCatalog={"title":"Die Knieoperation · eine Strafakte, drei Varianten","fictional":true,"variants":[{"id":"A","title":"Fall A","focus":"Einwilligung und Erinnerung"},{"id":"B","title":"Fall B","focus":"Die bekannte Grenze"},{"id":"C","title":"Fall C","focus":"Ein Irrtum und seine Folgen"}]};
+export const casefileBundleHash="233ebd2aab89c29694855f9a9a308bab7e49861825b7eb9f9249794380736ab3";
