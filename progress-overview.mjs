@@ -1,6 +1,6 @@
-import {courseStatus} from './progress-engine.mjs?v=20261106-practiceux2';
-import {workshopCases} from './practice-catalog.mjs?v=20261106-practiceux2';
-import {casefileCatalog} from './casefile-catalog.mjs?v=20261106-practiceux2';
+import {courseStatus} from './progress-engine.mjs?v=20261106-polish61';
+import {workshopCases} from './practice-catalog.mjs?v=20261106-polish61';
+import {casefileCatalog} from './casefile-catalog.mjs?v=20261106-polish61';
 export function catalogStatus(entry,value={},content){
   if(content)return courseStatus(content,value);
   const totalUnits=entry.totalUnits??0;
@@ -36,7 +36,7 @@ export function renderProgress(main,catalog,store,isSignedIn){
   const label=el('label','Name auf dem Zertifikat'),input=el('input'),download=el('button',s.isComplete?'↓ Zertifikat als PDF speichern':'🔒 Zertifikat noch nicht freigeschaltet'),feedback=el('p');
   input.id='certificate-name';label.htmlFor=input.id;input.maxLength=120;input.autocomplete='name';input.value=store.snapshot.certificateName??'';download.type='button';download.disabled=!s.isComplete;feedback.role='status';
   input.addEventListener('change',()=>store.setCertificateName(input.value));
-  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20261106-practiceux2');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
+  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20261106-polish61');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
   certificate.append(label,input,download,feedback);main.append(certificate);
   const workshop=el('section',null,'card'),done=workshopCases.filter(c=>store.snapshot.casework?.[c.id]?.completionConfirmed===true&&store.snapshot.casework[c.id].completed===true).length;workshop.append(el('h2','Fallwerkstatt'),el('p',`${done} von ${workshopCases.length} Fällen bearbeitet`),el('p','Eigener Übungsfortschritt · unabhängig vom Kursabschluss','subtle'),link('Fallwerkstatt öffnen','#casework','button secondary'));main.append(workshop);
   const casefile=el('section',null,'card'),casefileDone=casefileCatalog.variants.filter(v=>store.snapshot.completedCasefileVariants?.includes(v.id)).length;casefile.append(el('h2','Interaktive Strafakte'),el('p',`${casefileDone} von ${casefileCatalog.variants.length} Varianten abgeschlossen`),el('p','Eigener Übungsfortschritt · unabhängig vom Kursabschluss','subtle'),link('Strafakte öffnen','#casefile','button secondary'));main.append(casefile);

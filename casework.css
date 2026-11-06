@@ -16,3 +16,17 @@ body:has(main.casework .casework-navigation) .feedback-region{bottom:calc(104px 
 .casefile-orientation ol{padding-left:24px}.casefile-orientation li{padding-block:4px}.casefile-step-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
 .casefile-step-grid button{min-width:0;width:100%}.casefile-answer{border-inline-start:4px solid var(--teal);padding:14px 16px;background:#087f8610;border-radius:12px;scroll-margin-top:12px}.casefile-result-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 @media(max-width:520px){.casefile-step-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.casework-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px}}
+
+/* Shared reading cues: labels carry the meaning alongside colour and vectors. */
+.casework-card>h2,.casework-card>h3{display:flex;align-items:flex-start;gap:12px;line-height:1.4}
+.casework-card>h2>span:last-child,.casework-card>h3>span:last-child{min-width:0}
+.casework-card .atlas-role-symbol{margin-top:3px;color:inherit}
+.casework-source{border-color:#6e7b88;background:color-mix(in srgb,#6e7b88 6%,var(--card,#fff))}
+.casework-outcome,.casework-question{border-color:var(--teal)}
+section.casework-question{display:block}
+.casework-takeaway p{font-weight:600}
+.casework .casework-help-link{display:flex;align-items:flex-start;gap:10px;width:100%;box-sizing:border-box;text-align:left;margin-block:10px}
+.casefile-tab{display:flex;align-items:center;justify-content:center;gap:8px}
+.casefile-tab .atlas-role-symbol{width:20px;height:20px;flex-basis:20px}
+.casefile-tab.is-active{background:var(--teal);color:white;box-shadow:inset 0 0 0 2px var(--teal);font-weight:750}
+.casefile-tab:focus-visible,.casework-help-link:focus-visible{outline:3px solid var(--teal);outline-offset:3px}

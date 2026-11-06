@@ -1,11 +1,12 @@
-import {officialCourtURL} from './court-sources.mjs?v=20261106-practiceux2';
-import {hasAccess} from './policy.mjs?v=20261106-practiceux2';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-practiceux2';
-import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-practiceux2';
-import {notify} from './feedback.mjs?v=20261106-practiceux2';
-import {caseAreas,caseCode,caseAreaLabel,matchesWorkshopCase} from './casework-browse.mjs?v=20261106-practiceux2';
-import {workshopCases} from './practice-catalog.mjs?v=20261106-practiceux2';
-import {workshopDemoID} from './practice-access.mjs?v=20261106-practiceux2';
+import {officialCourtURL} from './court-sources.mjs?v=20261106-polish61';
+import {roleIcon,readingHeading} from './reading-style.mjs?v=20261106-polish61';
+import {hasAccess} from './policy.mjs?v=20261106-polish61';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-polish61';
+import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-polish61';
+import {notify} from './feedback.mjs?v=20261106-polish61';
+import {caseAreas,caseCode,caseAreaLabel,matchesWorkshopCase} from './casework-browse.mjs?v=20261106-polish61';
+import {workshopCases} from './practice-catalog.mjs?v=20261106-polish61';
+import {workshopDemoID} from './practice-access.mjs?v=20261106-polish61';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(label,action,cls='secondary')=>{const n=el('button',label,cls);n.type='button';n.onclick=action;return n;};
 const link=(label,href,cls='button secondary')=>{const n=el('a',label,cls);n.href=href;return n;};
@@ -13,7 +14,7 @@ export async function renderCasework(main,auth,grants,isCurrent,store,id=''){
  main.append(link('Zurück zu Üben','#practice'));
  const unlocked=!!auth&&hasAccess('practice',grants);
  const loading=el('p','Die Fallwerkstatt wird geladen …','notice');main.append(loading);
- let data;try{if(unlocked)data=await auth.getCourse('practice:casework-202611');else{const response=await fetch('./casework-demo.json?v=20261106-practiceux2');if(response.ok){data=await response.json();if(data.cases.length!==1||data.cases[0].id!==workshopDemoID)throw Error('Invalid demo');const trial=data.cases[0];data.cases=workshopCases.map(row=>row.id===workshopDemoID?trial:{...row,locked:true});}}}catch{data=null;}
+ let data;try{if(unlocked)data=await auth.getCourse('practice:casework-202611');else{const response=await fetch('./casework-demo.json?v=20261106-polish61');if(response.ok){data=await response.json();if(data.cases.length!==1||data.cases[0].id!==workshopDemoID)throw Error('Invalid demo');const trial=data.cases[0];data.cases=workshopCases.map(row=>row.id===workshopDemoID?trial:{...row,locked:true});}}}catch{data=null;}
  if(!isCurrent())return;loading.remove();
  if(!data||!Array.isArray(data.cases)||!data.cases.length||!Array.isArray(data.help)){
   main.append(el('p','Die Fallwerkstatt konnte nicht geladen werden. Bitte versuchen Sie es erneut.','notice'),button('Erneut versuchen',()=>{if(isCurrent()){main.replaceChildren();renderCasework(main,auth,grants,isCurrent,store,id);}}));return;
@@ -58,15 +59,15 @@ export function renderCaseworkContent(main,data,{auth,isCurrent,store,id=''}){
    }));
   }catch{if(isCurrent()&&dialog.isConnected)target.append(el('p','Die Grafik konnte gerade nicht geladen werden. Die Erläuterungen stehen darunter bereit.','notice'));}
  }
- function helpButton(id,label){const entry=helpers.get(id);if(!entry)return el('span',label);const b=button(label,()=>openHelp(b,entry),'context-reference');b.setAttribute('aria-haspopup','dialog');return b;}
+ function helpButton(id,label,inline=false){const entry=helpers.get(id);if(!entry)return el('span',label);const b=button(label,()=>openHelp(b,entry),inline?'context-reference':'button secondary casework-help-link');if(!inline){const icon=roleIcon(entry.kind==='scheme'?'focus':entry.kind==='norm'?'source':'question');if(icon)b.prepend(icon);}b.setAttribute('aria-haspopup','dialog');return b;}
  if(!id&&helpers.has('casehelp:pruefpfad')){
   const guide=helpers.get('casehelp:pruefpfad'),b=button(guide.title,()=>openHelp(b,guide),'button secondary');b.setAttribute('aria-haspopup','dialog');header.append(b);
  }
- function plain(parent,value){const text=protectReferences(value);let at=0;for(const hit of referenceMatches(text,index)){parent.append(document.createTextNode(text.slice(at,hit.start)),helpButton(hit.entry.id,text.slice(hit.start,hit.end)));at=hit.end;}parent.append(document.createTextNode(text.slice(at)));}
- function rich(parent,text){let at=0;for(const match of text.matchAll(/\[\[([^|\]]+)\|([^\]]+)\]\]|\*\*([^*]+)\*\*/g)){plain(parent,text.slice(at,match.index));if(match[1])parent.append(helpButton(match[1],match[2]));else{const strong=el('strong');rich(strong,match[3]);parent.append(strong);}at=match.index+match[0].length;}plain(parent,text.slice(at));return parent;}
+ function plain(parent,value){const text=protectReferences(value);let at=0;for(const hit of referenceMatches(text,index)){parent.append(document.createTextNode(text.slice(at,hit.start)),helpButton(hit.entry.id,text.slice(hit.start,hit.end),true));at=hit.end;}parent.append(document.createTextNode(text.slice(at)));}
+ function rich(parent,text){let at=0;for(const match of text.matchAll(/\[\[([^|\]]+)\|([^\]]+)\]\]|\*\*([^*]+)\*\*/g)){plain(parent,text.slice(at,match.index));if(match[1])parent.append(helpButton(match[1],match[2],true));else{const strong=el('strong');rich(strong,match[3]);parent.append(strong);}at=match.index+match[0].length;}plain(parent,text.slice(at));return parent;}
  function paragraph(text,cls){return rich(el('p',null,cls),text??'');}
- function cardBox(title,text,tone=''){const box=el('section',null,'card casework-card casework-'+tone);box.append(el('h2',title));if(text)box.append(paragraph(text));return box;}
- function helpLinks(entry){const box=cardBox('Nachschlagen, ohne den Fall zu verlassen');for(const id of [...entry.normIds,...entry.schemaIds])if(helpers.has(id))box.append(helpButton(id,helpers.get(id).title));return box;}
+ function cardBox(title,text,tone=''){const box=el('section',null,'card casework-card casework-'+tone),heading=el('h2'),parts=readingHeading(title),icon=roleIcon(tone);if(parts.marker)heading.append(el('span',parts.marker,'atlas-step-badge'));else if(icon)heading.append(icon);heading.append(el('span',parts.title));box.append(heading);if(text)box.append(paragraph(text));return box;}
+ function helpLinks(entry){const box=cardBox('Nachschlagen, ohne den Fall zu verlassen',null,'source');for(const id of [...entry.normIds,...entry.schemaIds])if(helpers.has(id))box.append(helpButton(id,helpers.get(id).title));return box;}
  const entry=data.cases.find(c=>c.id===id);
  if(id&&!entry){main.append(el('p','Dieser Fall ist nicht verfügbar.','notice'),link('Zur Fallübersicht','#casework'));return;}
  if(!entry){
@@ -85,15 +86,16 @@ export function renderCaseworkContent(main,data,{auth,isCurrent,store,id=''}){
  function drawReader(){
   if(!isCurrent())return;const state=stateFor(entry),step=state.step;reader.replaceChildren();footer.replaceChildren();const title=el('h2',`${caseCode(entry)} · ${entry.title}`);title.tabIndex=-1;reader.append(title,el('p',caseAreaLabel(entry),'badge'),el('p',`${entry.source.court} · ${entry.source.date} · ${entry.source.docket}`,'subtle'),el('p',`${step+1} / 3 · ${['Sachverhalt','Fragen','Entscheidung'][step]}`,'badge'));
   if(step===0){const facts=cardBox('Sachverhalt',null,'facts');entry.facts.forEach(t=>facts.append(paragraph(t)));reader.append(facts,cardBox('Wer ist beteiligt?',entry.roles,'facts'),cardBox('Genau unterscheiden',entry.clarification,'proof'));}
-  else if(step===1){const questions=cardBox('Ihre Überlegungen');questions.append(el('p','Welche Tatsachen und rechtlichen Voraussetzungen sind entscheidend? Formulieren Sie zunächst eine eigene Antwort.','subtle'));entry.questions.forEach((q,i)=>{const row=el('div',null,'casework-question');row.append(el('span',i+1,'casework-number'),paragraph(q.text));questions.append(row);});const facts=el('details',null,'card');facts.append(el('summary','Sachverhalt nochmals lesen'));entry.facts.forEach(t=>facts.append(paragraph(t)));reader.append(questions,facts,helpLinks(entry));}
+  else if(step===1){const questions=cardBox('Ihre Überlegungen',null,'question');questions.append(el('p','Welche Tatsachen und rechtlichen Voraussetzungen sind entscheidend? Formulieren Sie zunächst eine eigene Antwort.','subtle'));entry.questions.forEach((q,i)=>{const row=el('div',null,'casework-question');row.append(el('span',i+1,'casework-number'),paragraph(q.text));questions.append(row);});const facts=el('details',null,'card');facts.append(el('summary','Sachverhalt nochmals lesen'));entry.facts.forEach(t=>facts.append(paragraph(t)));reader.append(questions,facts,helpLinks(entry));}
   else{
    const decision=entry.decision,reasons=cardBox('Warum hat das Gericht so entschieden?',null,'reasoning');decision.reasons.forEach(t=>reasons.append(paragraph(t)));reader.append(cardBox('Das Ergebnis',decision.result,'outcome'),reasons);
    entry.questions.forEach((q,i)=>reader.append(cardBox(`${i+1} · ${q.text}`,decision.answers[i],'reasoning')));
-   reader.append(cardBox('💡 Merksatz',decision.takeaway,'takeaway'),cardBox('Heutige Einordnung',decision.lawComparison,'source'),helpLinks(entry));
+   reader.append(cardBox('Merksatz',decision.takeaway,'takeaway'),cardBox('Heutige Einordnung',decision.lawComparison,'source'),helpLinks(entry));
    const original=el('details',null,'card');original.dataset.noReferenceHelp='';original.append(el('summary','Gerichtstext lesen'),el('p',entry.original.label,'subtle'));
    for(const [key,title] of [['facts','Tatbestand'],['tenor','Tenor'],['reasons','Entscheidungsgründe']])if(entry.original[key])original.append(el('h3',title),el('p',entry.original[key],'casework-original'));
    source(original,entry.source.links.map(url=>({url,title:'Vollständige Originalquelle öffnen'})));reader.append(original);
    if(state.completed)reader.append(el('p','✓ Fall bearbeitet','badge'));else reader.append(button('Fall als bearbeitet markieren',()=>{action('complete');notify({title:'Fall als bearbeitet markiert',text:'Ihr Fortschritt in der Fallwerkstatt wurde gespeichert.'});},'button'));
+   if(entry.canonicalMaterialId)reader.append(link('Fall in der Wissensbibliothek','#material/'+encodeURIComponent('atlas:'+entry.canonicalMaterialId)));
    if(entry.relatedCaseIds?.length){const related=cardBox('Fälle im Vergleich');for(const targetId of entry.relatedCaseIds){const target=data.cases.find(c=>c.id===targetId);if(target)related.append(link(caseCode(target)+' · '+target.title,'#casework/'+encodeURIComponent(target.id)));}reader.append(related);}
   }
   footer.append(step?button('Zurück',()=>action('back')):link('Fälle','#casework'));
