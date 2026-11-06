@@ -1,4 +1,4 @@
-import {hasAccess} from './policy.mjs?v=20261106-polish61';
+import {hasAccess} from './policy.mjs?v=20261106-polish61b';
 export const workshopDemoID='casework:bgh-vi-zr-304-02';
 export const casefileDemoVariant='A';
 export function practiceAccess(kind,id,grants=[]){

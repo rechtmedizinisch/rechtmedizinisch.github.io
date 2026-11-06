@@ -1,35 +1,35 @@
-import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261106-polish61';
-import {notify,sessionFeedback} from './feedback.mjs?v=20261106-polish61';
-import {createLearningUpdateNotice} from './learning-update.mjs?v=20261106-polish61';
-import {codePanel} from './code-panel.mjs?v=20261106-polish61';
-import {renderCancellation} from './cancellation.js?v=20261106-polish61';
-import {billingPanel} from './billing.js?v=20261106-polish61';
-import {replacePresentation} from './presentation-transition.mjs?v=20261106-polish61';
-import {renderLearningOffer} from './learning-offer.mjs?v=20261106-polish61';
-import {renderFreeContent} from './free-content.mjs?v=20261106-polish61';
-import {homeLearning} from './home-learning.mjs?v=20261106-polish61';
-import {progressActions} from './progress-actions.mjs?v=20261106-polish61';
-import {progressSync} from './progress-sync.mjs?v=20261106-polish61';
-import {syncPanel} from './progress-sync-ui.mjs?v=20261106-polish61';
-import {renderSearch} from './search.js?v=20261106-polish61';
-import {renderPodcast} from './podcast.js?v=20261106-polish61';
-import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261106-polish61';
-import {renderCourseLearning} from './course-learning.js?v=20261106-polish61';
-import {progressStore} from './progress-store.mjs?v=20261106-polish61';
-import {renderReferences} from './references.js?v=20261106-polish61';
-import {formatSlideText} from './slide-tools.js?v=20261106-polish61';
-import {loginPanel} from './email-login.js?v=20261106-polish61';
-import {passwordPanel} from './password-panel.mjs?v=20261106-polish61';
-import {renderLegal} from './legal.js?v=20261106-polish61';
-import {renderPractice} from './practice.js?v=20261106-polish61';
-import {renderCasework} from './casework.js?v=20261106-polish61';
-import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261106-polish61';
-import {accountTools} from './account-tools.js?v=20261106-polish61';
-import {renderLibrary,courseMaterials} from './library.js?v=20261106-polish61';
-import {readingViewState} from './reading-view-state.mjs?v=20261106-polish61';
-import {config} from './config.js?v=20261106-polish61';
-import {installContextHelp} from './context-help.mjs?v=20261106-polish61';
-import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261106-polish61';
+import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261106-polish61b';
+import {notify,sessionFeedback} from './feedback.mjs?v=20261106-polish61b';
+import {createLearningUpdateNotice} from './learning-update.mjs?v=20261106-polish61b';
+import {codePanel} from './code-panel.mjs?v=20261106-polish61b';
+import {renderCancellation} from './cancellation.js?v=20261106-polish61b';
+import {billingPanel} from './billing.js?v=20261106-polish61b';
+import {replacePresentation} from './presentation-transition.mjs?v=20261106-polish61b';
+import {renderLearningOffer} from './learning-offer.mjs?v=20261106-polish61b';
+import {renderFreeContent} from './free-content.mjs?v=20261106-polish61b';
+import {homeLearning} from './home-learning.mjs?v=20261106-polish61b';
+import {progressActions} from './progress-actions.mjs?v=20261106-polish61b';
+import {progressSync} from './progress-sync.mjs?v=20261106-polish61b';
+import {syncPanel} from './progress-sync-ui.mjs?v=20261106-polish61b';
+import {renderSearch} from './search.js?v=20261106-polish61b';
+import {renderPodcast} from './podcast.js?v=20261106-polish61b';
+import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261106-polish61b';
+import {renderCourseLearning} from './course-learning.js?v=20261106-polish61b';
+import {progressStore} from './progress-store.mjs?v=20261106-polish61b';
+import {renderReferences} from './references.js?v=20261106-polish61b';
+import {formatSlideText} from './slide-tools.js?v=20261106-polish61b';
+import {loginPanel} from './email-login.js?v=20261106-polish61b';
+import {passwordPanel} from './password-panel.mjs?v=20261106-polish61b';
+import {renderLegal} from './legal.js?v=20261106-polish61b';
+import {renderPractice} from './practice.js?v=20261106-polish61b';
+import {renderCasework} from './casework.js?v=20261106-polish61b';
+import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261106-polish61b';
+import {accountTools} from './account-tools.js?v=20261106-polish61b';
+import {renderLibrary,courseMaterials} from './library.js?v=20261106-polish61b';
+import {readingViewState} from './reading-view-state.mjs?v=20261106-polish61b';
+import {config} from './config.js?v=20261106-polish61b';
+import {installContextHelp} from './context-help.mjs?v=20261106-polish61b';
+import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261106-polish61b';
 const main=document.querySelector('main');
 // Anchor navigation must leave the entire target below the wrapping header.
 const pageHeader=document.querySelector('body > header');
@@ -159,10 +159,10 @@ async function route(){
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261106-polish61').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261106-polish61b').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
-  auth=await import('./auth.js?v=20261106-polish61');
+  auth=await import('./auth.js?v=20261106-polish61b');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
    const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});

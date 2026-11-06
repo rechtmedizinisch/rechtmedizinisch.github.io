@@ -1,12 +1,12 @@
-import {officialCourtURL} from './court-sources.mjs?v=20261106-polish61';
-import {roleIcon,readingHeading} from './reading-style.mjs?v=20261106-polish61';
-import {hasAccess} from './policy.mjs?v=20261106-polish61';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-polish61';
-import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-polish61';
-import {notify} from './feedback.mjs?v=20261106-polish61';
-import {caseAreas,caseCode,caseAreaLabel,matchesWorkshopCase} from './casework-browse.mjs?v=20261106-polish61';
-import {workshopCases} from './practice-catalog.mjs?v=20261106-polish61';
-import {workshopDemoID} from './practice-access.mjs?v=20261106-polish61';
+import {officialCourtURL} from './court-sources.mjs?v=20261106-polish61b';
+import {roleIcon,readingHeading} from './reading-style.mjs?v=20261106-polish61b';
+import {hasAccess} from './policy.mjs?v=20261106-polish61b';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-polish61b';
+import {referenceIndex,referenceMatches,openReferenceDialog} from './context-help.mjs?v=20261106-polish61b';
+import {notify} from './feedback.mjs?v=20261106-polish61b';
+import {caseAreas,caseCode,caseAreaLabel,matchesWorkshopCase} from './casework-browse.mjs?v=20261106-polish61b';
+import {workshopCases} from './practice-catalog.mjs?v=20261106-polish61b';
+import {workshopDemoID} from './practice-access.mjs?v=20261106-polish61b';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(label,action,cls='secondary')=>{const n=el('button',label,cls);n.type='button';n.onclick=action;return n;};
 const link=(label,href,cls='button secondary')=>{const n=el('a',label,cls);n.href=href;return n;};
@@ -14,7 +14,7 @@ export async function renderCasework(main,auth,grants,isCurrent,store,id=''){
  main.append(link('Zurück zu Üben','#practice'));
  const unlocked=!!auth&&hasAccess('practice',grants);
  const loading=el('p','Die Fallwerkstatt wird geladen …','notice');main.append(loading);
- let data;try{if(unlocked)data=await auth.getCourse('practice:casework-202611');else{const response=await fetch('./casework-demo.json?v=20261106-polish61');if(response.ok){data=await response.json();if(data.cases.length!==1||data.cases[0].id!==workshopDemoID)throw Error('Invalid demo');const trial=data.cases[0];data.cases=workshopCases.map(row=>row.id===workshopDemoID?trial:{...row,locked:true});}}}catch{data=null;}
+ let data;try{if(unlocked)data=await auth.getCourse('practice:casework-202611');else{const response=await fetch('./casework-demo.json?v=20261106-polish61b');if(response.ok){data=await response.json();if(data.cases.length!==1||data.cases[0].id!==workshopDemoID)throw Error('Invalid demo');const trial=data.cases[0];data.cases=workshopCases.map(row=>row.id===workshopDemoID?trial:{...row,locked:true});}}}catch{data=null;}
  if(!isCurrent())return;loading.remove();
  if(!data||!Array.isArray(data.cases)||!data.cases.length||!Array.isArray(data.help)){
   main.append(el('p','Die Fallwerkstatt konnte nicht geladen werden. Bitte versuchen Sie es erneut.','notice'),button('Erneut versuchen',()=>{if(isCurrent()){main.replaceChildren();renderCasework(main,auth,grants,isCurrent,store,id);}}));return;

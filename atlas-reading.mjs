@@ -1,11 +1,11 @@
-import {formatSlideText} from './slide-tools.js?v=20261106-polish61';
-import {safeURL} from './policy.mjs?v=20261106-polish61';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-polish61';
-import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261106-polish61';
-import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261106-polish61';
-import {readingRole,readingHeading,roleIcon} from './reading-style.mjs?v=20261106-polish61';
-export {roleIcon} from './reading-style.mjs?v=20261106-polish61';
-import {readingGroups} from './reading-guide.mjs?v=20261106-polish61';
+import {formatSlideText} from './slide-tools.js?v=20261106-polish61b';
+import {safeURL} from './policy.mjs?v=20261106-polish61b';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-polish61b';
+import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261106-polish61b';
+import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261106-polish61b';
+import {readingRole,readingHeading,roleIcon} from './reading-style.mjs?v=20261106-polish61b';
+export {roleIcon} from './reading-style.mjs?v=20261106-polish61b';
+import {readingGroups} from './reading-guide.mjs?v=20261106-polish61b';
 const element=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function card(title,text,role='explanation',marker=null){
  role=readingRole(title,role);
