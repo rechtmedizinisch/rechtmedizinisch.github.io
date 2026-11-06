@@ -1,5 +1,5 @@
-import {renderSource} from './source-links.mjs?v=20261106-practiceux';
-import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20261106-practiceux';
+import {renderSource} from './source-links.mjs?v=20261106-practiceux2';
+import {protectReferences,readingParts,emphasisRanges,slideSections,headingStyle,layoutForSlide} from './presentation-theme.mjs?v=20261106-practiceux2';
 export function richText(parent,text){const doc=parent.ownerDocument;let cursor=0;for(const r of emphasisRanges(text)){parent.append(doc.createTextNode(text.slice(cursor,r.start)));const strong=doc.createElement('strong');strong.textContent=text.slice(r.start,r.end);parent.append(strong);cursor=r.end;}parent.append(doc.createTextNode(text.slice(cursor)));}
 export function formatSlideText(parent,text){
  const parts=readingParts(text),doc=parent.ownerDocument;
@@ -18,7 +18,7 @@ export async function downloadSlides(auth,freeSlides,full){
  const available=full?await auth.getSlides():freeSlides.filter(e=>e.free).map(e=>e.content);const byId=new Map(available.filter(c=>c?.blocks).map(c=>[String(c.id),c]));const slides=freeSlides.map(e=>byId.get(String(e.nativeId))).filter(Boolean);
  if(!slides.length)throw Error('Keine Folien verfügbar');
  const doc=document.implementation.createHTMLDocument('Recht Medizinisch – Kursfolien');doc.documentElement.lang='de';
- const style=doc.createElement('style');const response=await fetch('./presentation-export.css?v=20261106-practiceux');if(!response.ok)throw Error('Exportgestaltung nicht verfügbar');style.textContent=await response.text();doc.head.append(style);
+ const style=doc.createElement('style');const response=await fetch('./presentation-export.css?v=20261106-practiceux2');if(!response.ok)throw Error('Exportgestaltung nicht verfügbar');style.textContent=await response.text();doc.head.append(style);
  const imageCache=new Map();
  async function embed(name,c){if(imageCache.has(name))return imageCache.get(name);let url=c.publicAssets?.[name];if(!url){const asset=await auth.getCourse('asset-v3:slides:'+name);if(!asset?.path)throw Error('Grafikzugang nicht verfügbar');url=await auth.getGraphic(asset.path);}const r=await fetch(url);if(!r.ok)throw Error('Grafikdownload fehlgeschlagen');const blob=await r.blob();if(!blob.type.startsWith('image/'))throw Error('Ungültige Grafik');const data=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(blob);});imageCache.set(name,data);return data;}
  for(const c of slides){

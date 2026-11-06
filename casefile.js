@@ -1,13 +1,13 @@
-import {hasAccess} from './policy.mjs?v=20261106-practiceux';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-practiceux';
-import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-practiceux';
-import {notify} from './feedback.mjs?v=20261106-practiceux';
-import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261106-practiceux';
-import {casefileStore} from './casefile-store.mjs?v=20261106-practiceux';
-import {casefileWorker} from './casefile-worker.mjs?v=20261106-practiceux';
-import {casefileSession} from './casefile-session.mjs?v=20261106-practiceux';
-import {casefileInput} from './casefile-form.mjs?v=20261106-practiceux';
-import {practiceAccess} from './practice-access.mjs?v=20261106-practiceux';
+import {hasAccess} from './policy.mjs?v=20261106-practiceux2';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-practiceux2';
+import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-practiceux2';
+import {notify} from './feedback.mjs?v=20261106-practiceux2';
+import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261106-practiceux2';
+import {casefileStore} from './casefile-store.mjs?v=20261106-practiceux2';
+import {casefileWorker} from './casefile-worker.mjs?v=20261106-practiceux2';
+import {casefileSession} from './casefile-session.mjs?v=20261106-practiceux2';
+import {casefileInput} from './casefile-form.mjs?v=20261106-practiceux2';
+import {practiceAccess} from './practice-access.mjs?v=20261106-practiceux2';
 let activeClose=()=>{};
 export function closeActiveCasefile(){activeClose();activeClose=()=>{};}
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
@@ -26,7 +26,7 @@ export async function renderCasefile(main,auth,grants,user,isCurrent,progress,va
  if(!casefileCatalog.variants.some(v=>v.id===variant)){main.append(el('p','Diese Fallvariante ist nicht verfügbar.'),link('Zur Variantenübersicht','#casefile'));return;}
  if(!practiceAccess('casefile',variant,premium?grants:[])){main.append(el('p','Diese Variante ist in Premium enthalten. Fall A können Sie kostenlos vollständig ausprobieren.','notice'),link('Premium-Zugang ansehen','#shop'),link('Kostenlosen Fall A öffnen','#casefile/A'),link('Zur Variantenübersicht','#casefile'));return;}
  const loading=el('p','Die Strafakte wird geladen …','notice');main.append(loading);
- try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo.js?v=20261106-practiceux');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
+ try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo.js?v=20261106-practiceux2');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
  catch(error){if(isCurrent()){loading.remove();main.append(el('p',error.message??'Die Strafakte konnte nicht geladen werden.','notice'),button('Erneut versuchen',()=>{if(isCurrent()){main.replaceChildren();renderCasefile(main,auth,grants,user,isCurrent,progress,variant);}}));}}
 }
 export async function renderCasefileContent(main,payload,{owner,variant,isCurrent,progress,expectedHash=casefileBundleHash}){
@@ -71,7 +71,7 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  }
  function interview(person,trial=false){
   let answer;
-  interviewDialog=dialog(person.name,d=>{d.append(el('p',person.role,'subtle'),el('p','Wählen Sie eine Frage. Die dokumentierte Antwort erscheint direkt hier.','notice'));answer=el('section',null,'casefile-answer');answer.setAttribute('aria-live','polite');d.append(answer);for(const q of person.questions){const b=button(q.text,async()=>{if(busy)return;b.disabled=true;await run('ask',{interview:person.id,question:q.id,trial});if(!current()||!d.isConnected)return;answer.replaceChildren();const updated=value.interviews.find(p=>p.id===person.id)?.questions.find(x=>x.id===q.id),text=trial?updated?.trialAnswer:updated?.answer;if(text)answer.append(card('Dokumentierte Antwort',text,'facts'));if(value.feedback)answer.append(card(text?'Einordnung':'Hinweis zur Frage',value.feedback.text));d.scrollTop=0;b.disabled=false;});d.append(b);}});
+  interviewDialog=dialog(person.name,d=>{d.append(el('p',person.role,'subtle'),el('p','Wählen Sie eine Frage. Die dokumentierte Antwort erscheint direkt hier.','notice'));answer=el('section',null,'casefile-answer');answer.setAttribute('aria-live','polite');d.append(answer);for(const q of person.questions){const b=button(q.text,async()=>{if(busy)return;b.disabled=true;const response=await run('ask',{interview:person.id,question:q.id,trial});if(!current()||!d.isConnected)return;answer.replaceChildren();if(!response){answer.append(card('Frage konnte nicht gesichert werden','Bitte schließen Sie die Befragung und öffnen Sie die Akte erneut. Ihr zuletzt gespeicherter Stand bleibt erhalten.','proof'));b.disabled=false;d.scrollTop=0;return;}const updated=value.interviews.find(p=>p.id===person.id)?.questions.find(x=>x.id===q.id),text=trial?updated?.trialAnswer:updated?.answer;if(text)answer.append(card('Dokumentierte Antwort',text,'facts'));if(value.feedback)answer.append(card(text?'Einordnung':'Hinweis zur Frage',value.feedback.text));d.scrollTop=0;b.disabled=false;});d.append(b);}});
   interviewDialog.addEventListener('close',()=>{interviewDialog=null;},{once:true});
  }
  function investigations(){
