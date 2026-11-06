@@ -1,0 +1,376 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-06",
+  "providers": [
+    {
+      "id": "spotify",
+      "title": "Spotify",
+      "host": "open.spotify.com",
+      "showURL": "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8"
+    },
+    {
+      "id": "apple",
+      "title": "Apple Podcasts",
+      "host": "podcasts.apple.com",
+      "showURL": "https://podcasts.apple.com/de/podcast/recht-medizinisch/id1896818482"
+    },
+    {
+      "id": "amazon",
+      "title": "Amazon Music",
+      "host": "music.amazon.de",
+      "showURL": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch"
+    },
+    {
+      "id": "podcastde",
+      "title": "podcast.de",
+      "host": "www.podcast.de",
+      "showURL": "https://www.podcast.de/podcast/3726568/recht-medizinisch"
+    }
+  ],
+  "episodes": [
+    {
+      "id": "finanzierung",
+      "legacyURLs": [
+        "https://creators.spotify.com/pod/profile/schleppleflorian/episodes/Folge-7---Diagnose--Kaputt-gespart-e3r4h97",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-7---Diagnose--Kaputt-gespart-e3r4h97"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/2LIzatzhPdqpdTmjdfpbzR",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-7-diagnose-kaputt-gespart/id1896818482?i=1000798266682",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch",
+          "kind": "show"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/episode/708877534/folge-7-diagnose-kaputt-gespart",
+          "kind": "episode"
+        }
+      ]
+    },
+    {
+      "id": "standards",
+      "legacyURLs": [
+        "https://open.spotify.com/episode/1mlnkZz01jTKrqL5R1Yepe",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-6---Status-quo---Was-gilt-eigentlich---Leitlinie--Richtlinie-oder-SOP-e3pgfpo"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/1mlnkZz01jTKrqL5R1Yepe",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-6-status-quo-was-gilt-eigentlich-leitlinie-richtlinie/id1896818482?i=1000792099851",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch",
+          "kind": "show"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/episode/707672196/folge-6-status-quo-was-gilt-eigentlich-leitlinie-richtlinie-oder-sop",
+          "kind": "episode"
+        }
+      ]
+    },
+    {
+      "id": "defensiv",
+      "legacyURLs": [
+        "https://www.podcast.de/episode/705909964/folge-5-so-viel-wie-noetig-so-wenig-wie-moeglich-defensivmedizin-und-ueberdiagnostik",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-5---So-viel-wie-ntig--so-wenig-wie-mglich---Defensivmedizin-und-berdiagnostik-e3nqun0"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/0sGZGQV6XDrlFwai46CfxB",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-5-so-viel-wie-n%C3%B6tig-so-wenig-wie-m%C3%B6glich-defensivmedizin/id1896818482?i=1000785625249",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch",
+          "kind": "show"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/episode/705909964/folge-5-so-viel-wie-noetig-so-wenig-wie-moeglich-defensivmedizin-und-ueberdiagnostik",
+          "kind": "episode"
+        }
+      ]
+    },
+    {
+      "id": "erwachsene",
+      "legacyURLs": [
+        "https://www.podcast.de/episode/705488168/folge-4-2-freiheitsentziehende-massnahmen-beim-erwachsenen",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-4-2---Freiheitsentziehende-Manahmen-beim-Erwachsenen-e3n7o2k"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/0DVl5tgMfDLxpHibxWWXxS",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-4-2-freiheitsentziehende-ma%C3%9Fnahmen-beim-erwachsenen/id1896818482?i=1000782064218",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/episodes/52dc1ad2-9d42-42df-adc5-121a464017e7/recht-medizinisch-folge-4-2---freiheitsentziehende-ma%C3%9Fnahmen-beim-erwachsenen",
+          "kind": "episode"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/episode/705488168/folge-4-2-freiheitsentziehende-massnahmen-beim-erwachsenen",
+          "kind": "episode"
+        }
+      ]
+    },
+    {
+      "id": "kinder",
+      "legacyURLs": [
+        "https://open.spotify.com/episode/7KcXwsJXde4QCvCJwE1EkT",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-4-1---Ultima-Ratio-e3mk81r"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/7KcXwsJXde4QCvCJwE1EkT",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-4-1-ultima-ratio/id1896818482?i=1000778617272",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/episodes/919ee5a0-e8cc-4367-b76a-236acdc52c82/recht-medizinisch-folge-4-1---ultima-ratio",
+          "kind": "episode"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/podcast/3726568/recht-medizinisch",
+          "kind": "show"
+        }
+      ]
+    },
+    {
+      "id": "aufklaerung",
+      "legacyURLs": [
+        "https://open.spotify.com/episode/3ROIMztRtgvjiFgLir18Te",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-3-Aufklrung-geklrt-e3lelcv"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/3ROIMztRtgvjiFgLir18Te",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-3-aufkl%C3%A4rung-gekl%C3%A4rt/id1896818482?i=1000774766942",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/episodes/a2a2f2fe-31a1-43ce-bcef-47fc8026d3da/recht-medizinisch-folge-3-aufkl%C3%A4rung-gekl%C3%A4rt",
+          "kind": "episode"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/podcast/3726568/recht-medizinisch",
+          "kind": "show"
+        }
+      ]
+    },
+    {
+      "id": "erlanger",
+      "legacyURLs": [
+        "https://www.podcast.de/episode/704305819/kurzvisite-der-erlanger-baby-fall",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Kurzvisite-Der-Erlanger-Baby-Fall-e3l4ni1"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/68uTnDMKZPPOVyYupAUIXF",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/kurzvisite-der-erlanger-baby-fall/id1896818482?i=1000773801705",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/episodes/02c60e53-95eb-437d-87c9-84db1373d697/recht-medizinisch-kurzvisite-der-erlanger-baby-fall",
+          "kind": "episode"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/episode/704305819/kurzvisite-der-erlanger-baby-fall",
+          "kind": "episode"
+        }
+      ]
+    },
+    {
+      "id": "patientenwille",
+      "legacyURLs": [
+        "https://open.spotify.com/episode/3eyia0qcX192zupd65u3dL",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-2-In-dubio-pro-vita----Im-Zweifel-fr-das-Leben-e3jsrt5"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/3eyia0qcX192zupd65u3dL",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-2-in-dubio-pro-vita-im-zweifel-f%C3%BCr-das-leben/id1896818482?i=1000769710484",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/episodes/f279375f-e3d2-416a-b9c7-88bcfd6e9880/recht-medizinisch-folge-2-in-dubio-pro-vita---im-zweifel-f%C3%BCr-das-leben",
+          "kind": "episode"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/podcast/3726568/recht-medizinisch",
+          "kind": "show"
+        }
+      ]
+    },
+    {
+      "id": "btm",
+      "legacyURLs": [
+        "https://www.podcast.de/episode/703749717/folge-1-betaeubungsmittel-im-klinikalltag-grobe-schnitzer-und-wie-wir-diese-abwenden-koennen",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-1---Betubungsmittel-im-Klinikalltag---Grobe-Schnitzer-und-wie-wir-diese-abwenden-knnen-e3hn0ea"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/3smCPZtODLxq53RnE9Ncem",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-1-bet%C3%A4ubungsmittel-im-klinikalltag-grobe-schnitzer/id1896818482?i=1000769710369",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/episodes/f08b692f-869e-4081-a4e9-fdbcddec6720/recht-medizinisch-folge-1---bet%C3%A4ubungsmittel-im-klinikalltag---grobe-schnitzer-und-wie-wir-diese-abwenden-k%C3%B6nnen",
+          "kind": "episode"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/episode/703749717/folge-1-betaeubungsmittel-im-klinikalltag-grobe-schnitzer-und-wie-wir-diese-abwenden-koennen",
+          "kind": "episode"
+        }
+      ]
+    },
+    {
+      "id": "intro",
+      "legacyURLs": [
+        "https://open.spotify.com/show/7aowMbc68QlEwd0K4x5OT8",
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Folge-0---Warum-Recht-Medizinisch-e3h3pfh"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/0OQr55pWtRy4GiLd2UV9S3",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/folge-0-warum-recht-medizinisch/id1896818482?i=1000769710299",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/episodes/553ac4bc-8974-4a75-9d4f-259ca5e1781b/recht-medizinisch-folge-0---warum-recht-medizinisch",
+          "kind": "episode"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/podcast/3726568/recht-medizinisch",
+          "kind": "show"
+        }
+      ]
+    },
+    {
+      "id": "app-bonus",
+      "legacyURLs": [
+        "https://podcasters.spotify.com/pod/show/schleppleflorian/episodes/Die-Recht-Medizinisch-App---Goodie-fr-euch-in-den-Shownotes-e3qpfvn"
+      ],
+      "links": [
+        {
+          "provider": "spotify",
+          "url": "https://open.spotify.com/episode/4C5stik08UDNbOy8EW4L9k",
+          "kind": "episode"
+        },
+        {
+          "provider": "apple",
+          "url": "https://podcasts.apple.com/de/podcast/die-recht-medizinisch-app-goodie-f%C3%BCr-euch-in-den-shownotes/id1896818482?i=1000797217664",
+          "kind": "episode"
+        },
+        {
+          "provider": "amazon",
+          "url": "https://music.amazon.de/podcasts/9870b74b-c54d-4fae-b5b9-0c9e7728a2ad/recht-medizinisch",
+          "kind": "show"
+        },
+        {
+          "provider": "podcastde",
+          "url": "https://www.podcast.de/episode/708481445/die-recht-medizinisch-app-goodie-fuer-euch-in-den-shownotes",
+          "kind": "episode"
+        }
+      ]
+    }
+  ],
+  "episodeOrder": [
+    "finanzierung",
+    "app-bonus",
+    "standards",
+    "defensiv",
+    "erwachsene",
+    "kinder",
+    "aufklaerung",
+    "erlanger",
+    "patientenwille",
+    "btm",
+    "intro"
+  ],
+  "extraEpisodes": [
+    {
+      "id": "app-bonus",
+      "label": "Bonus · App & Zugänge",
+      "title": "Die Recht-Medizinisch-App · Hinweise zu Zugängen",
+      "url": "https://open.spotify.com/episode/4C5stik08UDNbOy8EW4L9k",
+      "duration": "3 Min.",
+      "summary": "Ein kurzer Einblick in die App und die Lernplattform. Weitere Hinweise finden Sie in den Shownotes der Folge.",
+      "courses": [],
+      "materials": []
+    }
+  ],
+  "rssURL": "https://anchor.fm/s/10d913c10/podcast/rss"
+}

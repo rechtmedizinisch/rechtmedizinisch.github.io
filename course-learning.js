@@ -1,11 +1,12 @@
-import {protectReferences} from './presentation-theme.mjs?v=20261106-polish61b';
-import {courseStatus} from './progress-engine.mjs?v=20261106-polish61b';
-import {shuffle,safeURL} from './policy.mjs?v=20261106-polish61b';
-import {formatSlideText} from './slide-tools.js?v=20261106-polish61b';
+import {renderPodcastListening} from './podcast-listening.mjs?v=20261106-podcast62b';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-podcast62b';
+import {courseStatus} from './progress-engine.mjs?v=20261106-podcast62b';
+import {shuffle,safeURL} from './policy.mjs?v=20261106-podcast62b';
+import {formatSlideText} from './slide-tools.js?v=20261106-podcast62b';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(label,fn,cls='secondary')=>{const b=el('button',label,cls);b.type='button';b.onclick=fn;return b;};
 function external(label,url,onOpen){const a=el('a',label,'source-link'),href=safeURL(url);if(href){a.href=href;a.target='_blank';a.rel='noopener noreferrer';a.onclick=onOpen;}return a;}
-export function renderCourseLearning(main,head,course,store,signedIn=false){
+export function renderCourseLearning(main,head,course,store,signedIn=false,episodes=[]){
   const id=course.id,progress=el('div',null,'course-learning-progress'),meter=el('progress'),caption=el('p'),saveStatus=el('p',null,'subtle');
   meter.max=100;meter.setAttribute('aria-label','Kursfortschritt');caption.role='status';saveStatus.role='status';
   progress.append(meter,caption);head.append(progress);main.append(saveStatus);
@@ -53,6 +54,14 @@ export function renderCourseLearning(main,head,course,store,signedIn=false){
   const opened=el('p',store.course(id).decisionOpened?'✓ Originalquelle geöffnet':'Originalquelle noch nicht geöffnet','subtle');decision.append(external('Entscheidung an der Quelle öffnen',d.url,()=>{update({decisionOpened:true});opened.textContent='✓ Originalquelle geöffnet';}),opened);
   task(4,'🔎 Wissen prüfen',course.quiz,'quizChoice');task(5,'🧭 Praxistransfer',course.transfer,'transferChoices',Array.isArray(course.transfer.correct));
   const sources=section(6,'🔗 Quellen & Vertiefung');course.reading.forEach((r,index)=>{const a=external((store.course(id).readingOpened.includes(index)?'✓ ':'')+r.label+'',r.url,()=>{mark('readingOpened',index);a.textContent='✓ '+r.label+'';});sources.append(a);});
-  if(course.podcast){const p=course.podcast,podcast=section(7,'🎧 Zum Podcast');podcast.append(el('p','Mit Florian Schlepple & Dr. Philipp Graef','subtle'),el('p',p.bridge));const a=external((store.course(id).podcastOpened?'✓ ':'')+p.title+'',p.link,()=>{update({podcastOpened:true});a.textContent='✓ '+p.title+'';});podcast.append(a);}
+  if(course.podcast){
+    const p=course.podcast,podcast=section(7,'🎧 Zum Podcast');podcast.append(el('p','Mit Florian Schlepple & Dr. Philipp Graef','subtle'),el('p',p.bridge));
+    const opened=el('p',store.course(id).podcastOpened?'✓ Podcastquelle geöffnet':'Wählen Sie Ihren Höranbieter.','subtle');opened.role='status';
+    const markPodcast=()=>{update({podcastOpened:true});opened.textContent='✓ Podcastquelle geöffnet';};
+    const related=episodes.filter(e=>e.courses.includes(course.no));
+    if(related.length)for(const episode of related){podcast.append(el('h3',episode.label+' · '+episode.title));renderPodcastListening(podcast,{episodeID:episode.id},markPodcast);}
+    else{podcast.append(el('h3',p.title));renderPodcastListening(podcast,{legacyURL:p.link},markPodcast);}
+    podcast.append(opened);
+  }
   store.recordStatus(id,courseStatus(course,store.course(id)));refresh();
 }

@@ -1,35 +1,36 @@
-import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261106-polish61b';
-import {notify,sessionFeedback} from './feedback.mjs?v=20261106-polish61b';
-import {createLearningUpdateNotice} from './learning-update.mjs?v=20261106-polish61b';
-import {codePanel} from './code-panel.mjs?v=20261106-polish61b';
-import {renderCancellation} from './cancellation.js?v=20261106-polish61b';
-import {billingPanel} from './billing.js?v=20261106-polish61b';
-import {replacePresentation} from './presentation-transition.mjs?v=20261106-polish61b';
-import {renderLearningOffer} from './learning-offer.mjs?v=20261106-polish61b';
-import {renderFreeContent} from './free-content.mjs?v=20261106-polish61b';
-import {homeLearning} from './home-learning.mjs?v=20261106-polish61b';
-import {progressActions} from './progress-actions.mjs?v=20261106-polish61b';
-import {progressSync} from './progress-sync.mjs?v=20261106-polish61b';
-import {syncPanel} from './progress-sync-ui.mjs?v=20261106-polish61b';
-import {renderSearch} from './search.js?v=20261106-polish61b';
-import {renderPodcast} from './podcast.js?v=20261106-polish61b';
-import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261106-polish61b';
-import {renderCourseLearning} from './course-learning.js?v=20261106-polish61b';
-import {progressStore} from './progress-store.mjs?v=20261106-polish61b';
-import {renderReferences} from './references.js?v=20261106-polish61b';
-import {formatSlideText} from './slide-tools.js?v=20261106-polish61b';
-import {loginPanel} from './email-login.js?v=20261106-polish61b';
-import {passwordPanel} from './password-panel.mjs?v=20261106-polish61b';
-import {renderLegal} from './legal.js?v=20261106-polish61b';
-import {renderPractice} from './practice.js?v=20261106-polish61b';
-import {renderCasework} from './casework.js?v=20261106-polish61b';
-import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261106-polish61b';
-import {accountTools} from './account-tools.js?v=20261106-polish61b';
-import {renderLibrary,courseMaterials} from './library.js?v=20261106-polish61b';
-import {readingViewState} from './reading-view-state.mjs?v=20261106-polish61b';
-import {config} from './config.js?v=20261106-polish61b';
-import {installContextHelp} from './context-help.mjs?v=20261106-polish61b';
-import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261106-polish61b';
+import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261106-podcast62b';
+import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261106-podcast62b';
+import {notify,sessionFeedback} from './feedback.mjs?v=20261106-podcast62b';
+import {createLearningUpdateNotice} from './learning-update.mjs?v=20261106-podcast62b';
+import {codePanel} from './code-panel.mjs?v=20261106-podcast62b';
+import {renderCancellation} from './cancellation.js?v=20261106-podcast62b';
+import {billingPanel} from './billing.js?v=20261106-podcast62b';
+import {replacePresentation} from './presentation-transition.mjs?v=20261106-podcast62b';
+import {renderLearningOffer} from './learning-offer.mjs?v=20261106-podcast62b';
+import {renderFreeContent} from './free-content.mjs?v=20261106-podcast62b';
+import {homeLearning} from './home-learning.mjs?v=20261106-podcast62b';
+import {progressActions} from './progress-actions.mjs?v=20261106-podcast62b';
+import {progressSync} from './progress-sync.mjs?v=20261106-podcast62b';
+import {syncPanel} from './progress-sync-ui.mjs?v=20261106-podcast62b';
+import {renderSearch} from './search.js?v=20261106-podcast62b';
+import {renderPodcast} from './podcast.js?v=20261106-podcast62b';
+import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261106-podcast62b';
+import {renderCourseLearning} from './course-learning.js?v=20261106-podcast62b';
+import {progressStore} from './progress-store.mjs?v=20261106-podcast62b';
+import {renderReferences} from './references.js?v=20261106-podcast62b';
+import {formatSlideText} from './slide-tools.js?v=20261106-podcast62b';
+import {loginPanel} from './email-login.js?v=20261106-podcast62b';
+import {passwordPanel} from './password-panel.mjs?v=20261106-podcast62b';
+import {renderLegal} from './legal.js?v=20261106-podcast62b';
+import {renderPractice} from './practice.js?v=20261106-podcast62b';
+import {renderCasework} from './casework.js?v=20261106-podcast62b';
+import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261106-podcast62b';
+import {accountTools} from './account-tools.js?v=20261106-podcast62b';
+import {renderLibrary,courseMaterials} from './library.js?v=20261106-podcast62b';
+import {readingViewState} from './reading-view-state.mjs?v=20261106-podcast62b';
+import {config} from './config.js?v=20261106-podcast62b';
+import {installContextHelp} from './context-help.mjs?v=20261106-podcast62b';
+import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261106-podcast62b';
 const main=document.querySelector('main');
 // Anchor navigation must leave the entire target below the wrapping header.
 const pageHeader=document.querySelector('body > header');
@@ -82,7 +83,7 @@ const courseSymbols=['🧭','⏱','⚖','📋','🔎','🤝','🏛','⚖','🩺'
 function courseCard(c){const n=card();n.classList.add('course-preview');if(c.free)n.classList.add('course-free');const top=el('div',undefined,'course-card-top'),symbol=el('span',courseSymbols[c.no-1]??'📚','course-symbol');symbol.setAttribute('aria-hidden','true');top.append(symbol,badge(c));n.append(top,el('p',`KURS ${String(c.no).padStart(2,'0')}`,'section-number'),el('h3',c.title),el('p',c.subtitle),progressBadge(c,learningStore(),catalog.courses.find(x=>x.id===c.id)),link('Kurs ansehen →',`#course/${c.id}`,'button secondary'));return n;}
 function home(){const hero=el('section',undefined,'hero'),copy=el('div',undefined,'hero-copy');copy.append(el('p','Medizinrecht verstehen. Sicherer handeln.','eyebrow'));const h=el('h1','Recht haben.');h.append(el('br'),el('span','Recht bekommen.'));copy.append(h,el('p','15 fallbasierte Kurse, Urteile und Normen. Für Medizin, Recht und alle Gesundheitsberufe.'),link('Kostenlos mit Kurs 1 starten →','#course/tag-01','button'));const image=el('img');image.src='assets/login-klinik-gericht-v1.webp';image.alt='Ärztin zwischen Behandlungszimmer und Gerichtssaal';hero.append(copy,image);main.append(hero,el('p','⚠ Lehr- und Lernangebot. Keine individuelle Rechts- oder medizinische Beratung.','notice disclaimer'));const intro=card('Ihr Einstieg ist kostenlos');intro.append(el('p','Kurse 1 und 2, Urteile und Normen sind ohne Anmeldung zugänglich. Weitere Inhalte öffnen Sie mit Premium, einem passenden Einzelkauf oder einem gültigen Freischaltcode.'),link('🎁 Kostenlos entdecken →','#free','button secondary'));main.append(intro);homeLearning(main,catalog,learningStore());}
 function courses(){const banner=el('section',undefined,'knowledge-banner');banner.append(el('p','VERSTEHEN · ANWENDEN · VERTIEFEN','section-number'),el('h1','Ihr Weg durch das Medizinrecht'),el('p','15 fallbasierte Kurse – von den ersten Schritten nach einem Konflikt bis zum Gerichtsbesuch.'),el('span','Kurse 1 & 2 kostenlos · ohne Anmeldung','badge'));main.append(banner);const search=el('input');search.type='search';search.placeholder='Kursnummer, Thema oder Lernziel suchen';search.setAttribute('aria-label','Kurse durchsuchen');const results=el('div'),count=el('p','','subtle');count.setAttribute('role','status');const groups=[['🧭','Kostenlos beginnen','Orientierung gewinnen und im Ernstfall die ersten Schritte kennen.',1,2],['⚖','Haftung & Verfahren','Ansprüche, Beweise und gerichtliche sowie außergerichtliche Wege verstehen.',3,8],['🩺','Verantwortung im Berufsalltag','Berufsrecht, Patientenautonomie und sichere Entscheidungen in der Versorgung.',9,13],['🏛','Wissen in die Praxis übertragen','Das Gelernte am Gesamtfall und beim Gerichtsbesuch zusammenführen.',14,15]];const render=()=>{const q=search.value.trim().toLocaleLowerCase('de'),matches=catalog.catalog.filter(c=>`${String(c.no).padStart(2,'0')} ${c.title} ${c.subtitle} ${c.goals.join(' ')}`.toLocaleLowerCase('de').includes(q));results.replaceChildren();count.textContent=q?`${matches.length} ${matches.length===1?"passender Kurs":"passende Kurse"}`:'Alle 15 Kurse · Kurse 1 & 2 kostenlos · weitere Kurse mit Premium oder Kursedition';for(const [icon,title,description,first,last] of groups){const items=matches.filter(c=>c.no>=first&&c.no<=last);if(!items.length)continue;const group=el('section',undefined,'course-group'),heading=el('h2',`${icon} ${title}`),grid=el('div',undefined,'grid');group.append(heading,el('p',description,'subtle'));grid.append(...items.map(courseCard));group.append(grid);results.append(group);}if(!matches.length)results.append(el('p','Kein passender Kurs. Versuchen Sie einen anderen Begriff.','notice'));};search.addEventListener('input',render);main.append(search,count,results);render();}
-async function course(id,version){const preview=catalog.catalog.find(c=>c.id===id);main.append(link('← Kursübersicht','#courses','back'));if(!preview){main.append(el('h1','Kurs nicht gefunden'));return;}const head=card();head.classList.add('course-hero');head.append(badge(preview),el('p',`KURS ${String(preview.no).padStart(2,'0')}`,'section-number'),el('h1',preview.title),el('p',preview.subtitle));main.append(head);const goals=card();goals.classList.add('course-goals');goals.append(el('p','IHR LERNZIEL','section-number'),el('h2','🎯 Nach diesem Kurs können Sie …'),list(preview.goals));main.append(goals);let content=catalog.courses.find(c=>c.id===id);if(!content&&allowed(preview)&&auth&&config.backendReady){const loading=status('Kurszugang wird geprüft …');main.append(loading);try{content=await auth.getCourse(id);}catch{loading.textContent='Der Kurs konnte nicht geladen werden. Bitte versuchen Sie es erneut.';return;}if(version!==routeVersion)return;loading.remove();}if(!content){const gate=card('Diesen Kurs freischalten');gate.append(el('p','🔒 Die Vorschau ist frei zugänglich. Für die Kursinhalte wählen Sie Premium, die Kursedition oder lösen einen gültigen Freischaltcode ein.','notice'),link('Zugang wählen →','#shop','button'),link('Freischaltcode einlösen →','#account','button secondary'));main.append(gate);return;}learningStore().rememberLocation({kind:'course',id:preview.id,title:preview.title});renderCourseLearning(main,head,content,learningStore(),!!user);await courseMaterials(main,preview.no,()=>version===routeVersion);}
+async function course(id,version){const preview=catalog.catalog.find(c=>c.id===id);main.append(link('← Kursübersicht','#courses','back'));if(!preview){main.append(el('h1','Kurs nicht gefunden'));return;}const head=card();head.classList.add('course-hero');head.append(badge(preview),el('p',`KURS ${String(preview.no).padStart(2,'0')}`,'section-number'),el('h1',preview.title),el('p',preview.subtitle));main.append(head);const goals=card();goals.classList.add('course-goals');goals.append(el('p','IHR LERNZIEL','section-number'),el('h2','🎯 Nach diesem Kurs können Sie …'),list(preview.goals));main.append(goals);let content=catalog.courses.find(c=>c.id===id);if(!content&&allowed(preview)&&auth&&config.backendReady){const loading=status('Kurszugang wird geprüft …');main.append(loading);try{content=await auth.getCourse(id);}catch{loading.textContent='Der Kurs konnte nicht geladen werden. Bitte versuchen Sie es erneut.';return;}if(version!==routeVersion)return;loading.remove();}if(!content){const gate=card('Diesen Kurs freischalten');gate.append(el('p','🔒 Die Vorschau ist frei zugänglich. Für die Kursinhalte wählen Sie Premium, die Kursedition oder lösen einen gültigen Freischaltcode ein.','notice'),link('Zugang wählen →','#shop','button'),link('Freischaltcode einlösen →','#account','button secondary'));main.append(gate);return;}learningStore().rememberLocation({kind:'course',id:preview.id,title:preview.title});const episodes=content.podcast?await loadPodcastEpisodes().catch(()=>[]):[];if(version!==routeVersion)return;renderCourseLearning(main,head,content,learningStore(),!!user,episodes);await courseMaterials(main,preview.no,()=>version===routeVersion);}
 function references(type,id){renderReferences(main,type,catalog,id?decodeURIComponent(id):null);}
 function sessionNotice(){
  main.querySelector('#session-problem')?.remove();if(!sessionProblem)return;
@@ -159,10 +160,10 @@ async function route(){
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261106-polish61b').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261106-podcast62b').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
-  auth=await import('./auth.js?v=20261106-polish61b');
+  auth=await import('./auth.js?v=20261106-podcast62b');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
    const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});

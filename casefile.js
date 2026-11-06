@@ -1,14 +1,14 @@
-import {hasAccess} from './policy.mjs?v=20261106-polish61b';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-polish61b';
-import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-polish61b';
-import {notify} from './feedback.mjs?v=20261106-polish61b';
-import {roleIcon} from './reading-style.mjs?v=20261106-polish61b';
-import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261106-polish61b';
-import {casefileStore} from './casefile-store.mjs?v=20261106-polish61b';
-import {casefileWorker} from './casefile-worker.mjs?v=20261106-polish61b';
-import {casefileSession} from './casefile-session.mjs?v=20261106-polish61b';
-import {casefileInput} from './casefile-form.mjs?v=20261106-polish61b';
-import {practiceAccess} from './practice-access.mjs?v=20261106-polish61b';
+import {hasAccess} from './policy.mjs?v=20261106-podcast62b';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-podcast62b';
+import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-podcast62b';
+import {notify} from './feedback.mjs?v=20261106-podcast62b';
+import {roleIcon,readingRole} from './reading-style.mjs?v=20261106-podcast62b';
+import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261106-podcast62b';
+import {casefileStore} from './casefile-store.mjs?v=20261106-podcast62b';
+import {casefileWorker} from './casefile-worker.mjs?v=20261106-podcast62b';
+import {casefileSession} from './casefile-session.mjs?v=20261106-podcast62b';
+import {casefileInput} from './casefile-form.mjs?v=20261106-podcast62b';
+import {practiceAccess} from './practice-access.mjs?v=20261106-podcast62b';
 let activeClose=()=>{};
 export function closeActiveCasefile(){activeClose();activeClose=()=>{};}
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
@@ -27,18 +27,18 @@ export async function renderCasefile(main,auth,grants,user,isCurrent,progress,va
  if(!casefileCatalog.variants.some(v=>v.id===variant)){main.append(el('p','Diese Fallvariante ist nicht verfügbar.'),link('Zur Variantenübersicht','#casefile'));return;}
  if(!practiceAccess('casefile',variant,premium?grants:[])){main.append(el('p','Diese Variante ist in Premium enthalten. Fall A können Sie kostenlos vollständig ausprobieren.','notice'),link('Premium-Zugang ansehen','#shop'),link('Kostenlosen Fall A öffnen','#casefile/A'),link('Zur Variantenübersicht','#casefile'));return;}
  const loading=el('p','Die Strafakte wird geladen …','notice');main.append(loading);
- try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo.js?v=20261106-polish61b');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
+ try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo.js?v=20261106-podcast62b');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
  catch(error){if(isCurrent()){loading.remove();main.append(el('p',error.message??'Die Strafakte konnte nicht geladen werden.','notice'),button('Erneut versuchen',()=>{if(isCurrent()){main.replaceChildren();renderCasefile(main,auth,grants,user,isCurrent,progress,variant);}}));}}
 }
 export async function renderCasefileContent(main,payload,{owner,variant,isCurrent,progress,expectedHash=casefileBundleHash}){
  main.classList.add('casework','casefile');main.append(link('Zur Variantenübersicht','#casefile'));
  const files=casefileStore(),header=el('section',null,'card'),status=el('div',null,'notice'),picker=el('select'),body=el('article',null,'casework-reader');picker.setAttribute('aria-label','Bereich der Akte');
- for(const title of ['Akte','Ermitteln','Verfahren','Verlauf']){const option=el('option',title);option.value=title;picker.append(option);}header.append(el('h2',`Strafakte · ${variant}`),status);const shortcuts=el('div',null,'casefile-step-grid');for(const [label,target] of [['1 · Akte & Beweise','Akte'],['2 · Ermitteln','Ermitteln'],['3 · Entscheiden','Verfahren'],['Verlauf','Verlauf']]){const b=button(label,()=>selectTab(target),'secondary casefile-tab');b.dataset.tab=target;const icon=roleIcon({Akte:'facts',Ermitteln:'proof',Verfahren:'reasoning'}[target]);if(icon)b.prepend(icon);shortcuts.append(b);};header.append(shortcuts);main.append(header,body);
+ for(const title of ['Akte','Ermitteln','Verfahren','Verlauf']){const option=el('option',title);option.value=title;picker.append(option);}header.append(el('h2',`Strafakte · ${variant}`),status);const shortcuts=el('div',null,'casefile-step-grid');for(const [label,target] of [['1 · Akte & Beweise','Akte'],['2 · Ermitteln','Ermitteln'],['3 · Entscheiden','Verfahren'],['Verlauf','Verlauf']]){const b=button(label,()=>selectTab(target),'secondary casefile-tab');b.dataset.tab=target;const icon=roleIcon({Akte:'facts',Ermitteln:'proof',Verfahren:'reasoning',Verlauf:'history'}[target]);if(icon)b.prepend(icon);shortcuts.append(b);};header.append(shortcuts);main.append(header,body);
  let session,closed=false,busy=false,value=null,tab='Akte',documentDialog=null,interviewDialog=null,helperIndex=[],helpers=[];const expanded=new Set(['Menschen']);
  const current=()=>!closed&&isCurrent();
  const close=()=>{closed=true;session?.close();files.close();document.querySelectorAll('.casefile-dialog').forEach(d=>d.close());};activeClose=close;
  function rich(text){const p=el('p'),plain=protectReferences(String(text??''));let at=0;for(const hit of referenceMatches(plain,helperIndex)){p.append(document.createTextNode(plain.slice(at,hit.start)));const b=button(plain.slice(hit.start,hit.end),()=>{const d=openReferenceDialog(b,hit.entry,helpers);d.classList.add('casefile-dialog');},'context-reference');b.setAttribute('aria-haspopup','dialog');p.append(b);at=hit.end;}p.append(document.createTextNode(plain.slice(at)));return p;}
- function card(title,text,tone='proof'){const n=el('section',null,'card casework-card casework-'+tone);const h=el('h3'),icon=roleIcon(tone);if(icon)h.append(icon);h.append(el('span',title));n.append(h);if(text)n.append(rich(text));return n;}
+ function card(title,text,tone='explanation',symbol){tone=readingRole(title,tone);const n=el('section',null,'card casework-card casework-'+tone);const h=el('h3'),icon=roleIcon(symbol??tone);if(icon)h.append(icon);h.append(el('span',title));n.append(h);if(text)n.append(rich(text));return n;}
  function disclosure(title,content){const n=el('details',null,'card');n.append(el('summary',title));let drawn=false;const draw=()=>{if(n.open&&!drawn){drawn=true;content(n);}};n.ontoggle=()=>{if(n.open)expanded.add(title);else expanded.delete(title);draw();};if(expanded.has(title)){n.open=true;draw();}return n;}
  function source(target,key){const item=value?.sources?.[key];if(!item||!/^https:\/\//.test(item[1]))return;const a=link(item[0],item[1],'context-source');a.target='_blank';a.rel='noopener noreferrer';target.append(a);}
  function dialog(title,content){const d=el('dialog',null,'context-dialog casefile-dialog'),head=el('div',null,'context-dialog-header'),opener=document.activeElement;head.append(el('h2',title),button('Schließen',()=>d.close()));d.append(head);content(d);d.addEventListener('close',()=>{d.remove();if(opener?.isConnected)opener.focus({preventScroll:true});},{once:true});document.body.append(d);d.showModal();head.querySelector('button').focus();return d;}
@@ -79,7 +79,7 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   if(!value.release)body.append(action('Fallbezogene Schweigepflichtentbindung klären','release'));
   if(value.phase==='intake')body.append(action('Ermittlungen aufnehmen','start'));
   for(const group of ['Einstieg','Menschen','Unterlagen','Aufträge','Auswertung'].filter(g=>value.actions.some(a=>a.group===g)))body.append(disclosure(group,n=>{
-   for(const a of value.actions.filter(a=>a.group===group)){const box=card(a.title,a.description,'facts');if(a.reason)box.append(rich(value.phase==='intake'?'Nehmen Sie zuerst die Ermittlungen auf. Danach können Sie die nächsten Schritte prüfen.':a.reason));const b=button(a.interview?(a.status==='completed'?'Fragen stellen / Antwort nachlesen':a.status==='pending'?'Rückläufe prüfen':'Befragung starten'):a.status==='completed'?'Ergebnis ansehen':a.status==='pending'?'Rückläufe prüfen':'Schritt öffnen',()=>{
+   for(const a of value.actions.filter(a=>a.group===group)){const box=card(a.title,a.description,'facts',a.interview?'people':'facts');if(a.reason)box.append(rich(value.phase==='intake'?'Nehmen Sie zuerst die Ermittlungen auf. Danach können Sie die nächsten Schritte prüfen.':a.reason));const b=button(a.interview?(a.status==='completed'?'Fragen stellen / Antwort nachlesen':a.status==='pending'?'Rückläufe prüfen':'Befragung starten'):a.status==='completed'?'Ergebnis ansehen':a.status==='pending'?'Rückläufe prüfen':'Schritt öffnen',()=>{
     if(a.interview&&value.documents.some(d=>d.id===value.interviews.find(p=>p.id===a.interview)?.document))interview(value.interviews.find(p=>p.id===a.interview));else if(a.status==='completed'){const docs=value.documents.filter(d=>a.documentIds?.includes(d.id));if(docs.length)resultDialog(docs);else selectTab('Akte');}else if(a.status==='pending')run('collect');else if(a.id==='A01')selectTab('Akte');else if(['A16','A17'].includes(a.id))selectTab('Verfahren');else if(a.interview)run(a.id,{},'action',()=>{const p=value.interviews.find(p=>p.id===a.interview);if(p&&value.documents.some(d=>d.id===p.document))interview(p);});else casefileInput({id:a.id,title:a.title,op:a.id,kind:'action'},value,{dialog,submit:run,isCurrent:current});
    });b.disabled=busy||!session?.ready||['blocked','unavailable'].includes(a.status);box.append(b);n.append(box);}
   }));

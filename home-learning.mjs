@@ -1,5 +1,5 @@
-import {catalogOverall} from './progress-overview.mjs?v=20261106-polish61b';
-import {resumeHref} from './learning-resume.mjs?v=20261106-polish61b';
+import {catalogOverall} from './progress-overview.mjs?v=20261106-podcast62b';
+import {resumeHref} from './learning-resume.mjs?v=20261106-podcast62b';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 export function homeLearning(main,catalog,store){
   const overall=catalogOverall(catalog,store.snapshot),next=overall.states.find(s=>!s.isComplete)??overall.states.at(-1);

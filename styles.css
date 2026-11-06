@@ -6,6 +6,11 @@
 
 button.danger{background:#a52332;color:white} details label{display:block;margin-top:1rem}
 :root{--secondary-ink:#066b73}.button.secondary,button.secondary{color:var(--secondary-ink)}
+.podcast-platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-block:14px;max-width:600px}
+.podcast-platforms .button.podcast-listen{display:flex;align-items:flex-start;gap:8px;min-width:0;padding:12px 10px;font-size:.85rem;text-align:left;white-space:normal;overflow-wrap:anywhere}
+.podcast-platforms .podcast-listen .platform-logo{flex:0 0 24px;width:24px;height:24px;max-width:24px;object-fit:contain;border-radius:0}
+.podcast-listen-copy{display:grid;gap:4px;min-width:0;line-height:1.4}.podcast-listen-copy small{font-size:.8rem;font-weight:400}
+.podcast-provider-disclosure>summary{cursor:pointer;padding:12px 0;font-weight:650;color:var(--teal)}
 
 select{display:block;width:100%;padding:14px;margin:12px 0;border:1px solid #b9ced2;border-radius:8px;background:white;color:#15323d;font:inherit}.selected-answer{border:2px solid #087f87;background:#e6f5f5}
 
