@@ -2,7 +2,7 @@
 export function progressSync(store,transport,owner,onState=()=>{}){
   let stopped=false,running=false,conflict=null,timer=null;
   const notify=(state)=>{if(!stopped)onState(state);};
-  const payload=()=>({courses:store.snapshot.courses,certificateName:store.snapshot.certificateName??'',completedCareerTopics:store.snapshot.completedCareerTopics??[],practiceMistakes:store.snapshot.practiceMistakes??[]});
+  const payload=()=>({courses:store.snapshot.courses,certificateName:store.snapshot.certificateName??'',completedCareerTopics:store.snapshot.completedCareerTopics??[],practiceMistakes:store.snapshot.practiceMistakes??[],casework:store.snapshot.casework??{},completedCasefileVariants:store.snapshot.completedCasefileVariants??[]});
   async function sync(){
     if(stopped||running||conflict)return;running=true;let repeat=false;notify({kind:'syncing'});
     try{
@@ -10,6 +10,7 @@ export function progressSync(store,transport,owner,onState=()=>{}){
       const local=store.syncState;
       if(local.dirty&&cloud.revision!==local.revision){conflict=cloud;notify({kind:'conflict'});return;}
       if(!local.dirty){store.acceptRemote(cloud.payload,cloud.revision);notify({kind:'saved'});return;}
+      store.hydrateOptional(cloud.payload);
       const sent=payload(),generation=store.generation;
       const result=await transport.write(owner,local.revision,sent);if(stopped)return;
       if(!result.ok){conflict=await transport.read(owner);notify({kind:'conflict'});return;}

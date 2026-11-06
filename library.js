@@ -1,15 +1,15 @@
-import {renderDefinitions} from './definition-library.mjs?v=20261029-klaro62';
-import {renderPresentationIndex} from './presentation-index.mjs?v=20261027-view-parity56a';
-import {fetchPresentationDownload} from './presentation-download.mjs?v=20261027-view-parity56a';
-import {renderSource} from './source-links.mjs?v=20261027-view-parity56a';
-import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56a';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261027-view-parity56a';
-import {hasAccess,safeURL} from './policy.mjs?v=20261027-view-parity56a';
-import {hasMaterialAccess} from './material-access.mjs?v=20261027-view-parity56a';
-import {fetchGraphicDownload} from './graphic-download.mjs?v=20261027-view-parity56a';
-import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261029-klaro62';
-import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261027-view-parity56a';
-import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261027-view-parity56a';
+import {renderDefinitions} from './definition-library.mjs?v=20261106-practice13';
+import {renderPresentationIndex} from './presentation-index.mjs?v=20261106-practice13';
+import {fetchPresentationDownload} from './presentation-download.mjs?v=20261106-practice13';
+import {renderSource} from './source-links.mjs?v=20261106-practice13';
+import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261106-practice13';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261106-practice13';
+import {hasAccess,safeURL} from './policy.mjs?v=20261106-practice13';
+import {hasMaterialAccess} from './material-access.mjs?v=20261106-practice13';
+import {fetchGraphicDownload} from './graphic-download.mjs?v=20261106-practice13';
+import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261106-practice13';
+import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261106-practice13';
+import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261106-practice13';
 const groups={atlas:'⚖ Fälle, Schemata & Vertiefungen',glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Folien & Vertiefungen'};
 const groupDescriptions={glossary:'Zentrale Begriffe, Institutionen und Zusammenhänge verständlich erklärt.',career:'Antworten für PJ, erste Stelle und die ärztliche Weiterbildung.',professions:'Rechtliche Orientierung für Pflege, Rettungsdienst und weitere Gesundheitsberufe.',podcast:'Die Fälle und Fragen aus den Podcastfolgen als Schaubilder.',system:'Grafische Übersichten zu Haftung, Versorgung und Finanzierung.',slides:'Die gesamte Präsentation im Folien-Player mit Suche und direktem Kurseinstieg.'};
 groups.special='Spezialkurse';groupDescriptions.special='Thematisch lernen: Grundlagen, passende Fälle und gemeinsame Übungen.';
@@ -22,7 +22,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261029-klaro62');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261106-practice13');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -37,7 +37,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
  if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261029-klaro62');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261106-practice13');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);
@@ -107,7 +107,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
    results.replaceChildren();
    for(const [group,title] of Object.entries(groups)){
     if(onlyGroup&&group!==onlyGroup)continue;
-    const matching=entries.filter(e=>e.group===group&&(!categoryOnly||e.category===categoryOnly)&&`${e.title} ${e.category??''} ${e.subtitle??''} ${(e.courses??[]).map(n=>'Kurs '+n).join(' ')}`.toLowerCase().includes(search.value.toLowerCase()));
+    const matching=entries.filter(e=>e.group===group&&(!categoryOnly||e.category===categoryOnly)&&`${e.title} ${e.category??''} ${e.subtitle??''} ${(e.searchTerms??[]).join(' ')} ${(e.courses??[]).map(n=>'Kurs '+n).join(' ')}`.toLowerCase().includes(search.value.toLowerCase()));
     if(!matching.length)continue;
     const section=node('section',null,`library-section library-group-${group}`);section.append(node('h2',`${title} · ${matching.length}`));
     if(group==='slides'){
@@ -144,13 +144,13 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  function box(title,text,cls='card'){const b=node('section',null,cls);b.classList.add('knowledge-detail-card');if(title){const style=headingStyle(title),tone=/^💡|^⚠/u.test(title)?'gold':/^🧩/u.test(title)?'blue':/^⚖/u.test(title)?'indigo':style.tone,h=node('h2');if(style.symbol&&!/^[^A-Za-zÄÖÜäöü0-9]/u.test(title)){const symbol=node('span',style.symbol,style.step?'knowledge-step-number':'knowledge-heading-symbol');symbol.setAttribute('aria-hidden','true');h.append(symbol);}h.append(node('span',style.title));b.append(h);b.classList.add('knowledge-tone-'+tone);}if(text)formatSlideText(b,text);main.append(b);return b;}
  function source(title,url){const href=safeURL(url);if(!href)return;const wrap=node('section',null,'knowledge-source'),a=anchor(title+'',href);a.target='_blank';a.rel='noopener noreferrer';wrap.append(node('span','📚','knowledge-heading-symbol'),node('strong','Originalquelle'),a);main.append(wrap);}
  if(e.courses?.length){const nav=node('nav',null,'course-links');for(const n of e.courses)nav.append(anchor('Kurs '+String(n).padStart(2,'0')+' →','#course/tag-'+String(n).padStart(2,'0')));main.append(nav);}
- async function graphic(name,target=main){
+ async function graphic(name,target=main,title=e.title){
   let src=c.publicAssets?.[name];
   if(!src&&auth){try{const a=await auth.getCourse('asset-v3:'+scope(e)+':'+name);if(a&&['image/png','image/jpeg','image/webp'].includes(a.mime)&&/^[A-Za-z0-9_-]+\.(png|jpg|jpeg|webp)$/.test(a.path))src=await auth.getGraphic(a.path);}catch{}}
   if(!isCurrent())return;
   if(!src){target.append(node('p','Die Grafik konnte nicht geladen werden. Die Lesefassung steht unten bereit.','notice'));return;}
   const illustration=c.illustration?.asset===name?c.illustration:null;
-  const figure=node('figure',null,'diagram'),img=node('img');img.src=src;img.alt=illustration?.alt??e.title;img.loading='lazy';
+  const figure=node('figure',null,'diagram'),img=node('img');img.src=src;img.alt=illustration?.alt??title;img.loading='lazy';
   if(illustration){figure.append(img,node('figcaption',illustration.caption,'subtle'));target.append(figure);return;}
   const zoom=node('button','Grafik vergrößern','secondary');zoom.type='button';zoom.onclick=()=>{const dialog=node('dialog',null,'image-dialog'),close=node('button','Schließen ×');const full=img.cloneNode();close.onclick=()=>{dialog.close();dialog.remove();};dialog.append(close,full);dialog.addEventListener('close',()=>dialog.remove(),{once:true});document.body.append(dialog);dialog.showModal();};
   const download=node('button','Grafik herunterladen','secondary'),feedback=node('p','','subtle');download.type='button';feedback.setAttribute('role','status');
@@ -166,10 +166,26 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
    finally{download.disabled=false;}
   };
   const actions=node('div',null,'diagram-actions');actions.append(zoom,download);
-  figure.append(img,actions,feedback,node('figcaption','Für Ihre persönliche Nutzung. Heruntergeladene Dateien bleiben nach Ablauf Ihres Zugangs erhalten.','subtle'));target.append(figure);
+  const imageButton=node('button',null,'diagram-image-button');imageButton.type='button';imageButton.setAttribute('aria-label',title+' vergrößern');imageButton.onclick=()=>zoom.click();imageButton.append(img);
+  figure.append(imageButton,actions,feedback,node('figcaption','Für Ihre persönliche Nutzung. Heruntergeladene Dateien bleiben nach Ablauf Ihres Zugangs erhalten.','subtle'));target.append(figure);
  }
  if(['atlas','podcast'].includes(e.group))renderAtlasFocus(main,c,context.focusedStage,e.group);
- if(!c.blocks)for(const name of c.assets??[])await graphic(name);
+ if(c.diagramViews?.length){
+  const gallery=node('section',null,'procedure-gallery'),selector=node('select');selector.setAttribute('aria-label','Perspektive wählen');const panel=node('section'),controls=node('nav',null,'deck-controls');controls.setAttribute('aria-label','Verfahrensgrafiken blättern');let selected=0;
+  for(const [index,view]of c.diagramViews.entries()){const option=node('option',view.title);option.value=String(index);selector.append(option);}
+  function detail(title,append){const details=node('details',null,'card');details.append(node('summary',title));let populated=false;details.ontoggle=()=>{if(details.open&&!populated){populated=true;append(details);}};return details;}
+  async function drawPerspective(){
+   for(const n of panel.querySelectorAll('[data-blob-url]'))URL.revokeObjectURL(n.dataset.blobUrl);panel.replaceChildren();controls.replaceChildren();selector.value=String(selected);const view=c.diagramViews[selected];
+   if(c.diagramViews.length>1){const back=node('button','Zurück','secondary'),next=node('button','Weiter','secondary');back.disabled=selected===0;next.disabled=selected===c.diagramViews.length-1;back.onclick=()=>{selected--;drawPerspective();};next.onclick=()=>{selected++;drawPerspective();};controls.append(back,node('span',`${selected+1} / ${c.diagramViews.length}`),next);}
+   panel.append(node('h2',view.title),node('p',view.subtitle));const image=node('section');panel.append(image);
+   const takeaway=node('section',null,'card notice');takeaway.append(node('h3','Für die Einordnung'),node('p',view.takeaway));panel.append(takeaway);
+   panel.append(detail('Grafik Schritt für Schritt lesen',n=>{for(const [index,s]of view.sections.entries()){const box=node('section',null,'card knowledge-detail-card');box.append(node('p',String(index+1).padStart(2,'0'),'section-number'),node('h3',s.title));formatSlideText(box,s.body);n.append(box);}}));
+   if(view.notes.length)panel.append(detail('Grenzen, Fristen & Rechtsgrundlagen',n=>{for(const note of view.notes){n.append(node('h3',note.title),node('p',note.body));for(const s of note.sources){const href=safeURL(s.url);if(href){const a=anchor(s.title,href);a.target='_blank';a.rel='noopener noreferrer';n.append(a);}}}}));
+   panel.append(detail('Gesetzesabkürzungen erklärt',n=>{for(const law of view.lawLegend)n.append(node('p',law.short+' · '+law.title));}),node('p','Stand: '+view.legalDate+' · '+view.sourceSummary,'subtle'));
+   await graphic(view.asset,image,view.title);
+  }
+  selector.onchange=()=>{selected=Number(selector.value);drawPerspective();};if(c.diagramViews.length>1)gallery.append(selector,controls);gallery.append(panel);main.append(gallery);await drawPerspective();
+ }else if(!c.blocks)for(const name of c.assets??[])await graphic(name);
  if(e.group==='atlas')renderAtlasReading(main,c,entries,{focusedStage:context.focusedStage,originId:context.from,hideFocusBanner:true,learningTrail:trail});
  if(['career:pj-rolle','career:kompetenz-pj','career:haftpflicht-start'].includes(e.id))main.append(anchor('Fall vertiefen: Die unbeschriftete Spritze im PJ →','#material/atlas%3Acase-r54'));
  if(!isCurrent())return;
@@ -192,7 +208,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(c.blocks){
  const stage=node('div',null,'slide-stage');stage.classList.add('layout-'+layoutForSlide(c),'slide-variant-'+((Number(c.id)-1)%4));stage.setAttribute('aria-label','Aktuelle Folie');stage.tabIndex=0;main.append(stage);
  const titleBlock=node('div',null,'deck-title');titleBlock.append(node('p',c.eyebrow??'RECHT MEDIZINISCH','eyebrow'),node('h1',e.title));for(const no of e.courses??[])titleBlock.append(anchor('Kurs '+String(no).padStart(2,'0')+' öffnen','#course/tag-'+String(no).padStart(2,'0')));stage.append(titleBlock);
- if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20261027-view-parity56a');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
+ if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20261106-practice13');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
  const {sections,sources}=slideSections(c.blocks);const sectionsGrid=node('div',null,'slide-sections');stage.append(sectionsGrid);
  for(const part of sections){const style=headingStyle(part.title),section=node('section',null,'slide-block tone-'+style.tone);if(part.title){const h=node('h2');if(style.symbol)h.append(node('span',style.symbol,style.step?'step-number':'section-symbol'));h.append(node('span',style.title));section.append(h);}for(const block of part.blocks){if(block.image)await graphic(block.image,section);if(!isCurrent())return;if(block.text)formatSlideText(section,block.text);for(const l of block.links??[]){const url=typeof l==='string'?l:l.url;if(safeURL(url)){const a=anchor((typeof l==='string'?'Quelle':l.label??'Rechtsquelle')+'',url);a.target='_blank';a.rel='noopener noreferrer';section.append(a);}}}sectionsGrid.append(section);}
  if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources){const p=node('p');renderSource(p,text);detail.append(p);}stage.append(detail);}

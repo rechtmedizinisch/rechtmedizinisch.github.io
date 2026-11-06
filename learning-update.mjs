@@ -1,13 +1,13 @@
 // Per-account UI preference only. Never changes grants, session or learning data.
 export const learningUpdate = Object.freeze({
- id:'2026.10.27-lecture-update',
+ id:'2026.11.06-casework-procedures',
  title:'Neu für Sie',
  items:Object.freeze([
-  'Neue Fälle: Geburt, Medikation und OP-Erweiterung',
-  'Begriffe und Gesetzestexte direkt nachschlagen',
-  'Folien und Zusatzmaterialien übersichtlicher durchsuchen',
-  'Special Rettungsmedizin mit passenden Übungsfragen',
-  'Podcast-Folge 7: Diagnose? Kaputt gespart'
+  "Fallwerkstatt: 20 Originalfälle mit eigenen Antworten und Entscheidungsgründen",
+  "Interaktive Strafakte: drei Varianten mit Ermittlungen und Gerichtsverfahren",
+  "Elf neue Verfahrensgrafiken mit Lesefassung und Rechtsgrundlagen",
+  "Mehr Begriffe, Normen und verknüpfte Entscheidungen direkt nachschlagen",
+  "Eigener Fortschritt für Fallwerkstatt und Strafakte – Ihr Kursabschluss bleibt erhalten"
  ])
 });
 export function updateAcknowledgements(storage){

@@ -1,5 +1,5 @@
 // Contextual reading help never changes the route or grants access to content.
-import {protectReferences} from './presentation-theme.mjs?v=20261027-view-parity56a';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-practice13';
 const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const historicalDesignation='(?:a\\.[\\s\\u00A0]*F\\.|alter[\\s\\u00A0]+Fassung)(?![\\p{L}\\p{N}])';
 const folded=value=>value.toLocaleLowerCase('de').replace(/\s+/gu,' ');
@@ -13,7 +13,7 @@ export function referenceIndex(entries){
   }
   if(entry.kind==='norm'&&entry.number&&!entry.number.includes('_')&&entry.law){
    const space='[\\s\\u00A0]',marker=entry.marker==='Art.'?'Art\\.':'(?<!§)§(?!§)';
-   const coordinate='(?:(?:Abs\\.|Absatz|Absätze|Satz|Sätze|S\\.|Nr\\.|Alt\\.|Buchst\\.|Doppelbuchst\\.|lit\\.)[\\s\\u00A0]*[0-9a-z]+(?:[\\s\\u00A0]*(?:,|und|oder|–|-|/)[\\s\\u00A0]*[0-9a-z]+)*)';
+   const coordinate='(?:(?:Abs\\.|Absatz|Absätze|Halbsatz|Halbsätze|Satz|Sätze|S\\.|Nr\\.|Alt\\.|Buchst\\.|Doppelbuchst\\.|lit\\.)[\\s\\u00A0]*[0-9a-z]+(?:[\\s\\u00A0]*(?:,|und|oder|–|-|/)[\\s\\u00A0]*[0-9a-z]+)*)';
    const tail='(?:(?:'+space+'*(?:(?:,|und|oder)'+space+'*)?'+coordinate+')|(?:'+space+'+[IVX]+))*';
    const law=entry.law.split(' ').map(escape).join(space+'+');
    const edition=entry.historical?'(?:'+space+'+'+historicalDesignation+')?':'(?!'+space+'+'+historicalDesignation+')';
@@ -78,7 +78,12 @@ export function openReferenceDialog(owner,entry,catalog=[]){
  doc.body.append(dialog);dialog.showModal();close.focus();return dialog;
 }
 
-export function installContextHelp(root,{load=()=>fetch(new URL('./reference-help.json'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();})}={}){
+let referenceHelpPromise;
+export function loadReferenceHelp(){
+ if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-practice13'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
+ return referenceHelpPromise;
+}
+export function installContextHelp(root,{load=loadReferenceHelp}={}){
  let stopped=false,index=[],catalog=[],scheduled=false;const checked=new WeakMap();
  const excluded='a,button,input,textarea,select,label,summary,nav,h1,h2,h3,h4,h5,h6,code,pre,script,style,[data-no-reference-help],.context-dialog';
  function decorate(){
