@@ -1,12 +1,12 @@
 // Per-account UI preference only. Never changes grants, session or learning data.
 export const learningUpdate = Object.freeze({
- id:'2026.11.06-zivil40',
+ id:'2026.11.06-leit55',
  title:'Neu für Sie',
  items:Object.freeze([
-  "Fallwerkstatt: 40 Originalfälle mit eigenen Antworten und Entscheidungsgründen",
+  "Fallwerkstatt: 95 Originalfälle aus Zivilrecht, Strafrecht und Berufsrecht",
   "Interaktive Strafakte: drei Varianten mit Ermittlungen und Gerichtsverfahren",
   "Elf neue Verfahrensgrafiken mit Lesefassung und Rechtsgrundlagen",
-  "Mehr Begriffe, Normen und verknüpfte Entscheidungen direkt nachschlagen",
+  "Neue Leitentscheidungen, Begriffe und Normen direkt nachschlagen; Fälle nach Rechtsgebiet filtern",
   "Eigener Fortschritt für Fallwerkstatt und Strafakte – Ihr Kursabschluss bleibt erhalten"
  ])
 });

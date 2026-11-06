@@ -864,10 +864,10 @@
       "date": "13.09.1994",
       "docket": "1 StR 357/94",
       "title": "Kemptener Fall: mutmaßlicher Wille beim Behandlungsabbruch",
-      "tenor": "Ein Behandlungsabbruch kann auch vor unmittelbarer Todesnähe zulässig sein, wenn er dem sorgfältig ermittelten mutmaßlichen Willen des nicht entscheidungsfähigen Patienten entspricht.",
-      "holding": "Frühere Äußerungen, Wertvorstellungen und konkrete Lebensentscheidungen haben Vorrang; fehlen individuelle Anhaltspunkte, gilt eine strenge Zweifelsregel zugunsten des Lebensschutzes.",
-      "practice": "Nicht eigene Vorstellungen von Lebensqualität einsetzen: Patientenwille strukturiert ermitteln, Quellen benennen und Unsicherheiten offen dokumentieren.",
-      "status": "Historische Leitentscheidung; verfahrensrechtlich und dogmatisch später durch Patientenverfügungsgesetz und Putz-Fall fortentwickelt.",
+      "tenor": "Das Urteil wurde insgesamt aufgehoben und die Sache zurückverwiesen. Zu mutmaßlicher Einwilligung und Vermeidbarkeit der Verbotsirrtümer waren weitere Feststellungen erforderlich.",
+      "holding": "Patientenwille, Vertretungsbefugnis und Genehmigung sind getrennte Fragen; ein Revisionsaufhebungsurteil ist kein Freispruch.",
+      "practice": "Patientenwille, Vertretungsbefugnis und Genehmigung sind getrennte Fragen; ein Revisionsaufhebungsurteil ist kein Freispruch.",
+      "status": "1994 griff der BGH auf eine entsprechende Anwendung des damaligen § 1904 BGB zurück. Heute bestimmen §§ 1827–1829 BGB Patientenverfügung, individuellen Willen und Genehmigungsfragen ausdrücklich. § 1827 Abs. 3 BGB gilt unabhängig von Art und Stadium der Erkrankung; § 1829 Abs. 4 BGB enthält eine Einvernehmensausnahme. Die historische Formulierung „passive Sterbehilfe“ ist durch die spätere behandlungsbezogene Rechtsprechung fortentwickelt; sie ist kein heutiges Verbot eines erlaubten Abbruchs durch aktives Tun.",
       "url": "https://www.hrr-strafrecht.de/hrr/1/94/1-357-94.php",
       "alternativeUrl": "https://dejure.org/1994,67",
       "courseIds": [
@@ -887,10 +887,10 @@
       "date": "25.06.2010",
       "docket": "2 StR 454/09",
       "title": "Putz-Fall: rechtmäßiger Behandlungsabbruch",
-      "tenor": "Der Abbruch einer lebenserhaltenden Behandlung kann durch Unterlassen oder aktives Tun gerechtfertigt sein, wenn er dem tatsächlichen oder mutmaßlichen Patientenwillen entspricht.",
-      "holding": "Entscheidend ist der Bezug zur Beendigung einer medizinischen Behandlung und zum tödlichen Krankheitsprozess; eine davon gelöste gezielte Tötung bleibt unzulässig.",
-      "practice": "Indikation, Wille, Behandlungszieländerung, Zuständigkeit und konkreten Ablauf interprofessionell klären und dokumentieren.",
-      "status": "BGHSt 55, 191; zentrale strafrechtliche Leitentscheidung zum Behandlungsabbruch.",
+      "tenor": "Der BGH hob die Verurteilung auf und sprach den Rechtsanwalt selbst frei. Die Revision der Staatsanwaltschaft gegen die Strafzumessung wurde verworfen.",
+      "holding": "Für einen gerechtfertigten Behandlungsabbruch zählen Behandlungskontext und individueller Patientenwille, nicht allein die Bewegung der Hand.",
+      "practice": "Für einen gerechtfertigten Behandlungsabbruch zählen Behandlungskontext und individueller Patientenwille, nicht allein die Bewegung der Hand.",
+      "status": "Das Tatgeschehen lag 2007. Der BGH berücksichtigte das 2009 eingeführte Patientenverfügungsrecht gegebenenfalls als günstigeres Recht. Die damaligen §§ 1901a ff. BGB entsprechen nicht den heutigen Nummern: Patientenwille wird heute insbesondere in §§ 1827, 1828 BGB, Genehmigung in § 1829 BGB geregelt. § 216 StGB wird dadurch nicht allgemein aufgehoben.",
       "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2009/2_StR_454-09.pdf?__blob=publicationFile&v=1",
       "courseIds": [
         "tag-08",
@@ -953,10 +953,10 @@
       "date": "26.02.2020",
       "docket": "2 BvR 2347/15 u. a.",
       "title": "§ 217 StGB nichtig: Recht auf selbstbestimmtes Sterben",
-      "tenor": "§ 217 StGB in der damaligen Fassung ist mit dem Grundgesetz unvereinbar und nichtig.",
-      "holding": "Das allgemeine Persönlichkeitsrecht umfasst die Freiheit, über das eigene Lebensende zu entscheiden, das Leben eigenhändig zu beenden und hierfür freiwillige Hilfe Dritter zu suchen und anzunehmen.",
-      "practice": "Suizidwunsch, Einwilligungsfähigkeit, Freiverantwortlichkeit, Information, Alternativen und mögliche Drucklagen sorgfältig prüfen; aus der Nichtigkeit folgt weder ein Behandlungsanspruch noch eine individuelle Hilfspflicht.",
-      "status": "§ 217 StGB wird im Gesetzesportal noch mit Nichtigkeitsvermerk angezeigt, ist aber nicht anwendbar; 2023 scheiterten neue Entwürfe im Bundestag.",
+      "tenor": "Das BVerfG erklärte § 217 StGB in der Fassung von 2015 für mit dem Grundgesetz unvereinbar und nichtig. Es verurteilte oder entlastete damit keinen einzelnen Arzt in einem Strafverfahren.",
+      "holding": "Ein Freiheitsrecht kann praktisch entleert werden, obwohl sich das Verbot formal an andere Personen richtet.",
+      "practice": "Ein Freiheitsrecht kann praktisch entleert werden, obwohl sich das Verbot formal an andere Personen richtet.",
+      "status": "Geprüft wurde das 2015 eingeführte Verbot. Der aktuelle amtliche Gesetzesabdruck führt weiterhin dessen Text mit dem ausdrücklichen Nichtigkeitshinweis; er darf nicht als anwendbare Strafnorm vermittelt werden. §§ 212 und 216 StGB bleiben bestehen. Die Aussagen zu damaligen Berufsordnungen sind zeitbezogen und keine aktuelle Gesamtdarstellung sämtlicher Kammerregelungen.",
       "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2020/02/rs20200226_2bvr234715.html",
       "alternativeUrl": "https://www.gesetze-im-internet.de/stgb/__217.html",
       "courseIds": [
@@ -1219,10 +1219,10 @@
       "date": "06.07.2010",
       "docket": "5 StR 386/09",
       "title": "Präimplantationsdiagnostik unter dem damaligen Embryonenschutzgesetz",
-      "tenor": "Die untersuchte PID-Konstellation zur Erkennung schwerer genetischer Schäden war nach der damaligen Gesetzeslage nicht strafbar.",
-      "holding": "Der BGH legte den Embryonenbegriff und die untersuchten Zellstadien eng am Strafgesetz aus; die Entscheidung führte zu einer ausdrücklichen gesetzlichen Neuregelung.",
-      "practice": "In Spezialmaterien nie aus Ethik unmittelbar auf Strafbarkeit schließen: Tatbestand, Zellstadium, Zweck, Verfahrensvorgaben und aktuelle Gesetzesfassung getrennt prüfen.",
-      "status": "Historische Auslegung; heute § 3a ESchG und PIDV beachten.",
+      "tenor": "Der BGH verwarf die Revision der Staatsanwaltschaft. Der Freispruch des LG Berlin vom 14.05.2009 blieb bestehen. Die Entscheidung betrifft die damalige Rechtslage und den konkret festgestellten Untersuchungsablauf.",
+      "holding": "Bei historischer Gesetzesauslegung zählen konkretes Objekt, Handlung und Zweck; spätere Spezialnormen müssen sichtbar hinzukommen.",
+      "practice": "Bei historischer Gesetzesauslegung zählen konkretes Objekt, Handlung und Zweck; spätere Spezialnormen müssen sichtbar hinzukommen.",
+      "status": "2010 war § 3a ESchG noch nicht in Kraft. Die heute abrufbare Vorschrift enthält Verbot, eng bestimmte Ausnahmen und zusätzliche Verfahrenspflichten. Materielle Voraussetzungen des Absatzes 2 und die gesonderten Anforderungen des Absatzes 3 samt Bußgeldfolge nach Absatz 4 sind auseinanderzuhalten; der alte Freispruch ist kein heutiger Freibrief.",
       "url": "https://www.bundesgerichtshof.de/SharedDocs/Downloads/DE/Bibliothek/Gesetzesmaterialien/17_wp/PID/5StR38609.pdf?__blob=publicationFile",
       "courseIds": [
         "tag-08",
@@ -1240,11 +1240,11 @@
       "date": "28.06.2017",
       "docket": "5 StR 20/16",
       "title": "Manipulation von Wartelisten und strafrechtliches Gesetzlichkeitsprinzip",
-      "tenor": "Richtlinienverstöße der Bundesärztekammer begründen nicht ohne Weiteres eine Strafbarkeit wegen Tötungsdelikten.",
-      "holding": "Strafrechtliche Zurechnung verlangt gesetzliche Tatbestände, konkrete Kausalität und Vorsatz; medizinische Allokationsregeln dürfen nicht unbesehen zu Strafnormen werden.",
-      "practice": "Allokationsregeln strikt befolgen und dokumentieren, strafrechtliche Bewertung aber getrennt nach Tatbestand, Kausalität und subjektiver Seite vornehmen.",
-      "status": "Prägende Entscheidung zu Transplantationsrichtlinien und Art. 103 Abs. 2 GG.",
-      "url": "https://dejure.org/dienste/vernetzung/rechtsprechung?Aktenzeichen=5+StR+20%2F16&Datum=28.06.2017&Gericht=BGH",
+      "tenor": "Der BGH verwarf die Revision der Staatsanwaltschaft. Der angegriffene Freispruch blieb bestehen; eine Billigung der Falschmeldungen oder umfassende berufsrechtliche Entlastung ist damit nicht verbunden.",
+      "holding": "Bewiesene Datenmanipulation und bewiesener Tötungsentschluss sind verschiedene Aussagen.",
+      "practice": "Bewiesene Datenmanipulation und bewiesener Tötungsentschluss sind verschiedene Aussagen.",
+      "status": "Das Urteil beurteilt Taten von 2010/2011 anhand des damaligen Rechts und damaliger Richtlinien. Heute erfassen § 10 Abs. 3 Satz 2 TPG und § 19 Abs. 2a TPG bestimmte absichtliche Manipulationen eigenständig; § 19 Abs. 4 TPG erfasst ihren Versuch. Aktuelle medizinische Allokationsrichtlinien werden aus dem historischen Urteil nicht abgeleitet.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2017-5&Gericht=bgh&file=dokument.pdf&linked=urt&nr=79359",
       "courseIds": [
         "tag-08",
         "tag-09",
@@ -1285,10 +1285,10 @@
       "date": "10.09.2020",
       "docket": "3 C 13.19",
       "title": "Ruhen der Approbation bei strafrechtlichen Vorwürfen",
-      "tenor": "Eine Anklage führt nicht automatisch zum Ruhen der Approbation; die Behörde muss Tatgrundlage, Berufsbezug, Prognose und Verhältnismäßigkeit eigenständig prüfen.",
-      "holding": "Die vorläufige Gefahrenabwehr darf das Strafverfahren berücksichtigen, aber dessen bloße Existenz ersetzt keine eigene Sachverhalts- und Gefahrenbewertung.",
-      "practice": "Strafverteidigung, Berufsrecht, Arbeitsverhältnis und Approbationsverfahren früh koordinieren; Akteneinsicht und Stellungnahmefristen sichern.",
-      "status": "Leitentscheidung zu § 6 Abs. 1 Nr. 1 BÄO.",
+      "tenor": "Die Revision der Behörde wurde zurückgewiesen. Die Aufhebung der Ruhensanordnung blieb bestehen.",
+      "holding": "Tatverdacht, möglicher Widerrufsgrund und konkrete Gefahr im Zwischenzeitraum sind drei getrennte Prüfungsschritte.",
+      "practice": "Tatverdacht, möglicher Widerrufsgrund und konkrete Gefahr im Zwischenzeitraum sind drei getrennte Prüfungsschritte.",
+      "status": "Die bundesrechtliche BÄO ist vom regionalen Kammerrecht zu trennen. Ruhen nach § 6 BÄO, Widerruf nach § 5 BÄO, vorläufiges strafprozessuales Berufsverbot nach § 132a StPO und Berufsverbot nach § 70 StGB haben unterschiedliche Voraussetzungen und Verfahrenswege.",
       "url": "https://www.bverwg.de/100920U3C13.19.0",
       "courseIds": [
         "tag-09",
@@ -1409,11 +1409,11 @@
       "docket": "4 StR 265/24",
       "decisionType": "Beschluss",
       "title": "Ärztliche Suizidhilfe bei krankheitsgeprägtem Entschluss",
-      "tenor": "Der BGH verwarf die Revision gegen die Verurteilung wegen Totschlags in mittelbarer Täterschaft.",
-      "holding": "Entscheidend waren konkret festgestellte fehlende Freiverantwortlichkeit, deren Kenntnis und die steuernde Rolle des Arztes. Eine psychische Diagnose allein ersetzt diese Prüfung nicht.",
-      "practice": "Eigenhändige Selbsttötung bedeutet nicht automatisch straflose Hilfe. Freiverantwortlichkeit, Wissen und Tatherrschaft sorgfältig auseinanderhalten.",
-      "status": "Beschluss vom 29.01.2025 zu §§ 212 Abs. 1, 25 Abs. 1 Alt. 2 StGB.",
-      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=141435&Blank=1.pdf",
+      "tenor": "Die Revision wurde verworfen. Die Verurteilung zu drei Jahren Freiheitsstrafe wegen Totschlags in mittelbarer Täterschaft blieb bestehen.",
+      "holding": "Eigenhandlung, Freiverantwortlichkeit und Tatherrschaft sind drei getrennte Fragen.",
+      "practice": "Eigenhandlung, Freiverantwortlichkeit und Tatherrschaft sind drei getrennte Fragen.",
+      "status": "Die Tat von August 2020 lag nach der Nichtigerklärung des § 217 StGB. Die Verurteilung beruht auf §§ 212 Abs. 1, 25 Abs. 1 Alt. 2 StGB, nicht auf dem nichtigen Suizidhilfeverbot. Das BVerfG-Recht auf selbstbestimmtes Sterben setzt eine autonome Entscheidung voraus; es beseitigt den Schutz vor der Umsetzung unfreier Entschlüsse nicht.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2025&Gericht=bgh&file=dokument.pdf&linked=bes&nr=141435",
       "courseIds": [
         "tag-10"
       ],
@@ -1449,11 +1449,11 @@
       "docket": "5 StR 491/10",
       "decisionType": "Beschluss",
       "title": "MDMA-Überdosierung bei psycholytischer Sitzung",
-      "tenor": "Das Urteil wurde mit den Feststellungen aufgehoben und an eine andere Schwurgerichtskammer zurückverwiesen.",
-      "holding": "Das wissentlich eingegangene allgemeine MDMA-Risiko und eine unbekannte massive Überdosierung sind verschiedene Gefährdungen. Die angenommene versehentliche Überdosierung verlangte eine genaue Vorsatz- und Fahrlässigkeitsprüfung.",
-      "practice": "Aus fehlendem Vorsatz nicht auf fehlende Fahrlässigkeit schließen. Der BGH-Beschluss enthält keinen abschließenden Freispruch.",
-      "status": "Beschluss vom 11.01.2011; Rückverweisung, keine abschließende Feststellung aller Tatfolgen.",
-      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=54942&Blank=1.pdf",
+      "tenor": "Der BGH hob das Urteil einschließlich der Feststellungen umfassend auf und verwies an eine andere Schwurgerichtskammer zurück. Er sprach den Arzt nicht frei.",
+      "holding": "Eigenhändige Einnahme, Risikowissen und Kenntnis der zusätzlichen Gefahr sind voneinander zu unterscheiden.",
+      "practice": "Eigenhändige Einnahme, Risikowissen und Kenntnis der zusätzlichen Gefahr sind voneinander zu unterscheiden.",
+      "status": "Die Entscheidung betrifft eine Sitzung aus 2009 und die damals angewandten StGB- und BtMG-Normen. Sie ist kein allgemeines Modell für reguläre heutige Arzneimittelverordnungen: Indikation, Wissensvorsprung, konkrete Risikokenntnis und Einwilligung müssen in solchen Fällen eigenständig geprüft werden. Aussagen zur heutigen klinischen Zulässigkeit dieser Methode werden nicht aus dem Beschluss abgeleitet.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2011&Gericht=bgh&Sort=1&anz=3712&nr=54942&pos=21",
       "courseIds": [
         "tag-11"
       ],
@@ -1593,11 +1593,11 @@
       "docket": "2 StR 325/17",
       "decisionType": "Urteil",
       "title": "Morphin: Medikamentengabe, Verletzungserfolg und Einwilligung",
-      "tenor": "Aufhebung und Zurückverweisung nach einer nicht ausreichend begründeten Verurteilung wegen Körperverletzung.",
-      "holding": "Die Medikamentengabe allein beweist nicht jede behauptete Gesundheitsschädigung. Konkrete Wirkungen, die Injektion als Handlung und eine mögliche Einwilligung sind eigenständig zu prüfen.",
-      "practice": "Fehlerhafte Dosis, Tatbestand, Todesursächlichkeit und Rechtfertigung nicht gleichsetzen. Das Urteil ist kein Freibrief für eigenmächtige Dosisänderungen.",
-      "status": "Urteil vom 30.01.2019; von anderen Morphinentscheidungen mit anderem Sachverhalt unterscheiden.",
-      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Gericht=bgh&Art=en&nr=99529&Blank=1.pdf",
+      "tenor": "Der BGH hob das Urteil mit den Feststellungen auf und verwies an eine andere Schwurgerichtskammer zurück. Er sprach die Pflegekraft nicht endgültig frei.",
+      "holding": "Eingriff, konkrete Medikamentenwirkung, Todesursächlichkeit und Patientenwille sind vier eigenständige Fragen.",
+      "practice": "Eingriff, konkrete Medikamentenwirkung, Todesursächlichkeit und Patientenwille sind vier eigenständige Fragen.",
+      "status": "Das Urteil beurteilt eine Gabe aus 2016 nach §§ 223, 228 StGB und dem damaligen BtMG. Für die heutige Ermittlung von Patientenverfügung und Behandlungswünschen ist § 1827 BGB einschlägig; die frühere Normnummer § 1901a BGB darf nicht als heutige Nummer erscheinen. Medizinische Dosisangaben des Urteils werden nicht als aktuelle Therapieempfehlung übernommen.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2019-1&Gericht=bgh&anz=276&nr=99529&pos=16",
       "courseIds": [
         "tag-08",
         "tag-11"
@@ -1634,10 +1634,10 @@
       "docket": "011 Ns-16 Js 279/11-11/13",
       "decisionType": "Urteil",
       "title": "Die unbeschriftete Spritze: Ein PJ-Student vor dem Strafgericht",
-      "tenor": "Das LG bestätigte den Schuldspruch wegen fahrlässiger Tötung und setzte die Geldstrafe auf 90 Tagessätze zu je 20 Euro herab.",
-      "holding": "Unklarer Auftrag und systemische Verwechslungsrisiken beseitigen die eigene Pflicht zur Klärung von Inhalt, Applikationsweg und Kompetenz nicht automatisch.",
-      "practice": "Bei einer unbeschrifteten Spritze vor der Gabe stoppen und verlässlich klären. Aus diesem Strafurteil folgt keine automatisch feststehende zivilrechtliche Haftung aller Beteiligten.",
-      "status": "Rechtskräftiges Berufungsurteil vom 14.08.2013 nach der veröffentlichten NRW-Entscheidung.",
+      "tenor": "Das LG bestätigte die Verurteilung nach § 222 StGB und reduzierte die Strafe auf 90 Tagessätze zu je 20 Euro. Der amtliche Kopf bezeichnet die Entscheidung als rechtskräftig.",
+      "holding": "Ein Fehler in der Organisation und ein individuell vermeidbarer Fehler können nebeneinander bestehen.",
+      "practice": "Ein Fehler in der Organisation und ein individuell vermeidbarer Fehler können nebeneinander bestehen.",
+      "status": "Das Urteil betrifft das Geschehen von 2011. Seine strafrechtliche Bewertung nach § 222 StGB ist von einer heutigen zivilrechtlichen Lehrvariante mit Beweisregeln nach § 630h BGB zu trennen. Die im Strafurteil angenommene grobe Fahrlässigkeit ist nicht automatisch ein grober Behandlungsfehler mit zivilrechtlicher Beweislastumkehr.",
       "url": "https://nrwe.justiz.nrw.de/pdfdownload/downloadEntscheidung.php?entscheidung=%2Fnrwe%2Flgs%2Fbielefeld%2Flg_bielefeld%2Fj2013%2F011_Ns_16_Js_279_11_11_13_Urteil_20130814.html",
       "courseIds": [
         "tag-03",
@@ -1755,11 +1755,11 @@
       "docket": "5 StR 132/18",
       "title": "Freier Wille und abgelehnte Rettung",
       "decisionType": "Urteil",
-      "tenor": "Verwerfung der Revision der Staatsanwaltschaft; der Freispruch des LG Hamburg blieb bestehen.",
-      "holding": "Im festgestellten freiverantwortlichen Fall war eine dem bekannten konkreten Willen widersprechende Rettung dem begleitenden Arzt nicht zumutbar.",
-      "practice": "Die festgestellte Vorgeschichte nicht in einer unbekannten akuten Krise unterstellen; Unterlassen, Willensgrundlage und § 323c StGB getrennt prüfen.",
-      "status": "Freispruch bestätigt. Keine pauschale Ausnahme von Rettungspflichten nach jedem Suizidversuch.",
-      "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/5_StS/2018/5_StR_132-18C.pdf?__blob=publicationFile&v=1",
+      "tenor": "Die Revision der Staatsanwaltschaft wurde verworfen. Der Freispruch blieb bestehen.",
+      "holding": "Freiverantwortlichkeit, konkrete Rettungsablehnung und eine mögliche Handlungspflicht verlangen jeweils eigene Feststellungen.",
+      "practice": "Freiverantwortlichkeit, konkrete Rettungsablehnung und eine mögliche Handlungspflicht verlangen jeweils eigene Feststellungen.",
+      "status": "Tatzeit 2012: § 217 StGB von 2015 war schon zeitlich nicht anwendbar. Das Urteil verweist auf § 1901a BGB a. F.; heute steht das Patientenverfügungsrecht in § 1827 BGB. Seit dem BVerfG-Urteil von 2020 ist § 217 StGB in der damaligen Fassung nichtig. Die Wertung ist keine pauschale Befreiung von Rettungspflichten in ungeklärten Suizidlagen; zum historischen Gegenbild siehe Wittig 1984.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2019-5&Gericht=bgh&file=dokument.pdf&linked=urt&nr=101282",
       "courseIds": [
         "tag-10"
       ],
@@ -1855,11 +1855,11 @@
       "docket": "5 StR 682/24",
       "title": "Behandler als Zeuge: Die rechtliche Rolle zählt",
       "decisionType": "Beschluss",
-      "tenor": "Revision als unbegründet verworfen; ärztliche Zeugenaussage in der geprüften Konstellation verwertbar.",
-      "holding": "Für Informationen aus der Beobachtung während der strafprozessualen Unterbringung nach § 126a StPO bestand gegenüber der Strafkammer insoweit kein ärztliches Zeugnisverweigerungsrecht.",
-      "practice": "Die rechtliche Rolle und Informationsherkunft prüfen; keine allgemeine Datenfreigabe im Rettungseinsatz.",
-      "status": "Verurteilung und Unterbringung blieben bestehen; gewöhnliche Behandlung nicht pauschal gleichstellen.",
-      "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/5_StS/2024/5_StR_682-24.pdf?__blob=publicationFile&v=1",
+      "tenor": "Die Revision wurde verworfen. Die Verurteilung und die angeordnete Unterbringung blieben bestehen; die Verwertung der hier betroffenen ärztlichen Angaben war nicht rechtsfehlerhaft.",
+      "holding": "Für Vertraulichkeit und Aussagepflicht zählen Rolle, gesetzlicher Auftrag und Herkunft der konkreten Information.",
+      "practice": "Für Vertraulichkeit und Aussagepflicht zählen Rolle, gesetzlicher Auftrag und Herkunft der konkreten Information.",
+      "status": "Die aktuelle Grundregel des § 53 Abs. 1 Satz 1 Nr. 3 StPO schützt ärztlich anvertraute oder bekannt gewordene Geheimnisse. Der Beschluss von 2025 beschreibt eine besondere Grenze im Zusammenwirken mit § 126a StPO. § 203 StGB und Offenbarungsbefugnisse bleiben eigenständig zu prüfen. Eine gewöhnliche Behandlung oder ein Rettungseinsatz wird dadurch nicht zur strafprozessualen Untersuchung.",
+      "url": "https://www.hrr-strafrecht.de/hrr/5/24/5-682-24.php",
       "courseIds": [
         "tag-08"
       ],
@@ -2037,11 +2037,11 @@
       "docket": "5 StR 256/20",
       "decisionType": "Beschluss",
       "title": "Berliner Zwillingsfall · Geburtsbeginn und Lebensschutz",
-      "tenor": "Schuldsprüche bestätigt; nur Strafaussprüche aufgehoben und zurückverwiesen.",
-      "holding": "Geburtsbeginn beim Kaiserschnitt regelmäßig mit zweckgerichteter Uterusöffnung; § 218a Abs. 2 StGB rechtfertigt die Tötung nach dieser Grenze nicht.",
-      "practice": "Festgestellte Tatsachen, Beweisfragen und Reichweite des Tenors getrennt prüfen.",
-      "status": "Entscheidung 11.11.2020 · Historische Entscheidung und heutige Einordnung ausdrücklich unterscheiden.",
-      "url": "https://www.hrr-strafrecht.de/hrr/5/20/5-256-20.php",
+      "tenor": "Der BGH bestätigte die Schuldsprüche wegen Totschlags. Er hob ausschließlich die Strafaussprüche auf und verwies insoweit zurück; die Feststellungen blieben erhalten.",
+      "holding": "Geburtsbeginn, Rechtsfähigkeit und Schutz ungeborenen Lebens haben unterschiedliche rechtliche Funktionen.",
+      "practice": "Geburtsbeginn, Rechtsfähigkeit und Schutz ungeborenen Lebens haben unterschiedliche rechtliche Funktionen.",
+      "status": "Der Beschluss von 2020 betrifft eine Entbindung aus 2010. Seine zeitliche Grenzziehung darf nicht mit § 1 BGB oder einem unbeschränkten Weitergelten des § 218a Abs. 2 StGB gleichgesetzt werden. Spätere Entscheidungen zu natürlichen Geburten sind ergänzende Entwicklung, keine nachträgliche Feststellung zum hier offenen Wehenbeginn.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2021&Gericht=bgh&file=dokument.pdf&linked=bes&nr=113457",
       "courseIds": [
         "tag-01",
         "tag-08"
@@ -2616,6 +2616,859 @@
       "practice": "Kündigung, Wegfall des Vergütungsinteresses und Befreiung von einer nutzlosen Rechnung haben unterschiedliche Voraussetzungen.",
       "status": "Behandlung 2010: damaliges Dienstvertragsrecht, heute auch § 630b BGB. § 627 BGB ermöglicht unter seinen Voraussetzungen die Kündigung; Vergütungsfolgen nach § 628 BGB und Schadensersatz nach § 280 Abs. 1 BGB getrennt prüfen. Nicht jede teilweise fehlerhafte Behandlung macht die gesamte Rechnung automatisch gegenstandslos.",
       "url": "https://recht.nulegal.eu/rechtsprechung/bgh/2018-09-13/iii-zr-294-16"
+    },
+    {
+      "id": "leit55-bgh-4-str-549-06",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "05.07.2007",
+      "docket": "4 StR 549/06",
+      "title": "Die zweite Operation: Hätte der Patient wirklich eingewilligt?",
+      "courseIds": [
+        "tag-03",
+        "tag-08",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-4-str-549-06",
+      "tenor": "Der BGH hob das Urteil auf beide Revisionen mit den Feststellungen auf und verwies zurück. Eine Verurteilung wegen Körperverletzung mit Todesfolge wurde damit noch nicht ausgesprochen.",
+      "holding": "Eine hypothetische Einwilligung muss den konkreten Eingriff unter den tatsächlich vorgesehenen Bedingungen erfassen.",
+      "practice": "Eine hypothetische Einwilligung muss den konkreten Eingriff unter den tatsächlich vorgesehenen Bedingungen erfassen.",
+      "status": "Der BGH entschied 2007 vor der gesetzlichen Regelung des Behandlungsvertrags in §§ 630a ff. BGB. Seine strafrechtliche Prüfung hypothetischer Einwilligung ist von der heutigen zivilrechtlichen Beweislastregel des § 630h Abs. 2 BGB zu unterscheiden; diese verlagert nicht die strafrechtliche Beweislast.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2007-7&Gericht=bgh&file=dokument.pdf&linked=urt&nr=40770"
+    },
+    {
+      "id": "leit55-bgh-5-str-393-18",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "03.07.2019",
+      "docket": "5 StR 393/18",
+      "title": "Der begleitete Suizid: Muss der Arzt trotzdem retten?",
+      "courseIds": [
+        "tag-08",
+        "tag-10"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-5-str-393-18",
+      "tenor": "Die Revision der Staatsanwaltschaft wurde verworfen; der Freispruch des Arztes blieb bestehen. Die Entscheidung beruht auf den konkreten Feststellungen zu Freiverantwortlichkeit und vereinbarter Begleitung.",
+      "holding": "Freiverantwortlichkeit, Herrschaft über die Todeshandlung und konkrete Reichweite einer Rettungspflicht sind getrennt zu prüfen.",
+      "practice": "Freiverantwortlichkeit, Herrschaft über die Todeshandlung und konkrete Reichweite einer Rettungspflicht sind getrennt zu prüfen.",
+      "status": "Das Tatgeschehen stammt aus 2013, vor Einführung des späteren § 217 StGB. Dessen Nichtigerklärung durch das BVerfG 2020 ist eine eigene Rechtsentwicklung. Der Fall ist von § 216 StGB sowie arznei- und betäubungsmittelrechtlichen Fragen zu unterscheiden; aus dem Freispruch folgt keine allgemeine Erlaubnis jeder heutigen Suizidassistenz.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2019-5&Gericht=bgh&file=dokument.pdf&linked=urt&nr=101285"
+    },
+    {
+      "id": "leit55-bgh-gsst-2-11",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "29.03.2012",
+      "docket": "GSSt 2/11",
+      "title": "Prämien für Verordnungen: Die historische Strafbarkeitslücke",
+      "courseIds": [
+        "tag-08",
+        "tag-09",
+        "tag-11"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bgh-gsst-2-11",
+      "tenor": "Der Große Senat verneinte für die vorgelegte Verordnungstätigkeit sowohl Amtsträger- als auch Beauftragteneigenschaft. Seine Entscheidung war eine Vorlageentscheidung und kein pauschaler Freispruch sämtlicher Beteiligter.",
+      "holding": "Strafwürdigkeit ersetzt kein Tatbestandsmerkmal; Rechtsänderungen müssen zeitlich sichtbar bleiben.",
+      "practice": "Strafwürdigkeit ersetzt kein Tatbestandsmerkmal; Rechtsänderungen müssen zeitlich sichtbar bleiben.",
+      "status": "Die Vorlageentscheidung bezieht sich auf das Recht vor Einführung der §§ 299a, 299b StGB durch das Gesetz von 2016. Die heute abrufbaren Normen erfassen Bestechlichkeit und Bestechung im Gesundheitswesen eigenständig. Sie dürfen weder als Grundlage einer rückwirkenden Verurteilung noch als automatische Strafbarkeit jeder Kooperation behandelt werden.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2012-3&Gericht=bgh&anz=400&nr=60679&pos=15"
+    },
+    {
+      "id": "leit55-bgh-1-str-45-11",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "25.01.2012",
+      "docket": "1 StR 45/11",
+      "title": "Die privatärztliche Rechnung: Wer hat die Leistung wirklich erbracht?",
+      "courseIds": [
+        "tag-08",
+        "tag-09",
+        "tag-11"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bgh-1-str-45-11",
+      "tenor": "Ein bereits zuvor ausgeschiedener Fall wurde wegen eines Verfahrenshindernisses eingestellt; der Schuldspruch wurde auf 128 Betrugsfälle geändert. Die Gesamtfreiheitsstrafe von drei Jahren und drei Monaten und das begrenzte dreijährige Berufsverbot blieben bestehen.",
+      "holding": "Medizinische Leistung, Vergütungsanspruch, täuschungsbedingte Zahlung und Betrugsvorsatz sind gesondert zu bestimmen.",
+      "practice": "Medizinische Leistung, Vergütungsanspruch, täuschungsbedingte Zahlung und Betrugsvorsatz sind gesondert zu bestimmen.",
+      "status": "Die Taten lagen 2002–2007; entschieden wurde 2012. Der aktuell abrufbare § 4 GOÄ enthält weiterhin die Anforderungen an eigene Leistungen und bestimmte Leistungen unter Aufsicht und fachlicher Weisung. Die historischen Ausführungen zu Verfall und § 111i StPO werden nicht als heutiges Einziehungsrecht übernommen. Eine umfassende Aktualisierung aller Abrechnungsfragen ist nicht Gegenstand dieses Falles.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2012&Gericht=bgh&Seite=110&anz=3531&nr=59575&pos=3321"
+    },
+    {
+      "id": "leit55-bgh-4-str-669-10",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "14.04.2011",
+      "docket": "4 StR 669/10",
+      "title": "Einverständliche Nähe im Behandlungsverhältnis: Reicht ein Ja?",
+      "courseIds": [
+        "tag-08",
+        "tag-09",
+        "tag-10"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-4-str-669-10",
+      "tenor": "Der BGH hob bestimmte Schuldsprüche, bestimmte Freisprüche, die Gesamtstrafe und den Ausspruch zum unterbliebenen Berufsverbot auf und verwies insoweit zurück. Der Schuldspruch wegen des Brustbisses blieb bestehen; seine Einzelstrafe wurde aufgehoben.",
+      "holding": "Zustimmung, krankheitsbezogenes Anvertrautsein und Missbrauch sind drei verschiedene Prüfungsfragen.",
+      "practice": "Zustimmung, krankheitsbezogenes Anvertrautsein und Missbrauch sind drei verschiedene Prüfungsfragen.",
+      "status": "Die Entscheidung betrifft Kontakte 2004/2005 und den damaligen § 174c StGB. Der historische Verweis auf § 179 StGB darf nicht ungeprüft als heutige Norm übernommen werden. Der Falltext erklärt die vom BGH geprüfte Struktur des § 174c StGB; spätere Fassungsänderungen und heutige weitere Sexualdelikte bedürfen bei neuen Fällen einer eigenständigen Prüfung.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2011-4-14&Gericht=bgh&anz=35&nr=56229&pos=15"
+    },
+    {
+      "id": "leit55-bgh-3-str-79-96",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "15.11.1996",
+      "docket": "3 StR 79/96",
+      "title": "Dolantin, ein kleiner Tropf und ein umstrittener Tötungsentschluss",
+      "courseIds": [
+        "tag-05",
+        "tag-08",
+        "tag-10",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-3-str-79-96",
+      "tenor": "Der BGH hob die Verurteilungen mit den Feststellungen auf und verwies an das LG Lübeck zurück. Die gegen die Ehefrau gerichtete Revision der Staatsanwaltschaft wurde verworfen. Ein endgültiger Freispruch oder späterer Abschluss wird nicht behauptet.",
+      "holding": "Ein belastendes Motiv ersetzt weder den Beweis der Tötungshandlung noch den Nachweis von Kausalität und gemeinsamem Vorsatz.",
+      "practice": "Ein belastendes Motiv ersetzt weder den Beweis der Tötungshandlung noch den Nachweis von Kausalität und gemeinsamem Vorsatz.",
+      "status": "Das Urteil von 1996 betrifft eine Behandlung aus 1987 und erörtert die Rechtfertigung indirekter Sterbehilfe insbesondere über § 34 StGB. Spätere Entscheidungen wie S01 und S04 vertiefen Patientenautonomie und Einwilligung. Historische toxikologische Aussagen werden nicht als heutiger medizinischer Standard oder Dosierungsregel übernommen.",
+      "url": "https://www.hrr-strafrecht.de/hrr/3/96/3-79-96.php"
+    },
+    {
+      "id": "leit55-bgh-1-str-300-03",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "15.10.2003",
+      "docket": "1 StR 300/03",
+      "title": "Falsche Bandscheibenetage - die zweite Operation und eine erfundene Erklärung",
+      "courseIds": [
+        "tag-03",
+        "tag-08"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bgh-1-str-300-03",
+      "tenor": "Der BGH hob die Geldstrafenverurteilung mit den Feststellungen auf und verwies zurück. Er sprach den Chefarzt nicht selbst frei, weil weitere Feststellungen zur hypothetischen Einwilligung möglich waren.",
+      "holding": "Medizinische Notwendigkeit beantwortet nicht, wer welchem Eingriff nach wahrheitsgemäßer Aufklärung zugestimmt hätte.",
+      "practice": "Medizinische Notwendigkeit beantwortet nicht, wer welchem Eingriff nach wahrheitsgemäßer Aufklärung zugestimmt hätte.",
+      "status": "Die Entscheidung von 2003 ging der Kodifikation der §§ 630a ff. BGB voraus. Die heutige zivilrechtliche Regelung hypothetischer Einwilligung in § 630h Abs. 2 BGB ist von der strafrechtlichen Nachweisanforderung und dem Zweifelssatz zu unterscheiden. Das historische Ergebnis rechtfertigt keine bewusste Täuschung bei heutigen Aufklärungsgesprächen.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2003&Gericht=bgh&Seite=2&Sort=6&anz=2892&nr=27362&pos=60"
+    },
+    {
+      "id": "leit55-bgh-1-str-319-03",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "20.01.2004",
+      "docket": "1 StR 319/03",
+      "title": "Die verschwiegene Bohrerspitze",
+      "courseIds": [
+        "tag-03",
+        "tag-04",
+        "tag-08",
+        "tag-09"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-1-str-319-03",
+      "tenor": "Der BGH verwarf beide Revisionen. Die Verurteilung zu einer Gesamtgeldstrafe von 270 Tagessätzen zu je 90 Euro blieb bestehen; ebenso die Entscheidung, kein Berufsverbot zu verhängen.",
+      "holding": "Komplikation, Verschweigen und ein dadurch ermöglichter neuer Eingriff sind verschiedene rechtliche Geschehensabschnitte.",
+      "practice": "Komplikation, Verschweigen und ein dadurch ermöglichter neuer Eingriff sind verschiedene rechtliche Geschehensabschnitte.",
+      "status": "Das Urteil von 2004 betrifft Behandlungen aus den Jahren 1998/1999. Heutige Pflichten zu Aufklärung und Dokumentation sind insbesondere in §§ 630e, 630f BGB kodifiziert; sie sind keine rückwirkenden Entscheidungsnormen des damaligen Urteils. Der historische Berufsverbotsausspruch ist von heutigen approbationsrechtlichen Verfahren zu unterscheiden.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2004-1-20&Gericht=bgh&anz=24&nr=28353&pos=0"
+    },
+    {
+      "id": "leit55-bgh-5-str-18-10",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "29.04.2010",
+      "docket": "5 StR 18/10",
+      "title": "Beweissicherung um jeden Preis? Der Brechmitteleinsatz",
+      "courseIds": [
+        "tag-08",
+        "tag-09",
+        "tag-12"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-5-str-18-10",
+      "tenor": "Der BGH hob den Freispruch mit den Feststellungen auf und verwies an eine Schwurgerichtskammer zurück. Neben fahrlässiger Tötung hielt er eine Körperverletzung mit Todesfolge für erneut prüfungsbedürftig; er sprach keinen eigenen Schuldspruch aus.",
+      "holding": "Staatlicher Auftrag, fremde Mitverantwortung und eigene Überforderung heben die konkrete ärztliche Schutzpflicht nicht auf.",
+      "practice": "Staatlicher Auftrag, fremde Mitverantwortung und eigene Überforderung heben die konkrete ärztliche Schutzpflicht nicht auf.",
+      "status": "Das Geschehen lag 2004. Der BGH berücksichtigte 2010 die zwischenzeitliche menschenrechtliche Klärung des Brechmitteleinsatzes, trennte diese aber von der individuellen Irrtums- und Schuldprüfung zum Tatzeitpunkt. Der weitere BGH-Rechtsgang vom 20.06.2012 – 5 StR 536/11 ist eine zusätzliche Entscheidung und kein endgültiger Schuldspruch in diesem Urteil.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2010-4&Gericht=bgh&anz=298&nr=52237&pos=6"
+    },
+    {
+      "id": "leit55-bgh-1-str-576-07",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "20.12.2007",
+      "docket": "1 StR 576/07",
+      "title": "Angebrochene Propofolflaschen und eine tödliche Narkose",
+      "courseIds": [
+        "tag-05",
+        "tag-08",
+        "tag-11"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bgh-1-str-576-07",
+      "tenor": "Der BGH verwarf die Revision als unbegründet. Die Verurteilung nach §§ 223, 227 StGB blieb bestehen; weitergehende Tatsachen oder ein eigener Schuldspruch nach § 224 StGB ergeben sich aus dem kurzen Text nicht.",
+      "holding": "Vorsatz zur Körperverletzung und Verschulden hinsichtlich der Todesfolge sind unterschiedliche Anforderungen.",
+      "practice": "Vorsatz zur Körperverletzung und Verschulden hinsichtlich der Todesfolge sind unterschiedliche Anforderungen.",
+      "status": "Der Beschluss von 2007 erklärt die damalige Anwendung der §§ 223, 227, 18 StGB. Die historischen Warnhinweise und konkreten Tatsachen werden nicht als vollständiger heutiger Hygienestandard ausgegeben. Für eine heutige Behandlung wären aktuelle Produktinformation und medizinischer Standard gesondert zu ermitteln.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2007&Gericht=bgh&Sort=3&anz=3318&nr=42282&pos=5"
+    },
+    {
+      "id": "leit55-bgh-4-str-325-23",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "19.12.2023",
+      "docket": "4 StR 325/23",
+      "title": "Erfundene Krankheitssymptome führen zu Operationen am Kind",
+      "courseIds": [
+        "tag-08",
+        "tag-10"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bgh-4-str-325-23",
+      "tenor": "Die Revision der Mutter wurde verworfen. Die Gesamtfreiheitsstrafe von drei Jahren und sechs Monaten blieb bestehen; der BGH trug die gefährliche Körperverletzung bei den Operationen mit einer anderen Qualifikationsvariante.",
+      "holding": "Medizinische Indikation, Einwilligung, Werkzeugqualifikation und Schuldfähigkeit sind eigenständige Prüfungen.",
+      "practice": "Medizinische Indikation, Einwilligung, Werkzeugqualifikation und Schuldfähigkeit sind eigenständige Prüfungen.",
+      "status": "Die Taten von 2015 bis 2018 unterlagen § 224 StGB. Der BGH grenzt dessen seit 1. April 1998 geltenden Wortlaut ausdrücklich von § 223a StGB a. F. ab. Die Aussage ist auf medizinisch nicht indizierte Eingriffe begrenzt; sie entscheidet nicht jede Verwendung chirurgischen Instrumentariums bei indizierter Behandlung.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2023-12-19&Gericht=bgh&anz=25&nr=141976&pos=10"
+    },
+    {
+      "id": "leit55-bgh-3-str-163-23",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "21.03.2024",
+      "docket": "3 StR 163/23",
+      "title": "Kompressionsstrümpfe gegen Umsatzbeteiligung",
+      "courseIds": [
+        "tag-08",
+        "tag-09",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-3-str-163-23",
+      "tenor": "Der BGH fasste den Schuldspruch als gewerbsmäßigen Bandenbetrug in 145 Fällen und Bestechlichkeit im Gesundheitswesen in drei Fällen neu. Er reduzierte die Einziehung des Wertes von Taterträgen auf 59.539,18 Euro und verwarf die weitergehende Revision.",
+      "holding": "Vergütungsanspruch, Korruptionsdelikt und Einziehungsumfang folgen unterschiedlichen Voraussetzungen.",
+      "practice": "Vergütungsanspruch, Korruptionsdelikt und Einziehungsumfang folgen unterschiedlichen Voraussetzungen.",
+      "status": "Für die Taten vor dem 4. Juni 2016 durfte § 299a StGB nicht rückwirkend angewendet werden. Heute sind §§ 299a, 299b StGB und § 128 SGB V eigenständig zu prüfen. Die frühere Strafbarkeitsfrage bei Vertragsärzten aus 2012 erlaubt keine Aussage über heutige Straffreiheit.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2024-3&Gericht=bgh&Seite=2&anz=347&nr=137469&pos=89"
+    },
+    {
+      "id": "leit55-bgh-5-str-283-22",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "10.11.2022",
+      "docket": "5 StR 283/22",
+      "title": "Gefälschte Impfpässe und die vermeintliche Strafbarkeitslücke",
+      "courseIds": [
+        "tag-04",
+        "tag-08",
+        "tag-09"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-5-str-283-22",
+      "tenor": "Der angegriffene Freispruch wurde samt zugehörigen Feststellungen aufgehoben und die Sache zurückverwiesen. Auch die daran anknüpfende Nichtanordnung von Einziehung war im angegriffenen Umfang erneut zu entscheiden.",
+      "holding": "Die Nichtanwendbarkeit einer besonderen Strafnorm beantwortet noch nicht die Anwendbarkeit der allgemeinen Norm.",
+      "practice": "Die Nichtanwendbarkeit einer besonderen Strafnorm beantwortet noch nicht die Anwendbarkeit der allgemeinen Norm.",
+      "status": "Tatzeit war vor der Neufassung der §§ 277–279 StGB zum 24. November 2021. Der BGH legte das damalige Recht aus und wandte keine spätere Verschärfung rückwirkend an. Für heutige Fälle sind die aktuellen Normfassungen einschließlich der Konkurrenzregeln gesondert zu prüfen; Art. 103 Abs. 2 GG und § 2 StGB sichern die zeitliche Geltung.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2022&Gericht=bgh&Seite=1&file=dokument.pdf&linked=urt&nr=133545"
+    },
+    {
+      "id": "leit55-bgh-1-str-494-13",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "28.01.2014",
+      "docket": "1 StR 494/13",
+      "title": "Take-Home-Methadon, Regelverstöße und ein späterer Todesfall",
+      "courseIds": [
+        "tag-08",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-1-str-494-13",
+      "tenor": "Beide Revisionen wurden verworfen. Die Verurteilung wegen unerlaubten Verschreibens und das befristete Berufsverbot blieben bestehen; eine Verurteilung wegen des Todesfalls erfolgte nicht.",
+      "holding": "Regelwidrige Verschreibung und Zurechnung eines späteren Todes sind getrennt zu begründen.",
+      "practice": "Regelwidrige Verschreibung und Zurechnung eines späteren Todes sind getrennt zu begründen.",
+      "status": "Das Urteil betrifft die BtMVV-Fassungen des Tatzeitraums 2008–2011. § 5 BtMVV wurde seither wesentlich geändert und bezieht heute insbesondere qualifikations-, therapie- und richtlinienbezogene Anforderungen ein. Historische Test-, Ziel- oder Ausschlussregeln dürfen nicht als unveränderte aktuelle Vorgaben erscheinen. § 13 BtMG und die individuelle Todeszurechnung bleiben eigenständige Ebenen.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=en&Blank=1.pdf&Datum=2014-1&Gericht=bgh&anz=290&nr=66935&pos=24"
+    },
+    {
+      "id": "leit55-bgh-5-str-55-25",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "13.08.2025",
+      "docket": "5 StR 55/25",
+      "title": "Acht Stunden Zahnsanierung - wer musste die Warnzeichen sehen?",
+      "courseIds": [
+        "tag-08",
+        "tag-11",
+        "tag-12"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-5-str-55-25",
+      "tenor": "Der Schuldspruch des Anästhesisten wegen Körperverletzung mit Todesfolge blieb bestehen; sein Rechtsfolgenausspruch wurde aufgehoben. Der Freispruch der Zahnärztin wurde mit den Feststellungen aufgehoben. Im Umfang beider Aufhebungen wurde zurückverwiesen.",
+      "holding": "Fachliche Arbeitsteilung erlaubt Vertrauen, verlangt aber Reaktion auf erkennbare Risiken und verlässliche Koordination.",
+      "practice": "Fachliche Arbeitsteilung erlaubt Vertrauen, verlangt aber Reaktion auf erkennbare Risiken und verlässliche Koordination.",
+      "status": "Die Behandlung von 2016 lag bereits in der Geltung der §§ 630a–630h BGB. Strafrechtlich sind die Einwilligungsdogmatik, §§ 223, 227 StGB und für eine fahrlässige Verantwortlichkeit der Zahnärztin § 222 StGB getrennt zu prüfen. Das Urteil ist weder ein generelles Delegationsverbot noch eine abschließende Verurteilung der Zahnärztin.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2025&Gericht=bgh&file=dokument.pdf&linked=urt&nr=142918"
+    },
+    {
+      "id": "leit55-bgh-3-str-271-97",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "19.11.1997",
+      "docket": "3 StR 271/97",
+      "title": "Zu lange Bestrahlungszeiten - darf der Urlaubsvertreter vertrauen?",
+      "courseIds": [
+        "tag-08",
+        "tag-11",
+        "tag-12"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-3-str-271-97",
+      "tenor": "Die Revision wurde verworfen. Die Verurteilung des Urlaubsvertreters wegen fahrlässiger Körperverletzung in fünf Fällen blieb bestehen.",
+      "holding": "Vertrauen endet, wenn konkrete Umstände ernsthafte Zweifel an der Vorarbeit begründen.",
+      "practice": "Vertrauen endet, wenn konkrete Umstände ernsthafte Zweifel an der Vorarbeit begründen.",
+      "status": "Das Urteil von 1997 betrifft den damaligen Körperverletzungsrechtsrahmen; die fahrlässige Körperverletzung war seinerzeit in § 230 StGB a. F. geregelt und steht heute in § 229 StGB. Die heutige zivilrechtliche Vergleichsnorm zum Behandlungsstandard ist § 630a Abs. 2 BGB. Die konkrete Zellschädigung darf nicht als Beleg für einen automatisch identischen Effekt jeder Medikation verallgemeinert werden.",
+      "url": "https://www.hrr-strafrecht.de/hrr/3/97/3-271-97.php"
+    },
+    {
+      "id": "leit55-bgh-5-str-520-24",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "14.08.2025",
+      "docket": "5 StR 520/24",
+      "title": "Ein schwankender Sterbewunsch und eine falsche Zusicherung",
+      "courseIds": [
+        "tag-08",
+        "tag-10",
+        "tag-11"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bgh-5-str-520-24",
+      "tenor": "Die Revision gegen die dreijährige Freiheitsstrafe wegen Totschlags wurde verworfen. Diese Verurteilung blieb bestehen; der Freispruch zum ersten Versuch wurde dadurch nicht in eine Verurteilung umgewandelt.",
+      "holding": "Eine selbst ausgeführte Handlung beweist keine freie Entscheidung; Diagnose allein beweist aber auch keine Unfreiheit.",
+      "practice": "Eine selbst ausgeführte Handlung beweist keine freie Entscheidung; Diagnose allein beweist aber auch keine Unfreiheit.",
+      "status": "Die Taten von 2021 lagen nach der Nichtigerklärung des § 217 StGB. Maßgeblich waren §§ 212 Abs. 1, 25 Abs. 1 Alt. 2 StGB. Der Beschluss stammt vom 14. August 2025; die HRRS-Nummer aus 2026 bezeichnet das Veröffentlichungsjahr und ändert das Entscheidungsdatum nicht. Das Urteil verneint kein allgemeines Recht freiverantwortlicher Suizidassistenz.",
+      "url": "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/5_StS/2024/5_StR_520-24.pdf?__blob=publicationFile&v=3"
+    },
+    {
+      "id": "leit55-bgh-3-str-96-84",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "04.07.1984",
+      "docket": "3 StR 96/84",
+      "title": "„Ich will zu meinem Peterle“ - der Wittig-Fall",
+      "courseIds": [
+        "tag-08",
+        "tag-10"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-3-str-96-84",
+      "tenor": "Die Revision der Staatsanwaltschaft blieb im Ergebnis ohne Erfolg. Der Freispruch wurde bestätigt, jedoch mit einer teilweise anderen rechtlichen Begründung als derjenigen des LG.",
+      "holding": "Der Wittig-Fall erklärt eine historische Konfliktlösung; seine damalige Rettungspflicht darf nicht ungeprüft als heutige Regel gelten.",
+      "practice": "Der Wittig-Fall erklärt eine historische Konfliktlösung; seine damalige Rettungspflicht darf nicht ungeprüft als heutige Regel gelten.",
+      "status": "Das Geschehen von 1981 und das Urteil von 1984 liegen vor dem gesetzlichen Patientenverfügungsrecht und vor der heutigen verfassungsgerichtlichen Anerkennung selbstbestimmten Sterbens. Die Entscheidungen von 2019 und das BVerfG-Urteil von 2020 gewichten die konkret festgestellte freie Rettungsablehnung anders. Heute sind insbesondere § 1827 BGB, der konkrete Wille sowie die jeweilige Handlungspflicht zu prüfen. Bewusstlosigkeit hebt eine wirksame, passende autonome Rettungsablehnung nicht automatisch auf.",
+      "url": "https://www.servat.unibe.ch/dfr/bs032367.html"
+    },
+    {
+      "id": "leit55-bgh-4-str-525-57",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "28.11.1957",
+      "docket": "4 StR 525/57",
+      "title": "Myomoperation ohne Zustimmung zur Entfernung des Gebärmutterkörpers",
+      "courseIds": [
+        "tag-03",
+        "tag-08",
+        "tag-10"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-4-str-525-57",
+      "tenor": "Der BGH hob den Freispruch auf. Die vorgelagerte Fahrlässigkeit bei einer vorhersehbaren Operationserweiterung musste erneut geprüft werden; eine abschließende Verurteilung erfolgte nicht.",
+      "holding": "Eine vermeidbare Entscheidungslage vor der Operation kann trotz eines späteren Irrtums während des Eingriffs relevant bleiben.",
+      "practice": "Eine vermeidbare Entscheidungslage vor der Operation kann trotz eines späteren Irrtums während des Eingriffs relevant bleiben.",
+      "status": "Das Urteil von 1957 erging lange vor §§ 630d, 630e BGB. Für heutige Fälle strukturieren diese Normen die zivilrechtliche Einwilligungs- und Aufklärungsprüfung; strafrechtlich sind §§ 223, 229 StGB und die Einwilligungsdogmatik maßgeblich. Die damalige fahrlässige Körperverletzung war in § 230 StGB a. F. geregelt. Heutige Gesetzesnummern gelten nicht rückwirkend.",
+      "url": "https://www.servat.unibe.ch/dfr/bs011111.html"
+    },
+    {
+      "id": "leit55-bgh-1-str-99-25",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "26.06.2025",
+      "docket": "1 StR 99/25",
+      "title": "Öffentliche Klinik, ausländische Patienten und Amtsträgereigenschaft",
+      "courseIds": [
+        "tag-08",
+        "tag-09",
+        "tag-12"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bgh-1-str-99-25",
+      "tenor": "Die Revision gegen das Urteil des LG Stuttgart vom 15. August 2024 wurde als unbegründet verworfen. Ergänzend bestätigte der BGH die funktionale Zuordnung zur öffentlichen Verwaltung.",
+      "holding": "Im öffentlichen Krankenhaus zählt die konkrete Funktion innerhalb der Aufgabenerfüllung.",
+      "practice": "Im öffentlichen Krankenhaus zählt die konkrete Funktion innerhalb der Aufgabenerfüllung.",
+      "status": "Der Beschluss von 2025 legt den geltenden § 11 Abs. 1 Nr. 2 Buchst. c StGB zugrunde. Er darf nicht mit der historischen Vertragsarztentscheidung von 2012 oder mit § 299a StGB gleichgesetzt werden. Amtsträgerkorruption und Korruption im Gesundheitswesen haben verschiedene Voraussetzungen; eine heutige Prüfung muss den konkreten Status ermitteln.",
+      "url": "https://www.hrr-strafrecht.de/hrr/1/25/1-99-25.php"
+    },
+    {
+      "id": "leit55-bgh-3-str-239-10",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "22.12.2010",
+      "docket": "3 StR 239/10",
+      "title": "Zitronensaft in der Wunde - aber welche Behandlung verursachte den Tod?",
+      "courseIds": [
+        "tag-03",
+        "tag-08",
+        "tag-10",
+        "tag-13"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-3-str-239-10",
+      "tenor": "Die Verurteilung wegen Körperverletzung mit Todesfolge wurde aufgehoben und die Sache zurückverwiesen. Ein endgültiger Freispruch oder eine generelle Billigung der Außenseitermethode erfolgte nicht.",
+      "holding": "Jeder Behandlungsschritt benötigt seine eigene Einwilligungs- und Kausalitätsprüfung.",
+      "practice": "Jeder Behandlungsschritt benötigt seine eigene Einwilligungs- und Kausalitätsprüfung.",
+      "status": "Die Behandlung von 2006 lag vor dem Patientenrechtegesetz. Heute bieten §§ 630d und 630e BGB den zivilrechtlichen Vergleichsrahmen; strafrechtlich bleiben Einwilligungsdogmatik und der spezifische Gefahrzusammenhang des § 227 StGB entscheidend. Eine unkonventionelle Methode wird weder durch ihre Bezeichnung noch durch ärztliche Überzeugung rechtmäßig.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2010&Gericht=bgh&file=dokument.pdf&linked=urt&nr=55160"
+    },
+    {
+      "id": "leit55-bgh-5-str-561-10",
+      "tier": "Vertiefung",
+      "area": "Strafrecht",
+      "court": "BGH",
+      "date": "07.07.2011",
+      "docket": "5 StR 561/10",
+      "title": "Schönheitsoperation ohne versprochenen Anästhesisten und verzögerter Notruf",
+      "courseIds": [
+        "tag-02",
+        "tag-08",
+        "tag-11",
+        "tag-12"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bgh-5-str-561-10",
+      "tenor": "Der BGH hob den Schuldspruch und die Rechtsfolgen im angegriffenen Umfang auf und verwies zurück. Wegen Tateinheit entfiel formell auch der Schuldspruch nach § 227 StGB; die ihn tragenden Feststellungen blieben erhalten.",
+      "holding": "Ausgangseingriff, nachfolgendes Rettungsunterlassen und Tötungsvorsatz verlangen getrennte Begründungen.",
+      "practice": "Ausgangseingriff, nachfolgendes Rettungsunterlassen und Tötungsvorsatz verlangen getrennte Begründungen.",
+      "status": "Die Tat von 2006 lag vor §§ 630a–630h BGB. Heute sind §§ 630d, 630e BGB ergänzende zivilrechtliche Vergleichsnormen. Strafrechtlich sind §§ 223, 227 StGB von §§ 212, 13, 22, 23 StGB sowie gegebenenfalls § 211 StGB zu unterscheiden. Anders als in S25 blieb hier der Schuldspruch nach § 227 StGB nicht formell bestehen, sondern nur seine tragfähige Tatsachengrundlage.",
+      "url": "https://juris.bundesgerichtshof.de/cgi-bin/rechtsprechung/document.py?Art=pm&Blank=1&Datum=2011-7&Gericht=bgh&file=dokument.pdf&linked=urt&nr=57334"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-1128-13",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "03.03.2014",
+      "docket": "1 BvR 1128/13",
+      "title": "Das Urteil mit Klarnamen im Ärzteblatt",
+      "courseIds": [
+        "tag-09",
+        "tag-04"
+      ],
+      "decisionType": "Nichtannahmebeschluss",
+      "atlasId": "case-bverfg-1-bvr-1128-13",
+      "tenor": "Das BVerfG nahm die Verfassungsbeschwerde nicht zur Entscheidung an; der Antrag auf einstweilige Anordnung erledigte sich. Die angegriffenen Maßnahmen blieben bestehen.",
+      "holding": "Namensveröffentlichung ist eine zusätzliche Grundrechtsbelastung mit eigener gesetzlicher Grundlage und Einzelfallabwägung.",
+      "practice": "Namensveröffentlichung ist eine zusätzliche Grundrechtsbelastung mit eigener gesetzlicher Grundlage und Einzelfallabwägung.",
+      "status": "Angewandt wurde damaliges NRW-Landesrecht. Der heutige § 60 HeilBerG NRW enthält weiterhin die zusätzliche Veröffentlichung in besonderen Fällen, aber einen seit 2019 veränderten Maßnahmenkatalog. Andere Länder benötigen ihre eigene Ermächtigung; die MBO-Ä ist nur ein Muster.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2014/03/rk20140303_1bvr112813.html"
+    },
+    {
+      "id": "leit55-bverwg-3-b-7-18",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerwG",
+      "date": "31.07.2019",
+      "docket": "3 B 7.18",
+      "title": "Vergangene Verfehlung und heutige Berufswürdigkeit",
+      "courseIds": [
+        "tag-09",
+        "tag-08"
+      ],
+      "decisionType": "Beschluss über eine Nichtzulassungsbeschwerde",
+      "atlasId": "case-bverwg-3-b-7-18",
+      "tenor": "Die Nichtzulassungsbeschwerde wurde zurückgewiesen. Das klageabweisende VGH-Urteil blieb bestehen.",
+      "holding": "Unwürdigkeit ist weder eine zweite Strafe noch ein automatischer lebenslanger Ausschluss vom Arztberuf.",
+      "practice": "Unwürdigkeit ist weder eine zweite Strafe noch ein automatischer lebenslanger Ausschluss vom Arztberuf.",
+      "status": "§§ 3 und 5 BÄO sind Bundesrecht. Die strengen Anforderungen an vorläufiges Ruhen in B02 dürfen nicht unverändert auf den endgültigen Widerruf übertragen werden. Regionale Berufsbuße, Widerruf und spätere Wiedererteilung bleiben getrennte Entscheidungen.",
+      "url": "https://www.bverwg.de/310719B3B7.18.0"
+    },
+    {
+      "id": "leit55-bverwg-3-c-1-21",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerwG",
+      "date": "10.03.2022",
+      "docket": "3 C 1.21",
+      "title": "Betäubungsmittelaufsicht und die geschützte Patientenakte",
+      "courseIds": [
+        "tag-04",
+        "tag-09",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bverwg-3-c-1-21",
+      "tenor": "Die Revision hatte teilweise Erfolg: Die Anforderung der Patientenunterlagen wurde aufgehoben, die Vorlagepflicht für die Betäubungsmittelrezepte blieb bestehen.",
+      "holding": "Bei einer behördlichen Datenanforderung sind Zweck, Rechtsgrundlage und genaue Unterlagenkategorie getrennt zu bestimmen.",
+      "practice": "Bei einer behördlichen Datenanforderung sind Zweck, Rechtsgrundlage und genaue Unterlagenkategorie getrennt zu bestimmen.",
+      "status": "Das Gericht beurteilte den Bescheid vom 20.10.2016 anhand der damaligen BtMG- und BtMVV-Fassungen (Rn. 11). Neue Anordnungen brauchen eine Prüfung des aktuellen Rechts. Das Urteil enthält weder eine generelle Offenbarungspflicht noch absolute Immunität der Patientenakte.",
+      "url": "https://www.bverwg.de/100322U3C1.21.0"
+    },
+    {
+      "id": "leit55-ovg-berlin-brandenburg-ovg-90-h-5-25",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "OVG Berlin-Brandenburg",
+      "date": "15.04.2026",
+      "docket": "OVG 90 H 5/25",
+      "title": "WhatsApp mit der Patientin und eine Anzeige bei der Polizei",
+      "courseIds": [
+        "tag-09",
+        "tag-04"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-ovg-berlin-brandenburg-ovg-90-h-5-25",
+      "tenor": "Die Pflichtverletzungen wurden bestätigt, die Geldbuße aber auf 35.000 Euro herabgesetzt. Das Urteil ist nach dem Berliner Berufsgerichtsrecht unanfechtbar.",
+      "holding": "Distanz und Vertraulichkeit gelten auch im privaten Chat; die Höhe der Berufsbuße folgt einer eigenständigen, individuellen Bemessung.",
+      "practice": "Distanz und Vertraulichkeit gelten auch im privaten Chat; die Höhe der Berufsbuße folgt einer eigenständigen, individuellen Bemessung.",
+      "status": "Angewandt wurden das Berliner Heilberufekammergesetz vom 02.11.2018 und die Berufsordnung der Ärztekammer Berlin vom 26.11.2014 mit Änderungen vom 10.10.2018 und 14.04.2021, jeweils nach den zeitlichen Regeln des § 92 Abs. 3 BlnHKG. Das ist keine bundesweite Bußentabelle. Die MBO-Ä 2026 ist ein Modell; § 203 StGB wäre gesondert zu prüfen.",
+      "url": "https://gesetze.berlin.de/bsbe/document/NJRE001641991"
+    },
+    {
+      "id": "leit55-berufsgericht-f-r-heilberufe-k-ln-37-k-5786-22-t",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "Berufsgericht für Heilberufe Köln",
+      "date": "16.08.2023",
+      "docket": "37 K 5786/22.T",
+      "title": "Online-Arbeitsunfähigkeit: Pflichtverstoß ohne schuldhaftes Handeln?",
+      "courseIds": [
+        "tag-04",
+        "tag-09"
+      ],
+      "decisionType": "Beschluss über die Nichteröffnung",
+      "atlasId": "case-berufsgericht-f-r-heilberufe-k-ln-37-k-5786-22-t",
+      "tenor": "Der Antrag auf Eröffnung des Berufsgerichtsverfahrens wurde abgelehnt; es wurde keine Berufsbuße verhängt.",
+      "holding": "Pflichtverstoß, Vorsatz, Schuld und Eröffnung eines Berufsverfahrens sind eigenständige Prüfungsstufen.",
+      "practice": "Pflichtverstoß, Vorsatz, Schuld und Eröffnung eines Berufsverfahrens sind eigenständige Prüfungsstufen.",
+      "status": "Der Beschluss betrifft die Berufsordnung für die nordrheinischen Ärztinnen und Ärzte vom 14.11.1998; juris-Rn. 38 bezeichnet eine Fassung vom 16.11.2019. Diese Datierung wird als Angabe des Gerichtsabdrucks ausgewiesen. Für heutige Angebote sind die aktuell veröffentlichte nordrheinische Fassung vom 22.03.2025 und die jeweils aktuelle AU-Richtlinie zu prüfen. Die MBO-Ä 2026 ist keine unmittelbare Erlaubnisnorm.",
+      "url": "https://www.juris.de/perma?d=NJRE001578988"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-518-62",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "09.05.1972",
+      "docket": "1 BvR 518/62",
+      "title": "Der Facharzt-Beschluss: Was darf die Ärztekammer überhaupt regeln?",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-518-62",
+      "tenor": "Das BVerfG beanstandete die berufsgerichtlichen Verurteilungen als Verletzungen von Art. 12 Abs. 1 GG. Zugleich verlangte es eine gesetzliche Neuordnung der wesentlichen Grundlagen des Facharztwesens.",
+      "holding": "Zuerst die gesetzliche Verantwortung klären, danach die konkrete Berufspflicht und ihre Verhältnismäßigkeit.",
+      "practice": "Zuerst die gesetzliche Verantwortung klären, danach die konkrete Berufspflicht und ihre Verhältnismäßigkeit.",
+      "status": "Historische Grundlage aus 1972: Die damaligen Facharzt- und Kammerregelungen sind kein heutiger Normtext. Heute sind Landesheilberufegesetz und verbindliche Weiterbildungsordnung maßgeblich. Muster-Weiterbildungsordnung und MBO-Ä sind Modelle; B12 zeigt die spätere Entwicklung der Mehrfachqualifikationen.",
+      "url": "https://www.servat.unibe.ch/dfr/bv033125.html"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-934-82",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "19.11.1985",
+      "docket": "1 BvR 934/82",
+      "title": "Ein ärztliches Buch, ein Frischzellenjournal und die Meinungsfreiheit",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-934-82",
+      "tenor": "Die Verfassungsbeschwerde hatte hinsichtlich des Buchs Erfolg: insoweit Aufhebung und Zurückverweisung. Im Übrigen wurde sie zurückgewiesen.",
+      "holding": "Publikationen nach ihrem Inhalt prüfen: Ein werblicher Nebeneffekt macht einen Meinungsbeitrag nicht automatisch berufswidrig.",
+      "practice": "Publikationen nach ihrem Inhalt prüfen: Ein werblicher Nebeneffekt macht einen Meinungsbeitrag nicht automatisch berufswidrig.",
+      "status": "Der Beschluss betrifft das damalige bayerische Berufsrecht. Das historische allgemeine Werbeverbot darf nicht als aktuelles Recht dargestellt werden. Die heutige MBO-Ä 2026 gestattet sachliche berufsbezogene Information, wirkt aber erst über regionale Satzungen; B09–B14 vertiefen die Entwicklung.",
+      "url": "https://www.servat.unibe.ch/dfr/bv071162.html"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-1531-90",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "11.02.1992",
+      "docket": "1 BvR 1531/90",
+      "title": "Kritische Presse und positive Gegenberichte: Darf der Arzt mitwirken?",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-1531-90",
+      "tenor": "Das OLG-Urteil wurde wegen Verletzung von Berufs- und Meinungsfreiheit aufgehoben; die Sache ging an das OLG zurück.",
+      "holding": "Vor einer Werbebewertung klären, wer spricht, wer veröffentlicht und welchen Einfluss der Arzt tatsächlich hatte.",
+      "practice": "Vor einer Werbebewertung klären, wer spricht, wer veröffentlicht und welchen Einfluss der Arzt tatsächlich hatte.",
+      "status": "Geprüft wurden § 21 der Berufsordnung für die Ärzte Bayerns vom 09.10.1977, § 11 HWG in der Bekanntmachungsfassung vom 18.10.1978 und § 1 UWG in der 1992 angewandten historischen Fassung. Heutiges regionales Berufsrecht sowie heutiges HWG und UWG sind gesondert anzuwenden. Die Entscheidung erlaubt keine irreführenden Heilerfolgsbehauptungen in eigener Werbung.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/1992/02/rs19920211_1bvr153190.html"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-873-00",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "23.07.2001",
+      "docket": "1 BvR 873/00",
+      "title": "„Tätigkeitsschwerpunkt Implantologie“ auf dem Praxisschild",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-873-00",
+      "tenor": "Die berufsgerichtlichen Entscheidungen beider Verfahren wurden wegen Verletzung von Art. 12 Abs. 1 GG aufgehoben und zurückverwiesen.",
+      "holding": "Qualifikationswerbung muss wahr sein, praktisch getragen werden und der richtigen Person zugeordnet sein.",
+      "practice": "Qualifikationswerbung muss wahr sein, praktisch getragen werden und der richtigen Person zugeordnet sein.",
+      "status": "Die Entscheidung betrifft zahnärztliches Landesrecht Baden-Württembergs von damals. Sie verleiht weder einen Facharzttitel noch überträgt sie Zahnärzteregeln unmittelbar auf Ärzte. Heutige regionale Berufs- und Weiterbildungsordnungen bleiben maßgeblich; MBO-Ä ist nur ein ärztliches Modell.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2001/07/rk20010723_1bvr087300.html"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-1147-01",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "08.01.2002",
+      "docket": "1 BvR 1147/01",
+      "title": "Knie- und Wirbelsäulenspezialisten in einem Klinikprospekt",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-1147-01",
+      "tenor": "Die Unterlassungsurteile wurden im angegriffenen Umfang aufgehoben. Der BGH-Beschluss wurde insoweit gegenstandslos; zurückverwiesen wurde nur noch zur Kostenentscheidung.",
+      "holding": "Belegte Spezialkenntnisse können sachliche Patienteninformation sein; der Leistungsbezug der Werbung bleibt entscheidend.",
+      "practice": "Belegte Spezialkenntnisse können sachliche Patienteninformation sein; der Leistungsbezug der Werbung bleibt entscheidend.",
+      "status": "Der Fall beruht auf Berufsordnung für die Ärzte Bayerns vom 12.10.1997, Weiterbildungsordnung für die Ärzte Bayerns in der Fassung vom 11.10.1998 und § 1 UWG a. F. Er ersetzt nicht die heutige Prüfung von regionalem Berufsrecht, UWG und HWG. Aus der Entscheidung folgt keine Freigabe beliebiger Spezialisten- oder Spitzenstellungsbehauptungen.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2002/01/rk20020108_1bvr114701.html"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-525-99",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "29.10.2002",
+      "docket": "1 BvR 525/99",
+      "title": "Allgemeinmedizin und Kinderheilkunde - darf man beide Qualifikationen nennen?",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-525-99",
+      "tenor": "Die gesetzliche Verbotsregel wurde für nichtig erklärt. Die berufsgerichtlichen Entscheidungen wurden aufgehoben und zurückverwiesen; eine neue Verurteilung wegen der konkreten Doppelbezeichnung kam nicht in Betracht.",
+      "holding": "Historische Berufsregeln müssen sich an veränderten tatsächlichen und rechtlichen Voraussetzungen messen lassen.",
+      "practice": "Historische Berufsregeln müssen sich an veränderten tatsächlichen und rechtlichen Voraussetzungen messen lassen.",
+      "status": "Gegenstand war § 39 Abs. 3 Halbsatz 1 des Kammergesetzes Baden-Württemberg in der Fassung vom 16.03.1995, konkretisiert durch § 6 Abs. 1 der Weiterbildungsordnung der Landesärztekammer Baden-Württemberg vom 17.03.1995 in der Satzungsfassung vom 08.08.1995. Die nichtige Bestimmung ist kein heutiges Verbot. Aktuelle Bezeichnungen richten sich nach dem geltenden Landes- und Weiterbildungsrecht; Musterordnungen ersetzen dieses nicht.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2002/10/rs20021029_1bvr052599.html"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-191-05",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "13.07.2005",
+      "docket": "1 BvR 191/05",
+      "title": "„Die sanfteste Bandscheibenoperation der Welt“ - Werbung braucht Kontext",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-191-05",
+      "tenor": "Die berufsgerichtlichen Entscheidungen wurden wegen Verletzung von Art. 12 Abs. 1 GG aufgehoben und zurückverwiesen.",
+      "holding": "Werbeaussagen im Gesamttext prüfen und Verantwortung für die Veröffentlichung konkret bestimmen.",
+      "practice": "Werbeaussagen im Gesamttext prüfen und Verantwortung für die Veröffentlichung konkret bestimmen.",
+      "status": "Angewandt wurde § 27 Abs. 3 der Berufsordnung für die Ärzte Bayerns in der Neufassung vom 04.11.2002. Für heutige Werbung sind die zuständige regionale Kammerordnung sowie heutiges UWG und HWG heranzuziehen. § 27 MBO-Ä 2026 ist ein Modell, keine bundesweit unmittelbar geltende Werbeerlaubnis.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2005/07/rk20050713_1bvr019105.html"
+    },
+    {
+      "id": "leit55-bverfg-1-bvr-233-10",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "01.06.2011",
+      "docket": "1 BvR 233/10",
+      "title": "Zahnarztpraxis, Verlag, Homepage und eine geplante Verlosung",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-1-bvr-233-10",
+      "tenor": "Das BVerfG hob die Urteile des Landesberufsgerichts auf und verwies die Sachen zurück. Die pauschale Begründung der Werbeverbote genügte Art. 12 Abs. 1 GG nicht.",
+      "holding": "Werbeform, konkrete Aussage und gesundheitlicher Anreiz sind gesondert zu beurteilen; ein erfolgreicher Grundrechtsangriff billigt nicht jede Einzelangabe.",
+      "practice": "Werbeform, konkrete Aussage und gesundheitlicher Anreiz sind gesondert zu beurteilen; ein erfolgreicher Grundrechtsangriff billigt nicht jede Einzelangabe.",
+      "status": "Der Fall betrifft die Berufsordnung der Zahnärztekammer Westfalen-Lippe vom 11.05.1996 mit Änderungen 2001/2003 und die neue Berufsordnung derselben Kammer vom 19.11.2005. Ärztliche MBO-Ä und zahnärztliche Berufsordnungen sind verschiedene Regelwerke. Für heutige Aktionen sind die verbindliche Kammerordnung, heutiges HWG und die konkrete Behandlung zu prüfen.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2011/06/rk20110601_1bvr023310.html"
+    },
+    {
+      "id": "leit55-bverwg-3-c-19-15",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerwG",
+      "date": "02.03.2017",
+      "docket": "3 C 19.15",
+      "title": "Extremes Leiden und der Antrag auf ein Mittel zur Selbsttötung",
+      "courseIds": [
+        "tag-10",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bverwg-3-c-19-15",
+      "tenor": "Die Klage hatte teilweise Erfolg: Die damalige Ablehnung war rechtswidrig. Die weitergehende Feststellung einer Verpflichtung zur Erlaubniserteilung wurde abgelehnt.",
+      "holding": "Die Pflicht, eine Ausnahme zu prüfen, ist nicht identisch mit der Feststellung eines Anspruchs auf Erteilung.",
+      "practice": "Die Pflicht, eine Ausnahme zu prüfen, ist nicht identisch mit der Feststellung eines Anspruchs auf Erteilung.",
+      "status": "Das Urteil beurteilt einen Antrag und Bescheide aus 2004/2005 unter damaligen Verhältnissen. Das BVerfG stärkte 2020 das Recht auf selbstbestimmtes Sterben; B16 beurteilte 2023 den Substanzzugang angesichts veränderter Hilfsmöglichkeiten anders. Aus B15 folgt kein unbeschränkter heutiger Erwerbsanspruch und keine Mitwirkungspflicht eines bestimmten Arztes.",
+      "url": "https://www.bverwg.de/020317U3C19.15.0"
+    },
+    {
+      "id": "leit55-bverwg-3-c-8-22",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerwG",
+      "date": "07.11.2023",
+      "docket": "3 C 8.22",
+      "title": "Recht auf Selbsttötung - aber Anspruch auf genau dieses Betäubungsmittel?",
+      "courseIds": [
+        "tag-10",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-bverwg-3-c-8-22",
+      "tenor": "Die Revision wurde zurückgewiesen. Der Kläger hatte keinen Anspruch auf die beantragte Erwerbserlaubnis.",
+      "holding": "Freiheitsrecht und Anspruch auf Zugang zu einer bestimmten Substanz sind getrennt zu prüfen; tatsächliche Alternativen tragen die Verhältnismäßigkeit.",
+      "practice": "Freiheitsrecht und Anspruch auf Zugang zu einer bestimmten Substanz sind getrennt zu prüfen; tatsächliche Alternativen tragen die Verhältnismäßigkeit.",
+      "status": "Die Entscheidung von 2023 ist zusammen mit B15 und dem BVerfG-Urteil von 2020 zu lesen. Die dortige Freiheitsgarantie beseitigt nicht automatisch arznei- und betäubungsmittelrechtliche Beschränkungen. Die Feststellungen zur Verfügbarkeit von Suizidhilfe sind zeit- und fallbezogen, keine Garantie allgemeiner Versorgung und keine ärztliche Mitwirkungspflicht.",
+      "url": "https://www.bverwg.de/071123U3C8.22.0"
+    },
+    {
+      "id": "leit55-bverfg-2-bvr-1866-17",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerfG",
+      "date": "08.06.2021",
+      "docket": "2 BvR 1866/17",
+      "title": "Zwangsbehandlung trotz vorausverfügter Ablehnung",
+      "courseIds": [
+        "tag-10",
+        "tag-09"
+      ],
+      "decisionType": "Beschluss",
+      "atlasId": "case-bverfg-2-bvr-1866-17",
+      "tenor": "Soweit zulässig, waren die Verfassungsbeschwerden begründet. Die betreffenden gerichtlichen Anordnungen wurden aufgehoben und zur erneuten Entscheidung zurückverwiesen.",
+      "holding": "Bei vorausverfügter Ablehnung zuerst Wirksamkeit und Reichweite klären; das bloße Ziel gesundheitlicher Besserung ersetzt den Patientenwillen nicht.",
+      "practice": "Bei vorausverfügter Ablehnung zuerst Wirksamkeit und Reichweite klären; das bloße Ziel gesundheitlicher Besserung ersetzt den Patientenwillen nicht.",
+      "status": "Angewandt wurde unter anderem Art. 6 des Bayerischen Maßregelvollzugsgesetzes vom 17.07.2015 in der seit 01.01.2019 außer Kraft getretenen Fassung; damalige Patientenverfügungsnorm war § 1901a BGB. Heute steht die Regelung in § 1827 BGB. Maßregelvollzug, öffentlich-rechtliche Unterbringung und betreuungsrechtliche Zwangsmaßnahme nach § 1832 BGB haben getrennte Rechtsgrundlagen. Daraus folgt kein allgemeines Verbot jeder psychiatrischen Zwangsbehandlung.",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2021/06/rs20210608_2bvr186617.html"
+    },
+    {
+      "id": "leit55-bverwg-3-b-68-13",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerwG",
+      "date": "13.02.2014",
+      "docket": "3 B 68.13",
+      "title": "Abrechnungsbetrug ohne unmittelbaren Behandlungsbezug - Approbation trotzdem weg?",
+      "courseIds": [
+        "tag-09",
+        "tag-08"
+      ],
+      "decisionType": "Beschluss über eine Nichtzulassungsbeschwerde",
+      "atlasId": "case-bverwg-3-b-68-13",
+      "tenor": "Die Nichtzulassungsbeschwerde wurde zurückgewiesen; das klageabweisende Urteil blieb bestehen.",
+      "holding": "Strafurteil, Beweiskritik und berufsbezogener Vertrauensverlust müssen getrennt und konkret begründet werden.",
+      "practice": "Strafurteil, Beweiskritik und berufsbezogener Vertrauensverlust müssen getrennt und konkret begründet werden.",
+      "status": "§§ 3 und 5 BÄO regeln den bundesrechtlichen Widerruf. Ein regionales Berufsverfahren und dessen besondere Regeln zur Bindung an Strafurteile sind davon zu unterscheiden. Der Beschluss legt keinen Automatismus „jede Verurteilung führt zum Widerruf“ fest.",
+      "url": "https://www.bverwg.de/130214B3B68.13.0"
+    },
+    {
+      "id": "leit55-bverwg-3-b-36-12",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "BVerwG",
+      "date": "15.11.2012",
+      "docket": "3 B 36.12",
+      "title": "Nach dem Widerruf: Wann kann die Approbation wiedererteilt werden?",
+      "courseIds": [
+        "tag-09"
+      ],
+      "decisionType": "Beschluss über eine Nichtzulassungsbeschwerde",
+      "atlasId": "case-bverwg-3-b-36-12",
+      "tenor": "Die Nichtzulassungsbeschwerde wurde zurückgewiesen. Die gerichtliche Beurteilung der früheren Zurückstellung blieb bestehen.",
+      "holding": "Wiedererteilung braucht eine aktuelle Gesamtwürdigung; sie folgt weder automatisch auf Zeitablauf noch bleibt sie wegen früherer Schuld dauerhaft ausgeschlossen.",
+      "practice": "Wiedererteilung braucht eine aktuelle Gesamtwürdigung; sie folgt weder automatisch auf Zeitablauf noch bleibt sie wegen früherer Schuld dauerhaft ausgeschlossen.",
+      "status": "Wiedererteilung der Approbation, befristete Berufserlaubnis und Aufhebung einer regionalen Berufsmaßnahme sind unterschiedliche Verfahren. Der Beschluss zum Bundesapprobationsrecht begründet keine für alle Landesberufsgerichte geltende Wartefrist.",
+      "url": "https://www.bverwg.de/151112B3B36.12.0"
+    },
+    {
+      "id": "leit55-landesberufsgericht-f-r-heilberufe-nrw-6t-a-1025-12-t",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "Landesberufsgericht für Heilberufe NRW",
+      "date": "13.08.2014",
+      "docket": "6t A 1025/12.T",
+      "title": "Fahreignungsgutachten, therapeutische Nähe und zu unbestimmte Vorwürfe",
+      "courseIds": [
+        "tag-05",
+        "tag-09"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-landesberufsgericht-f-r-heilberufe-nrw-6t-a-1025-12-t",
+      "tenor": "Es blieb bei einem Verweis und 1.000 Euro Geldbuße wegen des sorgfaltswidrigen Fahreignungsgutachtens. Die weitergehenden Vorwürfe trugen keine zusätzliche Ahndung.",
+      "holding": "Jeder Vorwurf braucht einen bestimmten Verfahrensgegenstand und einen eigenen Nachweis; Gutachten verlangen überprüfte Tatsachen statt therapeutischer Parteinahme.",
+      "practice": "Jeder Vorwurf braucht einen bestimmten Verfahrensgegenstand und einen eigenen Nachweis; Gutachten verlangen überprüfte Tatsachen statt therapeutischer Parteinahme.",
+      "status": "Angewandt wurde BO Nordrhein vom 14.11.1998 in der Fassung vom 18.03.2000 und damaliges HeilBerG NRW. Heute ist die regional veröffentlichte BO vom 22.03.2025 heranzuziehen; andere Länder benötigen ihren eigenen Normabgleich. Die MBO-Ä 2026 ist keine unmittelbare Sanktionsgrundlage.",
+      "url": "https://recht.nulegal.eu/rechtsprechung/landesberufsgericht-heilberufe-nrw/2014-08-13/6t-a-1025-12-t"
+    },
+    {
+      "id": "leit55-landesberufsgericht-f-r-heilberufe-nrw-6t-a-1816-09-t",
+      "tier": "Vertiefung",
+      "area": "Berufsrecht & Grundrechte",
+      "court": "Landesberufsgericht für Heilberufe NRW",
+      "date": "06.07.2011",
+      "docket": "6t A 1816/09.T",
+      "title": "Onkologen als Gesellschafter eines Zytostatikaherstellers",
+      "courseIds": [
+        "tag-09",
+        "tag-11"
+      ],
+      "decisionType": "Urteil",
+      "atlasId": "case-landesberufsgericht-f-r-heilberufe-nrw-6t-a-1816-09-t",
+      "tenor": "Die Berufung der Ärzte wurde als unzulässig verworfen, diejenige der Kammer als unbegründet zurückgewiesen. Es kam zu keiner berufsgerichtlichen Sanktion.",
+      "holding": "Objektive Unzulässigkeit, persönliche Vorwerfbarkeit und zeitlich mögliche Abhilfe sind getrennt zu prüfen.",
+      "practice": "Objektive Unzulässigkeit, persönliche Vorwerfbarkeit und zeitlich mögliche Abhilfe sind getrennt zu prüfen.",
+      "status": "Angewandt wurde die Berufsordnung für die nordrheinischen Ärztinnen und Ärzte vom 14.11.1998. Die tragenden Gründe nennen eine letzte Änderung vom 18.11.2006; die Anschuldigung wird mit anderen Fassungsdaten wiedergegeben. § 34 der Berufsordnung für die nordrheinischen Ärztinnen und Ärzte vom 14.11.1998 ist in deren Fassung vom 22.03.2025 aufgehoben; heutige Zuweisungs- und Unabhängigkeitsregeln stehen unter anderem in §§ 30–33 der Berufsordnung für die nordrheinischen Ärztinnen und Ärzte in der Fassung vom 22.03.2025. §§ 299a, 299b StGB wurden erst 2016 eingeführt und waren kein Maßstab der Entscheidung. MBO-Ä ist nur ein Modell.",
+      "url": "https://recht.nulegal.eu/rechtsprechung/landesberufsgericht-heilberufe-nrw/2011-07-06/6t-a-1816-09-t"
     }
   ],
   "importantNorms": [
@@ -3542,6 +4395,480 @@
       "description": "Auskunft über verarbeitete personenbezogene Daten und eine Kopie dieser Daten. Die erste Kopie ist grundsätzlich kostenlos; weitere Kopien und Rechte Dritter sind gesondert zu beachten.",
       "url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj?locale=de",
       "category": "Behandlung, Patientenrechte & Verfahren"
+    },
+    {
+      "label": "§ 8 BÄO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/b_o/__8.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 1 BGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/bgb/__1.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 13 BtMG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/btmg_1981/__13.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 24 BtMG",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/btmg_1981/__24.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 29 BtMG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/btmg_1981/__29.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 3 BtMG",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/btmg_1981/__3.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 30 BtMG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/btmg_1981/__30.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 5 BtMG",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/btmg_1981/__5.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 95 BVerfGG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/bverfgg/__95.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 1 ESchG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/eschg/__1.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 2 ESchG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/eschg/__2.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 3a ESchG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/eschg/__3a.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 8 ESchG",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/eschg/__8.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "Art. 5 GG",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/gg/art_5.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "Art. 74 GG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/gg/art_74.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 10 GOÄ",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/go__1982/__10.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 12 GOÄ",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/go__1982/__12.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 4 GOÄ",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/go__1982/__4.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 128 SGB V",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/sgb_5/__128.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 11 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__11.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 16 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__16.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 17 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__17.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 174c StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__174c.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 18 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__18.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 2 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__2.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 20 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__20.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 21 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__21.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 211 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__211.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 212 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__212.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 213 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__213.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 218 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__218.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 218a StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__218a.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 22 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__22.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 224 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__224.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 225 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__225.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 227 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__227.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 228 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__228.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 23 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__23.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 25 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__25.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 26 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__26.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 263 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__263.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 266 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__266.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 277 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__277.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 278 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__278.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 279 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__279.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 299a StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__299a.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 299b StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__299b.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 332 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__332.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 34 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__34.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 35 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__35.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 40 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__40.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 46 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__46.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 47 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__47.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 49 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__49.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 63 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__63.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 70 StGB",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stgb/__70.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 73 StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__73.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 73a StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__73a.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 73c StGB",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stgb/__73c.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 105 StPO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stpo/__105.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 126a StPO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stpo/__126a.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 132a StPO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stpo/__132a.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 231 StPO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stpo/__231.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 257c StPO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stpo/__257c.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 338 StPO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stpo/__338.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 349 StPO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stpo/__349.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 74 StPO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stpo/__74.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 76 StPO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stpo/__76.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 81 StPO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stpo/__81.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 81a StPO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/stpo/__81a.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 97 StPO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/stpo/__97.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 10 TPG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/tpg/__10.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 19 TPG",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/tpg/__19.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 113 VwGO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/vwgo/__113.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 132 VwGO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/vwgo/__132.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 137 VwGO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/vwgo/__137.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 153 VwGO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/vwgo/__153.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 86 VwGO",
+      "description": "",
+      "url": "https://www.gesetze-im-internet.de/vwgo/__86.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
+    },
+    {
+      "label": "§ 580 ZPO",
+      "description": "Aktueller Gesetzestext. Bei historischen Fällen ist die damals maßgebliche Fassung gesondert zu beachten.",
+      "url": "https://www.gesetze-im-internet.de/zpo/__580.html",
+      "category": "Straf-, Berufs- & Grundrechtsbezüge"
     }
   ],
   "practicalResources": [
@@ -3584,6 +4911,6 @@
   ],
   "learningMaterialCounts": {
     "baseSlides": 474,
-    "additionalMaterials": 620
+    "additionalMaterials": 662
   }
 }

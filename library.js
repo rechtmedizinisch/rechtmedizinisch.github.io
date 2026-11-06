@@ -1,15 +1,17 @@
-import {renderDefinitions} from './definition-library.mjs?v=20261106-zivil40';
-import {renderPresentationIndex} from './presentation-index.mjs?v=20261106-zivil40';
-import {fetchPresentationDownload} from './presentation-download.mjs?v=20261106-zivil40';
-import {renderSource} from './source-links.mjs?v=20261106-zivil40';
-import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261106-zivil40';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261106-zivil40';
-import {hasAccess,safeURL} from './policy.mjs?v=20261106-zivil40';
-import {hasMaterialAccess} from './material-access.mjs?v=20261106-zivil40';
-import {fetchGraphicDownload} from './graphic-download.mjs?v=20261106-zivil40';
-import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261106-zivil40';
-import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261106-zivil40';
-import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261106-zivil40';
+import {renderDefinitions} from './definition-library.mjs?v=20261106-leit55';
+import {renderPresentationIndex} from './presentation-index.mjs?v=20261106-leit55';
+import {fetchPresentationDownload} from './presentation-download.mjs?v=20261106-leit55';
+import {renderSource} from './source-links.mjs?v=20261106-leit55';
+import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261106-leit55';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261106-leit55';
+import {hasAccess,safeURL} from './policy.mjs?v=20261106-leit55';
+import {hasMaterialAccess} from './material-access.mjs?v=20261106-leit55';
+import {fetchGraphicDownload} from './graphic-download.mjs?v=20261106-leit55';
+import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261106-leit55';
+import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261106-leit55';
+import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261106-leit55';
+import {workshopCases} from './practice-catalog.mjs?v=20261106-leit55';
+import {caseCode} from './casework-browse.mjs?v=20261106-leit55';
 const groups={atlas:'⚖ Fälle, Schemata & Vertiefungen',glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Folien & Vertiefungen'};
 const groupDescriptions={glossary:'Zentrale Begriffe, Institutionen und Zusammenhänge verständlich erklärt.',career:'Antworten für PJ, erste Stelle und die ärztliche Weiterbildung.',professions:'Rechtliche Orientierung für Pflege, Rettungsdienst und weitere Gesundheitsberufe.',podcast:'Die Fälle und Fragen aus den Podcastfolgen als Schaubilder.',system:'Grafische Übersichten zu Haftung, Versorgung und Finanzierung.',slides:'Die gesamte Präsentation im Folien-Player mit Suche und direktem Kurseinstieg.'};
 groups.special='Spezialkurse';groupDescriptions.special='Thematisch lernen: Grundlagen, passende Fälle und gemeinsame Übungen.';
@@ -22,7 +24,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261106-zivil40');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261106-leit55');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -37,7 +39,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
  if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261106-zivil40');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261106-leit55');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);
@@ -186,7 +188,11 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
   }
   selector.onchange=()=>{selected=Number(selector.value);drawPerspective();};if(c.diagramViews.length>1)gallery.append(selector,controls);gallery.append(panel);main.append(gallery);await drawPerspective();
  }else if(!c.blocks)for(const name of c.assets??[])await graphic(name);
- if(e.group==='atlas')renderAtlasReading(main,c,entries,{focusedStage:context.focusedStage,originId:context.from,hideFocusBanner:true,learningTrail:trail});
+ if(e.group==='atlas'){
+  const exercise=workshopCases.find(entry=>entry.canonicalMaterialId===c.id);
+  if(exercise)main.append(anchor(hasAccess('practice',grants)?'Fall '+caseCode(exercise)+' selbst bearbeiten':'Fallwerkstatt · Premium','#casework/'+encodeURIComponent(exercise.id)));
+  renderAtlasReading(main,c,entries,{focusedStage:context.focusedStage,originId:context.from,hideFocusBanner:true,learningTrail:trail});
+ }
  if(['career:pj-rolle','career:kompetenz-pj','career:haftpflicht-start'].includes(e.id))main.append(anchor('Fall vertiefen: Die unbeschriftete Spritze im PJ →','#material/atlas%3Acase-r54'));
  if(!isCurrent())return;
  if(c.miniCase){const b=box('🧩 Kurzfall',c.miniCase.question),details=node('details');details.append(node('summary','Lösung und Einordnung anzeigen'),node('p',c.miniCase.answer));b.append(details);}
@@ -208,7 +214,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  if(c.blocks){
  const stage=node('div',null,'slide-stage');stage.classList.add('layout-'+layoutForSlide(c),'slide-variant-'+((Number(c.id)-1)%4));stage.setAttribute('aria-label','Aktuelle Folie');stage.tabIndex=0;main.append(stage);
  const titleBlock=node('div',null,'deck-title');titleBlock.append(node('p',c.eyebrow??'RECHT MEDIZINISCH','eyebrow'),node('h1',e.title));for(const no of e.courses??[])titleBlock.append(anchor('Kurs '+String(no).padStart(2,'0')+' öffnen','#course/tag-'+String(no).padStart(2,'0')));stage.append(titleBlock);
- if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20261106-zivil40');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
+ if([16,28,291,326,371].includes(Number(e.nativeId))){const r=await fetch('./podcasts.json?v=20261106-leit55');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;const course=Number(e.nativeId)===28?1:e.courses?.[0];const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course)){box.append(node('h3',p.title),node('p','Passend zu Kurs '+p.no),node('p',p.bridge));const a=anchor('▶ Podcast öffnen',safeURL(p.link));a.target='_blank';a.rel='noopener noreferrer';box.append(a);}stage.append(box);}}
  const {sections,sources}=slideSections(c.blocks);const sectionsGrid=node('div',null,'slide-sections');stage.append(sectionsGrid);
  for(const part of sections){const style=headingStyle(part.title),section=node('section',null,'slide-block tone-'+style.tone);if(part.title){const h=node('h2');if(style.symbol)h.append(node('span',style.symbol,style.step?'step-number':'section-symbol'));h.append(node('span',style.title));section.append(h);}for(const block of part.blocks){if(block.image)await graphic(block.image,section);if(!isCurrent())return;if(block.text)formatSlideText(section,block.text);for(const l of block.links??[]){const url=typeof l==='string'?l:l.url;if(safeURL(url)){const a=anchor((typeof l==='string'?'Quelle':l.label??'Rechtsquelle')+'',url);a.target='_blank';a.rel='noopener noreferrer';section.append(a);}}}sectionsGrid.append(section);}
  if(sources.length){const detail=node('details',null,'deck-sources');detail.append(node('summary','📚 Quellen & Fundstellen'));for(const text of sources){const p=node('p');renderSource(p,text);detail.append(p);}stage.append(detail);}

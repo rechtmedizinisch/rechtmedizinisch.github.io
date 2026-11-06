@@ -1,5 +1,5 @@
 // Contextual reading help never changes the route or grants access to content.
-import {protectReferences} from './presentation-theme.mjs?v=20261106-zivil40';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-leit55';
 const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const historicalDesignation='(?:a\\.[\\s\\u00A0]*F\\.|alter[\\s\\u00A0]+Fassung)(?![\\p{L}\\p{N}])';
 const folded=value=>value.toLocaleLowerCase('de').replace(/\s+/gu,' ');
@@ -67,7 +67,7 @@ export function openReferenceDialog(owner,entry,catalog=[]){
   const box=doc.createElement('section');box.className='context-related';const h=doc.createElement('h3');h.textContent='Vertiefen & anwenden';box.append(h);
   for(const id of entry.relatedIds){const a=doc.createElement('a');a.href='#material/'+encodeURIComponent('atlas:'+id);a.textContent=(entry.relatedMaterials?.find(m=>m.id===id)?.title??'Passende Vertiefung')+' öffnen';a.className='button secondary';a.dataset.relatedMaterial=id;a.onclick=()=>dialog.close();box.append(a);}dialog.append(box);
  }
- if(entry.kind==='norm'){
+ if(entry.kind==='norm'&&!entry.summaryOnly){
   let norms=(entry.targetNormIds??[]).map(id=>catalog.find(e=>e.id===id)).filter(Boolean);if(!norms.length)norms=[entry];
   const h=doc.createElement('h3');h.textContent=entry.textLabel||(norms.length>1?'Gesetzestexte':'Gesetzestext');dialog.append(h);
   for(const norm of norms){if(norms.length>1){const heading=doc.createElement('h4');heading.textContent=protectReferences(norm.title);dialog.append(heading);}const text=doc.createElement('div');text.className='context-norm-text';text.textContent=protectReferences(norm.text||'Der Gesetzestext ist hier noch nicht offline hinterlegt. Die genaue Quelle können Sie unten öffnen.');dialog.append(text);}
@@ -80,7 +80,7 @@ export function openReferenceDialog(owner,entry,catalog=[]){
 
 let referenceHelpPromise;
 export function loadReferenceHelp(){
- if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-zivil40'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
+ if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-leit55'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
  return referenceHelpPromise;
 }
 export function installContextHelp(root,{load=loadReferenceHelp}={}){

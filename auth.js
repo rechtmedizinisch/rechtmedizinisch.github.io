@@ -1,10 +1,10 @@
-import {client,sandboxContext} from './auth-client.mjs?v=20261106-zivil40';
-import {requestDeadline} from './request-deadline.mjs?v=20261106-zivil40';
-import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261106-zivil40';
-import {startGoogleLogin} from './google-login.mjs?v=20261106-zivil40';
+import {client,sandboxContext} from './auth-client.mjs?v=20261106-leit55';
+import {requestDeadline} from './request-deadline.mjs?v=20261106-leit55';
+import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261106-leit55';
+import {startGoogleLogin} from './google-login.mjs?v=20261106-leit55';
 export {client,sandboxContext};
-import {config} from './config.js?v=20261106-zivil40';
-import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261106-zivil40';
+import {config} from './config.js?v=20261106-leit55';
+import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261106-leit55';
 export {isAppleCancellation};
 export function prepareAppleLogin(){return prepareAppleRequest({clientID:config.appleClientID,redirectURI:config.appleRedirectURI});}
 export function appleLogin(request){return completeAppleLogin(client,request);}
