@@ -1,6 +1,6 @@
 // Keep answer identity independent from the random display order.
 // Older API views without explicit IDs remain valid if their indices are sound.
-import {safeURL} from './policy.mjs?v=20261106-leit55';
+import {safeURL} from './policy.mjs?v=20261106-practiceux';
 export function practiceSources(question){return [...new Set((question.sourceReferences??[]).map(safeURL).filter(Boolean))];}
 export function validPracticeBank(questions) {
   if (!Array.isArray(questions) || !questions.length) return false;

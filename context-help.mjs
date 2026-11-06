@@ -1,5 +1,6 @@
+import {officialCourtURL} from './court-sources.mjs?v=20261106-practiceux';
 // Contextual reading help never changes the route or grants access to content.
-import {protectReferences} from './presentation-theme.mjs?v=20261106-leit55';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-practiceux';
 const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const historicalDesignation='(?:a\\.[\\s\\u00A0]*F\\.|alter[\\s\\u00A0]+Fassung)(?![\\p{L}\\p{N}])';
 const folded=value=>value.toLocaleLowerCase('de').replace(/\s+/gu,' ');
@@ -73,14 +74,14 @@ export function openReferenceDialog(owner,entry,catalog=[]){
   for(const norm of norms){if(norms.length>1){const heading=doc.createElement('h4');heading.textContent=protectReferences(norm.title);dialog.append(heading);}const text=doc.createElement('div');text.className='context-norm-text';text.textContent=protectReferences(norm.text||'Der Gesetzestext ist hier noch nicht offline hinterlegt. Die genaue Quelle können Sie unten öffnen.');dialog.append(text);}
   if(entry.retrievedAt){const date=doc.createElement('p');date.className='subtle';date.textContent=(entry.sourceLabel||'Gesetze im Internet')+' · Abruf: '+entry.retrievedAt;dialog.append(date);}
  }
- for(const source of entry.sources??[]){try{const url=new URL(source.url);if(url.protocol!=='https:')continue;const a=doc.createElement('a');a.href=url.href;a.textContent=source.title+'';a.target='_blank';a.rel='noopener noreferrer';a.className='context-source';dialog.append(a);}catch{}}
+ for(const source of entry.sources??[]){try{const url=new URL(officialCourtURL(source.url));if(url.protocol!=='https:')continue;const a=doc.createElement('a');a.href=url.href;a.textContent=source.title+'';a.target='_blank';a.rel='noopener noreferrer';a.className='context-source';dialog.append(a);}catch{}}
  dialog.addEventListener('close',()=>{dialog.remove();if(owner.isConnected)owner.focus({preventScroll:true});},{once:true});
  doc.body.append(dialog);dialog.showModal();close.focus();return dialog;
 }
 
 let referenceHelpPromise;
 export function loadReferenceHelp(){
- if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-leit55'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
+ if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-practiceux'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
  return referenceHelpPromise;
 }
 export function installContextHelp(root,{load=loadReferenceHelp}={}){

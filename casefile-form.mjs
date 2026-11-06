@@ -21,7 +21,8 @@ export function casefileInput({id,title,op=id,kind='command'},value,{dialog,subm
    for(const [id,label]of [['P01','Geldzahlung an die Staatskasse'],['P02','Wiedergutmachung an die Patientin'],['P03','Ernsthaftes Ausgleichsbemühen']])check(form,label,modules.has(id),yes=>yes?modules.add(id):modules.delete(id));
    amount=number('Euro je gewählter Geldleistung','600',50,10000);months=number('Frist in Monaten','3',1,6);form.append(el('p','Zulässigkeit und erforderliche Zustimmung werden anschließend gesondert geprüft.'));
   }
-  if(!['motion','reopenEvidence'].includes(op))editor('reason',op==='reply'?'Ihre Erwiderung · leer lassen zum Verzicht':op==='comment'?'Ihre Erklärung':id==='A18'?'Zweck der Erhebung':'Ihre Fragestellung oder Begründung');
+  if(!['motion','reopenEvidence'].includes(op))editor('reason',op==='reply'?'Ihre Erwiderung · leer lassen zum Verzicht':op==='comment'?'Ihre Erklärung':id==='A18'?'Zweck der Erhebung':kind==='action'?'Eigene Notiz zum Ermittlungsauftrag (optional)':'Ihre Begründung');
+  if(kind==='action')form.append(el('p','Diese Notiz wird gespeichert. Antworten von Personen erhalten Sie über die auswählbaren Fragen bei der Befragung.'));
   if(['decision','indict','plea'].includes(op))editor('counter','Stärkstes Gegenargument und verbleibende Unsicherheit');
   if(op==='plea'){
    const extra=el('details');extra.append(el('summary','Schlussvortrag weiter strukturieren'));form.append(extra);

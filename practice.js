@@ -1,9 +1,9 @@
-import {hasAccess,shuffle} from './policy.mjs?v=20261106-leit55';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-leit55';
-import {courseMistakes} from './practice-mistakes.mjs?v=20261106-leit55';
-import {validPracticeBank,practiceExplanations,practiceSources} from './practice-bank.mjs?v=20261106-leit55';
-import {learningPathQuestions} from './learning-paths.mjs?v=20261106-leit55';
-import {workshopCases} from './practice-catalog.mjs?v=20261106-leit55';
+import {hasAccess,shuffle} from './policy.mjs?v=20261106-practiceux';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-practiceux';
+import {courseMistakes} from './practice-mistakes.mjs?v=20261106-practiceux';
+import {validPracticeBank,practiceExplanations,practiceSources} from './practice-bank.mjs?v=20261106-practiceux';
+import {learningPathQuestions} from './learning-paths.mjs?v=20261106-practiceux';
+import {workshopCases} from './practice-catalog.mjs?v=20261106-practiceux';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const btn=(text,fn,cls='')=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
 function sourceLinks(target,question){for(const url of practiceSources(question)){const link=el('a','Originalquelle · '+new URL(url).hostname+'','practice-source');link.href=url;link.target='_blank';link.rel='noopener noreferrer';target.append(link);}}
@@ -16,13 +16,13 @@ function modeCards(onChange){const grid=el('div',null,'practice-modes');if(onCha
 export async function renderPractice(main,auth,grants,user,isCurrent,learningStore,initialPathId=''){
  if(/^special-[a-z0-9-]+$/.test(initialPathId)){const back=el('a','← Zurück zum Spezialkurs','button secondary');back.href='#material/'+encodeURIComponent('special:'+initialPathId);main.append(back);}
  const hero=el('section',null,'knowledge-banner');hero.append(el('p','LERNWERKZEUGE','section-number'),el('h1','Wissen gezielt festigen'),el('p','Üben, wiederholen oder unter Zeitdruck testen. Fragen und Antworten werden bei jeder neuen Runde neu gemischt.'));main.append(hero);
- const workshop=el('a',null,'card casework-row');workshop.href='#casework';workshop.append(el('strong','Fallwerkstatt'),el('span',`${workshopCases.length} Originalfälle · Sachverhalt, eigene Überlegungen und Entscheidung`),el('span','Fallwerkstatt öffnen','button secondary'));main.append(workshop);
- const casefile=el('section',null,'card');casefile.append(el('h2','Interaktive Strafakte'),el('p','Drei fiktive Varianten · selbst ermitteln und entscheiden'));const casefileLink=el('a','Strafakte öffnen','button secondary');casefileLink.href='#casefile';casefile.append(casefileLink);main.append(casefile);
+ const workshop=el('a',null,'card practice-entry');workshop.href='#casework';const workshopCopy=el('div',null,'practice-entry-copy');workshopCopy.append(el('h2','Fallwerkstatt'),el('p',`${workshopCases.length} Originalfälle · Sachverhalt, eigene Überlegungen und Entscheidung`),el('span','Ein Probefall kostenlos · weitere Fälle mit Premium','subtle'));workshop.append(workshopCopy,el('span','Fallwerkstatt öffnen','button secondary'));main.append(workshop);
+ const casefile=el('section',null,'card');casefile.append(el('h2','Interaktive Strafakte'),el('p','Drei fiktive Varianten · selbst ermitteln und entscheiden. Fall A kostenlos ausprobieren; weitere Varianten mit Premium.'));const casefileLink=el('a','Strafakte öffnen','button secondary');casefileLink.href='#casefile';casefile.append(casefileLink);main.append(casefile);
  if(!auth||!hasAccess('practice',grants)){const a=el('a','Anmelden & Übungsbereich freischalten →','button');a.href='#account';const gate=el('section',null,'card');gate.append(el('h2','🔒 Ihre Wissensrunde freischalten'),el('p','Der Übungsbereich benötigt einen Web-Zugang für Übungen oder alle Inhalte.','notice'),a);main.append(gate,modeCards());const free=el('section',null,'card');free.append(el('span','Kostenlos starten','badge'),el('h2','Fragen direkt im Kurs beantworten'),el('p','Die Fallfragen und Wissensfragen in Kurs 1 und 2 sind ohne Anmeldung zugänglich.'));const links=el('div',null,'row');for(const n of [1,2]){const l=el('a',`Kurs ${n} öffnen`,'button secondary');l.href=`#course/tag-0${n}`;links.append(l);}free.append(links);main.append(free);return;}
  let data;try{data=await auth.getCourse('practice:course-quizzes-202610');}catch{}
  if(!isCurrent())return;
  if(!validPracticeBank(data?.questions)){main.append(el('p','Die Übungsfragen konnten nicht geladen werden. Bitte versuchen Sie es erneut.','notice'));return;}
- let paths=[];try{const response=await fetch('./library.json?v=20261106-leit55');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
+ let paths=[];try{const response=await fetch('./library.json?v=20261106-practiceux');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
  if(!isCurrent())return;
  let pathId=initialPathId;
  const panel=el('section',null,'card practice-panel');main.append(panel);

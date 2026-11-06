@@ -1,12 +1,13 @@
-import {hasAccess} from './policy.mjs?v=20261106-leit55';
-import {protectReferences} from './presentation-theme.mjs?v=20261106-leit55';
-import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-leit55';
-import {notify} from './feedback.mjs?v=20261106-leit55';
-import {casefileCatalog,casefileBundleHash} from './casefile-catalog.mjs?v=20261106-leit55';
-import {casefileStore} from './casefile-store.mjs?v=20261106-leit55';
-import {casefileWorker} from './casefile-worker.mjs?v=20261106-leit55';
-import {casefileSession} from './casefile-session.mjs?v=20261106-leit55';
-import {casefileInput} from './casefile-form.mjs?v=20261106-leit55';
+import {hasAccess} from './policy.mjs?v=20261106-practiceux';
+import {protectReferences} from './presentation-theme.mjs?v=20261106-practiceux';
+import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261106-practiceux';
+import {notify} from './feedback.mjs?v=20261106-practiceux';
+import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261106-practiceux';
+import {casefileStore} from './casefile-store.mjs?v=20261106-practiceux';
+import {casefileWorker} from './casefile-worker.mjs?v=20261106-practiceux';
+import {casefileSession} from './casefile-session.mjs?v=20261106-practiceux';
+import {casefileInput} from './casefile-form.mjs?v=20261106-practiceux';
+import {practiceAccess} from './practice-access.mjs?v=20261106-practiceux';
 let activeClose=()=>{};
 export function closeActiveCasefile(){activeClose();activeClose=()=>{};}
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
@@ -14,23 +15,25 @@ const button=(text,fn,cls='secondary')=>{const n=el('button',text,cls);n.type='b
 const link=(text,href,cls='button secondary')=>{const a=el('a',text,cls);a.href=href;return a;};
 export async function renderCasefile(main,auth,grants,user,isCurrent,progress,variant=''){
  main.classList.add('casework','casefile');main.append(link('Zurück zu Üben','#practice'));
- const hero=el('section',null,'knowledge-banner');hero.append(el('p','ÜBEN','section-number'),el('h1','Interaktive Strafakte'),el('p',casefileCatalog.title),el('p','Sie übernehmen die Rolle der Staatsanwaltschaft: Quellen prüfen, Belastendes und Entlastendes ermitteln und eine begründete Entscheidung treffen.'),el('p','Fiktiver Lernfall · alle Personen und Unterlagen sind erfunden.','subtle'));main.append(hero);
- if(!auth||!user||!hasAccess('practice',grants)){main.append(el('p','Die interaktive Strafakte ist in Premium enthalten.','notice'),link('Anmelden & Zugang wählen','#account'));return;}
+ const hero=el('section',null,'knowledge-banner');hero.append(el('p','ÜBEN','section-number'),el('h1','Interaktive Strafakte'));if(!variant)hero.append(el('p',casefileCatalog.title),el('p','Sie übernehmen die Rolle der Staatsanwaltschaft: Quellen prüfen, Belastendes und Entlastendes ermitteln und eine begründete Entscheidung treffen.'));hero.append(el('p','Fiktiver Lernfall · alle Personen und Unterlagen sind erfunden.','subtle'));main.append(hero);
+ const premium=!!auth&&!!user&&hasAccess('practice',grants);
+ const orientation=el('section',null,'card casefile-orientation');orientation.append(el('h2','So funktioniert die Strafakte'),el('p','1. Anzeige und Unterlagen lesen. 2. Personen auswählen und Fragen anklicken oder weitere Unterlagen anfordern. 3. In der Beweisübersicht Belastendes, Entlastendes und offene Fragen vergleichen und entscheiden.'),el('p','Antworten sind für diesen Lernfall vorbereitet. Eigene Notizen werden gespeichert; sie sind keine Chatfragen.','subtle'));if(!variant)main.append(orientation);
  if(!variant){
   const done=casefileCatalog.variants.filter(v=>progress.snapshot.completedCasefileVariants?.includes(v.id)).length;main.append(el('p',`${done} von ${casefileCatalog.variants.length} Varianten abgeschlossen`,'badge'));
-  for(const v of casefileCatalog.variants){const row=el('section',null,'card');row.append(el('h2',v.title),el('p',v.focus),link(progress.snapshot.completedCasefileVariants?.includes(v.id)?'Abgeschlossen · erneut öffnen':'Akte öffnen oder fortsetzen','#casefile/'+v.id));main.append(row);}
+  for(const v of casefileCatalog.variants){const row=el('section',null,'card');row.append(el('h2',v.title),el('p',v.focus),el('span',v.id==='A'?'Kostenloser Probefall':premium?'Premium freigeschaltet':'Premium','badge'+(!premium&&v.id!=='A'?' lock':'')),link(v.id!=='A'&&!premium?'Premium-Zugang ansehen':progress.snapshot.completedCasefileVariants?.includes(v.id)?'Abgeschlossen · erneut öffnen':'Akte öffnen oder fortsetzen','#casefile/'+v.id));main.append(row);}
   main.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'));return;
  }
  if(!casefileCatalog.variants.some(v=>v.id===variant)){main.append(el('p','Diese Fallvariante ist nicht verfügbar.'),link('Zur Variantenübersicht','#casefile'));return;}
+ if(!practiceAccess('casefile',variant,premium?grants:[])){main.append(el('p','Diese Variante ist in Premium enthalten. Fall A können Sie kostenlos vollständig ausprobieren.','notice'),link('Premium-Zugang ansehen','#shop'),link('Kostenlosen Fall A öffnen','#casefile/A'),link('Zur Variantenübersicht','#casefile'));return;}
  const loading=el('p','Die Strafakte wird geladen …','notice');main.append(loading);
- try{const payload=await auth.getCourse('practice:casefile-202611');if(!isCurrent())return;loading.remove();if(payload?.sha256!==casefileBundleHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user.id,variant,isCurrent,progress});}
+ try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo.js?v=20261106-practiceux');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
  catch(error){if(isCurrent()){loading.remove();main.append(el('p',error.message??'Die Strafakte konnte nicht geladen werden.','notice'),button('Erneut versuchen',()=>{if(isCurrent()){main.replaceChildren();renderCasefile(main,auth,grants,user,isCurrent,progress,variant);}}));}}
 }
-export async function renderCasefileContent(main,payload,{owner,variant,isCurrent,progress}){
+export async function renderCasefileContent(main,payload,{owner,variant,isCurrent,progress,expectedHash=casefileBundleHash}){
  main.classList.add('casework','casefile');main.append(link('Zur Variantenübersicht','#casefile'));
  const files=casefileStore(),header=el('section',null,'card'),status=el('div',null,'notice'),picker=el('select'),body=el('article',null,'casework-reader');picker.setAttribute('aria-label','Bereich der Akte');
- for(const title of ['Akte','Ermitteln','Verfahren','Verlauf']){const option=el('option',title);option.value=title;picker.append(option);}header.append(el('h2',`Strafakte · ${variant}`),status,picker);main.append(header,body);
- let session,closed=false,busy=false,value=null,tab='Akte',documentDialog=null,interviewDialog=null,helperIndex=[],helpers=[];const expanded=new Set();
+ for(const title of ['Akte','Ermitteln','Verfahren','Verlauf']){const option=el('option',title);option.value=title;picker.append(option);}header.append(el('h2',`Strafakte · ${variant}`),status);const shortcuts=el('div',null,'casefile-step-grid');for(const [label,target] of [['1 · Akte & Beweise','Akte'],['2 · Ermitteln','Ermitteln'],['3 · Entscheiden','Verfahren'],['Verlauf','Verlauf']])shortcuts.append(button(label,()=>selectTab(target)));header.append(shortcuts);main.append(header,body);
+ let session,closed=false,busy=false,value=null,tab='Akte',documentDialog=null,interviewDialog=null,helperIndex=[],helpers=[];const expanded=new Set(['Menschen']);
  const current=()=>!closed&&isCurrent();
  const close=()=>{closed=true;session?.close();files.close();document.querySelectorAll('.casefile-dialog').forEach(d=>d.close());};activeClose=close;
  function rich(text){const p=el('p'),plain=protectReferences(String(text??''));let at=0;for(const hit of referenceMatches(plain,helperIndex)){p.append(document.createTextNode(plain.slice(at,hit.start)));const b=button(plain.slice(hit.start,hit.end),()=>{const d=openReferenceDialog(b,hit.entry,helpers);d.classList.add('casefile-dialog');},'context-reference');b.setAttribute('aria-haspopup','dialog');p.append(b);at=hit.end;}p.append(document.createTextNode(plain.slice(at)));return p;}
@@ -43,15 +46,16 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  function selectTab(next){tab=next;picker.value=next;draw();header.scrollIntoView({block:'start'});}
  picker.onchange=()=>selectTab(picker.value);
  async function run(op,args={},kind='command',after=()=>{}){
-  if(busy||!current()||!session)return;busy=true;status.textContent='Aktenstand wird gesichert …';draw();
-  try{value=kind==='history'?await session.history(args.page):await session.apply(op,args,kind);if(!current())return;if(!value.feedback||value.feedback.kind==='info')after();feedback();return value;}
-  catch(error){if(current()){status.textContent=error.message;status.setAttribute('role','alert');header.append(button('Erneut öffnen',open));}}
+  if(busy||!current()||!session)return;busy=true;const knownBefore=new Set(value?.documents.map(d=>d.id)??[]);status.textContent='Aktenstand wird gesichert …';draw();
+  try{value=kind==='history'?await session.history(args.page):await session.apply(op,args,kind);if(!current())return;if(!value.feedback||value.feedback.kind==='info')after();feedback();if(!documentDialog&&!interviewDialog&&kind!=='history'&&!['read','ask'].includes(op)){const fresh=value.documents.filter(d=>!knownBefore.has(d.id));if(fresh.length)resultDialog(fresh);else notify({title:['error','warning'].includes(value.feedback?.kind)?'Hinweis zum Schritt':'Schritt gesichert',text:value.feedback?.text??'Ihr Aktenstand wurde gespeichert.'});}return value;}
+  catch(error){if(current()){status.textContent=error.message;status.setAttribute('role','alert');notify({kind:'error',title:'Schritt nicht gespeichert',text:error.message});header.append(button('Erneut öffnen',open));}}
   finally{busy=false;if(current()){draw();if(!documentDialog&&!interviewDialog)header.scrollIntoView({block:'start'});}}
  }
  function feedback(){const f=value.feedback;status.dataset.kind=f?.kind??'info';status.replaceChildren();if(f){status.append(rich(f.text));source(status,f.source);}else status.textContent='Aktenstand gesichert.';status.setAttribute('role',f?.kind==='error'?'alert':'status');}
  function draw(){
   if(!current()||!value)return;body.replaceChildren();header.querySelector('h2').textContent=`Strafakte · ${variant} · ${value.phaseTitle??value.phase}`;
   if(tab==='Akte'){
+   body.append(el('h3','Ihre gesammelten Beweise'),el('p',`${value.documents.length} Unterlagen · ${value.documents.filter(d=>d.read).length} gelesen`,'badge'));
    for(const doc of value.documents){const row=el('section',null,'card');row.append(el('h3',doc.title),el('p',doc.id+' · '+doc.kind,'subtle'),button(doc.read?'Quelle nachlesen':'Quelle öffnen',()=>documentView(doc)));body.append(row);}
    body.append(value.phase==='intake'?action('Ermittlungen aufnehmen','start',{},'command',()=>selectTab('Ermitteln')):button('Ermittlungen & nächste Schritte',()=>selectTab(value.ended?'Verfahren':'Ermitteln'),'button'));
   }else if(tab==='Verlauf'){
@@ -61,20 +65,23 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   const tools=el('section',null,'card');tools.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'),button('Aktenstand als Datei sichern',async()=>{try{const json=await session.export();if(!current())return;const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=link('Sicherung speichern',url);a.download=`Recht-Medizinisch-Strafakte-${variant}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(error){notify({title:'Sicherung nicht möglich',text:error.message});}}));body.append(tools);
  }
  function input(title,id,op=id){const b=button(title,()=>casefileInput({id,title,op},value,{dialog,submit:run,isCurrent:current}));b.disabled=busy||!session?.ready;return b;}
+ function resultDialog(docs){
+  const d=dialog(docs.length===1?'Neue Unterlage':'Neue Unterlagen',box=>{box.append(el('p','Das Ergebnis liegt vor. Öffnen Sie eine Quelle oder prüfen Sie alle bisher gesammelten Beweise.'));for(const doc of docs)box.append(button(doc.title,()=>{d.close();documentView(doc);}));box.append(button('Alle gesammelten Beweise',()=>{d.close();selectTab('Akte');}));});
+  documentDialog=d;d.addEventListener('close',()=>{documentDialog=null;},{once:true});
+ }
  function interview(person,trial=false){
   let answer;
-  interviewDialog=dialog(person.name,d=>{d.append(el('p',person.role,'subtle'));answer=el('section');d.append(answer);for(const q of person.questions){const b=button(q.text,async()=>{await run('ask',{interview:person.id,question:q.id,trial});if(!current()||!d.isConnected)return;answer.replaceChildren();const event=[...value.log].reverse().find(e=>e.title.startsWith(person.name+':'));if(event)answer.append(card(event.title,event.detail,'facts'));if(value.feedback)answer.append(card('Einordnung',value.feedback.text));});b.disabled=busy;d.append(b);}});
+  interviewDialog=dialog(person.name,d=>{d.append(el('p',person.role,'subtle'),el('p','Wählen Sie eine Frage. Die dokumentierte Antwort erscheint direkt hier.','notice'));answer=el('section',null,'casefile-answer');answer.setAttribute('aria-live','polite');d.append(answer);for(const q of person.questions){const b=button(q.text,async()=>{if(busy)return;b.disabled=true;await run('ask',{interview:person.id,question:q.id,trial});if(!current()||!d.isConnected)return;answer.replaceChildren();const updated=value.interviews.find(p=>p.id===person.id)?.questions.find(x=>x.id===q.id),text=trial?updated?.trialAnswer:updated?.answer;if(text)answer.append(card('Dokumentierte Antwort',text,'facts'));if(value.feedback)answer.append(card(text?'Einordnung':'Hinweis zur Frage',value.feedback.text));d.scrollTop=0;b.disabled=false;});d.append(b);}});
   interviewDialog.addEventListener('close',()=>{interviewDialog=null;},{once:true});
  }
  function investigations(){
   if(!value.release)body.append(action('Fallbezogene Schweigepflichtentbindung klären','release'));
   if(value.phase==='intake')body.append(action('Ermittlungen aufnehmen','start'));
-  for(const group of [...new Set(value.actions.map(a=>a.group))].sort())body.append(disclosure(group,n=>{
-   for(const a of value.actions.filter(a=>a.group===group)){const box=card(a.title,a.description,'facts');if(a.reason)box.append(rich(a.reason));const b=button(a.status==='completed'?'Ergebnis in der Akte nachlesen':a.status==='pending'?'Rückläufe prüfen':'Schritt öffnen',()=>{
-    if(a.status==='completed')selectTab('Akte');else if(a.status==='pending')run('collect');else if(a.id==='A01')selectTab('Akte');else if(['A16','A17'].includes(a.id))selectTab('Verfahren');else casefileInput({id:a.id,title:a.title,op:a.id,kind:'action'},value,{dialog,submit:run,isCurrent:current});
+  for(const group of ['Einstieg','Menschen','Unterlagen','Aufträge','Auswertung'].filter(g=>value.actions.some(a=>a.group===g)))body.append(disclosure(group,n=>{
+   for(const a of value.actions.filter(a=>a.group===group)){const box=card(a.title,a.description,'facts');if(a.reason)box.append(rich(a.reason));const b=button(a.interview?(a.status==='completed'?'Fragen stellen / Antwort nachlesen':a.status==='pending'?'Rückläufe prüfen':'Befragung starten'):a.status==='completed'?'Ergebnis ansehen':a.status==='pending'?'Rückläufe prüfen':'Schritt öffnen',()=>{
+    if(a.interview&&value.documents.some(d=>d.id===value.interviews.find(p=>p.id===a.interview)?.document))interview(value.interviews.find(p=>p.id===a.interview));else if(a.status==='completed'){const docs=value.documents.filter(d=>a.documentIds?.includes(d.id));if(docs.length)resultDialog(docs);else selectTab('Akte');}else if(a.status==='pending')run('collect');else if(a.id==='A01')selectTab('Akte');else if(['A16','A17'].includes(a.id))selectTab('Verfahren');else if(a.interview)run(a.id,{},'action',()=>{const p=value.interviews.find(p=>p.id===a.interview);if(p&&value.documents.some(d=>d.id===p.document))interview(p);});else casefileInput({id:a.id,title:a.title,op:a.id,kind:'action'},value,{dialog,submit:run,isCurrent:current});
    });b.disabled=busy||!session?.ready||['blocked','unavailable'].includes(a.status);box.append(b);n.append(box);}
   }));
-  for(const person of value.interviews.filter(p=>value.documents.some(d=>d.id===p.document)))body.append(button(person.name+' · Fragen stellen',()=>interview(person)));
   body.append(action('Ausstehende Rückläufe prüfen','collect'),button('Zur Verfahrensentscheidung',()=>selectTab('Verfahren'),'button'));
  }
  function pleaDetails(parent,plea){
@@ -131,7 +138,7 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  }
  async function open(){
   session?.close();status.textContent='Akte wird geöffnet …';busy=true;
-  try{const worker=await casefileWorker(payload.script,casefileBundleHash);if(!current()){worker.close();return;}session=casefileSession({owner,variant,store:files,worker,isCurrent:current});value=await session.open();if(!current())return;const shared=await loadReferenceHelp().catch(()=>({entries:[]}));if(!current())return;
+  try{const worker=await casefileWorker(payload.script,expectedHash);if(!current()){worker.close();return;}session=casefileSession({owner,variant,store:files,worker,isCurrent:current});value=await session.open();if(!current())return;const shared=await loadReferenceHelp().catch(()=>({entries:[]}));if(!current())return;
    helpers=[...(shared.entries??[])];const aliases=new Set(helpers.flatMap(e=>[e.title,...(e.aliases??[])]).filter(Boolean).map(t=>t.toLocaleLowerCase('de')));
    for(const [i,g]of (value.glossary??[]).entries())if(!aliases.has(g[0].toLocaleLowerCase('de')))helpers.push({id:'casefile-term-'+i,kind:'term',title:g[0],aliases:[g[0]],body:g[1],sources:g[2]&&value.sources[g[2]]?[{title:value.sources[g[2]][0],url:value.sources[g[2]][1]}]:[]});
    helperIndex=referenceIndex(helpers);feedback();}

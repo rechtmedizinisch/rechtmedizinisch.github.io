@@ -232,7 +232,7 @@ body>header{background:#fff}
 .footer-author{display:inline-flex;align-items:center;gap:7px;vertical-align:middle;white-space:nowrap}.footer-author img{display:block;width:26px;height:26px;flex:none}.footer-author span{line-height:1.3}
 
 .player-loading{font-size:12px;color:#a4c7cc}.player-loading button{font-size:12px;padding:6px 10px}
- .presentation-player .player-loading{position:absolute;right:14px;bottom:66px;z-index:1;padding:8px 12px;border-radius:12px;background:#031523;color:#a4c7cc;box-shadow:0 4px 18px #0003;max-width:calc(100% - 28px)}
+ .presentation-player .player-loading{position:static;flex-basis:100%;padding:8px 0;background:#031523;color:#a4c7cc;max-width:100%}.player-header{flex-wrap:wrap}
 .home-resume-card {display:flex;align-items:flex-start;gap:16px;padding:20px;margin:20px 0;border:1px solid #a0d8d5;border-radius:20px;background:#e8f6f3;color:var(--navy,#102434);text-decoration:none;}
 .home-resume-card > span:nth-child(2) {display:grid;gap:6px;flex:1;min-width:0;overflow-wrap:anywhere;}
 .home-resume-card strong {font-size:1.15rem;color:#08777e;}
@@ -339,3 +339,13 @@ h1,h2,h3{overflow-wrap:anywhere;hyphens:auto}
 @media(prefers-contrast:more){.atlas-text-card,.judgment-reading-block{border:2px solid currentColor}.atlas-role-symbol{color:currentColor}}
 /* Long official host names must wrap on compact screens as well. */
 a.button,button{overflow-wrap:anywhere;white-space:normal}
+
+/* Long legal text and control labels must stay in normal, readable flow. */
+button,.button{max-width:100%;white-space:normal;overflow-wrap:anywhere;line-height:1.45}
+:is(.card,.notice,.knowledge-banner,.library-section,.practice-mode){min-width:0}
+.context-dialog-header{position:static;top:auto;display:grid;grid-template-columns:minmax(0,1fr) auto}
+.context-dialog-header h2{min-width:0;max-width:100%}.context-dialog-header button{margin:0}
+.image-dialog button{position:static}
+@media(max-width:520px){.context-dialog{padding:18px}.context-dialog-header{grid-template-columns:minmax(0,1fr)}.context-dialog-header button{justify-self:end}}
+/* Long German legal terms must remain readable on narrow screens. */
+main,dialog{overflow-wrap:anywhere;hyphens:auto}
