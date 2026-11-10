@@ -1,6 +1,6 @@
-import {officialCourtURL} from './court-sources.mjs?v=20261106-podcast62b';
+import {officialCourtURL} from './court-sources.mjs?v=20261110-source-corrections';
 // Contextual reading help never changes the route or grants access to content.
-import {protectReferences} from './presentation-theme.mjs?v=20261106-podcast62b';
+import {protectReferences} from './presentation-theme.mjs?v=20261110-source-corrections';
 const escape=value=>value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const historicalDesignation='(?:a\\.[\\s\\u00A0]*F\\.|alter[\\s\\u00A0]+Fassung)(?![\\p{L}\\p{N}])';
 const folded=value=>value.toLocaleLowerCase('de').replace(/\s+/gu,' ');
@@ -81,7 +81,7 @@ export function openReferenceDialog(owner,entry,catalog=[]){
 
 let referenceHelpPromise;
 export function loadReferenceHelp(){
- if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261106-podcast62b'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
+ if(!referenceHelpPromise)referenceHelpPromise=fetch(new URL('./reference-help.json?v=20261110-source-corrections'+new URL(import.meta.url).search,import.meta.url)).then(r=>{if(!r.ok)throw Error('reference-help unavailable');return r.json();}).catch(error=>{referenceHelpPromise=null;throw error;});
  return referenceHelpPromise;
 }
 export function installContextHelp(root,{load=loadReferenceHelp}={}){

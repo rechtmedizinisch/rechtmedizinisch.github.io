@@ -1,7 +1,7 @@
-import {openReferenceDialog} from './context-help.mjs?v=20261106-podcast62b';
+import {openReferenceDialog} from './context-help.mjs?v=20261110-source-corrections';
 const node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!=null)e.textContent=text;if(cls)e.className=cls;return e;};
 export async function renderDefinitions(main,isCurrent){
- const response=await fetch(new URL('./reference-help.json?v=20261106-podcast62b'+new URL(import.meta.url).search,import.meta.url));if(!response.ok)throw Error('reference-help unavailable');
+ const response=await fetch(new URL('./reference-help.json?v=20261110-source-corrections'+new URL(import.meta.url).search,import.meta.url));if(!response.ok)throw Error('reference-help unavailable');
  const {entries:catalog}=await response.json();if(!isCurrent())return;
  const entries=catalog.filter(e=>e.kind==='term').sort((a,b)=>a.title.localeCompare(b.title,'de'));
  main.append(node('h1','📖 Begriffe A–Z'),node('p',`${entries.length} kostenlose Erklärungen. Begriff öffnen, kurz nachschlagen und an derselben Stelle weiterlesen.`));

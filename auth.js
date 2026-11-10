@@ -1,10 +1,10 @@
-import {client,sandboxContext} from './auth-client.mjs?v=20261106-podcast62b';
-import {requestDeadline} from './request-deadline.mjs?v=20261106-podcast62b';
-import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261106-podcast62b';
-import {startGoogleLogin} from './google-login.mjs?v=20261106-podcast62b';
+import {client,sandboxContext} from './auth-client.mjs?v=20261110-source-corrections';
+import {requestDeadline} from './request-deadline.mjs?v=20261110-source-corrections';
+import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261110-source-corrections';
+import {startGoogleLogin} from './google-login.mjs?v=20261110-source-corrections';
 export {client,sandboxContext};
-import {config} from './config.js?v=20261106-podcast62b';
-import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261106-podcast62b';
+import {config} from './config.js?v=20261110-source-corrections';
+import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261110-source-corrections';
 export {isAppleCancellation};
 export function prepareAppleLogin(){return prepareAppleRequest({clientID:config.appleClientID,redirectURI:config.appleRedirectURI});}
 export function appleLogin(request){return completeAppleLogin(client,request);}
