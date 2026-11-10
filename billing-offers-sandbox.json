@@ -1,0 +1,151 @@
+[
+  {
+    "key": "premium-monthly",
+    "title": "Premium · Monatlich",
+    "cents": 499,
+    "interval": "month",
+    "scopes": [
+      "all"
+    ]
+  },
+  {
+    "key": "premium-yearly",
+    "title": "Premium · Jährlich",
+    "cents": 2999,
+    "interval": "year",
+    "scopes": [
+      "all"
+    ]
+  },
+  {
+    "key": "course-edition",
+    "title": "Kursedition · Einmalkauf",
+    "cents": 3999,
+    "interval": null,
+    "scopes": [
+      "course:01",
+      "course:02",
+      "course:03",
+      "course:04",
+      "course:05",
+      "course:06",
+      "course:07",
+      "course:08",
+      "course:09",
+      "course:10",
+      "course:11",
+      "course:12",
+      "course:13",
+      "course:14",
+      "course:15"
+    ]
+  },
+  {
+    "key": "diagram-podcast-PodcastAdults",
+    "title": "Recht Medizinisch · Freiheitsentziehung · Erwachsene",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:podcast:PodcastAdults"
+    ]
+  },
+  {
+    "key": "diagram-podcast-PodcastChildren",
+    "title": "Recht Medizinisch · Freiheitsentziehung · Minderjährige",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:podcast:PodcastChildren"
+    ]
+  },
+  {
+    "key": "diagram-system-insurance-comparison",
+    "title": "Recht Medizinisch · GKV und PKV im Vergleich",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:insurance-comparison"
+    ]
+  },
+  {
+    "key": "diagram-system-ambulant",
+    "title": "Recht Medizinisch · GKV: Behandlung und Geldflüsse",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:ambulant"
+    ]
+  },
+  {
+    "key": "diagram-system-private-example",
+    "title": "Recht Medizinisch · PKV: Rechnung und Erstattung",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:private-example"
+    ]
+  },
+  {
+    "key": "diagram-system-hospital-finance",
+    "title": "Recht Medizinisch · Krankenhaus: zwei Finanzierungswege",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:hospital-finance"
+    ]
+  },
+  {
+    "key": "diagram-system-constitution",
+    "title": "Recht Medizinisch · Verfassung und Medizinrecht",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:constitution"
+    ]
+  },
+  {
+    "key": "diagram-system-system",
+    "title": "Recht Medizinisch · Wer macht was im Gesundheitssystem?",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:system"
+    ]
+  },
+  {
+    "key": "diagram-system-insurance",
+    "title": "Recht Medizinisch · GKV und PKV: Grenzen 2026",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:insurance"
+    ]
+  },
+  {
+    "key": "diagram-system-directive",
+    "title": "Recht Medizinisch · Wann wird eine Methode zur GKV-Leistung?",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:directive"
+    ]
+  },
+  {
+    "key": "diagram-system-capacity",
+    "title": "Recht Medizinisch · Vier rechtliche Fähigkeiten",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:capacity"
+    ]
+  },
+  {
+    "key": "diagram-system-liability",
+    "title": "Recht Medizinisch · Zwei Wege zur zivilrechtlichen Haftung",
+    "cents": 99,
+    "interval": null,
+    "scopes": [
+      "diagram:system:liability"
+    ]
+  }
+]

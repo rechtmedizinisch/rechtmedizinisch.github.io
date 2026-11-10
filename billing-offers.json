@@ -2,7 +2,7 @@
   {
     "key": "premium-monthly",
     "title": "Premium · Monatlich",
-    "cents": 499,
+    "cents": 599,
     "interval": "month",
     "scopes": [
       "all"
@@ -11,7 +11,7 @@
   {
     "key": "premium-yearly",
     "title": "Premium · Jährlich",
-    "cents": 2999,
+    "cents": 3999,
     "interval": "year",
     "scopes": [
       "all"
@@ -20,7 +20,7 @@
   {
     "key": "course-edition",
     "title": "Kursedition · Einmalkauf",
-    "cents": 3999,
+    "cents": 4999,
     "interval": null,
     "scopes": [
       "course:01",

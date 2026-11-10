@@ -14,7 +14,7 @@ export async function billingPanel(auth,{signedIn=true,grants:knownGrants=[]}={}
  let unavailable=false;
  if(signedIn&&config.billingLiveEnabled){try{state=await billingRequest(auth,'status');}catch{unavailable=true;}}
  const [response,catalogResponse]=await Promise.all([
-  fetch(new URL('./billing-offers.json?v=20261106-podcast62b',import.meta.url)),
+  fetch(new URL(sandboxContext?'./billing-offers-sandbox.json?v=20261110-pricing':'./billing-offers.json?v=20261110-pricing',import.meta.url)),
   fetch(new URL('./catalog.json?v=20261106-podcast62b',import.meta.url)).catch(()=>null)
  ]);if(!response.ok)return null;
  const offers=await response.json();
