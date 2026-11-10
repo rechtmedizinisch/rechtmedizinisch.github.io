@@ -1,14 +1,14 @@
-import {hasAccess} from './policy.mjs?v=20261110-source-corrections';
-import {protectReferences} from './presentation-theme.mjs?v=20261110-source-corrections';
-import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261110-source-corrections';
-import {notify} from './feedback.mjs?v=20261110-source-corrections';
-import {roleIcon,readingRole} from './reading-style.mjs?v=20261110-source-corrections';
-import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261110-source-corrections';
-import {casefileStore} from './casefile-store.mjs?v=20261110-source-corrections';
-import {casefileWorker} from './casefile-worker.mjs?v=20261110-source-corrections';
-import {casefileSession} from './casefile-session.mjs?v=20261110-source-corrections';
-import {casefileInput} from './casefile-form.mjs?v=20261110-source-corrections';
-import {practiceAccess} from './practice-access.mjs?v=20261110-source-corrections';
+import {hasAccess} from './policy.mjs?v=20261110-wd';
+import {protectReferences} from './presentation-theme.mjs?v=20261110-wd';
+import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261110-wd';
+import {notify} from './feedback.mjs?v=20261110-wd';
+import {roleIcon,readingRole} from './reading-style.mjs?v=20261110-wd';
+import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261110-wd';
+import {casefileStore} from './casefile-store.mjs?v=20261110-wd';
+import {casefileWorker} from './casefile-worker.mjs?v=20261110-wd';
+import {casefileSession} from './casefile-session.mjs?v=20261110-wd';
+import {casefileInput} from './casefile-form.mjs?v=20261110-wd';
+import {practiceAccess} from './practice-access.mjs?v=20261110-wd';
 let activeClose=()=>{};
 export function closeActiveCasefile(){activeClose();activeClose=()=>{};}
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
@@ -27,7 +27,7 @@ export async function renderCasefile(main,auth,grants,user,isCurrent,progress,va
  if(!casefileCatalog.variants.some(v=>v.id===variant)){main.append(el('p','Diese Fallvariante ist nicht verfügbar.'),link('Zur Variantenübersicht','#casefile'));return;}
  if(!practiceAccess('casefile',variant,premium?grants:[])){main.append(el('p','Diese Variante ist in Premium enthalten. Fall A können Sie kostenlos vollständig ausprobieren.','notice'),link('Premium-Zugang ansehen','#shop'),link('Kostenlosen Fall A öffnen','#casefile/A'),link('Zur Variantenübersicht','#casefile'));return;}
  const loading=el('p','Die Strafakte wird geladen …','notice');main.append(loading);
- try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo.js?v=20261110-source-corrections');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
+ try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo.js?v=20261110-wd');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
  catch(error){if(isCurrent()){loading.remove();main.append(el('p',error.message??'Die Strafakte konnte nicht geladen werden.','notice'),button('Erneut versuchen',()=>{if(isCurrent()){main.replaceChildren();renderCasefile(main,auth,grants,user,isCurrent,progress,variant);}}));}}
 }
 export async function renderCasefileContent(main,payload,{owner,variant,isCurrent,progress,expectedHash=casefileBundleHash}){

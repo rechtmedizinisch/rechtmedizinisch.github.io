@@ -1,4 +1,4 @@
-import {notify} from './feedback.mjs?v=20261110-source-corrections';
+import {notify} from './feedback.mjs?v=20261110-wd';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;return n;};
 export function loginPanel(auth,config,onSignedIn=async()=>{}){
  const box=el('section');box.className='card login-panel';box.append(el('h2','Anmelden'),el('p','Mit Ihrem bestehenden Konto für App und Website.'));

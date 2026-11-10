@@ -1,36 +1,36 @@
-import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261110-source-corrections';
-import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261110-source-corrections';
-import {notify,sessionFeedback} from './feedback.mjs?v=20261110-source-corrections';
-import {createLearningUpdateNotice} from './learning-update.mjs?v=20261110-source-corrections';
-import {codePanel} from './code-panel.mjs?v=20261110-source-corrections';
-import {renderCancellation} from './cancellation.js?v=20261110-source-corrections';
-import {billingPanel} from './billing.js?v=20261110-source-corrections';
-import {replacePresentation} from './presentation-transition.mjs?v=20261110-source-corrections';
-import {renderLearningOffer} from './learning-offer.mjs?v=20261110-source-corrections';
-import {renderFreeContent} from './free-content.mjs?v=20261110-source-corrections';
-import {homeLearning} from './home-learning.mjs?v=20261110-source-corrections';
-import {progressActions} from './progress-actions.mjs?v=20261110-source-corrections';
-import {progressSync} from './progress-sync.mjs?v=20261110-source-corrections';
-import {syncPanel} from './progress-sync-ui.mjs?v=20261110-source-corrections';
-import {renderSearch} from './search.js?v=20261110-source-corrections';
-import {renderPodcast} from './podcast.js?v=20261110-source-corrections';
-import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261110-source-corrections';
-import {renderCourseLearning} from './course-learning.js?v=20261110-source-corrections';
-import {progressStore} from './progress-store.mjs?v=20261110-source-corrections';
-import {renderReferences} from './references.js?v=20261110-source-corrections';
-import {formatSlideText} from './slide-tools.js?v=20261110-source-corrections';
-import {loginPanel} from './email-login.js?v=20261110-source-corrections';
-import {passwordPanel} from './password-panel.mjs?v=20261110-source-corrections';
-import {renderLegal} from './legal.js?v=20261110-source-corrections';
-import {renderPractice} from './practice.js?v=20261110-source-corrections';
-import {renderCasework} from './casework.js?v=20261110-source-corrections';
-import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261110-source-corrections';
-import {accountTools} from './account-tools.js?v=20261110-source-corrections';
-import {renderLibrary,courseMaterials} from './library.js?v=20261110-source-corrections';
-import {readingViewState} from './reading-view-state.mjs?v=20261110-source-corrections';
-import {config} from './config.js?v=20261110-source-corrections';
-import {installContextHelp} from './context-help.mjs?v=20261110-source-corrections';
-import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261110-source-corrections';
+import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261110-wd';
+import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261110-wd';
+import {notify,sessionFeedback} from './feedback.mjs?v=20261110-wd';
+import {createLearningUpdateNotice} from './learning-update.mjs?v=20261110-wd';
+import {codePanel} from './code-panel.mjs?v=20261110-wd';
+import {renderCancellation} from './cancellation.js?v=20261110-wd';
+import {billingPanel} from './billing.js?v=20261110-wd';
+import {replacePresentation} from './presentation-transition.mjs?v=20261110-wd';
+import {renderLearningOffer} from './learning-offer.mjs?v=20261110-wd';
+import {renderFreeContent} from './free-content.mjs?v=20261110-wd';
+import {homeLearning} from './home-learning.mjs?v=20261110-wd';
+import {progressActions} from './progress-actions.mjs?v=20261110-wd';
+import {progressSync} from './progress-sync.mjs?v=20261110-wd';
+import {syncPanel} from './progress-sync-ui.mjs?v=20261110-wd';
+import {renderSearch} from './search.js?v=20261110-wd';
+import {renderPodcast} from './podcast.js?v=20261110-wd';
+import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261110-wd';
+import {renderCourseLearning} from './course-learning.js?v=20261110-wd';
+import {progressStore} from './progress-store.mjs?v=20261110-wd';
+import {renderReferences} from './references.js?v=20261110-wd';
+import {formatSlideText} from './slide-tools.js?v=20261110-wd';
+import {loginPanel} from './email-login.js?v=20261110-wd';
+import {passwordPanel} from './password-panel.mjs?v=20261110-wd';
+import {renderLegal} from './legal.js?v=20261110-wd';
+import {renderPractice} from './practice.js?v=20261110-wd';
+import {renderCasework} from './casework.js?v=20261110-wd';
+import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261110-wd';
+import {accountTools} from './account-tools.js?v=20261110-wd';
+import {renderLibrary,courseMaterials} from './library.js?v=20261110-wd';
+import {readingViewState} from './reading-view-state.mjs?v=20261110-wd';
+import {config} from './config.js?v=20261110-wd';
+import {installContextHelp} from './context-help.mjs?v=20261110-wd';
+import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261110-wd';
 const main=document.querySelector('main');
 // Anchor navigation must leave the entire target below the wrapping header.
 const pageHeader=document.querySelector('body > header');
@@ -160,10 +160,10 @@ async function route(){
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261110-source-corrections').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261110-wd').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
-  auth=await import('./auth.js?v=20261110-source-corrections');
+  auth=await import('./auth.js?v=20261110-wd');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
    const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});

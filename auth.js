@@ -1,10 +1,10 @@
-import {client,sandboxContext} from './auth-client.mjs?v=20261110-source-corrections';
-import {requestDeadline} from './request-deadline.mjs?v=20261110-source-corrections';
-import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261110-source-corrections';
-import {startGoogleLogin} from './google-login.mjs?v=20261110-source-corrections';
+import {client,sandboxContext} from './auth-client.mjs?v=20261110-wd';
+import {requestDeadline} from './request-deadline.mjs?v=20261110-wd';
+import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261110-wd';
+import {startGoogleLogin} from './google-login.mjs?v=20261110-wd';
 export {client,sandboxContext};
-import {config} from './config.js?v=20261110-source-corrections';
-import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261110-source-corrections';
+import {config} from './config.js?v=20261110-wd';
+import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261110-wd';
 export {isAppleCancellation};
 export function prepareAppleLogin(){return prepareAppleRequest({clientID:config.appleClientID,redirectURI:config.appleRedirectURI});}
 export function appleLogin(request){return completeAppleLogin(client,request);}

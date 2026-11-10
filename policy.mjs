@@ -1,4 +1,4 @@
-import {officialCourtURL} from './court-sources.mjs?v=20261110-source-corrections';
+import {officialCourtURL} from './court-sources.mjs?v=20261110-wd';
 export function hasAccess(scope,grants,at=Date.now()) {return grants.some(g=>!g.revoked_at && [scope,'all'].includes(g.scope) && Date.parse(g.starts_at)<=at && Date.parse(g.expires_at)>at);}
 export function accessFingerprint(grants,at=Date.now()) {return JSON.stringify([...new Set(grants.filter(g=>!g.revoked_at&&Date.parse(g.starts_at)<=at&&Date.parse(g.expires_at)>at).map(g=>g.scope))].sort());}
 export function nextAccessChange(grants,at=Date.now()) {return Math.min(...grants.filter(g=>!g.revoked_at).flatMap(g=>[Date.parse(g.starts_at),Date.parse(g.expires_at)]).filter(t=>t>at));}

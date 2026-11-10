@@ -1,5 +1,5 @@
-import {scopeLabel,accessDuration} from './policy.mjs?v=20261110-source-corrections';
-import {notify} from './feedback.mjs?v=20261110-source-corrections';
+import {scopeLabel,accessDuration} from './policy.mjs?v=20261110-wd';
+import {notify} from './feedback.mjs?v=20261110-wd';
 export function codeFeedback(result){
  if(result?.ok)return {kind:result.already_redeemed?'info':'success',title:result.already_redeemed?'Code bereits eingelöst':'Code erfolgreich eingelöst',text:result.already_redeemed?'Dieser Code ist für Ihr Konto bereits eingelöst. Die Laufzeit steht bei Ihren Freischaltungen.':`Code erfolgreich eingelöst: ${scopeLabel(result.scope)} · ${accessDuration(result.expires_at)}.`};
  if(result?.reason==='try_later')return {kind:'error',title:'Bitte kurz warten',text:'Zu viele Versuche. Bitte warten Sie 15 Minuten.'};
