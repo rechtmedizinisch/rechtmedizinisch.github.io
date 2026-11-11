@@ -363,3 +363,9 @@ main,dialog{overflow-wrap:anywhere;hyphens:auto}
 .google-sign-in:hover{background:#f8faff;border-color:#5b626c}
 .google-sign-in:focus-visible{outline:3px solid #8ab4f8;outline-offset:3px}
 .google-sign-in:disabled{opacity:.55;cursor:wait}
+
+/* Use the available workspace below the existing navigation. Reading blocks
+   retain their own line-length limits; account forms remain deliberately narrow. */
+main:not(.narrow):not(.presentation-player){width:100%;max-width:none;margin-inline:0;padding-inline:clamp(16px,2.5vw,40px)}
+.reference-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:18px;align-items:start}
+.reference-results>.card{margin-bottom:0;min-width:0}
