@@ -355,3 +355,11 @@ button,.button{max-width:100%;white-space:normal;overflow-wrap:anywhere;line-hei
 @media(max-width:520px){.context-dialog{padding:18px}.context-dialog-header{grid-template-columns:minmax(0,1fr)}.context-dialog-header button{justify-self:end}}
 /* Long German legal terms must remain readable on narrow screens. */
 main,dialog{overflow-wrap:anywhere;hyphens:auto}
+
+@font-face{font-family:'Google Sans';font-style:normal;font-weight:500;font-display:swap;src:url('./assets/google-sans-medium-latin.woff2') format('woff2')}
+.google-sign-in{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;min-height:50px;margin:12px 0;padding:12px;border:1px solid #747775;border-radius:8px;background:#fff;color:#1f1f1f;font-family:'Google Sans',Arial,sans-serif;font-size:14px;font-weight:500;line-height:20px;box-shadow:none}
+.google-sign-in img{display:block;width:20px;height:20px;flex:0 0 20px;object-fit:contain}
+.google-sign-in span{min-width:0;white-space:normal}
+.google-sign-in:hover{background:#f8faff;border-color:#5b626c}
+.google-sign-in:focus-visible{outline:3px solid #8ab4f8;outline-offset:3px}
+.google-sign-in:disabled{opacity:.55;cursor:wait}

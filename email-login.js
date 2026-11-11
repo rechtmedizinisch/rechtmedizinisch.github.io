@@ -19,7 +19,12 @@ export function loginPanel(auth,config,onSignedIn=async()=>{}){
    finally{if(!signedIn&&apple.isConnected)await prepare();}
   };
  }
- if(config.googleEnabled){const google=el('button','Mit Google fortfahren');google.type='button';google.disabled=!auth;google.onclick=async()=>{google.disabled=true;try{await auth.googleLogin();}catch{report('Google-Anmeldung nicht möglich','Google-Anmeldung derzeit nicht möglich. Bitte nutzen Sie E-Mail.');google.disabled=false;}};box.append(google);}
+ if(config.googleEnabled){
+  const google=el('button'),logo=el('img'),label=el('span','Mit Google anmelden');
+  google.type='button';google.className='auth-provider google-sign-in';google.disabled=!auth;
+  logo.src='./assets/google-g.png';logo.alt='';logo.width=20;logo.height=20;google.append(logo,label);
+  google.onclick=async()=>{google.disabled=true;try{await auth.googleLogin();}catch{report('Google-Anmeldung nicht möglich','Google-Anmeldung derzeit nicht möglich. Bitte nutzen Sie E-Mail.');google.disabled=false;}};box.append(google);
+ }
  const passwordForm=el('form'),label=el('label','Ihre E-Mail-Adresse'),email=el('input');passwordForm.className='password-login-form';email.type='email';email.id='login-email';email.name='username';email.required=true;email.autocomplete='username';email.autocapitalize='none';email.spellcheck=false;label.htmlFor=email.id;
  try{email.value=sessionStorage.getItem('rm-pending-email')??'';}catch{}
  const passwordHeading=el('h3','Mit E-Mail und Passwort'),passwordLabel=el('label','Ihr Passwort'),password=el('input');password.type='password';password.id='login-password';password.name='password';password.autocomplete='current-password';password.required=true;passwordLabel.htmlFor=password.id;
