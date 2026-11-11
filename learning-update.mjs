@@ -31,7 +31,7 @@ export function createLearningUpdateNotice({document:doc=globalThis.document,sto
    dialog.setAttribute('aria-labelledby','learning-update-title');
    dialog.setAttribute('aria-describedby','learning-update-intro');
    const logo=el('img');logo.src='assets/header-brand-mark.png';logo.alt='';logo.width=64;logo.height=64;
-   const title=el('h2',learningUpdate.title);title.id='learning-update-title';
+   const title=el('h2',learningUpdate.title);title.id='learning-update-title';title.tabIndex=-1;title.setAttribute('autofocus','');
    const intro=el('p','Mehr Inhalte. Schneller finden.','learning-update-intro');intro.id='learning-update-intro';
    const list=el('ul');for(const item of learningUpdate.items)list.append(el('li',item));
    const note=el('p','Ihr Lernstand und Ihre Freischaltungen bleiben erhalten.','subtle');
@@ -48,7 +48,7 @@ export function createLearningUpdateNotice({document:doc=globalThis.document,sto
    current={dialog,finish};button.addEventListener('click',()=>finish(true));
    dialog.addEventListener('cancel',event=>{event.preventDefault();finish(true);});
    dialog.addEventListener('close',()=>finish(true));
-   dialog.showModal();button.focus();return true;
+   dialog.showModal();title.focus({preventScroll:true});dialog.scrollTop=0;return true;
   }
  };
 }
