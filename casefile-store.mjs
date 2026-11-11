@@ -1,6 +1,6 @@
-const LIMIT=600000;
+const LIMIT=620000;
 const bytes=value=>new TextEncoder().encode(value).length;
-const valid=(owner,variant)=>typeof owner==='string'&&owner.length>0&&owner.length<=200&&['A','B','C'].includes(variant);
+const valid=(owner,variant)=>typeof owner==='string'&&owner.length>0&&owner.length<=200&&['A','B','C','THERAPY_A','THERAPY_B','THERAPY_C','INFUSION_A','INFUSION_B','INFUSION_C'].includes(variant);
 export function casefileStore(factory=globalThis.indexedDB){
  let connection;
  async function database(){

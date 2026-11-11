@@ -1,11 +1,13 @@
 // Per-account UI preference only. Never changes grants, session or learning data.
 export const learningUpdate = Object.freeze({
- id:'2026.11.06-leit55',
+ id:'2026.11.11-guided-learning',
  title:'Neu für Sie',
  items:Object.freeze([
-  "Fallwerkstatt: 95 Originalfälle aus Zivilrecht, Strafrecht und Berufsrecht",
-  "Interaktive Strafakte: drei Varianten mit Ermittlungen und Gerichtsverfahren",
-  "Elf neue Verfahrensgrafiken mit Lesefassung und Rechtsgrundlagen",
+  "Gemeinsamer Lernstand in den aktualisierten Apps und auf der Website – mit demselben Konto",
+        "Offline weiterlernen; Gastlernstände bleiben getrennt. Vorhandene Stände nur auf Wunsch übernehmen",
+        "Fallwerkstatt: 95 Originalfälle aus Zivilrecht, Strafrecht und Berufsrecht",
+  "Drei interaktive Strafakten mit je drei Varianten, klarer Verfahrensführung und automatischen Rückläufen",
+  "Themenwegweiser nach Rechtsgebieten; Patientenverfügungen im Rettungsdienst ausführlicher erklärt",
   "Neue Leitentscheidungen, Begriffe und Normen direkt nachschlagen; Fälle nach Rechtsgebiet filtern",
   "Eigener Fortschritt für Fallwerkstatt und Strafakte – Ihr Kursabschluss bleibt erhalten"
  ])

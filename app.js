@@ -1,36 +1,36 @@
-import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261110-wd';
-import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261110-wd';
-import {notify,sessionFeedback} from './feedback.mjs?v=20261110-wd';
-import {createLearningUpdateNotice} from './learning-update.mjs?v=20261110-wd';
-import {codePanel} from './code-panel.mjs?v=20261110-wd';
-import {renderCancellation} from './cancellation.js?v=20261110-wd';
-import {billingPanel} from './billing.js?v=20261110-wd';
-import {replacePresentation} from './presentation-transition.mjs?v=20261110-wd';
-import {renderLearningOffer} from './learning-offer.mjs?v=20261110-wd';
-import {renderFreeContent} from './free-content.mjs?v=20261110-wd';
-import {homeLearning} from './home-learning.mjs?v=20261110-wd';
-import {progressActions} from './progress-actions.mjs?v=20261110-wd';
-import {progressSync} from './progress-sync.mjs?v=20261110-wd';
-import {syncPanel} from './progress-sync-ui.mjs?v=20261110-wd';
-import {renderSearch} from './search.js?v=20261110-wd';
-import {renderPodcast} from './podcast.js?v=20261110-wd';
-import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261110-wd';
-import {renderCourseLearning} from './course-learning.js?v=20261110-wd';
-import {progressStore} from './progress-store.mjs?v=20261110-wd';
-import {renderReferences} from './references.js?v=20261110-wd';
-import {formatSlideText} from './slide-tools.js?v=20261110-wd';
-import {loginPanel} from './email-login.js?v=20261111-google-button';
-import {passwordPanel} from './password-panel.mjs?v=20261110-wd';
-import {renderLegal} from './legal.js?v=20261110-wd';
-import {renderPractice} from './practice.js?v=20261110-wd';
-import {renderCasework} from './casework.js?v=20261110-wd';
-import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261110-wd';
-import {accountTools} from './account-tools.js?v=20261110-wd';
-import {renderLibrary,courseMaterials} from './library.js?v=20261111-orientation';
-import {readingViewState} from './reading-view-state.mjs?v=20261110-wd';
-import {config} from './config.js?v=20261110-wd';
-import {installContextHelp} from './context-help.mjs?v=20261110-wd';
-import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261110-wd';
+import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261111-guided-learning';
+import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261111-guided-learning';
+import {notify,sessionFeedback} from './feedback.mjs?v=20261111-guided-learning';
+import {createLearningUpdateNotice} from './learning-update.mjs?v=20261111-guided-learning';
+import {codePanel} from './code-panel.mjs?v=20261111-guided-learning';
+import {renderCancellation} from './cancellation.js?v=20261111-guided-learning';
+import {billingPanel} from './billing.js?v=20261111-guided-learning';
+import {replacePresentation} from './presentation-transition.mjs?v=20261111-guided-learning';
+import {renderLearningOffer} from './learning-offer.mjs?v=20261111-guided-learning';
+import {renderFreeContent} from './free-content.mjs?v=20261111-guided-learning';
+import {homeLearning} from './home-learning.mjs?v=20261111-guided-learning';
+import {progressActions} from './progress-actions.mjs?v=20261111-guided-learning';
+import {progressSync} from './progress-sync.mjs?v=20261111-guided-learning';
+import {syncPanel} from './progress-sync-ui.mjs?v=20261111-guided-learning';
+import {renderSearch} from './search.js?v=20261111-guided-learning';
+import {renderPodcast} from './podcast.js?v=20261111-guided-learning';
+import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261111-guided-learning';
+import {renderCourseLearning} from './course-learning.js?v=20261111-guided-learning';
+import {progressStore} from './progress-store.mjs?v=20261111-guided-learning';
+import {renderReferences} from './references.js?v=20261111-guided-learning';
+import {formatSlideText} from './slide-tools.js?v=20261111-guided-learning';
+import {loginPanel} from './email-login.js?v=20261111-guided-learning';
+import {passwordPanel} from './password-panel.mjs?v=20261111-guided-learning';
+import {renderLegal} from './legal.js?v=20261111-guided-learning';
+import {renderPractice} from './practice.js?v=20261111-guided-learning';
+import {renderCasework} from './casework.js?v=20261111-guided-learning';
+import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261111-guided-learning';
+import {accountTools} from './account-tools.js?v=20261111-guided-learning';
+import {renderLibrary,courseMaterials} from './library.js?v=20261111-guided-learning';
+import {readingViewState} from './reading-view-state.mjs?v=20261111-guided-learning';
+import {config} from './config.js?v=20261111-guided-learning';
+import {installContextHelp} from './context-help.mjs?v=20261111-guided-learning';
+import {hasAccess,shuffle,safeURL,scopeLabel,accessDuration,accessFingerprint,nextAccessChange} from './policy.mjs?v=20261111-guided-learning';
 const main=document.querySelector('main');
 // Anchor navigation must leave the entire target below the wrapping header.
 const pageHeader=document.querySelector('body > header');
@@ -47,6 +47,7 @@ let renderedAccess;
 let sessionManager,sessionProblem=null,accountNotice=null;
 const readingViews=readingViewState();let resetScrollOnRoute=false;
 let learningOwner,learningStoreInstance,syncService,syncInfo={kind:'local'};
+let observedProgressEpoch,progressSessionChanged=false;
 function learningStore(){
  const owner=user?.id??null;if(learningStoreInstance&&learningOwner===owner)return learningStoreInstance;
  syncService?.stop();learningOwner=owner;learningStoreInstance=progressStore(owner);learningStoreInstance.subscribe(refreshHeader);syncService=null;syncInfo={kind:'local'};
@@ -69,7 +70,7 @@ function refreshHeader(){
  const value=document.getElementById('header-progress-value');
  if(value&&catalog&&learningStoreInstance)value.textContent=`${catalogOverall(catalog,learningStoreInstance.snapshot).percent} %`;
 }
-document.addEventListener('visibilitychange',()=>{if(!document.hidden&&catalog){if(sessionManager)sessionManager.notify();else if(accessFingerprint(grants)!==renderedAccess)route();else watchExpiry();}});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&catalog){if(sessionManager)sessionManager.notify();else if(accessFingerprint(grants)!==renderedAccess)route();else watchExpiry();syncService?.sync();}});
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const link=(text,href,cls)=>{const a=el('a',text,cls);a.href=href;return a;};
 function external(text,url){const href=safeURL(url);if(!href)return el('span',text);const a=link(text,href);a.target='_blank';a.rel='noopener noreferrer';return a;}
@@ -160,10 +161,10 @@ async function route(){
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261110-wd').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261111-guided-learning').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
-  auth=await import('./auth.js?v=20261110-wd');
+  auth=await import('./auth.js?v=20261111-guided-learning');
   sessionManager=sessionCoordinator({readUser:auth.currentUser,readGrants:auth.getGrants,apply:async next=>{
    const previousOwner=user?.id??null,previousGrants=grantDetails(grants),first=!authSettled;
    const feedback=sessionFeedback(previousOwner,next.user?.id??null,{initial:first,returningFromLogin:returningFromLogin&&!loginReturnFailed});
@@ -173,15 +174,23 @@ try{
    if(feedback){sessionMessage=user?null:'Sie sind erfolgreich abgemeldet.';notify({...feedback,text:next.grantsError?sessionProblem:feedback.text});}
    else if(first&&loginReturnFailed)notify({kind:'error',title:'Anmeldung nicht abgeschlossen',text:'Bitte versuchen Sie es erneut.'});
    if(accountNotice?.owner!==user?.id)accountNotice=null;
-   const changed=first||previousOwner!==(user?.id??null)||previousGrants!==grantDetails(grants);
+   const changed=first||progressSessionChanged||previousOwner!==(user?.id??null)||previousGrants!==grantDetails(grants);progressSessionChanged=false;
    if(changed)await route();else{sessionNotice();watchExpiry();}
    learningUpdateNotice.setUser(user?.id??null);
   },onError:()=>{
    const first=!authSettled;authSettled=true;sessionProblem='Die Anmeldung konnte gerade nicht geprüft werden. Bitte versuchen Sie es erneut.';
-   if(first||!user)route();else sessionNotice();
+   if(first||!user||progressSessionChanged)route();else sessionNotice();
   }});
   // Subscribe before reading the initial session, and never await inside this callback.
-  auth.client.auth.onAuthStateChange(()=>sessionManager.notify());
+  auth.client.auth.onAuthStateChange((_event,session)=>{
+   const epoch=auth.progressSessionGuard.capture().epoch;
+   if(observedProgressEpoch!==epoch){
+    observedProgressEpoch=epoch;progressSessionChanged=true;routeVersion++;
+    syncService?.stop();syncService=null;learningStoreInstance?.retire();learningStoreInstance=null;learningOwner=undefined;
+    if(user?.id!==session?.user?.id){user=null;grants=[];authSettled=false;}
+   }
+   sessionManager.notify();
+  });
   if(returningFromLogin)location.hash='#account';
   await sessionManager.refresh();
  }catch{authSettled=true;sessionProblem='Die Anmeldung konnte gerade nicht geladen werden. Bitte laden Sie die Seite erneut.';await route();}

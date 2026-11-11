@@ -1,4 +1,4 @@
-import {hasAccess} from './policy.mjs?v=20261110-wd';
+import {hasAccess} from './policy.mjs?v=20261111-guided-learning';
 
 export function isGraphic(entry) {
   return ['podcast','system'].includes(entry?.group) || (entry?.group==='atlas' && entry.graphic===true);

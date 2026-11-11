@@ -1,22 +1,22 @@
-import {renderDefinitions} from './definition-library.mjs?v=20261110-wd';
-import {renderPresentationIndex} from './presentation-index.mjs?v=20261110-wd';
-import {fetchPresentationDownload} from './presentation-download.mjs?v=20261110-wd';
-import {renderSource} from './source-links.mjs?v=20261110-wd';
-import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261110-wd';
-import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261110-wd';
-import {hasAccess,safeURL} from './policy.mjs?v=20261110-wd';
-import {hasMaterialAccess} from './material-access.mjs?v=20261110-wd';
-import {fetchGraphicDownload} from './graphic-download.mjs?v=20261110-wd';
-import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261110-wd';
-import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261110-wd';
-import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261110-wd';
-import {renderPodcastListening,loadPodcastEpisodes} from './podcast-listening.mjs?v=20261110-wd';
-import {workshopCases} from './practice-catalog.mjs?v=20261110-wd';
-import {workshopDemoID} from './practice-access.mjs?v=20261110-wd';
-import {caseCode} from './casework-browse.mjs?v=20261110-wd';
+import {renderDefinitions} from './definition-library.mjs?v=20261111-guided-learning';
+import {renderPresentationIndex} from './presentation-index.mjs?v=20261111-guided-learning';
+import {fetchPresentationDownload} from './presentation-download.mjs?v=20261111-guided-learning';
+import {renderSource} from './source-links.mjs?v=20261111-guided-learning';
+import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
+import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261111-guided-learning';
+import {hasAccess,safeURL} from './policy.mjs?v=20261111-guided-learning';
+import {hasMaterialAccess} from './material-access.mjs?v=20261111-guided-learning';
+import {fetchGraphicDownload} from './graphic-download.mjs?v=20261111-guided-learning';
+import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261111-guided-learning';
+import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261111-guided-learning';
+import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261111-guided-learning';
+import {renderPodcastListening,loadPodcastEpisodes} from './podcast-listening.mjs?v=20261111-guided-learning';
+import {workshopCases} from './practice-catalog.mjs?v=20261111-guided-learning';
+import {workshopDemoID} from './practice-access.mjs?v=20261111-guided-learning';
+import {caseCode} from './casework-browse.mjs?v=20261111-guided-learning';
 const groups={atlas:'⚖ Fälle, Schemata & Vertiefungen',glossary:'📖 Begriffe & Gesundheitssystem',career:'🩺 PJ & Berufsstart',professions:'🤝 Gesundheitsberufe',podcast:'🎧 Schaubilder zum Podcast',system:'🧭 Schaubilder Medizinrecht & Gesundheitssystem',slides:'📑 Folien & Vertiefungen'};
 const groupDescriptions={glossary:'Zentrale Begriffe, Institutionen und Zusammenhänge verständlich erklärt.',career:'Antworten für PJ, erste Stelle und die ärztliche Weiterbildung.',professions:'Rechtliche Orientierung für Pflege, Rettungsdienst und weitere Gesundheitsberufe.',podcast:'Die Fälle und Fragen aus den Podcastfolgen als Schaubilder.',system:'Grafische Übersichten zu Haftung, Versorgung und Finanzierung.',slides:'Die gesamte Präsentation im Folien-Player mit Suche und direktem Kurseinstieg.'};
-groups.special='Spezialkurse';groupDescriptions.special='Thematisch lernen: Grundlagen, passende Fälle und gemeinsame Übungen.';
+groups.special='Themenwege & Spezialkurse';groupDescriptions.special='Thematisch lernen: Grundlagen, passende Fälle und gemeinsame Übungen.';
 groups.guide='🧭 Gesundheitssystem & Berufsweg';groupDescriptions.guide='Sechs kompakte Einstiege mit direkten Verweisen zu Begriffen und Originalquellen.';
 groupDescriptions.atlas='Prüfungsschemata, vollständige Verfahrensübersichten, Fälle und optionale Kurserläuterungen.';
 const categorySymbols={'Berufsrecht':'🪪','Datenschutz & Dokumentation':'🔒','Haftung & Verfahren':'⚖','Kompetenz & Verantwortung':'🛡','Rechtliche Grundlagen':'§','Regelwerke & Standard':'☷','Strafrechtliche Grundlagen':'🏛','PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
@@ -26,7 +26,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261111-orientation');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261111-guided-learning');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -41,7 +41,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
  if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261111-orientation');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261111-guided-learning');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);
@@ -223,7 +223,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
   const box=node('section',null,'slide-block tone-teal');box.append(node('h2','🎧 Podcast hören · Wissen vertiefen'));
   const add=(title,context,summary,options)=>{box.append(node('h3',title));if(context)box.append(node('p',context));if(summary)box.append(node('p',summary));const choices=node('details',null,'podcast-provider-disclosure');choices.append(node('summary','Folge hören · Anbieter wählen'));renderPodcastListening(choices,options);box.append(choices);};
   if(episodes.length)for(const p of episodes)add(p.label+' · '+p.title,p.courses.map(n=>'Kurs '+n).join(' · '),p.summary,{episodeID:p.id});
-  else{const r=await fetch('./podcasts.json?v=20261110-wd');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course))add(p.title,'Passend zu Kurs '+p.no,p.bridge,{legacyURL:p.link});}}
+  else{const r=await fetch('./podcasts.json?v=20261111-guided-learning');if(r.ok){const podcasts=await r.json();if(!isCurrent())return;for(const p of podcasts.filter(p=>Number(e.nativeId)===16?p.no!==14:p.no===course))add(p.title,'Passend zu Kurs '+p.no,p.bridge,{legacyURL:p.link});}}
   if(box.children.length>1)stage.append(box);
  }
 

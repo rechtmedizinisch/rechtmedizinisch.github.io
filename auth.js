@@ -1,10 +1,13 @@
-import {client,sandboxContext} from './auth-client.mjs?v=20261110-wd';
-import {requestDeadline} from './request-deadline.mjs?v=20261110-wd';
-import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261110-wd';
-import {startGoogleLogin} from './google-login.mjs?v=20261110-wd';
+import {client,sandboxContext} from './auth-client.mjs';
+import {progressSession} from './progress-session.mjs?v=20261111-guided-learning';
+export const progressSessionGuard=progressSession();
+client.auth.onAuthStateChange((event,session)=>progressSessionGuard.observe(event,session));
+import {requestDeadline} from './request-deadline.mjs?v=20261111-guided-learning';
+import {saveAccountPassword,requestPasswordConfirmation as confirmPassword} from './password-account.mjs?v=20261111-guided-learning';
+import {startGoogleLogin} from './google-login.mjs?v=20261111-guided-learning';
 export {client,sandboxContext};
-import {config} from './config.js?v=20261110-wd';
-import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261110-wd';
+import {config} from './config.js?v=20261111-guided-learning';
+import {prepareAppleRequest,completeAppleLogin,isAppleCancellation} from './apple-login.mjs?v=20261111-guided-learning';
 export {isAppleCancellation};
 export function prepareAppleLogin(){return prepareAppleRequest({clientID:config.appleClientID,redirectURI:config.appleRedirectURI});}
 export function appleLogin(request){return completeAppleLogin(client,request);}
@@ -15,8 +18,23 @@ export function currentUser(){return requestDeadline(async()=>{
 export async function getGrants(owner){if(!config.backendReady)return [];const {data,error}=await requestDeadline(signal=>{let query=client.from('web_entitlements').select('scope,starts_at,expires_at,revoked_at');if(owner)query=query.eq('user_id',owner);return query.abortSignal(signal);});if(error)throw error;return data;}
 export async function getCourse(id){const {data,error}=await client.from('web_content').select('payload').eq('id',id).maybeSingle();if(error)throw error;return data?.payload??null;}
 export async function getSearchContent(){const rows=[];for(let start=0;;start+=200){const {data,error}=await client.from('web_content').select('id,payload').order('id').range(start,start+199);if(error)throw error;rows.push(...(data??[]));if((data??[]).length<200)return rows;}}
-export async function readProgress(owner){const current=await currentUser();if(current?.id!==owner)throw Error('Account changed');const {data,error}=await client.from('web_learning_progress').select('revision,payload').eq('user_id',owner).maybeSingle();if(error)throw error;return data??{revision:0,payload:{courses:{},certificateName:''}};}
-export async function writeProgress(owner,revision,payload){const {data,error}=await client.rpc('save_web_learning_progress',{owner_id:owner,expected_revision:revision,next_payload:payload});if(error)throw error;return data;}
+async function progressRequest(owner,run){
+ const lease=progressSessionGuard.capture();
+ const {data:stored,error:sessionError}=await client.auth.getSession();if(sessionError)throw sessionError;
+ progressSessionGuard.assert(lease,stored.session,owner);
+ const {data:verified,error:authError}=await requestDeadline(()=>client.auth.getUser());if(authError)throw authError;
+ if(verified.user?.id!==owner)throw Error('Das Konto wurde geändert.');
+ progressSessionGuard.assert(lease,stored.session,owner);
+ const result=await requestDeadline(async signal=>{
+  const controller=new AbortController(),abort=()=>controller.abort();
+  signal.addEventListener('abort',abort,{once:true});lease.signal.addEventListener('abort',abort,{once:true});
+  if(signal.aborted||lease.signal.aborted)abort();
+  try{return await run(controller.signal);}finally{signal.removeEventListener('abort',abort);lease.signal.removeEventListener('abort',abort);}
+ });
+ progressSessionGuard.assert(lease,stored.session,owner);if(result.error)throw result.error;return result.data;
+}
+export async function readProgress(owner){return await progressRequest(owner,signal=>client.from('web_learning_progress').select('revision,payload').eq('user_id',owner).abortSignal(signal).maybeSingle())??{revision:0,payload:{courses:{},certificateName:''}};}
+export async function writeProgress(owner,revision,payload){return progressRequest(owner,signal=>client.rpc('save_web_learning_progress',{owner_id:owner,expected_revision:revision,next_payload:payload}).abortSignal(signal));}
 export async function getGraphic(path,download=null){const {data,error}=await client.storage.from('web-learning-assets').createSignedUrl(path,120,download?{download}:undefined);if(error)throw error;return data.signedUrl;}
 export async function redeem(code){const {data,error}=await requestDeadline(signal=>client.rpc('redeem_web_code',{code}).abortSignal(signal));if(error)throw error;return data;}
 export function deleteAccount(confirmation,appleRequest){

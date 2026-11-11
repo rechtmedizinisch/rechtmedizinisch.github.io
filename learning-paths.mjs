@@ -1,4 +1,4 @@
-import {hasMaterialAccess} from './material-access.mjs?v=20261110-wd';
+import {hasMaterialAccess} from './material-access.mjs?v=20261111-guided-learning';
 const validId=id=>typeof id==='string'&&/^(?:guide:health-system|glossary:[a-z0-9-]+|special:special-[a-z0-9-]+|atlas:(?:case|topic|schema|procedure|term|review)-[a-z0-9-]+|podcast:Podcast(?:Emergency|Defensive|Adults|Children)|slides:[1-9]\d{0,3})$/.test(id);
 const validStep=step=>typeof step==='string'&&(step==='presentation-index'||validId(step)||/^(?:atlas:(?:schema|procedure)-[a-z0-9-]+|podcast:Podcast(?:Emergency|Defensive|Adults|Children))\?stage=[1-9]\d?$/.test(step));
 export const learningTrailId=step=>String(step??'').split('?')[0];
@@ -33,7 +33,7 @@ export function learningPathQuestions(questions,paths,id=''){
 }
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 export function renderLearningPath(main,path,entries,grants){
- const hero=el('section',null,'knowledge-banner');hero.append(el('p','OPTIONALER SPEZIALKURS','section-number'),el('h1',path.title),el('p',path.subtitle));main.append(hero,el('p',path.description));
+ const hero=el('section',null,'knowledge-banner');hero.append(el('p',path.kind==='topic-guide'?'THEMENWEGWEISER':'OPTIONALER SPEZIALKURS','section-number'),el('h1',path.title),el('p',path.subtitle));main.append(hero,el('p',path.description));
  for(const [index,chapter] of path.chapters.entries()){
   const detail=el('details',null,'card learning-path-chapter');detail.dataset.readingKey=chapter.id;
   const summary=el('summary'),number=el('span',String(index+1).padStart(2,'0'),'learning-path-number'),label=el('span');
@@ -42,8 +42,8 @@ export function renderLearningPath(main,path,entries,grants){
    const entry=entries.find(e=>e.id==='atlas:'+key);if(!entry)continue;
    const row=el('a',null,'learning-path-item');row.href=learningTrailLink('#material/'+encodeURIComponent(entry.id),['special:'+path.id]);
    row.append(el('strong',entry.title),el('small',entry.free?'Kostenlos · Öffnen':hasMaterialAccess(entry,grants)?'Freigeschaltet · Öffnen':'Zugang erforderlich · Vorschau'),el('span','→','learning-path-arrow'));detail.append(row);
-  }main.append(detail);
+  }if(chapter.slideIds?.length){const slides=el('details'),title=el('summary','Zugehörige Kursfolien · '+chapter.slideIds.length);slides.append(title);for(const number of chapter.slideIds){const a=el('a','Folie '+number,'button secondary');a.href=learningTrailLink('#material/'+encodeURIComponent('slides:'+number),['special:'+path.id]);slides.append(a);}detail.append(slides);}main.append(detail);
  }
- const practice=el('a','Passende Fragen üben →','button');practice.href='#practice/'+encodeURIComponent(path.id);main.append(practice,el('p','Die Übersicht ist frei zugänglich. Bei den einzelnen Inhalten sehen Sie, welcher Zugang benötigt wird.','subtle'));
+ const practice=path.questionIds?.length?el('a','Passende Fragen üben','button'):el('span');if(path.questionIds?.length)practice.href='#practice/'+encodeURIComponent(path.id);main.append(practice,el('p','Die Übersicht ist frei zugänglich. Bei den einzelnen Inhalten sehen Sie, welcher Zugang benötigt wird.','subtle'));
  main.dataset.readingId='learning-path:'+path.id;main.dataset.readingVersion=path.contentVersion;
 }

@@ -1,5 +1,6 @@
 // Deliberately limited topic cues. Ordinary prose headings stay unadorned.
 export function readingRole(title,role='explanation'){
+ if(/^(?:(?:praxis|prüfungs)[ -])?(?:merke|merksatz|merkregel|merkhilfe)\b/iu.test(title.trim()))return 'takeaway';
  if(role&&role!=='explanation')return role;
  const heading=title.toLocaleLowerCase('de');
  if(/quelle|fundstelle|rechtsstand/.test(heading))return 'source';

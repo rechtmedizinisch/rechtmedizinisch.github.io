@@ -1,6 +1,6 @@
-import {safeURL} from './policy.mjs?v=20261110-wd';
-import {protectReferences} from './presentation-theme.mjs?v=20261110-wd';
-import {roleIcon} from './atlas-reading.mjs?v=20261110-wd';
+import {safeURL} from './policy.mjs?v=20261111-guided-learning';
+import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
+import {roleIcon} from './atlas-reading.mjs?v=20261111-guided-learning';
 
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function source(label,url){const a=node('a',label,'reference-source');a.href=safeURL(url)||'#';a.target='_blank';a.rel='noopener noreferrer';return a;}

@@ -1,6 +1,6 @@
 // One metadata index for the stable presentation and its additional materials.
 // Never render an excerpt from a protected payload in this overview.
-import {learningTrailLink} from './learning-paths.mjs?v=20261110-wd';
+import {learningTrailLink} from './learning-paths.mjs?v=20261111-guided-learning';
 const norm=text=>String(text??'').normalize('NFKD').replace(/\p{M}/gu,'').toLocaleLowerCase('de').replace(/ß/g,'ss');
 const prepared=new WeakMap();
 export function presentationMatches(entries,query='',kind='all',course=0){

@@ -1,8 +1,8 @@
-import {renderPodcastListening} from './podcast-listening.mjs?v=20261110-wd';
-import {protectReferences} from './presentation-theme.mjs?v=20261110-wd';
-import {courseStatus} from './progress-engine.mjs?v=20261110-wd';
-import {shuffle,safeURL} from './policy.mjs?v=20261110-wd';
-import {formatSlideText} from './slide-tools.js?v=20261110-wd';
+import {renderPodcastListening} from './podcast-listening.mjs?v=20261111-guided-learning';
+import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
+import {courseStatus} from './progress-engine.mjs?v=20261111-guided-learning';
+import {shuffle,safeURL} from './policy.mjs?v=20261111-guided-learning';
+import {formatSlideText} from './slide-tools.js?v=20261111-guided-learning';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(label,fn,cls='secondary')=>{const b=el('button',label,cls);b.type='button';b.onclick=fn;return b;};
 function external(label,url,onOpen){const a=el('a',label,'source-link'),href=safeURL(url);if(href){a.href=href;a.target='_blank';a.rel='noopener noreferrer';a.onclick=onOpen;}return a;}
