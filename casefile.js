@@ -1,13 +1,15 @@
+import {decisionInput} from './casefile-decision.mjs?v=20261112-decision';
+import {casefileDemoDecisionGuide} from './casefile-decision-demo.mjs?v=20261112-decision';
 import {hasAccess} from './policy.mjs?v=20261111-guided-learning';
 import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
 import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261111-guided-learning';
 import {notify} from './feedback.mjs?v=20261111-guided-learning';
-import {roleIcon,readingRole} from './reading-style.mjs?v=20261112-casefile-procedure';
-import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261112-casefile-procedure';
+import {roleIcon,readingRole} from './reading-style.mjs?v=20261112-decision-library';
+import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261112-decision-library';
 import {casefileStore} from './casefile-store.mjs?v=20261111-guided-learning';
 import {casefileWorker} from './casefile-worker.mjs?v=20261111-guided-learning';
 import {casefileSession} from './casefile-session.mjs?v=20261111-guided-learning';
-import {casefileInput} from './casefile-form.mjs?v=20261112-casefile-procedure';
+import {casefileInput} from './casefile-form.mjs?v=20261112-decision-library';
 import {practiceAccess} from './practice-access.mjs?v=20261111-guided-learning';
 let activeClose=()=>{};
 export function closeActiveCasefile(){activeClose();activeClose=()=>{};}
@@ -27,7 +29,7 @@ export async function renderCasefile(main,auth,grants,user,isCurrent,progress,va
  if(!casefileCatalog.variants.some(v=>v.id===variant)){main.append(el('p','Diese Fallvariante ist nicht verfügbar.'),link('Zur Variantenübersicht','#casefile'));return;}
  if(!practiceAccess('casefile',variant,premium?grants:[])){main.append(el('p','Diese Variante ist in Premium enthalten. Fall A können Sie kostenlos vollständig ausprobieren.','notice'),link('Premium-Zugang ansehen','#shop'),link('Kostenlosen Fall A öffnen','#casefile/A'),link('Zur Variantenübersicht','#casefile'));return;}
  const loading=el('p','Die Strafakte wird geladen …','notice');main.append(loading);
- try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapters?.[casefileBundleHash]??delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo-20261111.js?v=20261112-casefile-procedure');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
+ try{let payload;const expectedHash=premium?casefileBundleHash:casefileDemoHash;if(premium){const delivered=await auth.getCourse('practice:casefile-202611');payload=delivered?.uiAdapters?.[casefileBundleHash]??delivered?.uiAdapter??delivered;}else{const response=await fetch('./casefile-demo-20261111.js?v=20261112-decision-library');if(!response.ok)throw Error('Der Probefall konnte nicht geladen werden.');payload={script:await response.text(),sha256:casefileDemoHash};}if(!isCurrent())return;loading.remove();if(payload?.sha256!==expectedHash)throw Error('Die Strafakte wurde aktualisiert. Bitte laden Sie die Seite erneut.');await renderCasefileContent(main,payload,{owner:user?.id??'guest',variant,isCurrent,progress,expectedHash});}
  catch(error){if(isCurrent()){loading.remove();main.append(el('p',error.message??'Die Strafakte konnte nicht geladen werden.','notice'),button('Erneut versuchen',()=>{if(isCurrent()){main.replaceChildren();renderCasefile(main,auth,grants,user,isCurrent,progress,variant);}}));}}
 }
 export async function renderCasefileContent(main,payload,{owner,variant,isCurrent,progress,expectedHash=casefileBundleHash}){
@@ -66,11 +68,12 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   }else if(tab==='Verlauf'){
    body.append(el('p',`${value.totalLogEntries} Einträge · Abschnitt ${value.logPage+1} von ${value.logPages}`));if(value.logPage>0)body.append(action('Neuere Einträge','inspect',{page:value.logPage-1},'history'));
    for(const group of value.historyGroups??[]){const box=card(group.title,group.subtitle,'source');for(const event of group.events){box.append(el('p','Eintrag '+event.number,'subtle'));if(event.question)box.append(card(event.questioner??'Frage',event.question,'question'));box.append(card(event.sourceLabel??'Verfahrenseintrag',event.detail,'facts'));for(const note of event.teachingNotes??[])box.append(card('Redaktionelle Einordnung',note,'proof'));}body.append(box);}if(value.logPage+1<value.logPages)body.append(action('Frühere Einträge anzeigen','inspect',{page:value.logPage+1},'history'));
-  }else if(tab==='Ermitteln')investigations();else {reasoningSupport();if(['trial','closing','lastword'].includes(value.phase))guidedTrial();else if(value.structured)structuredProcedure();else procedure();}
+  }else if(tab==='Ermitteln')investigations();else {reasoningSupport();judicialDispositions();if(['trial','closing','lastword'].includes(value.phase))guidedTrial();else if(value.structured)structuredProcedure();else procedure();}
   if(tab!=='Akte')body.append(button('Zur aktuellen Aktenlage',()=>selectTab('Akte'),'secondary'));
   if(value.ended)body.append(button('Gesammelte Quellen nachlesen',()=>selectTab('Akte'),'secondary'));
   const tools=el('section',null,'card');tools.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'),button('Aktenstand als Datei sichern',async()=>{try{const json=await session.export();if(!current())return;const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=link('Sicherung speichern',url);a.download=`Recht-Medizinisch-Strafakte-${variant}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(error){notify({title:'Sicherung nicht möglich',text:error.message});}}));body.append(tools);
  }
+ function openDecision(){decisionInput(payload.decisionGuide??casefileDemoDecisionGuide,value,{dialog,submit:run,isCurrent:current,currentValue:()=>value,rich});}
  function input(title,id,op=id){const b=button(title,()=>casefileInput({id,title,op},value,{dialog,submit:run,isCurrent:current}));b.disabled=busy||!session?.ready;return b;}
  function showQueuedReturns(){
   if(!current()||busy||!session?.ready||documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||(!queuedReturns.length&&!value?.returnNotice))return false;
@@ -123,11 +126,14 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   const help=value.reasoning;if(!help)return;if(['investigation','intermediate'].includes(value.phase))body.append(card('Hinreichender Tatverdacht',help.threshold,'focus'));
   body.append(disclosure('Maßstab, Argumente & Formulierungshilfe',box=>{
    box.append(card('Prüfungsmaßstab',help.threshold,'focus'));
-   for(const item of help.evidence)box.append(card(item.id+' · '+item.title,item.pro,'facts'),card('Grenze / Gegenargument',item.contra,'proof'));
+   for(const item of help.evidence)box.append(card(item.id+' · '+item.title,item.pro,'facts'),card('Aussagekraft und Grenzen',item.contra,'proof'));
    box.append(card('Formulierungsvorschlag',help.formulation,'reasoning'),el('p',help.assessment,'subtle'));
    if(value.structured)box.append(button('Gliederung in eigenen Entwurf übernehmen',()=>{structuredReason=help.formulation;draw();}));
    for(const item of value.dismissalGuide??[]){const row=card(item.title,item.text,'proof');source(row,item.source);box.append(row);}
   }));
+ }
+ function judicialDispositions(){
+  if(!value.structured&&['intermediate','trial','closing','lastword'].includes(value.phase))body.append(disclosure('Andere gerichtliche Erledigung prüfen',n=>{n.append(el('p','Nach Anklage entscheidet das Gericht. Die Voraussetzungen und die erforderlichen Zustimmungen werden gesondert geprüft.'),input('§ 153 Abs. 2 StPO · Einstellung ohne Auflagen prüfen','decision:153','decision'),input('§ 153a Abs. 2 StPO · gerichtlichen Auflagenweg prüfen','decision:153a','decision'));}));
  }
  function guidedTrial(){
   const guide=value.processGuide;if(!guide)return;
@@ -160,8 +166,10 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   const c=value.structured;body.append(card('Die Fallfrage',c.problem,'question'));if(value.judgment)body.append(card(value.judgment.title,value.judgment.reason,'outcome'));else if(value.decision)body.append(card(value.decision.kind,value.decision.reason,'outcome'));
   if(value.solution)body.append(card('Einordnung der Fallvariante',value.solution,'takeaway'));
   if(c.comparison){const row=card('Vergleich mit der Originalentscheidung',c.comparison.comparison,'source');row.append(el('h3',c.comparison.title));if(c.caseNumber===2)row.append(link('Originalfall und Entscheidungsgründe in der Bibliothek','#material/atlas%3Acase-r13'));const a=link('Gesamte Entscheidung · '+c.comparison.kind,c.comparison.url);a.target='_blank';a.rel='noopener noreferrer';row.append(a);body.append(row);}
+  if(value.phase==='investigation'){body.append(button('Verfahrensentscheidung vorbereiten',openDecision,'button'),button('Weiter ermitteln',()=>selectTab('Ermitteln')));}else{
   if(c.controls.some(x=>x.needsReason)){const label=el('label','Ihre Begründung'),input=el('textarea');input.rows=6;input.value=structuredReason;input.oninput=()=>structuredReason=input.value;label.append(input);body.append(label);}
   for(const control of c.controls){body.append(action(control.label,control.op,{...control.args,...(control.needsReason?{reason:structuredReason}:{})},'command',()=>{if(control.op==='debrief'&&value.ended){progress.markCasefileComplete(variant);notify({title:'Variante abgeschlossen',text:'Ihre Abschlussmarkierung wurde gespeichert.'});}}));source(body,control.lawSource);}
+  }
   if(value.phase==='trial'&&value.trialStage===3)for(const person of value.interviews)if(value.introduced.some(x=>x.id===person.document||x===person.document))body.append(button('Gerichtliche Fragen: '+person.name,()=>interview(person,true)));
  }
  function procedure(){
@@ -169,13 +177,13 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   if(value.snapshots?.length)body.append(disclosure(`Entscheidungsgrundlagen vergleichen · ${value.snapshots.length}`,n=>{for(const s of value.snapshots){const box=card(s.kind+' · '+s.branchId,s.reason);if(s.counter)box.append(card('Gegenargument',s.counter));if(s.uncertainty)box.append(card('Verbleibende Unsicherheit',s.uncertainty));box.append(el('p','Damals bekannte Quellen: '+s.known.join(', '),'subtle'));for(const id of s.refs){const doc=value.documents.find(d=>d.id===id);if(doc)box.append(button(doc.id+' · '+doc.title,()=>documentView(doc,false)));}if(s.introduced?.length)box.append(el('p','Gerichtlich eingeführt: '+s.introduced.map(e=>e.id+' · '+e.method).join('; ')));for(const warning of s.warnings??[])box.append(card(warning.kind==='legal'?'Rechtlich beachten':'Zur weiteren Aufklärung',warning.text));n.append(box);}}));
   if(!value.ended&&value.readiness.length){const n=card('Vor einer Anklage prüfen','Die Anhörung ist keine Voraussetzung jeder Einstellung. Optionale Beweiswege müssen nicht für einen Prozentwert vollständig gesammelt werden.','focus');for(const item of value.readiness){const row=card(item.kind==='legal'?'Voraussetzung vor Anklage':'Weitere Aufklärung',item.text,item.kind==='legal'?'warning':'explanation');source(row,item.source);if(item.action)row.append(button('Passenden Ermittlungsschritt ansehen',()=>selectTab('Ermitteln')));n.append(row);}body.append(n);}
   const actor=id=>({court:'Gericht',accused:'Beschuldigte Person',prosecution:'Staatsanwaltschaft'})[id]??id;
-  if(['intermediate','trial','closing','lastword'].includes(value.phase))body.append(disclosure('Andere gerichtliche Erledigung prüfen',n=>{n.append(el('p','Nach Anklage entscheidet das Gericht. Die Voraussetzungen und die erforderlichen Zustimmungen werden gesondert geprüft.'),input('§ 153 Abs. 2 StPO · Einstellung ohne Auflagen prüfen','decision:153','decision'),input('§ 153a Abs. 2 StPO · gerichtlichen Auflagenweg prüfen','decision:153a','decision'));}));
+
   if(value.phase==='intake')body.append(action('Ermittlungen aufnehmen','start',{},'command',()=>selectTab('Ermitteln')));
   else if(value.phase==='investigation'){
    const options=card('Wie soll das Verfahren weitergehen?','Eine Einstellung, eine Anklage und ein gerichtlicher Schuldspruch haben unterschiedliche Voraussetzungen.','question');
-   options.append(input('Einstellung nach § 170 Abs. 2 StPO begründen','decision:170II','decision'),input('§ 153 StPO · ohne Auflagen prüfen','decision:153','decision'),input('§ 153a StPO · Auflagenweg prüfen','decision:153a','decision'),input('Anklage vorbereiten','indict'));body.append(options,button('Weiter ermitteln',()=>selectTab('Ermitteln')));
+   options.append(button('Verfahrensentscheidung vorbereiten',openDecision,'button'));body.append(options,button('Weiter ermitteln',()=>selectTab('Ermitteln')));
   }else if(value.phase==='intermediate'){
-   body.append(card('Zwischenverfahren','Das Gericht prüft die Eröffnung. Einwendungen und erhebliche Entlastungsbeweise bleiben zu behandeln; eine Eröffnung ist kein Schuldspruch.'),['opened','hypothesis'].includes(value.courtStatus)?action('Hauptverhandlung beginnen','trialStart'):action('Gerichtliche Eröffnungsprüfung fortsetzen','courtReview'),button('Ergänzende Sachaufklärung öffnen',()=>selectTab('Ermitteln')));
+   body.append(card('Zwischenverfahren','Das Gericht prüft die Eröffnung des Hauptverfahrens. Einwendungen und erhebliche Entlastungsbeweise bleiben zu behandeln; die Eröffnung des Hauptverfahrens ist kein Schuldspruch.'),['opened','hypothesis'].includes(value.courtStatus)?action('Hauptverhandlung beginnen','trialStart'):action('Gerichtliche Eröffnungsprüfung fortsetzen','courtReview'),button('Ergänzende Sachaufklärung öffnen',()=>selectTab('Ermitteln')));
   }else if(value.phase==='conditions'&&value.conditions){
    const plan=value.conditions,box=card('Auflagenplan',`${plan.basis==='153aII'?'§ 153a Abs. 2 StPO':'§ 153a Abs. 1 StPO'} · ${plan.deadlineMonths} Monate`);
    for(const item of plan.items)box.append(rich(({P01:'Geldzahlung',P02:'Wiedergutmachung',P03:'Ausgleichsbemühen'})[item.id]+(item.amount!=null?` · ${item.amount} €`:'')+(item.done?' · erfüllt':' · offen')));
