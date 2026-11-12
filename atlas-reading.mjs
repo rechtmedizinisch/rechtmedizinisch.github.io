@@ -3,8 +3,8 @@ import {safeURL} from './policy.mjs?v=20261111-guided-learning';
 import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
 import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261111-guided-learning';
 import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261111-guided-learning';
-import {readingRole,readingHeading,roleIcon} from './reading-style.mjs?v=20261111-guided-learning';
-export {roleIcon} from './reading-style.mjs?v=20261111-guided-learning';
+import {readingRole,readingHeading,roleIcon} from './reading-style.mjs?v=20261112-casefile-procedure';
+export {roleIcon} from './reading-style.mjs?v=20261112-casefile-procedure';
 import {readingGroups} from './reading-guide.mjs?v=20261111-guided-learning';
 const element=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function card(title,text,role='explanation',marker=null){

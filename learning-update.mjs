@@ -1,6 +1,6 @@
 // One semantic feature owns its title, explanation and icon; no parallel position lists.
 export const learningUpdate = Object.freeze({
- "id": "2026.11.11-guided-learning",
+ "id": "2026.11.12-casefile-procedure",
  "title": "Neu für Sie",
  "subtitle": "Mehr verstehen. Einfacher weiterlernen.",
  "footer": "Ihr Lernstand und Ihre Freischaltungen bleiben erhalten.",
@@ -15,7 +15,7 @@ export const learningUpdate = Object.freeze({
    "id": "casefiles",
    "icon": "casefile",
    "title": "Drei Strafakten · neun Varianten",
-   "detail": "Selbst ermitteln, Beweise vergleichen und das Verfahren Schritt für Schritt führen."
+   "detail": "Von der Ermittlung bis zum Urteil: gerichtliche Befragungen, eigene Nachfragen und klar getrennte Quellen und Lernhinweise."
   },
   {
    "id": "casework",

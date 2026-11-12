@@ -1,7 +1,7 @@
 import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261111-guided-learning';
 import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261111-guided-learning';
 import {notify,sessionFeedback} from './feedback.mjs?v=20261111-guided-learning';
-import {createLearningUpdateNotice} from './learning-update.mjs?v=20261112-notice';
+import {createLearningUpdateNotice} from './learning-update.mjs?v=20261112-casefile-procedure';
 import {codePanel} from './code-panel.mjs?v=20261111-guided-learning';
 import {renderCancellation} from './cancellation.js?v=20261111-guided-learning';
 import {billingPanel} from './billing.js?v=20261111-guided-learning';
@@ -24,7 +24,7 @@ import {passwordPanel} from './password-panel.mjs?v=20261111-guided-learning';
 import {renderLegal} from './legal.js?v=20261111-guided-learning';
 import {renderPractice} from './practice.js?v=20261111-guided-learning';
 import {renderCasework} from './casework.js?v=20261111-guided-learning';
-import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261111-guided-learning';
+import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261112-casefile-procedure';
 import {accountTools} from './account-tools.js?v=20261111-guided-learning';
 import {renderLibrary,courseMaterials} from './library.js?v=20261111-guided-learning';
 import {readingViewState} from './reading-view-state.mjs?v=20261111-guided-learning';

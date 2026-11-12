@@ -1,6 +1,6 @@
 import {courseStatus} from './progress-engine.mjs?v=20261111-guided-learning';
 import {workshopCases} from './practice-catalog.mjs?v=20261111-guided-learning';
-import {casefileCatalog} from './casefile-catalog.mjs?v=20261111-guided-learning';
+import {casefileCatalog} from './casefile-catalog.mjs?v=20261112-casefile-procedure';
 export function catalogStatus(entry,value={},content){
   if(content)return courseStatus(content,value);
   const totalUnits=entry.totalUnits??0;
