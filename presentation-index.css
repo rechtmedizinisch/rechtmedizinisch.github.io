@@ -23,12 +23,24 @@
 .nav-access{display:inline-flex;align-items:center;gap:.45rem}.nav-access svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.platform-logo{width:22px;height:22px;flex:none;vertical-align:middle;margin-right:.5rem}a:has(>.platform-logo){display:inline-flex;align-items:center;gap:.15rem}
 .podcast-hero img.platform-logo{width:22px;height:22px;max-width:22px;border-radius:0;object-fit:contain}
 .podcast-hero a:has(>.platform-logo){gap:.5rem;white-space:nowrap}
-.learning-update-dialog{box-sizing:border-box;width:calc(100% - 32px);max-width:620px;max-height:calc(100dvh - 40px);overflow:auto;border:1px solid #cfdfdc;border-radius:26px;padding:28px;background:#f6f9f8;color:#163846;box-shadow:0 18px 80px #071d3340}
+/* Update summary: stable header/action, six scannable semantic changes. */
+.learning-update-dialog{box-sizing:border-box;width:calc(100% - 32px);max-width:620px;max-height:calc(100dvh - 32px);overflow:hidden;border:1px solid #cfdfdc;border-radius:24px;padding:0;background:#fbfdfe;color:#163846;box-shadow:0 22px 70px #071d3330}
 .learning-update-dialog::backdrop{background:#071d3388;backdrop-filter:blur(3px)}
-.learning-update-dialog>img{width:64px;height:64px;object-fit:contain;border-radius:17px;background:white}
-.learning-update-dialog h2{font-size:clamp(26px,5vw,36px);margin:18px 0 8px}
-.learning-update-dialog .learning-update-intro{margin:0 0 22px;color:#536a73;font-size:18px;line-height:1.5}
-.learning-update-dialog ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.learning-update-dialog li{padding:14px 16px;border-left:4px solid #087f86;border-radius:12px;background:white;line-height:1.5;overflow-wrap:anywhere}
-.learning-update-dialog>button{display:block;width:100%;text-align:center;margin-top:20px}
-@media(max-width:480px){.learning-update-dialog{padding:22px;max-height:calc(100dvh - 24px)}}
+.learning-update-panel{display:flex;flex-direction:column;max-height:calc(100dvh - 36px);min-height:0}
+.learning-update-heading{flex:none;display:flex;align-items:center;gap:16px;padding:24px;background:#0b4056;color:#fff}
+.learning-update-heading img{width:48px;height:48px;object-fit:contain;border-radius:12px;background:#fff;flex:none}
+.learning-update-dialog h2{font-size:clamp(24px,4vw,30px);line-height:1.2;margin:0 0 6px;color:inherit}
+.learning-update-dialog .learning-update-intro{margin:0;color:#d0e8ec;font-size:16px;line-height:1.45}
+.learning-update-scroll{overflow:auto;overscroll-behavior:contain;min-height:0;padding:0 24px;scrollbar-gutter:stable}
+.learning-update-dialog ul{list-style:none;padding:0;margin:0}
+.learning-update-dialog li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:14px;padding:18px 0;border-bottom:1px solid #dfebed;overflow-wrap:anywhere}
+.learning-update-dialog li:last-child{border-bottom:0}
+.learning-update-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:#e2f1f1;color:#08777d}
+.learning-update-icon svg{width:24px;height:24px;display:block}
+.learning-update-dialog h3{margin:0 0 5px;font-size:17px;line-height:1.35;color:inherit}
+.learning-update-dialog li p{margin:0;font-size:15px;line-height:1.5;color:#4f6570}
+.learning-update-preserved{margin:0;padding:4px 0 18px;font-size:13px;line-height:1.5;color:#4f6570}
+.learning-update-actions{flex:none;padding:16px 24px;border-top:1px solid #dfebed;background:#f1f7f8}
+.learning-update-actions button{display:block;width:100%;min-height:48px;text-align:center;margin:0}
+@media(max-width:480px){.learning-update-dialog{width:calc(100% - 20px);max-height:calc(100dvh - 20px)}.learning-update-panel{max-height:calc(100dvh - 24px)}.learning-update-heading{padding:20px;gap:12px}.learning-update-scroll{padding:0 20px}.learning-update-actions{padding:14px 20px}}
+@media(prefers-color-scheme:dark){.learning-update-dialog{background:#122c3d;color:#e9f3f7;border-color:#49616d}.learning-update-heading{background:#0b4056}.learning-update-dialog li,.learning-update-actions{border-color:#395461}.learning-update-dialog li p,.learning-update-preserved{color:#bed1db}.learning-update-icon{background:#244956;color:#59d7d1}.learning-update-actions{background:#102738}}
