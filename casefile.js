@@ -1,3 +1,5 @@
+import {pleaInput} from './casefile-plea.mjs?v=20261112-court';
+import {casefileDemoPleaGuide} from './casefile-plea-demo.mjs?v=20261112-court';
 import {decisionInput} from './casefile-decision.mjs?v=20261112-decision';
 import {casefileDemoDecisionGuide} from './casefile-decision-demo.mjs?v=20261112-decision';
 import {hasAccess} from './policy.mjs?v=20261111-guided-learning';
@@ -5,7 +7,7 @@ import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-lear
 import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261111-guided-learning';
 import {notify} from './feedback.mjs?v=20261111-guided-learning';
 import {roleIcon,readingRole} from './reading-style.mjs?v=20261112-decision-library';
-import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261112-decision-library';
+import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261112-court-experience';
 import {casefileStore} from './casefile-store.mjs?v=20261111-guided-learning';
 import {casefileWorker} from './casefile-worker.mjs?v=20261111-guided-learning';
 import {casefileSession} from './casefile-session.mjs?v=20261111-guided-learning';
@@ -45,16 +47,16 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  function card(title,text,tone='explanation',symbol){tone=readingRole(title,tone);const n=el('section',null,'card casework-card casework-'+tone);const h=el('h3'),icon=roleIcon(symbol??tone);if(icon)h.append(icon);h.append(el('span',title));n.append(h);if(text)n.append(rich(text));return n;}
  function disclosure(title,content){const n=el('details',null,'card');n.append(el('summary',title));let drawn=false;const draw=()=>{if(n.open&&!drawn){drawn=true;content(n);}};n.ontoggle=()=>{if(n.open)expanded.add(title);else expanded.delete(title);draw();};if(expanded.has(title)){n.open=true;draw();}return n;}
  function source(target,key){const item=value?.sources?.[key];if(!item||!/^https:\/\//.test(item[1]))return;const a=link(item[0],item[1],'context-source');a.target='_blank';a.rel='noopener noreferrer';target.append(a);}
- function dialog(title,content){const d=el('dialog',null,'context-dialog casefile-dialog'),head=el('div',null,'context-dialog-header'),opener=document.activeElement;head.append(el('h2',title),button('Schließen',()=>d.close()));d.append(head);content(d);d.addEventListener('close',()=>{d.remove();if(opener?.isConnected)opener.focus({preventScroll:true});scheduleReturns();},{once:true});document.body.append(d);d.showModal();head.querySelector('button').focus();return d;}
+ function dialog(title,content){const d=el('dialog',null,'context-dialog casefile-dialog'),head=el('div',null,'context-dialog-header'),opener=document.activeElement;head.append(el('h2',title),button('Schließen',()=>d.close()));d.append(head);content(d);const contentFrame=el('div',null,'casefile-dialog-content');while(d.children.length>1)contentFrame.append(d.children[1]);d.append(contentFrame);d.addEventListener('close',()=>{d.remove();if(opener?.isConnected)opener.focus({preventScroll:true});scheduleReturns();},{once:true});document.body.append(d);d.showModal();head.querySelector('button').focus();return d;}
  function documentView(doc,mark=true){documentDialog=dialog(doc.title,d=>{d.append(el('p',doc.kind+' · '+doc.author,'subtle'),el('p',doc.sourceLabel??'Fiktiver Aktenauszug','badge'),rich(doc.body));for(const note of doc.teachingNotes??[])d.append(card('Redaktionelle Einordnung',note,'proof'));if(doc.limit)d.append(card('Aussagekraft & Grenzen',doc.limit));});documentDialog.addEventListener('close',()=>{documentDialog=null;scheduleReturns();},{once:true});if(mark&&!doc.read)run('read',{id:doc.id});}
  function action(label,op,args={},kind='command',after=()=>{}){const b=button(label,()=>run(op,value?.structured&&['decision','plea'].includes(op)?{...args,reason:structuredReason}:args,kind,after),'button');b.disabled=busy||!session?.ready;return b;}
  function selectTab(next){tab=next;picker.value=next;draw();header.scrollIntoView({block:'start'});}
  picker.onchange=()=>selectTab(picker.value);
  async function run(op,args={},kind='command',after=()=>{}){
-  if(busy||!current()||!session)return;const receipt=op==='note'&&args.key==='_returnNoticeSeen';busy=true;const knownBefore=new Set(value?.documents.map(d=>d.id)??[]);status.textContent='Aktenstand wird gesichert …';draw();
-  try{value=kind==='history'?await session.history(args.page):await session.apply(op,args,kind);if(!current())return;if(!value.feedback||value.feedback.kind==='info')after();feedback();const fresh=value.documents.filter(d=>!knownBefore.has(d.id));if(fresh.length&&(documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||['read','ask'].includes(op)))queuedReturns=[...new Set([...queuedReturns,...fresh.map(d=>d.id)])];if(!receipt&&!documentDialog&&!interviewDialog&&!document.querySelector('.casefile-dialog[open]')&&kind!=='history'&&!['read','ask'].includes(op)){if(fresh.length)resultDialog(fresh);else if(['error','warning'].includes(value.feedback?.kind))noticeDialog(value.feedback.kind==='error'?'Schritt noch nicht möglich':'Bitte beachten');else if((value.pendingJobs??[]).length)noticeDialog('Auftrag erteilt');else notify({title:'Schritt gesichert',text:value.feedback?.text??'Ihr Aktenstand wurde gespeichert.'});}return value;}
+  if(busy||!current()||!session)return;const receipt=op==='note'&&args.key==='_returnNoticeSeen';busy=true;const courtBefore=new Set(value?.processGuide?.courtMessages.map(m=>m.id)??[]);const knownBefore=new Set(value?.documents.map(d=>d.id)??[]);status.textContent='Aktenstand wird gesichert …';draw();
+  try{value=kind==='history'?await session.history(args.page):await session.apply(op,op.startsWith('guided')?{...args,edition:'court-20261112'}:args,kind);if(!current())return;if(!value.feedback||value.feedback.kind==='info')after();feedback();if(op.startsWith('guided')&&op!=='guidedAsk'&&!['error','warning','release'].includes(value.feedback?.kind)&&!document.querySelector('.casefile-dialog[open]')){const messages=value.processGuide?.courtMessages??[];const message=messages.filter(m=>args.station&&m.station===args.station).at(-1)??messages.filter(m=>!courtBefore.has(m.id)).at(-1);if(message)courtResult(message);}const fresh=value.documents.filter(d=>!knownBefore.has(d.id));if(fresh.length&&(documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||['read','ask'].includes(op)))queuedReturns=[...new Set([...queuedReturns,...fresh.map(d=>d.id)])];if(!receipt&&!documentDialog&&!interviewDialog&&!document.querySelector('.casefile-dialog[open]')&&kind!=='history'&&!['read','ask'].includes(op)){if(fresh.length)resultDialog(fresh);else if(['error','warning'].includes(value.feedback?.kind))noticeDialog(value.feedback.kind==='error'?'Schritt noch nicht möglich':'Bitte beachten');else if((value.pendingJobs??[]).length)noticeDialog('Auftrag erteilt');else notify({title:'Schritt gesichert',text:value.feedback?.text??'Ihr Aktenstand wurde gespeichert.'});}return value;}
   catch(error){if(current()){status.textContent=error.message;status.setAttribute('role','alert');notify({kind:'error',title:'Schritt nicht gespeichert',text:error.message});header.append(button('Erneut öffnen',open));}}
-  finally{busy=false;if(current()){draw();if(!receipt&&!documentDialog&&!interviewDialog)header.scrollIntoView({block:'start'});}}
+  finally{busy=false;if(current()){draw();if(value?.feedback?.kind==='error'&&!documentDialog&&!interviewDialog)header.scrollIntoView({block:'start'});}}
  }
  function feedback(){const f=value.feedback;status.dataset.kind=f?.kind??'info';status.replaceChildren();if(f){status.append(rich(f.text));source(status,f.source);}else status.textContent='Aktenstand gesichert.';status.setAttribute('role',f?.kind==='error'?'alert':'status');}
  function draw(){
@@ -68,13 +70,13 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   }else if(tab==='Verlauf'){
    body.append(el('p',`${value.totalLogEntries} Einträge · Abschnitt ${value.logPage+1} von ${value.logPages}`));if(value.logPage>0)body.append(action('Neuere Einträge','inspect',{page:value.logPage-1},'history'));
    for(const group of value.historyGroups??[]){const box=card(group.title,group.subtitle,'source');for(const event of group.events){box.append(el('p','Eintrag '+event.number,'subtle'));if(event.question)box.append(card(event.questioner??'Frage',event.question,'question'));box.append(card(event.sourceLabel??'Verfahrenseintrag',event.detail,'facts'));for(const note of event.teachingNotes??[])box.append(card('Redaktionelle Einordnung',note,'proof'));}body.append(box);}if(value.logPage+1<value.logPages)body.append(action('Frühere Einträge anzeigen','inspect',{page:value.logPage+1},'history'));
-  }else if(tab==='Ermitteln')investigations();else {reasoningSupport();judicialDispositions();if(['trial','closing','lastword'].includes(value.phase))guidedTrial();else if(value.structured)structuredProcedure();else procedure();}
+  }else if(tab==='Ermitteln')investigations();else {if(['trial','closing','lastword'].includes(value.phase)){guidedTrial();judicialDispositions();}else{reasoningSupport();judicialDispositions();if(value.structured)structuredProcedure();else procedure();}}
   if(tab!=='Akte')body.append(button('Zur aktuellen Aktenlage',()=>selectTab('Akte'),'secondary'));
   if(value.ended)body.append(button('Gesammelte Quellen nachlesen',()=>selectTab('Akte'),'secondary'));
   const tools=el('section',null,'card');tools.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'),button('Aktenstand als Datei sichern',async()=>{try{const json=await session.export();if(!current())return;const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=link('Sicherung speichern',url);a.download=`Recht-Medizinisch-Strafakte-${variant}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(error){notify({title:'Sicherung nicht möglich',text:error.message});}}));body.append(tools);
  }
  function openDecision(){decisionInput(payload.decisionGuide??casefileDemoDecisionGuide,value,{dialog,submit:run,isCurrent:current,currentValue:()=>value,rich});}
- function input(title,id,op=id){const b=button(title,()=>casefileInput({id,title,op},value,{dialog,submit:run,isCurrent:current}));b.disabled=busy||!session?.ready;return b;}
+ function input(title,id,op=id){if(op==='guidedPlea'){const pleaButton=button(title,()=>pleaInput(payload.pleaGuide??casefileDemoPleaGuide,value,{dialog,submit:run,isCurrent:current,currentValue:()=>value,rich,afterSave:()=>{const message=value.processGuide?.courtMessages.at(-1);if(message)courtResult(message);}}));pleaButton.disabled=busy||!session?.ready;return pleaButton;}const b=button(title,()=>casefileInput({id,title,op},value,{dialog,submit:run,isCurrent:current}));b.disabled=busy||!session?.ready;return b;}
  function showQueuedReturns(){
   if(!current()||busy||!session?.ready||documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||(!queuedReturns.length&&!value?.returnNotice))return false;
   const ids=new Set([...queuedReturns,...(value?.returnNotice?.documentIds??[])]);const docs=value?.documents.filter(d=>ids.has(d.id))??[];queuedReturns=[];if(!docs.length)return false;resultDialog(docs);return true;
@@ -98,12 +100,12 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  }
 
  function interview(person,trial=false){
-  let answer;
-  interviewDialog=dialog(person.name,d=>{d.append(el('p',person.role,'subtle'),el('p','Wählen Sie eine Frage. Bereits beantwortete Fragen können Sie jederzeit nachlesen.','notice'));answer=el('section',null,'casefile-answer');answer.setAttribute('aria-live','polite');d.append(answer);
-   for(const q of person.questions){const key=trial?'trialAnswer':'answer',saved=q[key];const b=button((saved?'✓ ':'')+q.text+(saved?' · Antwort nachlesen':''),async()=>{
+  let answer,hint;
+  interviewDialog=dialog(person.name,d=>{hint=el('p','Wählen Sie eine Frage. Bereits beantwortete Fragen können Sie jederzeit nachlesen.','notice');d.append(el('p',person.role,'subtle'),hint);answer=el('section',null,'casefile-answer');answer.setAttribute('aria-live','polite');d.append(answer);
+   for(const q of person.questions.filter(q=>trial||!q.courtOnly)){const key=trial?'trialAnswer':'answer',saved=q[key];const b=button((saved?'✓ ':'')+q.text+(saved?' · Antwort nachlesen':''),async()=>{
     if(busy)return;let updated=value.interviews.find(p=>p.id===person.id)?.questions.find(x=>x.id===q.id),text=updated?.[key],asked=false;
     if(!text){b.disabled=true;const response=await run(trial?'guidedAsk':'ask',{interview:person.id,question:q.id,trial});if(!current()||!d.isConnected)return;b.disabled=false;if(!response){answer.replaceChildren(card('Nicht gespeichert','Bitte schließen Sie die Befragung und öffnen Sie die Akte erneut. Ihr gesicherter Stand bleibt erhalten.','warning'));return;}asked=true;updated=value.interviews.find(p=>p.id===person.id)?.questions.find(x=>x.id===q.id);text=updated?.[key];}
-    answer.replaceChildren();if(text){answer.append(card(updated?.sourceLabel??'Fiktive Antwort',text,'facts'));for(const note of updated?.teachingNotes??[])answer.append(card('Redaktionelle Einordnung',note,'proof'));b.textContent='✓ '+q.text+' · Antwort nachlesen';b.classList.add('is-answered');b.setAttribute('aria-description','Bereits beantwortet');}if(asked&&value.feedback)answer.append(card(text?'Einordnung':'Hinweis zur Frage',value.feedback.text));d.scrollTop=0;
+    answer.replaceChildren();hint.hidden=!!text;if(text){answer.append(card(updated?.sourceLabel??'Fiktive Antwort',text,'facts'));for(const note of updated?.teachingNotes??[])answer.append(card('Redaktionelle Einordnung',note,'proof'));b.textContent='✓ '+q.text+' · Antwort nachlesen';b.classList.add('is-answered');b.setAttribute('aria-description','Bereits beantwortet');}if(asked&&value.feedback)answer.append(card(text?'Einordnung':'Hinweis zur Frage',value.feedback.text));(answer.closest('.casefile-dialog-content')??d).scrollTop=0;
    });if(saved)b.classList.add('is-answered');if(!trial&&!saved&&['trial','closing','lastword','closed','judgment'].includes(value.phase)){b.disabled=true;b.title='Ermittlungsbefragung abgeschlossen. Gerichtliche Fragen im Verfahrensweg stellen.';}d.append(b);}
   });interviewDialog.addEventListener('close',()=>{interviewDialog=null;scheduleReturns();},{once:true});
  }
@@ -128,32 +130,35 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
    box.append(card('Prüfungsmaßstab',help.threshold,'focus'));
    for(const item of help.evidence)box.append(card(item.id+' · '+item.title,item.pro,'facts'),card('Aussagekraft und Grenzen',item.contra,'proof'));
    box.append(card('Formulierungsvorschlag',help.formulation,'reasoning'),el('p',help.assessment,'subtle'));
-   if(value.structured)box.append(button('Gliederung in eigenen Entwurf übernehmen',()=>{structuredReason=help.formulation;draw();}));
    for(const item of value.dismissalGuide??[]){const row=card(item.title,item.text,'proof');source(row,item.source);box.append(row);}
   }));
  }
  function judicialDispositions(){
   if(!value.structured&&['intermediate','trial','closing','lastword'].includes(value.phase))body.append(disclosure('Andere gerichtliche Erledigung prüfen',n=>{n.append(el('p','Nach Anklage entscheidet das Gericht. Die Voraussetzungen und die erforderlichen Zustimmungen werden gesondert geprüft.'),input('§ 153 Abs. 2 StPO · Einstellung ohne Auflagen prüfen','decision:153','decision'),input('§ 153a Abs. 2 StPO · gerichtlichen Auflagenweg prüfen','decision:153a','decision'));}));
  }
+ function courtMessage(message){const row=card(message.title,message.answer,'source');row.append(el('p',message.actor,'badge'),el('p',message.sourceLabel??'Fiktiver Verfahrensakt','subtle'));for(const note of message.notes??[])row.append(card('Redaktionelle Einordnung',note,'proof'));return row;}
+ function courtResult(message){const d=dialog('In der Hauptverhandlung',box=>{box.append(courtMessage(message));const active=value.stations.find(s=>s.active),person=value.interviews.find(p=>p.id===active?.interview);if(person){box.append(button('Staatsanwaltschaft: Nachfragen stellen',async()=>{const closed=new Promise(resolve=>d.addEventListener('close',resolve,{once:true}));d.close();await closed;if(current())interview(person,true);}));}});d.addEventListener('close',()=>body.querySelector('.casefile-court-stage')?.scrollIntoView({block:'nearest'}),{once:true});}
  function guidedTrial(){
-  const guide=value.processGuide;if(!guide)return;
+  const guide=value.processGuide;if(!guide)return;const stage=el('h3',value.phase==='trial'?(guide.steps[value.trialStage]??'Beweisaufnahme'):value.phase==='closing'?'Ihr Schlussvortrag':value.closingStep==='defense'?'Schlussvortrag der Verteidigung':value.closingStep==='reply'?'Erwiderungsmöglichkeit':'Persönliches letztes Wort und Urteil','casefile-court-stage');body.append(stage,button('Verhandlungsprotokoll · '+guide.courtMessages.length+' Einträge',()=>dialog('Verhandlungsprotokoll',box=>{for(const message of guide.courtMessages)box.append(courtMessage(message));})));
   body.append(card(guide.role,guide.text,'focus'),disclosure('Welcher Beweis zählt im Prozess?',n=>{n.append(rich(guide.proofHint));source(n,'conviction');source(n,'questions');}));
   const last=guide.courtMessages.at(-1);if(last){const box=card(last.title,last.answer,'source');box.append(el('p',last.actor,'badge'),el('p',last.sourceLabel??'Fiktive gerichtliche Befragung','subtle'));for(const note of last.notes)box.append(card('Redaktionelle Einordnung',note,'proof'));body.append(box);}
   for(const control of guide.controls){body.append(action(control.label,control.op,control.args));source(body,control.lawSource);}
   if(value.phase==='trial'&&value.trialStage===3){
-   for(const station of value.stations){const row=card((station.completed?'✓ ':'')+station.title,station.description,'source');row.append(action(station.active?'Gerichtliche Erhebung erneut ansehen':station.completed?'Erneute Erhebung prüfen':'Gerichtliche Erhebung öffnen','guidedStation',{station:station.id,...(station.id==='accused'?{response:'speak'}:{})}));
+   function stationRow(station){const row=card((station.completed?'✓ ':'')+station.title,station.active?station.description:null,'source');row.append(action(station.active?'Gerichtliche Erhebung erneut ansehen':station.completed?'Erneute Erhebung prüfen':'Gerichtliche Erhebung öffnen','guidedStation',{station:station.id,...(station.id==='accused'?{response:'speak'}:{})}));
     if(station.active){const person=value.interviews.find(p=>p.id===station.interview);if(person)row.append(button('Staatsanwaltschaft: vorbereitete Nachfragen',()=>interview(person,true)));
      if(value.structured){const label=el('label','Eigene Erklärung zum Beweisergebnis (optional)'),text=el('textarea');text.rows=4;label.append(text);row.append(label,button('Eigene Erklärung dokumentieren',()=>run('trialComment',{text:text.value})));}
      else row.append(input('Erklärung zum Beweisergebnis','comment'));
      row.append(action('§ 257 StPO: Erklärungen & Beweisblock abschließen','guidedEndStation'));
-    }body.append(row);
+    }return row;
    }
+   for(const station of value.stations.filter(s=>s.active))body.append(stationRow(station));
+   if(value.stations.some(s=>s.active))body.append(disclosure('Weitere Zeugen und Beweismittel',box=>{for(const station of value.stations.filter(s=>!s.active))box.append(stationRow(station));}));
+   else {body.append(el('p','Wählen Sie die nächste gerichtliche Beweiserhebung. Die Reihenfolge richtet sich nach der Verhandlungsleitung.','subtle'));for(const station of value.stations)body.append(stationRow(station));}
    body.append(action('Gericht: Beweisaufnahme schließen','guidedCloseEvidence'));
    if(!value.structured){body.append(input('Weiteres Beweismittel beantragen','motion'));if(value.feedback?.source==='notice')body.append(action('§ 265 StPO: Verteidigungsmöglichkeit wahren','noticeResponse',{response:'pause'}));}
   }
   if(value.phase==='closing'){
-   if(!value.structured)body.append(input('Staatsanwaltschaft: Schlussvortrag vorbereiten','plea','guidedPlea'));
-   else {const label=el('label','Antrag, eingeführte Tatsachen, Gegenargument und Zweifel'),text=el('textarea');text.rows=7;text.value=structuredReason;text.oninput=()=>structuredReason=text.value;label.append(text);body.append(label,button('Eigenen Schlussvortrag dokumentieren',()=>run('guidedPlea',{reason:structuredReason})));}
+   reasoningSupport();body.append(input('Staatsanwaltschaft: Schlussvortrag vorbereiten','plea','guidedPlea'));
   }
   if(value.phase==='lastword'){
    if(value.closingStep==='defense')body.append(action('Verteidigung: Schlussvortrag anhören','guidedDefenseClosing'));
