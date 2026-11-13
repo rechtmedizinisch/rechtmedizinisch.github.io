@@ -46,3 +46,14 @@ section.casework-question{display:block}
 .casefile-dialog-content{min-height:0;flex:1;overflow:auto;overscroll-behavior:contain}
 .casefile-decision-dialog>.casefile-dialog-content{display:flex;flex-direction:column;overflow:hidden}
 .casefile-dialog .casework-card p,.casefile .casework-card p{white-space:pre-line}
+
+/* Decision meaning stays visible in both themes, including the learner's own draft. */
+.casefile .casefile-investigation-group{width:100%;box-sizing:border-box;text-align:left}
+.casefile-investigation-group>.casework-card{margin-inline:0;width:100%;box-sizing:border-box}
+.casefile-decision .decision-editor{border-inline-start:4px solid;padding:12px;border-radius:12px}
+.casefile-decision .decision-editor.supports,.casefile-decision .decision-argument.supports{border-color:#388257;background:color-mix(in srgb,#388257 9%,var(--card,#fff));color:inherit}
+.casefile-decision .decision-editor.opposes,.casefile-decision .decision-argument.opposes{border-color:#b14047;background:color-mix(in srgb,#b14047 9%,var(--card,#fff));color:inherit}
+.casefile-decision-footer{background:transparent;border:0;padding-bottom:max(0px,env(safe-area-inset-bottom,0px));align-items:center}
+.casefile-decision-footer>button{flex:1 1 9rem;box-shadow:0 2px 8px #122b3d18}
+.casefile-decision .decision-error{padding:12px;border-inline-start:4px solid #b14047;border-radius:10px;background:color-mix(in srgb,#b14047 9%,var(--card,#fff))}
+.casefile .casework-outcome>progress{width:100%;height:10px;accent-color:var(--teal)}

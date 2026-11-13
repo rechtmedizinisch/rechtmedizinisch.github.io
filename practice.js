@@ -22,7 +22,7 @@ export async function renderPractice(main,auth,grants,user,isCurrent,learningSto
  let data;try{data=await auth.getCourse('practice:course-quizzes-202610');}catch{}
  if(!isCurrent())return;
  if(!validPracticeBank(data?.questions)){main.append(el('p','Die Übungsfragen konnten nicht geladen werden. Bitte versuchen Sie es erneut.','notice'));return;}
- let paths=[];try{const response=await fetch('./library.json?v=20261111-guided-learning');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
+ let paths=[];try{const response=await fetch('./library.json?v=20261113-resolution');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
  if(!isCurrent())return;
  let pathId=initialPathId;
  const panel=el('section',null,'card practice-panel');main.append(panel);

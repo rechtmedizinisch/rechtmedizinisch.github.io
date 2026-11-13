@@ -20,7 +20,7 @@ export function homeLearning(main,catalog,store){
   }
   const counts=catalog.learningMaterialCounts??{baseSlides:474,additionalMaterials:576};
   const groups=[
-    {label:'01 · Lernen',title:'Ihren Lernweg wählen',tone:'teal',icon:'📚',items:[['Alle 15 Kurse','#courses','Von Grundlagen bis Capstone'],['Folien & Vertiefungen','#slides',`${counts.baseSlides} Basisfolien · ${counts.additionalMaterials} Ergänzungen`],['Üben & Wissen prüfen','#practice','Fragen und Lernrunden']]},
+    {label:'01 · Lernen',title:'Ihren Lernweg wählen',tone:'teal',icon:'📚',items:[['Alle 15 Kurse','#courses','Von Grundlagen bis Capstone'],['Nach Rechtsgebieten lernen','#material/special%3Aspecial-rechtsgebiete','Grundlagen, Schemata und Fälle gemeinsam finden'],['Folien & Vertiefungen','#slides',`${counts.baseSlides} Basisfolien · ${counts.additionalMaterials} Ergänzungen`],['Üben & Wissen prüfen','#practice','Fragen und Lernrunden']]},
     {label:'02 · Nachschlagen',title:'Wissen schnell finden',tone:'blue',icon:'🔎',items:[['Medizinrecht durchsuchen','#search','Begriffe, Fälle und Quellen'],['Begriffe & Gesundheitssystem','#library/glossary','Verständlich erklärt'],['Schaubilder','#library/diagrams','Zusammenhänge sehen']]},
     {label:'03 · Praxis',title:'Beruf und Podcast',tone:'gold',icon:'🩺',items:[['Special: PJ & Berufsstart','#library/career','Sicher in die Praxis starten'],['Special: Rettungsmedizin','#material/special%3Aspecial-rettungsmedizin','Recht im Einsatz · sieben Kapitel'],['Andere Gesundheitsberufe','#library/professions','Wissen für das ganze Team'],['Podcast & Materialien','#podcast','Hören und vertiefen']]}
   ];
