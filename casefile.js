@@ -8,10 +8,10 @@ import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-lear
 import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261111-guided-learning';
 import {notify} from './feedback.mjs?v=20261111-guided-learning';
 import {roleIcon,readingRole} from './reading-style.mjs?v=20261112-decision-library';
-import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261113-resolution';
-import {casefileStore} from './casefile-store.mjs?v=20261111-guided-learning';
+import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261114-study';
+import {casefileStore} from './casefile-store.mjs?v=20261114-study';
 import {casefileWorker} from './casefile-worker.mjs?v=20261111-guided-learning';
-import {casefileSession} from './casefile-session.mjs?v=20261111-guided-learning';
+import {casefileSession} from './casefile-session.mjs?v=20261114-study';
 import {casefileInput} from './casefile-form.mjs?v=20261112-decision-library';
 import {practiceAccess} from './practice-access.mjs?v=20261111-guided-learning';
 let activeClose=()=>{};
@@ -26,8 +26,38 @@ export async function renderCasefile(main,auth,grants,user,isCurrent,progress,va
  const orientation=el('section',null,'card casefile-orientation');orientation.append(el('h2','So funktioniert die Strafakte'),el('p','1. Anzeige und Unterlagen lesen. 2. Personen auswählen und Fragen anklicken oder weitere Unterlagen anfordern. 3. In der Beweisübersicht Belastendes, Entlastendes und offene Fragen vergleichen und entscheiden.'),el('p','Antworten sind für diesen Lernfall vorbereitet. Eigene Notizen werden gespeichert; sie sind keine Chatfragen.','subtle'));if(!variant)main.append(orientation);
  if(!variant){
   const done=casefileCatalog.variants.filter(v=>progress.snapshot.completedCasefileVariants?.includes(v.id)).length;main.append(el('p',`${done} von ${casefileCatalog.variants.length} Varianten abgeschlossen`,'badge'));
-  for(const v of casefileCatalog.variants){if(v.id==='A'||v.id.endsWith('_A'))main.append(el('h2',v.caseTitle??'Fall 1 · Die Knieoperation'));const row=el('section',null,'card');row.append(el('h2',v.title),el('p',v.focus),el('span',v.id==='A'?'Kostenloser Probefall':premium?'Premium freigeschaltet':'Premium','badge'+(!premium&&v.id!=='A'?' lock':'')),link(v.id!=='A'&&!premium?'Premium-Zugang ansehen':progress.snapshot.completedCasefileVariants?.includes(v.id)?'Abgeschlossen · erneut öffnen':'Akte öffnen oder fortsetzen','#casefile/'+v.id));main.append(row);}
-  main.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'));return;
+  const owner=user?.id??'guest',files=casefileStore(),rows=new Map();let worker,closed=false,payloadPromise;
+  const current=()=>!closed&&isCurrent();
+  activeClose=()=>{closed=true;worker?.close();files.close();};
+  for(const v of casefileCatalog.variants){
+   if(v.id==='A'||v.id.endsWith('_A'))main.append(el('h2',v.caseTitle??'Fall 1 · Die Knieoperation'));
+   const row=el('section',null,'card casefile-variant'),heading=el('div',null,'casefile-variant-heading'),letter=el('span',v.variantLabel,'casefile-variant-letter'),text=el('div');text.append(el('h3',v.title),el('p',v.focus));heading.append(letter,text);row.append(heading,el('span',v.id==='A'?'Kostenloser Probefall':premium?'Premium freigeschaltet':'Premium','badge'+(!premium&&v.id!=='A'?' lock':'')));
+   if(progress.snapshot.completedCasefileVariants?.includes(v.id))row.append(el('p','✓ Abgeschlossen','badge casefile-completed'));
+   const state=el('div','Stand wird geladen …','casefile-variant-status');row.append(state,link(v.id!=='A'&&!premium?'Premium-Zugang ansehen':'Akte öffnen oder fortsetzen','#casefile/'+v.id));rows.set(v.id,state);main.append(row);
+  }
+  main.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'));
+  async function hydrate(v,saved){
+   const hash=premium?casefileBundleHash:casefileDemoHash;
+   if(!payloadPromise)payloadPromise=premium?auth.getCourse('practice:casefile-202611').then(p=>p?.uiAdapters?.[hash]??p?.uiAdapter??p):fetch('./casefile-demo-20261111.js?sha='+hash).then(async r=>{if(!r.ok)throw Error('Lernfall nicht geladen');return {script:await r.text()};});
+   const payload=await payloadPromise;if(!current())return null;
+   if(!worker)worker=await casefileWorker(payload.script,hash);
+   let result=await worker.dispatch({op:'beginRestore',checkpoint:JSON.parse(saved.json)}),batches=0;
+   while(result.restoring){if(!current())return null;if(++batches>252)throw Error('Stand konnte nicht geladen werden');await new Promise(resolve=>setTimeout(resolve,0));result=await worker.dispatch({op:'continueRestore',restoreToken:result.restoreToken});}
+   if(!current())return null;
+   const summary=result.view.studySummary;await files.saveSummary(owner,v.id,saved.revision,summary,{isCurrent:current});return summary;
+  }
+  (async()=>{for(const v of casefileCatalog.variants){
+   const node=rows.get(v.id);
+   try{let status=await files.status(owner,v.id);if(!current())return;
+    if(status?.needsHydration){if(premium||v.id==='A')status=await hydrate(v,status.saved);else{node.textContent='Gespeicherter Durchlauf';continue;}}
+    if(!current())return;node.replaceChildren();
+    if(!status){node.append(el('p',progress.snapshot.completedCasefileVariants?.includes(v.id)?'Erneut öffnen':'Noch nicht begonnen','subtle'));continue;}
+    const complete=progress.snapshot.completedCasefileVariants?.includes(v.id);node.append(el('p',(complete&&!status.ended?'Neuer Durchlauf · ':'')+status.title+' · '+status.percent+' %'));
+    const meter=el('progress');meter.max=100;meter.value=Math.max(0,Math.min(100,status.percent));meter.setAttribute('aria-label','Laufender Durchlauf');node.append(meter);
+    if(status.ended&&!complete)node.append(el('p','Ergebnis erreicht · Abschluss noch bestätigen','subtle'));
+   }catch{if(current())node.textContent='Gespeicherten Stand beim Öffnen prüfen';}
+  }worker?.close();files.close();})();return;
+
  }
  if(!casefileCatalog.variants.some(v=>v.id===variant)){main.append(el('p','Diese Fallvariante ist nicht verfügbar.'),link('Zur Variantenübersicht','#casefile'));return;}
  if(!practiceAccess('casefile',variant,premium?grants:[])){main.append(el('p','Diese Variante ist in Premium enthalten. Fall A können Sie kostenlos vollständig ausprobieren.','notice'),link('Premium-Zugang ansehen','#shop'),link('Kostenlosen Fall A öffnen','#casefile/A'),link('Zur Variantenübersicht','#casefile'));return;}
@@ -39,7 +69,7 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  main.classList.add('casework','casefile');main.append(link('Zur Variantenübersicht','#casefile'));
  const files=casefileStore(),header=el('section',null,'card'),status=el('div',null,'notice'),picker=el('select'),body=el('article',null,'casework-reader');picker.setAttribute('aria-label','Bereich der Akte');
  for(const title of ['Akte','Ermitteln','Verfahren','Verlauf']){const option=el('option',title);option.value=title;picker.append(option);}header.append(el('h2',casefileCatalog.variants.find(v=>v.id===variant)?.title??'Strafakte'),status);const shortcuts=el('div',null,'casefile-step-grid');for(const [label,target] of [['Aktuelle Aktenlage','Akte'],['Ermitteln','Ermitteln'],['Verfahrensweg','Verfahren'],['Verlauf','Verlauf']]){const b=button(label,()=>selectTab(target),'secondary casefile-tab');b.dataset.tab=target;const icon=roleIcon({Akte:'facts',Ermitteln:'proof',Verfahren:'reasoning',Verlauf:'history'}[target]);if(icon)b.prepend(icon);shortcuts.append(b);};const inbox=button('Rückläufe',()=>{returnsOnly=true;selectTab('Akte');},'secondary casefile-inbox');inbox.prepend(roleIcon('mail'));header.append(inbox,shortcuts);main.append(header,body);
- let session,closed=false,busy=false,value=null,tab='Akte',documentDialog=null,interviewDialog=null,helperIndex=[],helpers=[];const expanded=new Set(['Menschen']);let returnTimer=null,structuredReason="",queuedReturns=[],returnsOnly=false;
+ let session,closed=false,busy=false,value=null,tab='Akte',documentDialog=null,interviewDialog=null,helperIndex=[],helpers=[];const expanded=new Set(['Menschen']);let returnTimer=null,structuredReason="",queuedReturns=[],returnsOnly=false,hasPrevious=false;
  function scheduleReturns(){clearTimeout(returnTimer);if(showQueuedReturns())return;if(!current()||busy||documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||document.visibilityState!=='visible'||!value?.pendingJobs?.some(j=>j.ready)||value.ended)return;returnTimer=setTimeout(()=>{if(current()&&!busy&&!documentDialog&&!interviewDialog&&!document.querySelector('.casefile-dialog[open]')&&document.visibilityState==='visible')run('collect');},3000);}
  const resumeReturns=()=>scheduleReturns();document.addEventListener('visibilitychange',resumeReturns);
  const current=()=>!closed&&isCurrent();
@@ -55,7 +85,7 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  picker.onchange=()=>selectTab(picker.value);
  async function run(op,args={},kind='command',after=()=>{}){
   if(busy||!current()||!session)return;const receipt=op==='note'&&args.key==='_returnNoticeSeen';busy=true;const courtBefore=new Set(value?.processGuide?.courtMessages.map(m=>m.id)??[]);const knownBefore=new Set(value?.documents.map(d=>d.id)??[]);status.textContent='Aktenstand wird gesichert …';draw();
-  try{value=kind==='history'?await session.history(args.page):await session.apply(op,op.startsWith('guided')?{...args,edition:'court-20261112'}:args,kind);if(!current())return;if(!value.feedback||value.feedback.kind==='info')after();feedback();if(op.startsWith('guided')&&op!=='guidedAsk'&&!['error','warning','release'].includes(value.feedback?.kind)&&!document.querySelector('.casefile-dialog[open]')){const messages=value.processGuide?.courtMessages??[];const message=messages.filter(m=>args.station&&m.station===args.station).at(-1)??messages.filter(m=>!courtBefore.has(m.id)).at(-1);if(message)courtResult(message);}const fresh=value.documents.filter(d=>!knownBefore.has(d.id));if(fresh.length&&(documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||['read','ask'].includes(op)))queuedReturns=[...new Set([...queuedReturns,...fresh.map(d=>d.id)])];if(!receipt&&!documentDialog&&!interviewDialog&&!document.querySelector('.casefile-dialog[open]')&&kind!=='history'&&!['read','ask'].includes(op)){if(fresh.length)resultDialog(fresh);else if(['error','warning'].includes(value.feedback?.kind))noticeDialog(value.feedback.kind==='error'?'Schritt noch nicht möglich':'Bitte beachten');else if((value.pendingJobs??[]).length)noticeDialog('Auftrag erteilt');else notify({title:'Schritt gesichert',text:value.feedback?.text??'Ihr Aktenstand wurde gespeichert.'});}return value;}
+  try{value=kind==='history'?await session.history(args.page):await session.apply(op,op.startsWith('guided')?{...args,edition:'court-20261112'}:args,kind);if(!current())return;if(!value.feedback||value.feedback.kind==='info')after();feedback();if(op.startsWith('guided')&&op!=='guidedAsk'&&!['error','warning','release'].includes(value.feedback?.kind)&&!document.querySelector('.casefile-dialog[open]')){const messages=value.processGuide?.courtMessages??[];const message=messages.filter(m=>args.station&&m.station===args.station).at(-1)??messages.filter(m=>!courtBefore.has(m.id)).at(-1);if(message)courtResult(message);}const fresh=kind==='review'?[]:value.documents.filter(d=>!knownBefore.has(d.id));if(fresh.length&&(documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||['read','ask'].includes(op)))queuedReturns=[...new Set([...queuedReturns,...fresh.map(d=>d.id)])];if(!receipt&&!documentDialog&&!interviewDialog&&!document.querySelector('.casefile-dialog[open]')&&kind!=='history'&&!['read','ask'].includes(op)){if(fresh.length)resultDialog(fresh);else if(['error','warning'].includes(value.feedback?.kind))noticeDialog(value.feedback.kind==='error'?'Schritt noch nicht möglich':'Bitte beachten');else if((value.pendingJobs??[]).length)noticeDialog('Auftrag erteilt');else notify({title:'Schritt gesichert',text:value.feedback?.text??'Ihr Aktenstand wurde gespeichert.'});}return value;}
   catch(error){if(current()){status.textContent=error.message;status.setAttribute('role','alert');notify({kind:'error',title:'Schritt nicht gespeichert',text:error.message});header.append(button('Erneut öffnen',open));}}
   finally{busy=false;if(current()){draw();if(value?.feedback?.kind==='error'&&!documentDialog&&!interviewDialog)header.scrollIntoView({block:'start'});}}
  }
@@ -75,7 +105,20 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   }else if(tab==='Ermitteln')investigations();else {if(['trial','closing','lastword'].includes(value.phase)){guidedTrial();judicialDispositions();}else{if(!value.ended){reasoningSupport();judicialDispositions();}if(value.structured)structuredProcedure();else procedure();}}
   if(tab!=='Akte')body.append(button('Zur aktuellen Aktenlage',()=>selectTab('Akte'),'secondary'));
   if(value.ended)body.append(button('Gesammelte Quellen nachlesen',()=>selectTab('Akte'),'secondary'));
+  const repeat=disclosure('Durchlauf & Wiederholung',n=>{
+   n.append(el('p','Öffnen Sie frühere Abschnitte erneut oder beginnen Sie von vorn.','subtle'));
+   if(value.phase!=='intake')n.append(button('Letzten Verfahrensschritt zurücknehmen',()=>review('previous')));
+   for(const [phase,title]of [['intake','Anzeige'],['investigation','Ermitteln & Entscheidung'],['intermediate','Zwischenverfahren'],['trial','Hauptverhandlung'],['closing','Schlussvorträge'],['lastword','Letztes Wort']])if(value.flow?.visited?.includes(phase)&&phase!==value.phase)n.append(button('Zurück: '+title,()=>review(phase)));
+   n.append(button('Neuen Durchlauf beginnen',()=>review('restart')));if(hasPrevious)n.append(button('Letzten gesicherten Stand wiederherstellen',()=>review('restoreSaved')));
+  });body.prepend(repeat);
   const tools=el('section',null,'card');tools.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'),button('Aktenstand als Datei sichern',async()=>{try{const json=await session.export();if(!current())return;const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=link('Sicherung speichern',url);a.download=`Recht-Medizinisch-Strafakte-${variant}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(error){notify({title:'Sicherung nicht möglich',text:error.message});}}));body.append(tools);
+ }
+ function review(target){
+  dialog(target==='restart'?'Neuen Durchlauf beginnen?':target==='restoreSaved'?'Gesicherten Stand öffnen?':'Früheren Abschnitt wiederholen?',d=>{
+   d.append(el('p','Ihr jetziger Stand wird gesichert und lässt sich wiederherstellen. Bereits erworbene Abschlüsse bleiben erhalten.'),button(target==='restart'?'Neu beginnen':'Öffnen',()=>{
+    d.close();run(target,{},'review',()=>{hasPrevious=true;structuredReason='';queuedReturns=[];returnsOnly=false;selectTab(value.phase==='intake'?'Akte':value.phase==='investigation'?'Ermitteln':'Verfahren');});
+   },'button'));
+  });
  }
  function openDecision(){decisionInput(payload.decisionGuide??casefileDemoDecisionGuide,value,{dialog,submit:run,isCurrent:current,currentValue:()=>value,onInvestigate:()=>selectTab('Ermitteln'),rich});}
  function input(title,id,op=id){if(op==='guidedPlea'){const pleaButton=button(title,()=>pleaInput(payload.pleaGuide??casefileDemoPleaGuide,value,{dialog,submit:run,isCurrent:current,currentValue:()=>value,onInvestigate:()=>selectTab('Ermitteln'),rich,afterSave:()=>{const message=value.processGuide?.courtMessages.at(-1);if(message)courtResult(message);}}));pleaButton.disabled=busy||!session?.ready;return pleaButton;}const b=button(title,()=>casefileInput({id,title,op},value,{dialog,submit:run,isCurrent:current}));b.disabled=busy||!session?.ready;return b;}
@@ -228,7 +271,7 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  }
  async function open(){
   session?.close();status.textContent='Akte wird geöffnet …';busy=true;
-  try{const worker=await casefileWorker(payload.script,expectedHash);if(!current()){worker.close();return;}session=casefileSession({owner,variant,store:files,worker,isCurrent:current});value=await session.open();if(!current())return;const shared=await loadReferenceHelp().catch(()=>({entries:[]}));if(!current())return;
+  try{const worker=await casefileWorker(payload.script,expectedHash);if(!current()){worker.close();return;}session=casefileSession({owner,variant,store:files,worker,isCurrent:current});value=await session.open();hasPrevious=!!(await files.previous(owner,variant)).json;if(!current())return;const shared=await loadReferenceHelp().catch(()=>({entries:[]}));if(!current())return;
    helpers=[...(shared.entries??[])];const aliases=new Set(helpers.flatMap(e=>[e.title,...(e.aliases??[])]).filter(Boolean).map(t=>t.toLocaleLowerCase('de')));
    for(const [i,g]of (value.glossary??[]).entries())if(!aliases.has(g[0].toLocaleLowerCase('de')))helpers.push({id:'casefile-term-'+i,kind:'term',title:g[0],aliases:[g[0]],body:g[1],sources:g[2]&&value.sources[g[2]]?[{title:value.sources[g[2]][0],url:value.sources[g[2]][1]}]:[]});
    helperIndex=referenceIndex(helpers);feedback();}

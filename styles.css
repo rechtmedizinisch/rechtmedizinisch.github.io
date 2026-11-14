@@ -387,3 +387,6 @@ main:not(.narrow):not(.presentation-player){width:100%;max-width:none;margin-inl
 .reference-results>.card{margin-bottom:0;min-width:0}
 
 .knowledge-banner .subtle{color:rgba(255,255,255,.78)}
+
+/* Casefile variant overview: progress belongs to each active learning attempt. */
+.casefile-variant-heading{display:flex;gap:16px;align-items:flex-start}.casefile-variant-letter{font-size:1.5rem;font-weight:800;color:var(--teal);min-width:32px}.casefile-variant-heading h3{margin:0 0 6px}.casefile-variant-status progress{display:block;width:100%;height:10px;accent-color:var(--teal)}.casefile-completed{color:var(--teal);font-weight:700}
