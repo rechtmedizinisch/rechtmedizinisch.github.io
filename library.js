@@ -1,6 +1,7 @@
 import {renderDefinitions} from './definition-library.mjs?v=20261111-guided-learning';
 import {renderPresentationIndex} from './presentation-index.mjs?v=20261111-guided-learning';
 import {fetchPresentationDownload} from './presentation-download.mjs?v=20261111-guided-learning';
+import {mtrBasics,mtrEntry} from './mtr.js?v=20261125';
 import {renderSource} from './source-links.mjs?v=20261111-guided-learning';
 import {headingStyle,slideSections,layoutForSlide,protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
 import {formatSlideText,downloadSlides} from './slide-tools.js?v=20261111-guided-learning';
@@ -10,7 +11,7 @@ import {fetchGraphicDownload} from './graphic-download.mjs?v=20261111-guided-lea
 import {renderAtlasReading,renderAtlasFocus,renderPodcastReading} from './atlas-reading.mjs?v=20261111-guided-learning';
 import {atlasDestination,atlasReadingLabel,focusedPodcastNode,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261111-guided-learning';
 import {learningTrail,learningTrailBack,learningTrailLink,learningTrailId,renderLearningPath} from './learning-paths.mjs?v=20261111-guided-learning';
-import {renderPodcastListening,loadPodcastEpisodes} from './podcast-listening.mjs?v=20261111-guided-learning';
+import {renderPodcastListening,loadPodcastEpisodes} from './podcast-listening.mjs?v=20261125-podcast-mtr';
 import {workshopCases} from './practice-catalog.mjs?v=20261111-guided-learning';
 import {workshopDemoID} from './practice-access.mjs?v=20261111-guided-learning';
 import {caseCode} from './casework-browse.mjs?v=20261111-guided-learning';
@@ -26,7 +27,7 @@ const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261113-resolution');if(!r.ok)return;entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261125-podcast-mtr');if(!r.ok)return;entries=await r.json();}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -41,7 +42,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
  if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261113-resolution');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ if(!entries){const r=await fetch('./library.json?v=20261125-podcast-mtr');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);
@@ -59,6 +60,13 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
   const search=node('input');search.type='search';search.placeholder='Begriff oder Thema suchen';search.setAttribute('aria-label','Alle Materialien durchsuchen');const result=node('div',null,'library-search-results'),tiles=node('div',null,'knowledge-tiles');
   for(const [group,title] of Object.entries(groups)){const tile=anchor(title,group==='slides'?'#slides':'#library/'+group);tile.className='knowledge-tile category-'+group;tile.append(node('p',groupDescriptions[group]),node('span',(group==='slides'?entries.filter(e=>e.group==='slides').length+' Basisfolien · '+entries.filter(e=>e.group==='atlas').length+' Vertiefungen':entries.filter(e=>e.group===group).length+' Inhalte')+' · Öffnen →','subtle'));tiles.append(tile);}
   search.oninput=()=>{result.replaceChildren();const q=search.value.trim().toLocaleLowerCase('de');tiles.hidden=Boolean(q);if(!q)return;const matches=entries.filter(e=>`${e.title} ${e.category??''}`.toLocaleLowerCase('de').includes(q));result.append(node('p',matches.length+' Treffer'));for(const e of matches.slice(0,30)){const row=node('div',null,'library-row');row.append(badge(e),anchor(e.title+' →','#material/'+encodeURIComponent(e.id)));result.append(row);}if(matches.length>30)result.append(node('p','Bitte grenzen Sie den Suchbegriff weiter ein, um die übrigen Treffer zu finden.'));};main.append(search,result,tiles);return;
+ }
+ if(!id&&onlyGroup==='professions'){
+  const mtr=node('section',null,'card');
+  mtr.append(node('h2','Medizinische Technologinnen und Technologen für Radiologie (MTR)'),
+    node('p','Berufszuständigkeit, rechtfertigende Indikation und Verantwortung bei der technischen Durchführung.'),
+    anchor('Kostenlose MTR-Grundlagen öffnen',mtrBasics));
+  main.append(mtr);
  }
  if(!id&&onlyGroup==='atlas'){
   main.append(anchor('← Alle Wissensbereiche','#library'),node('h1',freeOnly?'Kostenlos vertiefen':'Fälle, Schemata & Vertiefungen'),node('p','Wählen Sie eine Inhaltsart und den passenden Kurs. Die zusätzlichen Vertiefungen sind optional.'));
@@ -202,6 +210,8 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
   const card=box(`${index+1}. ${section.title}`,section.body);
   for(const id of section.terms??[]){const term=entries.find(row=>row.id==='glossary:'+id);if(term)card.append(anchor(term.title+' nachschlagen',learningTrailLink('#material/'+encodeURIComponent(term.id),trail,e.id)));}
  }
+ if(id==='atlas:topic-mtr-recht-ethik')main.append(mtrEntry(grants));
+ if(id==='atlas:topic-suizidassistenz-leitlinie-096-001')main.append(anchor('Folge 8 mit Höranbietern öffnen','#podcast/suizidassistenz-1'));
  if(c.explanation){box(c.kind,c.explanation);if(c.relatedMaterials?.length){const related=box('↗ Vertiefen & anwenden');for(const target of c.relatedMaterials)related.append(anchor(target.title+' öffnen','#material/'+encodeURIComponent('atlas:'+target.id)));}box('💡 Für die Praxis',c.practice,'notice');source((c.source??'Rechtsquelle').split(';')[0],c.url);if(e.id==='glossary:richtlinienfaehigkeit'){const related=box('🖼 Passendes Schaubild');related.append(anchor('Schaubild: Wann wird eine Methode zur GKV-Leistung? →','#material/system%3Adirective'));}}
  if(e.group==='career'&&learningStore){const readBox=box('✓ Ihr Lesefortschritt'),mark=node('button'),feedback=node('p');const refresh=()=>{const read=learningStore.snapshot.completedCareerTopics.includes(e.id);mark.textContent=read?'✓ Als gelesen markiert':'Als gelesen markieren';mark.disabled=read;feedback.textContent=learningStore.error??'Diese Markierung ist unabhängig vom Abschluss der 15 Kurse.';};mark.type='button';mark.onclick=()=>{learningStore.markCareerRead(e.id);refresh();};feedback.role='status';readBox.append(mark,feedback);refresh();}
  if(c.points){

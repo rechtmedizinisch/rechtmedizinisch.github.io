@@ -1,8 +1,8 @@
-import {podcastListening} from './podcast-listening-data.mjs?v=20261111-guided-learning';
+import {podcastListening} from './podcast-listening-data.mjs?v=20261125-podcast-mtr';
 export {podcastListening};
 let episodesRequest;
 export function loadPodcastEpisodes(){
- if(!episodesRequest)episodesRequest=fetch('./podcast-episodes.json?v=20261111-guided-learning').then(response=>{
+ if(!episodesRequest)episodesRequest=fetch('./podcast-episodes.json?v=20261125-podcast-mtr').then(response=>{
   if(!response.ok)throw Error('Podcastfolgen konnten nicht geladen werden.');
   return response.json();
  }).then(allPodcastEpisodes).catch(error=>{episodesRequest=null;throw error;});

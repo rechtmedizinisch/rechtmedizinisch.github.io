@@ -1,3 +1,4 @@
+import {mtrEntry} from './mtr.js?v=20261125';
 import {hasAccess,shuffle} from './policy.mjs?v=20261111-guided-learning';
 import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
 import {courseMistakes} from './practice-mistakes.mjs?v=20261111-guided-learning';
@@ -18,6 +19,7 @@ export async function renderPractice(main,auth,grants,user,isCurrent,learningSto
  const hero=el('section',null,'knowledge-banner');hero.append(el('p','LERNWERKZEUGE','section-number'),el('h1','Wissen gezielt festigen'),el('p','Üben, wiederholen oder unter Zeitdruck testen. Fragen und Antworten werden bei jeder neuen Runde neu gemischt.'));main.append(hero);
  const workshop=el('a',null,'card practice-entry');workshop.href='#casework';const workshopCopy=el('div',null,'practice-entry-copy');workshopCopy.append(el('h2','Fallwerkstatt'),el('p',`${workshopCases.length} Originalfälle · Sachverhalt, eigene Überlegungen und Entscheidung`),el('span','Ein Probefall kostenlos · weitere Fälle mit Premium','subtle'));workshop.append(workshopCopy,el('span','Fallwerkstatt öffnen','button secondary'));main.append(workshop);
  const casefile=el('section',null,'card');casefile.append(el('h2','Interaktive Strafakte'),el('p','Drei Fälle mit je drei Varianten · selbst ermitteln und entscheiden. Fall 1, Variante A kostenlos ausprobieren; weitere Varianten mit Premium.'));const casefileLink=el('a','Strafakte öffnen','button secondary');casefileLink.href='#casefile';casefile.append(casefileLink);main.append(casefile);
+ main.append(mtrEntry(grants));
  if(!auth||!hasAccess('practice',grants)){const a=el('a','Anmelden & Übungsbereich freischalten →','button');a.href='#account';const gate=el('section',null,'card');gate.append(el('h2','🔒 Ihre Wissensrunde freischalten'),el('p','Der Übungsbereich benötigt einen Web-Zugang für Übungen oder alle Inhalte.','notice'),a);main.append(gate,modeCards());const free=el('section',null,'card');free.append(el('span','Kostenlos starten','badge'),el('h2','Fragen direkt im Kurs beantworten'),el('p','Die Fallfragen und Wissensfragen in Kurs 1 und 2 sind ohne Anmeldung zugänglich.'));const links=el('div',null,'row');for(const n of [1,2]){const l=el('a',`Kurs ${n} öffnen`,'button secondary');l.href=`#course/tag-0${n}`;links.append(l);}free.append(links);main.append(free);return;}
  let data;try{data=await auth.getCourse('practice:course-quizzes-202610');}catch{}
  if(!isCurrent())return;

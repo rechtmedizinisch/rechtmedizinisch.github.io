@@ -1,4 +1,4 @@
-import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261111-guided-learning';
+import {loadPodcastEpisodes} from './podcast-listening.mjs?v=20261125-podcast-mtr';
 import {sessionCoordinator,grantDetails} from './session-coordinator.mjs?v=20261111-guided-learning';
 import {notify,sessionFeedback} from './feedback.mjs?v=20261111-guided-learning';
 import {createLearningUpdateNotice} from './learning-update.mjs?v=20261112-casefile-procedure';
@@ -7,13 +7,13 @@ import {renderCancellation} from './cancellation.js?v=20261111-guided-learning';
 import {billingPanel} from './billing.js?v=20261111-guided-learning';
 import {replacePresentation} from './presentation-transition.mjs?v=20261111-guided-learning';
 import {renderLearningOffer} from './learning-offer.mjs?v=20261111-guided-learning';
-import {renderFreeContent} from './free-content.mjs?v=20261113-resolution';
+import {renderFreeContent} from './free-content.mjs?v=20261125-podcast-mtr';
 import {homeLearning} from './home-learning.mjs?v=20261114-study';
 import {progressActions} from './progress-actions.mjs?v=20261111-guided-learning';
 import {progressSync} from './progress-sync.mjs?v=20261111-guided-learning';
 import {syncPanel} from './progress-sync-ui.mjs?v=20261111-guided-learning';
-import {renderSearch} from './search.js?v=20261113-resolution';
-import {renderPodcast} from './podcast.js?v=20261113-resolution';
+import {renderSearch} from './search.js?v=20261125-podcast-mtr';
+import {renderPodcast} from './podcast.js?v=20261125-podcast-mtr';
 import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261111-guided-learning';
 import {renderCourseLearning} from './course-learning.js?v=20261111-guided-learning';
 import {progressStore} from './progress-store.mjs?v=20261111-guided-learning';
@@ -22,11 +22,12 @@ import {formatSlideText} from './slide-tools.js?v=20261111-guided-learning';
 import {loginPanel} from './email-login.js?v=20261111-guided-learning';
 import {passwordPanel} from './password-panel.mjs?v=20261111-guided-learning';
 import {renderLegal} from './legal.js?v=20261111-guided-learning';
-import {renderPractice} from './practice.js?v=20261113-resolution';
+import {renderPractice} from './practice.js?v=20261125-podcast-mtr';
+import {renderMTR,closeMTR} from './mtr.js?v=20261125';
 import {renderCasework} from './casework.js?v=20261111-guided-learning';
 import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261114-study';
 import {accountTools} from './account-tools.js?v=20261111-guided-learning';
-import {renderLibrary,courseMaterials} from './library.js?v=20261113-resolution';
+import {renderLibrary,courseMaterials} from './library.js?v=20261125-podcast-mtr';
 import {readingViewState} from './reading-view-state.mjs?v=20261111-guided-learning';
 import {config} from './config.js?v=20261111-guided-learning';
 import {installContextHelp} from './context-help.mjs?v=20261111-guided-learning';
@@ -58,7 +59,7 @@ function learningStore(){
 function watchExpiry(){clearTimeout(expiryTimer);const next=nextAccessChange(grants);if(Number.isFinite(next))expiryTimer=setTimeout(()=>{if(accessFingerprint(grants)!==renderedAccess)route();else watchExpiry();},Math.min(next-Date.now()+50,2147483647));}
 function refreshHeader(){
  const page=location.hash.slice(1).split('/')[0]||'home';
- const active=page==='course'||page==='free'?'courses':page==='material'?(location.hash.startsWith('#material/slides%3A')?'slides':'library'):page;
+ const active=page==='mtr'?'practice':page==='course'||page==='free'?'courses':page==='material'?(location.hash.startsWith('#material/slides%3A')?'slides':'library'):page;
  let selectedNav=null;
  for(const a of document.querySelectorAll('body > header a[href^="#"]')){
   const section=a.getAttribute('href').slice(1),selected=section===active;
@@ -143,6 +144,7 @@ async function account(){
 }
 async function route(){
  closeActiveCasefile();
+ closeMTR();
  renderedAccess=accessFingerprint(grants);
  readingViews.setContext(JSON.stringify([user?.id??null,renderedAccess]));
  readingViews.capture(main,window.scrollY);readingViews.detach();
@@ -155,13 +157,13 @@ async function route(){
   await replacePresentation(main,{accessKey,isCurrent:()=>version===routeVersion&&accessKey===JSON.stringify([user?.id??null,accessFingerprint(grants)]),render:prepared=>renderLibrary(prepared,materialId,auth,grants,()=>version===routeVersion,null,learningStore()),retry:route});
   return;
  }
- document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=false;});main.querySelectorAll('[data-blob-url]').forEach(n=>URL.revokeObjectURL(n.dataset.blobUrl));main.removeAttribute('aria-busy');main.classList.remove('narrow','presentation-player','casework','casefile');main.replaceChildren();if(!authSettled&&['library','material','slides','practice','casework','casefile','progress','courses','course','search','shop'].includes(page)){main.append(status('Ihr Zugang und Lernstand werden geladen …'));return;}if(page==='library'||page==='material'||page==='slides')await renderLibrary(main,page==='material'&&id?decodeURIComponent(id):null,auth,grants,()=>version===routeVersion,page==='slides'?'slides':page==='library'?id:null,learningStore());else if(page==='practice')await renderPractice(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='casework')await renderCasework(main,auth,grants,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='casefile')await renderCasefile(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='search')await renderSearch(main,catalog,auth,()=>version===routeVersion);else if(page==='podcast')await renderPodcast(main,()=>version===routeVersion,id?decodeURIComponent(id):null);else if(page==='progress'){renderProgress(main,catalog,learningStore(),!!user);main.append(progressActions(learningStore(),user?progressStore(null):null,!!user,route));if(syncService)main.querySelector('#certificate')?.after(syncPanel(syncInfo,syncService,route));if(id==='certificate')main.querySelector('#certificate')?.scrollIntoView({block:'start'});}else if(page==='offer')renderLearningOffer(main,catalog);else if(page==='free')await renderFreeContent(main,catalog,()=>version===routeVersion);else if(page==='courses')courses();else if(page==='course')await course(id,version);else if(['cases','norms'].includes(page))references(page,id);else if(page==='account')await account();else if(page==='shop')await shop();else if(page==='cancel')renderCancellation(main);else if(['privacy','terms'].includes(page))renderLegal(main,page);else home();
+ document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=false;});main.querySelectorAll('[data-blob-url]').forEach(n=>URL.revokeObjectURL(n.dataset.blobUrl));main.removeAttribute('aria-busy');main.classList.remove('narrow','presentation-player','casework','casefile');main.replaceChildren();if(!authSettled&&['library','material','slides','practice','casework','casefile','mtr','progress','courses','course','search','shop'].includes(page)){main.append(status('Ihr Zugang und Lernstand werden geladen …'));return;}if(page==='library'||page==='material'||page==='slides')await renderLibrary(main,page==='material'&&id?decodeURIComponent(id):null,auth,grants,()=>version===routeVersion,page==='slides'?'slides':page==='library'?id:null,learningStore());else if(page==='practice')await renderPractice(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='mtr')await renderMTR(main,auth,grants,user,()=>version===routeVersion);else if(page==='casework')await renderCasework(main,auth,grants,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='casefile')await renderCasefile(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='search')await renderSearch(main,catalog,auth,()=>version===routeVersion);else if(page==='podcast')await renderPodcast(main,()=>version===routeVersion,id?decodeURIComponent(id):null);else if(page==='progress'){renderProgress(main,catalog,learningStore(),!!user);main.append(progressActions(learningStore(),user?progressStore(null):null,!!user,route));if(syncService)main.querySelector('#certificate')?.after(syncPanel(syncInfo,syncService,route));if(id==='certificate')main.querySelector('#certificate')?.scrollIntoView({block:'start'});}else if(page==='offer')renderLearningOffer(main,catalog);else if(page==='free')await renderFreeContent(main,catalog,()=>version===routeVersion);else if(page==='courses')courses();else if(page==='course')await course(id,version);else if(['cases','norms'].includes(page))references(page,id);else if(page==='account')await account();else if(page==='shop')await shop();else if(page==='cancel')renderCancellation(main);else if(['privacy','terms'].includes(page))renderLegal(main,page);else home();
  if(version===routeVersion&&main.dataset.readingId){
   readingViews.restore(main,main.dataset.readingVersion+':'+main.dataset.readingId,y=>requestAnimationFrame(()=>{if(version===routeVersion)window.scrollTo(0,y);}));
  }
 }
 try{
- catalog=await fetch('./catalog.json?v=20261111-guided-learning').then(r=>{if(!r.ok)throw Error();return r.json();});
+ catalog=await fetch('./catalog.json?v=20261125-podcast-mtr').then(r=>{if(!r.ok)throw Error();return r.json();});
  await route();window.addEventListener('hashchange',()=>{resetScrollOnRoute=true;route();});
  try{
   auth=await import('./auth.js?v=20261111-guided-learning');
