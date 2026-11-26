@@ -475,3 +475,18 @@ body>header nav .account-link { display:inline-flex; align-items:center; gap:.38
  body>header .reading-mode-bar .reading-label,.nav-progress .header-progress-label { position:absolute; inline-size:1px; block-size:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
  body>header .nav-progress { min-width:0; padding:.1rem; border-radius:50%; }
 }
+
+body>footer { padding-inline:clamp(14px,5vw,20px); }
+.footer-app-title { margin:0 0 .15rem; color:inherit; font-weight:700; }
+.footer-app-stores {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:0 .75rem; margin:0 0 .85rem;
+}
+.footer-app-stores a {
+  display:flex; align-items:center; justify-content:center; min-height:52px;
+  border-radius:.42rem;
+}
+.footer-app-stores a:focus-visible { outline:3px solid var(--teal); outline-offset:3px; }
+.footer-app-stores img { display:block; width:auto; max-width:100%; }
+.store-badge-apple { height:40px; }
+.store-badge-google { height:52px; }
