@@ -453,12 +453,13 @@ body.reading-focus.reading-nav-open > header {
   visibility:visible; opacity:1; pointer-events:auto;
 }
 body.reading-focus .reading-mode-bar {
-  position:relative; z-index:13; top:auto;
-  background:transparent; backdrop-filter:none; border:0;
+  position:sticky; z-index:13; top:0;
+  background:transparent; backdrop-filter:none; border:0; pointer-events:none;
 }
 body.reading-focus > main:not(.presentation-player) { padding-top:.65rem; }
 body.reading-focus:has(main.casefile) > main { min-height:calc(100dvh - 64px); }
-body.reading-focus .casefile-rail { top:16px; max-block-size:calc(100dvh - 32px); }
+body.reading-focus .casefile-rail { top:58px; max-block-size:calc(100dvh - 74px); }
+body.reading-focus .reading-mode-bar button { pointer-events:auto; }
 body.reading-focus .reading-mode-bar:focus-within { z-index:25; }
 .library-profession-mtr::before { content:''; display:inline-block; width:1.3rem; height:1.3rem; margin-inline:.2rem .6rem; vertical-align:middle; background:url('./assets/mtr-scanner.svg') center / contain no-repeat; }
 

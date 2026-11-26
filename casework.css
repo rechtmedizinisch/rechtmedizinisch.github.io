@@ -133,7 +133,7 @@ section.casework-question{display:block}
 .casefile-reader > h3 { margin:.35rem 0; }
 .casefile-rail .casefile-inbox { margin:0; }
 .casefile-tab > span:first-of-type { flex:1; }
-.casefile-tab svg { margin:0; flex:none; }
+.casefile-tab svg { margin:0; flex:none; color:inherit; }
 .casefile-mail-count { flex:none; font-variant-numeric:tabular-nums; background:#14757b18; border-radius:100vmax; padding:.13rem .55rem; }
 .casefile-tab.is-active .casefile-mail-count { background:#ffffff30; }
 .casefile-save-status { min-height:1.4rem; margin:.9rem 0 0; font-size:.88rem; color:var(--muted); }
