@@ -35,6 +35,7 @@ async function progressRequest(owner,run){
 }
 export async function readProgress(owner){return await progressRequest(owner,signal=>client.from('web_learning_progress').select('revision,payload').eq('user_id',owner).abortSignal(signal).maybeSingle())??{revision:0,payload:{courses:{},certificateName:''}};}
 export async function writeProgress(owner,revision,payload){return progressRequest(owner,signal=>client.rpc('save_web_learning_progress',{owner_id:owner,expected_revision:revision,next_payload:payload}).abortSignal(signal));}
+export async function parcoursCertificate(owner,claim){return progressRequest(owner,signal=>client.rpc('rm_parcours_certificate',{claim}).abortSignal(signal));}
 export async function getGraphic(path,download=null){const {data,error}=await client.storage.from('web-learning-assets').createSignedUrl(path,120,download?{download}:undefined);if(error)throw error;return data.signedUrl;}
 export async function redeem(code){const {data,error}=await requestDeadline(signal=>client.rpc('redeem_web_code',{code}).abortSignal(signal));if(error)throw error;return data;}
 export function deleteAccount(confirmation,appleRequest){

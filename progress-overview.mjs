@@ -1,6 +1,7 @@
 import {courseStatus} from './progress-engine.mjs?v=20261111-guided-learning';
 import {workshopCases} from './practice-catalog.mjs?v=20261111-guided-learning';
 import {casefileCatalog} from './casefile-catalog.mjs?v=20261112-casefile-procedure';
+import {parcoursProgressCard} from './mtr.js?v=20261126-web-release';
 export function catalogStatus(entry,value={},content){
   if(content)return courseStatus(content,value);
   const totalUnits=entry.totalUnits??0;
@@ -26,7 +27,7 @@ export function progressBadge(entry,store,content){
   meter.max=100;meter.value=status.percent;meter.setAttribute('aria-label',`Kurs ${entry.no}: ${status.percent} Prozent`);
   box.append(el('span',`${status.isComplete?'✓ Abgeschlossen':status.completedUnits?'In Bearbeitung':'Noch nicht begonnen'} · ${status.percent} %`),meter);return box;
 }
-export function renderProgress(main,catalog,store,isSignedIn){
+export function renderProgress(main,catalog,store,isSignedIn,user=null,auth=null,grants=[]){
   const s=catalogOverall(catalog,store.snapshot),hero=el('section',null,'knowledge-banner');
   hero.append(el('p','IHR KURSFORTSCHRITT','section-number'),el('h1','📈 Mein Fortschritt'),el('p',`${s.completedCourses} von ${s.totalCourses} Kursen abgeschlossen`));
   const level=el('div',null,'progress-level'),ring=el('div',null,'progress-ring'),ringValue=el('strong',`${s.percent} %`);ring.style.setProperty('--progress',`${s.percent}%`);ring.setAttribute('aria-hidden','true');ring.append(ringValue);const levelCopy=el('div');levelCopy.append(el('p','IHRE LERNSTUFE','section-number'),el('h2',readinessTitle(s.percent)));level.append(ring,levelCopy);hero.append(level);
@@ -36,10 +37,11 @@ export function renderProgress(main,catalog,store,isSignedIn){
   const label=el('label','Name auf dem Zertifikat'),input=el('input'),download=el('button',s.isComplete?'↓ Zertifikat als PDF speichern':'🔒 Zertifikat noch nicht freigeschaltet'),feedback=el('p');
   input.id='certificate-name';label.htmlFor=input.id;input.maxLength=120;input.autocomplete='name';input.value=store.snapshot.certificateName??'';download.type='button';download.disabled=!s.isComplete;feedback.role='status';
   input.addEventListener('change',()=>store.setCertificateName(input.value));
-  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20261111-guided-learning');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
+  download.onclick=async()=>{download.disabled=true;feedback.textContent='PDF wird erstellt …';try{const {downloadCertificate}=await import('./certificate.mjs?v=20261126-parcours-dialog-fit');await downloadCertificate(input.value,catalogOverall(catalog,store.snapshot));store.setCertificateName(input.value);feedback.textContent='PDF erstellt. Bei Bedarf im Downloadbereich Ihres Browsers öffnen.';}catch(error){feedback.textContent=error.message??'PDF konnte nicht erstellt werden.';}finally{download.disabled=!catalogOverall(catalog,store.snapshot).isComplete;}};
   certificate.append(label,input,download,feedback);main.append(certificate);
   const workshop=el('section',null,'card'),done=workshopCases.filter(c=>store.snapshot.casework?.[c.id]?.completionConfirmed===true&&store.snapshot.casework[c.id].completed===true).length;workshop.append(el('h2','Fallwerkstatt'),el('p',`${done} von ${workshopCases.length} Fällen bearbeitet`),el('p','Eigener Übungsfortschritt · unabhängig vom Kursabschluss','subtle'),link('Fallwerkstatt öffnen','#casework','button secondary'));main.append(workshop);
   const casefile=el('section',null,'card'),casefileDone=casefileCatalog.variants.filter(v=>store.snapshot.completedCasefileVariants?.includes(v.id)).length;casefile.append(el('h2','Interaktive Strafakte'),el('p',`${casefileDone} von ${casefileCatalog.variants.length} Varianten abgeschlossen`),el('p','Eigener Übungsfortschritt · unabhängig vom Kursabschluss','subtle'),link('Strafakte öffnen','#casefile','button secondary'));main.append(casefile);
+  main.append(parcoursProgressCard(user,auth,grants));
   const heading=el('div',null,'progress-course-heading');heading.append(el('p','KURS FÜR KURS','section-number'),el('h2','Ihr Lernstand im Detail'),el('p','Wählen Sie einen Kurs aus, um genau dort weiterzulernen, wo Sie aufgehört haben.'));main.append(heading);
   const grid=el('div',null,'grid');for(const state of s.states){const c=state.entry,card=el('section',null,'card');card.append(el('p',`KURS ${String(c.no).padStart(2,'0')}`,'section-number'),el('h2',c.title),progressBadge(c,store,catalog.courses.find(x=>x.id===c.id)),el('p',`${state.completedUnits} von ${state.totalUnits} Lernschritten`,'subtle'),link(state.isComplete?'Kurs wiederholen →':state.completedUnits?'Weiterlernen →':'Kurs öffnen',`#course/${c.id}`,'button secondary'));grid.append(card);}main.append(grid);
 }

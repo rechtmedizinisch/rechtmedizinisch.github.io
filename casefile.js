@@ -5,23 +5,25 @@ import {decisionInput} from './casefile-decision.mjs?v=20261113-resolution';
 import {casefileDemoDecisionGuide} from './casefile-decision-demo.mjs?v=20261112-decision';
 import {hasAccess} from './policy.mjs?v=20261111-guided-learning';
 import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
-import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261111-guided-learning';
+import {referenceIndex,referenceMatches,openReferenceDialog,loadReferenceHelp} from './context-help.mjs?v=20261126-parcours-dialog-fit';
 import {notify} from './feedback.mjs?v=20261111-guided-learning';
-import {roleIcon,readingRole} from './reading-style.mjs?v=20261112-decision-library';
+import {roleIcon,readingRole} from './reading-style.mjs?v=20261126-web-release';
 import {casefileCatalog,casefileBundleHash,casefileDemoHash} from './casefile-catalog.mjs?v=20261114-study';
 import {casefileStore} from './casefile-store.mjs?v=20261114-study';
 import {casefileWorker} from './casefile-worker.mjs?v=20261111-guided-learning';
 import {casefileSession} from './casefile-session.mjs?v=20261114-study';
 import {casefileInput} from './casefile-form.mjs?v=20261112-decision-library';
 import {practiceAccess} from './practice-access.mjs?v=20261111-guided-learning';
-let activeClose=()=>{};
+let activeClose=()=>{}, dialogSequence=0;
 export function closeActiveCasefile(){activeClose();activeClose=()=>{};}
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const button=(text,fn,cls='secondary')=>{const n=el('button',text,cls);n.type='button';n.onclick=fn;return n;};
 const link=(text,href,cls='button secondary')=>{const a=el('a',text,cls);a.href=href;return a;};
 export async function renderCasefile(main,auth,grants,user,isCurrent,progress,variant=''){
- main.classList.add('casework','casefile');main.append(link('Zurück zu Üben','#practice'));
- const hero=el('section',null,'knowledge-banner');hero.append(el('p','ÜBEN','section-number'),el('h1','Interaktive Strafakte'));if(!variant)hero.append(el('p',casefileCatalog.title),el('p','Sie übernehmen die Rolle der Staatsanwaltschaft: Quellen prüfen, Belastendes und Entlastendes ermitteln und eine begründete Entscheidung treffen.'));hero.append(el('p','Fiktiver Lernfall · alle Personen und Unterlagen sind erfunden.','subtle'));main.append(hero);
+ main.classList.add('casework','casefile');
+ if(variant)main.append(el('h1','Interaktive Strafakte','casefile-compact-title'));
+ else main.append(link('Zurück zu Üben','#practice'));
+ if(!variant){const hero=el('section',null,'knowledge-banner');hero.append(el('p','ÜBEN','section-number'),el('h1','Interaktive Strafakte'));hero.append(el('p',casefileCatalog.title),el('p','Sie übernehmen die Rolle der Staatsanwaltschaft: Quellen prüfen, Belastendes und Entlastendes ermitteln und eine begründete Entscheidung treffen.'));hero.append(el('p','Fiktiver Lernfall · alle Personen und Unterlagen sind erfunden.','subtle'));main.append(hero);}
  const premium=!!auth&&!!user&&hasAccess('practice',grants);
  const orientation=el('section',null,'card casefile-orientation');orientation.append(el('h2','So funktioniert die Strafakte'),el('p','1. Anzeige und Unterlagen lesen. 2. Personen auswählen und Fragen anklicken oder weitere Unterlagen anfordern. 3. In der Beweisübersicht Belastendes, Entlastendes und offene Fragen vergleichen und entscheiden.'),el('p','Antworten sind für diesen Lernfall vorbereitet. Eigene Notizen werden gespeichert; sie sind keine Chatfragen.','subtle'));if(!variant)main.append(orientation);
  if(!variant){
@@ -67,42 +69,134 @@ export async function renderCasefile(main,auth,grants,user,isCurrent,progress,va
 }
 export async function renderCasefileContent(main,payload,{owner,variant,isCurrent,progress,expectedHash=casefileBundleHash}){
  main.classList.add('casework','casefile');main.append(link('Zur Variantenübersicht','#casefile'));
- const files=casefileStore(),header=el('section',null,'card'),status=el('div',null,'notice'),picker=el('select'),body=el('article',null,'casework-reader');picker.setAttribute('aria-label','Bereich der Akte');
- for(const title of ['Akte','Ermitteln','Verfahren','Verlauf']){const option=el('option',title);option.value=title;picker.append(option);}header.append(el('h2',casefileCatalog.variants.find(v=>v.id===variant)?.title??'Strafakte'),status);const shortcuts=el('div',null,'casefile-step-grid');for(const [label,target] of [['Aktuelle Aktenlage','Akte'],['Ermitteln','Ermitteln'],['Verfahrensweg','Verfahren'],['Verlauf','Verlauf']]){const b=button(label,()=>selectTab(target),'secondary casefile-tab');b.dataset.tab=target;const icon=roleIcon({Akte:'facts',Ermitteln:'proof',Verfahren:'reasoning',Verlauf:'history'}[target]);if(icon)b.prepend(icon);shortcuts.append(b);};const inbox=button('Rückläufe',()=>{returnsOnly=true;selectTab('Akte');},'secondary casefile-inbox');inbox.prepend(roleIcon('mail'));header.append(inbox,shortcuts);main.append(header,body);
+ const workspace=el('div',null,'casefile-workspace');
+ const siteHeader=document.querySelector('body > header');
+ const focusBar=document.querySelector('.reading-mode-bar');
+ const updateHeaderClearance=()=>workspace.style.setProperty('--casefile-header-clearance',((siteHeader?.offsetHeight||focusBar?.offsetHeight||0)+12)+'px');
+ const headerObserver=typeof ResizeObserver==='function'?new ResizeObserver(updateHeaderClearance):null;
+ if(siteHeader)headerObserver?.observe(siteHeader);
+ if(focusBar)headerObserver?.observe(focusBar);
+ updateHeaderClearance();
+ const files=casefileStore(),header=el('aside',null,'card casefile-rail'),status=el('p',null,'casefile-save-status'),body=el('article',null,'casefile-reader');
+ header.setAttribute('aria-label','Aktennavigation');
+ const phase=el('p',null,'casefile-rail-phase');
+ header.append(el('p','Verfahrensakte','casefile-desk-label'),el('h2',casefileCatalog.variants.find(v=>v.id===variant)?.title??'Strafakte'),phase);
+ const shortcuts=el('nav',null,'casefile-step-grid');
+ shortcuts.setAttribute('aria-label','Bereich der Strafakte');
+ for(const [label,target,icon] of [['Aktuelle Aktenlage','Akte','facts'],['Ermitteln','Ermitteln','proof'],['Verfahrensweg','Verfahren','reasoning'],['Verlauf','Verlauf','history']]){
+  const control=button(label,()=>selectTab(target),'secondary casefile-tab');
+  control.dataset.tab=target;
+  control.prepend(roleIcon(icon));
+  shortcuts.append(control);
+ }
+ const inbox=button('Rückläufe',()=>selectTab('Akte',{showReturns:true}),'secondary casefile-tab casefile-inbox');
+ shortcuts.append(inbox);
+ header.append(shortcuts,status);
+ workspace.append(header,body);
+ main.append(workspace);
  let session,closed=false,busy=false,value=null,tab='Akte',documentDialog=null,interviewDialog=null,helperIndex=[],helpers=[];const expanded=new Set(['Menschen']);let returnTimer=null,structuredReason="",queuedReturns=[],returnsOnly=false,hasPrevious=false;
  function scheduleReturns(){clearTimeout(returnTimer);if(showQueuedReturns())return;if(!current()||busy||documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||document.visibilityState!=='visible'||!value?.pendingJobs?.some(j=>j.ready)||value.ended)return;returnTimer=setTimeout(()=>{if(current()&&!busy&&!documentDialog&&!interviewDialog&&!document.querySelector('.casefile-dialog[open]')&&document.visibilityState==='visible')run('collect');},3000);}
  const resumeReturns=()=>scheduleReturns();document.addEventListener('visibilitychange',resumeReturns);
  const current=()=>!closed&&isCurrent();
- const close=()=>{closed=true;clearTimeout(returnTimer);document.removeEventListener('visibilitychange',resumeReturns);session?.close();files.close();document.querySelectorAll('.casefile-dialog').forEach(d=>d.close());};activeClose=close;
+ const close=()=>{closed=true;headerObserver?.disconnect();clearTimeout(returnTimer);document.removeEventListener('visibilitychange',resumeReturns);session?.close();files.close();document.querySelectorAll('.casefile-dialog').forEach(d=>d.close());};activeClose=close;
  function rich(text){const p=el('p'),plain=protectReferences(String(text??''));let at=0;for(const hit of referenceMatches(plain,helperIndex)){p.append(document.createTextNode(plain.slice(at,hit.start)));const b=button(plain.slice(hit.start,hit.end),()=>{const d=openReferenceDialog(b,hit.entry,helpers);d.classList.add('casefile-dialog');},'context-reference');b.setAttribute('aria-haspopup','dialog');p.append(b);at=hit.end;}p.append(document.createTextNode(plain.slice(at)));return p;}
  function card(title,text,tone='explanation',symbol){tone=readingRole(title,tone);const n=el('section',null,'card casework-card casework-'+tone);const h=el('h3'),icon=roleIcon(symbol??tone);if(icon)h.append(icon);h.append(el('span',title));n.append(h);if(text)n.append(rich(text));return n;}
  function disclosure(title,content){const n=el('details',null,'card');n.append(el('summary',title));let drawn=false;const draw=()=>{if(n.open&&!drawn){drawn=true;content(n);}};n.ontoggle=()=>{if(n.open)expanded.add(title);else expanded.delete(title);draw();};if(expanded.has(title)){n.open=true;draw();}return n;}
  function source(target,key){const item=value?.sources?.[key];if(!item||!/^https:\/\//.test(item[1]))return;const a=link(item[0],item[1],'context-source');a.target='_blank';a.rel='noopener noreferrer';target.append(a);}
- function dialog(title,content){const d=el('dialog',null,'context-dialog casefile-dialog'),head=el('div',null,'context-dialog-header'),opener=document.activeElement;head.append(el('h2',title),button('Schließen',()=>d.close()));d.append(head);content(d);const contentFrame=el('div',null,'casefile-dialog-content');while(d.children.length>1)contentFrame.append(d.children[1]);d.append(contentFrame);d.addEventListener('close',()=>{d.remove();if(opener?.isConnected)opener.focus({preventScroll:true});scheduleReturns();},{once:true});document.body.append(d);d.showModal();head.querySelector('button').focus();return d;}
- function documentView(doc,mark=true){documentDialog=dialog(doc.title,d=>{d.append(el('p',doc.kind+' · '+doc.author,'subtle'),el('p',doc.sourceLabel??'Fiktiver Aktenauszug','badge'),rich(doc.body));for(const note of doc.teachingNotes??[])d.append(card('Redaktionelle Einordnung',note,'proof'));if(doc.limit)d.append(card('Aussagekraft & Grenzen',doc.limit));});documentDialog.addEventListener('close',()=>{documentDialog=null;scheduleReturns();},{once:true});if(mark&&!doc.read)run('read',{id:doc.id});}
+ function dialog(title,content){const d=el('dialog',null,'context-dialog casefile-dialog'),head=el('div',null,'context-dialog-header'),opener=document.activeElement;const heading=el('h2',title);heading.id='casefile-dialog-'+(++dialogSequence);d.setAttribute('aria-labelledby',heading.id);head.append(heading,button('Schließen',()=>d.close()));d.append(head);content(d);const contentFrame=el('div',null,'casefile-dialog-content');while(d.children.length>1)contentFrame.append(d.children[1]);d.append(contentFrame);d.addEventListener('close',()=>{d.remove();if(opener?.isConnected)opener.focus({preventScroll:true});scheduleReturns();},{once:true});document.body.append(d);d.showModal();head.querySelector('button').focus();return d;}
+ function paper(doc,{preview=false}={}){
+  const incoming=doc.kind==='Anzeige';
+  const page=el('article',null,'casefile-paper'),masthead=el('div',null,'casefile-paper-masthead'),letterhead=el('div',null,'casefile-letterhead');
+  const identity=el('div');
+  identity.append(el('p',incoming?'Posteingang der Staatsanwaltschaft':'Verfahrensakte', 'casefile-desk-label'),el('p','Fiktive Lernakte','casefile-paper-fiction'));
+  letterhead.append(roleIcon('reasoning'),identity);
+  const stamp=el('div',null,'casefile-stamp');
+  stamp.append(el('strong',incoming?'EINGANG':'AKTENSTÜCK'),el('span',doc.id+' · '+doc.kind));
+  masthead.append(letterhead,stamp);
+  page.append(masthead,el('h3',doc.title));
+  const metadata=el('dl',null,'casefile-paper-reference');
+  metadata.append(el('dt',incoming?'Anzeige erstattet von':'Verfasst von'),el('dd',doc.author));
+  page.append(metadata);
+  if(preview){
+   const open=button('Strafanzeige lesen',()=>documentView(doc),'secondary');
+   open.setAttribute('aria-haspopup','dialog');open.dataset.documentId=doc.id;page.append(open);
+  }else{
+   const original=el('div',null,'casefile-paper-text');
+   for(const paragraph of String(doc.body??'').trim().split(/\r?\n\s*\r?\n/u))if(paragraph)original.append(rich(paragraph));
+   page.append(original);
+  }
+  return page;
+ }
+ function documentView(doc,mark=true){
+  documentDialog=dialog('Aktenstück '+doc.id,d=>{
+   d.classList.add('casefile-document-dialog');
+   d.append(paper(doc));
+   for(const note of doc.teachingNotes??[])d.append(card('Redaktionelle Einordnung',note,'proof'));
+   if(doc.limit)d.append(card('Aussagekraft & Grenzen',doc.limit));
+  });
+  documentDialog.addEventListener('close',()=>{
+   documentDialog=null;
+   if(current())Array.from(body.querySelectorAll('[data-document-id]')).find(control=>control.dataset.documentId===doc.id)?.focus({preventScroll:true});
+   scheduleReturns();
+  },{once:true});
+  if(mark&&!doc.read)run('read',{id:doc.id});
+ }
+ function documentRow(doc){
+  const row=button('',()=>documentView(doc),'secondary casefile-document-row');
+  row.setAttribute('aria-haspopup','dialog');
+  row.dataset.documentId=doc.id;
+  const copy=el('span',null,'casefile-document-copy');
+  copy.append(el('strong',doc.title),el('small',[doc.id,doc.kind,doc.read?'Gelesen':null].filter(Boolean).join(' · ')));
+  const chevron=el('span','›','practice-entry-chevron');chevron.setAttribute('aria-hidden','true');
+  row.append(roleIcon('facts'),copy,chevron);
+  return row;
+ }
+
  function action(label,op,args={},kind='command',after=()=>{}){const b=button(label,()=>run(op,value?.structured&&['decision','plea'].includes(op)?{...args,reason:structuredReason}:args,kind,after),'button');b.disabled=busy||!session?.ready;return b;}
- function selectTab(next){tab=next;picker.value=next;draw();header.scrollIntoView({block:'start'});}
- picker.onchange=()=>selectTab(picker.value);
+ function selectTab(next,{showReturns=false}={}){tab=next;returnsOnly=showReturns;draw();header.scrollIntoView({block:'nearest'});}
  async function run(op,args={},kind='command',after=()=>{}){
   if(busy||!current()||!session)return;const receipt=op==='note'&&args.key==='_returnNoticeSeen';busy=true;const courtBefore=new Set(value?.processGuide?.courtMessages.map(m=>m.id)??[]);const knownBefore=new Set(value?.documents.map(d=>d.id)??[]);status.textContent='Aktenstand wird gesichert …';draw();
   try{value=kind==='history'?await session.history(args.page):await session.apply(op,op.startsWith('guided')?{...args,edition:'court-20261112'}:args,kind);if(!current())return;if(!value.feedback||value.feedback.kind==='info')after();feedback();if(op.startsWith('guided')&&op!=='guidedAsk'&&!['error','warning','release'].includes(value.feedback?.kind)&&!document.querySelector('.casefile-dialog[open]')){const messages=value.processGuide?.courtMessages??[];const message=messages.filter(m=>args.station&&m.station===args.station).at(-1)??messages.filter(m=>!courtBefore.has(m.id)).at(-1);if(message)courtResult(message);}const fresh=kind==='review'?[]:value.documents.filter(d=>!knownBefore.has(d.id));if(fresh.length&&(documentDialog||interviewDialog||document.querySelector('.casefile-dialog[open]')||['read','ask'].includes(op)))queuedReturns=[...new Set([...queuedReturns,...fresh.map(d=>d.id)])];if(!receipt&&!documentDialog&&!interviewDialog&&!document.querySelector('.casefile-dialog[open]')&&kind!=='history'&&!['read','ask'].includes(op)){if(fresh.length)resultDialog(fresh);else if(['error','warning'].includes(value.feedback?.kind))noticeDialog(value.feedback.kind==='error'?'Schritt noch nicht möglich':'Bitte beachten');else if((value.pendingJobs??[]).length)noticeDialog('Auftrag erteilt');else notify({title:'Schritt gesichert',text:value.feedback?.text??'Ihr Aktenstand wurde gespeichert.'});}return value;}
   catch(error){if(current()){status.textContent=error.message;status.setAttribute('role','alert');notify({kind:'error',title:'Schritt nicht gespeichert',text:error.message});header.append(button('Erneut öffnen',open));}}
   finally{busy=false;if(current()){draw();if(value?.feedback?.kind==='error'&&!documentDialog&&!interviewDialog)header.scrollIntoView({block:'start'});}}
  }
- function feedback(){const f=value.feedback;status.dataset.kind=f?.kind??'info';status.replaceChildren();if(f){status.append(rich(f.text));source(status,f.source);}else status.textContent='Aktenstand gesichert.';status.setAttribute('role',f?.kind==='error'?'alert':'status');}
+ function feedback(){const f=value.feedback;status.dataset.kind=f?.kind??'info';status.replaceChildren();if(f){status.append(rich(f.text));source(status,f.source);}else status.textContent='Aktenstand gespeichert';status.setAttribute('role',f?.kind==='error'?'alert':'status');}
  function draw(){
-  if(!current()||!value)return;inbox.replaceChildren(roleIcon('mail'),document.createTextNode('Rückläufe · '+(value.returnInbox??[]).filter(x=>x.unread).length+' ungelesen'));for(const b of shortcuts.querySelectorAll('button')){const selected=b.dataset.tab===tab;b.setAttribute('aria-pressed',String(selected));b.classList.toggle('is-active',selected);}body.replaceChildren();scheduleReturns();header.querySelector('h2').textContent=(casefileCatalog.variants.find(v=>v.id===variant)?.title??'Strafakte')+' · '+value.phaseTitle;
+  if(!current()||!value)return;const unread=(value.returnInbox??[]).filter(x=>x.unread).length;
+  inbox.replaceChildren(roleIcon('mail'),el('span','Rückläufe'),el('span',String(unread),'casefile-mail-count'));
+  inbox.setAttribute('aria-label','Rückläufe · '+unread+' ungelesen');
+  inbox.setAttribute('aria-pressed',String(returnsOnly));
+  inbox.classList.toggle('is-active',returnsOnly);
+  phase.textContent=value.studySummary?.title??'';
+  for(const b of shortcuts.querySelectorAll('[data-tab]')){
+   const selected=b.dataset.tab===tab&&!returnsOnly;
+   b.setAttribute('aria-pressed',String(selected));b.classList.toggle('is-active',selected);
+  }
+  body.replaceChildren();scheduleReturns();
   if(value.ended){const result=casefileOutcome(value);if(result){const box=card('Fall abgeschlossen · 100 %',result.summary,'outcome');box.prepend(el('h3',result.title));for(const detail of result.details)box.append(rich(detail));const meter=el('progress');meter.max=100;meter.value=100;meter.setAttribute('aria-label','Fall abgeschlossen');box.append(meter,button(progress.snapshot.completedCasefileVariants?.includes(variant)?'Zur Fallübersicht':'Fall abschließen und zur Fallübersicht',async()=>{if(busy)return;await run('debrief',{},'command',()=>{progress.markCasefileComplete(variant);if(progress.error){notify({kind:'error',title:'Abschluss noch nicht gesichert',text:progress.error});return;}notify({title:'Fall abgeschlossen',text:'Ihre Abschlussmarkierung ist gespeichert.'});location.hash='#casefile';});},'button'));body.append(box);}}
-  if(value.flow&&!value.ended){const inTrial=['trial','closing','lastword','judgment'].includes(value.phase),completed=value.ended?6:inTrial?(value.processGuide?.completed??0):value.flow.completed,total=inTrial?6:value.flow.total;const flow=el('section',null,'card casefile-flow'),meter=el('progress');meter.max=total||1;meter.value=completed;meter.setAttribute('aria-label',inTrial?'Verfahrensstand':'Beweiswege erkundet');flow.append(el('h3',inTrial?'Ihr Verfahrensstand':'Ihr Ermittlungsstand'),el('p',`${completed} von ${total} ${inTrial?'Verfahrensabschnitten':'Beweiswegen'} · ${Math.round(100*completed/Math.max(1,total))} %`),meter,el('p','Diese Anzeige misst Ihre Erkundung. Sie ist kein Schuldmaß und keine gesetzliche Mindestquote.','subtle'));if(value.pendingJobs?.length){flow.append(el('h3','Ausstehende Aufträge'));for(const j of value.pendingJobs)flow.append(el('p',j.title+(j.ready?' · Rücklauf wird vorbereitet …':' · Benötigt noch: '+j.missingTitles.join(', ')),'casefile-pending'));}const steps=el('ol',null,'casefile-flow-steps'),phase=['conditions','minor'].includes(value.phase)?'investigation':value.phase==='lastword'?'closing':value.ended?'judgment':value.phase;for(const step of value.flow.steps){const item=el('li',step.title+(step.id===phase?' · Hier sind Sie':''));item.className=step.id===phase?'is-current':value.flow.visited?.includes(step.id)?'is-complete':'';steps.append(item);}const path=el('details'),pathTitle=el('summary','Verfahrensweg · '+(value.flow.steps.find(s=>s.id===phase)?.title??'Übersicht'));path.append(pathTitle,steps);flow.append(path);body.append(flow);}
+  const isEntry=tab==='Akte'&&!returnsOnly&&value.phase==='intake';
+  let entryFlow;
+  if(value.flow&&!value.ended){const inTrial=['trial','closing','lastword','judgment'].includes(value.phase),completed=value.ended?6:inTrial?(value.processGuide?.completed??0):value.flow.completed,total=inTrial?6:value.flow.total;const flow=el('section',null,'card casefile-flow'),meter=el('progress');meter.max=total||1;meter.value=completed;meter.setAttribute('aria-label',inTrial?'Verfahrensstand':'Beweiswege erkundet');flow.append(el('h3',inTrial?'Ihr Verfahrensstand':'Ihr Ermittlungsstand'),el('p',`${completed} von ${total} ${inTrial?'Verfahrensabschnitten':'Beweiswegen'} · ${Math.round(100*completed/Math.max(1,total))} %`),meter,el('p','Diese Anzeige misst Ihre Erkundung. Sie ist kein Schuldmaß und keine gesetzliche Mindestquote.','subtle'));if(value.pendingJobs?.length){flow.append(el('h3','Ausstehende Aufträge'));for(const j of value.pendingJobs)flow.append(el('p',j.title+(j.ready?' · Rücklauf wird vorbereitet …':' · Benötigt noch: '+j.missingTitles.join(', ')),'casefile-pending'));}const steps=el('ol',null,'casefile-flow-steps'),phase=['conditions','minor'].includes(value.phase)?'investigation':value.phase==='lastword'?'closing':value.ended?'judgment':value.phase;for(const step of value.flow.steps){const item=el('li',step.title+(step.id===phase?' · Hier sind Sie':''));item.className=step.id===phase?'is-current':value.flow.visited?.includes(step.id)?'is-complete':'';steps.append(item);}const path=el('details'),pathTitle=el('summary','Verfahrensweg · '+(value.flow.steps.find(s=>s.id===phase)?.title??'Übersicht'));path.append(pathTitle,steps);flow.append(path);if(isEntry)entryFlow=flow;else body.append(flow);}
   if(tab==='Akte'){
    body.append(el('h3',returnsOnly?'Rückläufe':'Aktuelle Aktenlage'),el('p',`${returnsOnly?'Rückläufe':'Unterlagen'}: ${returnsOnly?(value.returnInbox??[]).length:value.documents.length} · Gelesen: ${value.documents.filter(d=>d.read&&(!returnsOnly||(value.returnInbox??[]).some(x=>x.id===d.id))).length}`,'badge'));
    if(returnsOnly)body.append(button('Alle Unterlagen anzeigen',()=>{returnsOnly=false;draw();}));
-   for(const doc of value.documents.filter(d=>!returnsOnly||(value.returnInbox??[]).some(x=>x.id===d.id))){const row=el('section',null,'card');row.append(el('h3',doc.title),el('p',doc.id+' · '+doc.kind,'subtle'),button(doc.read?'Quelle nachlesen':'Quelle öffnen',()=>documentView(doc)));body.append(row);}
+   const intake=isEntry?value.documents.find(d=>d.kind==='Anzeige'):null;
+   if(intake)body.append(paper(intake,{preview:true}));
+   for(const doc of value.documents.filter(d=>d!==intake&&(!returnsOnly||(value.returnInbox??[]).some(x=>x.id===d.id)))){
+    body.append(documentRow(doc));
+   }
    body.append(value.phase==='intake'?action('Ermittlungen aufnehmen','start',{},'command',()=>selectTab('Ermitteln')):button('Ermittlungen & nächste Schritte',()=>selectTab(['intake','investigation','conditions','minor'].includes(value.phase)?'Ermitteln':'Verfahren'),'button'));
+   if(entryFlow)body.append(entryFlow);
   }else if(tab==='Verlauf'){
    body.append(el('p',`${value.totalLogEntries} Einträge · Abschnitt ${value.logPage+1} von ${value.logPages}`));if(value.logPage>0)body.append(action('Neuere Einträge','inspect',{page:value.logPage-1},'history'));
    for(const group of value.historyGroups??[]){const box=card(group.title,group.subtitle,'source');for(const event of group.events){box.append(el('p','Eintrag '+event.number,'subtle'));if(event.question)box.append(card(event.questioner??'Frage',event.question,'question'));box.append(card(event.sourceLabel??'Verfahrenseintrag',event.detail,'facts'));for(const note of event.teachingNotes??[])box.append(card('Redaktionelle Einordnung',note,'proof'));}body.append(box);}if(value.logPage+1<value.logPages)body.append(action('Frühere Einträge anzeigen','inspect',{page:value.logPage+1},'history'));
-  }else if(tab==='Ermitteln')investigations();else {if(['trial','closing','lastword'].includes(value.phase)){guidedTrial();judicialDispositions();}else{if(!value.ended){reasoningSupport();judicialDispositions();}if(value.structured)structuredProcedure();else procedure();}}
+  }else if(tab==='Ermitteln')investigations();else {
+   if(['intermediate','trial','closing','lastword','judgment'].includes(value.phase)){
+    const lens=button('Zur Gerichtsperspektive wechseln',courtPerspective,'secondary casefile-court-switch');lens.setAttribute('aria-haspopup','dialog');body.append(lens);
+   }
+   if(['trial','closing','lastword'].includes(value.phase)){guidedTrial();judicialDispositions();}
+   else{if(!value.ended){reasoningSupport();judicialDispositions();}if(value.structured)structuredProcedure();else procedure();}
+  }
   if(tab!=='Akte')body.append(button('Zur aktuellen Aktenlage',()=>selectTab('Akte'),'secondary'));
   if(value.ended)body.append(button('Gesammelte Quellen nachlesen',()=>selectTab('Akte'),'secondary'));
   const repeat=disclosure('Durchlauf & Wiederholung',n=>{
@@ -110,7 +204,7 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
    if(value.phase!=='intake')n.append(button('Letzten Verfahrensschritt zurücknehmen',()=>review('previous')));
    for(const [phase,title]of [['intake','Anzeige'],['investigation','Ermitteln & Entscheidung'],['intermediate','Zwischenverfahren'],['trial','Hauptverhandlung'],['closing','Schlussvorträge'],['lastword','Letztes Wort']])if(value.flow?.visited?.includes(phase)&&phase!==value.phase)n.append(button('Zurück: '+title,()=>review(phase)));
    n.append(button('Neuen Durchlauf beginnen',()=>review('restart')));if(hasPrevious)n.append(button('Letzten gesicherten Stand wiederherstellen',()=>review('restoreSaved')));
-  });body.prepend(repeat);
+  });body.append(repeat);
   const tools=el('section',null,'card');tools.append(el('p','Die ausführlichen Aktenstände bleiben in diesem Browser. Ihre Abschlussmarkierungen gehören zum Lernstand.','subtle'),button('Aktenstand als Datei sichern',async()=>{try{const json=await session.export();if(!current())return;const url=URL.createObjectURL(new Blob([json],{type:'application/json'})),a=link('Sicherung speichern',url);a.download=`Recht-Medizinisch-Strafakte-${variant}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch(error){notify({title:'Sicherung nicht möglich',text:error.message});}}));body.append(tools);
  }
  function review(target){
@@ -130,7 +224,11 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
   documentDialog=dialog(title,box=>{if(value.feedback)box.append(rich(value.feedback.text));source(box,value.feedback?.source);
    for(const job of value.pendingJobs??[])box.append(card(job.title,job.ready?'Der Rücklauf wird nach kurzer simulierter Bearbeitung automatisch angezeigt.':'Noch benötigt: '+job.missingTitles.join(', '),'proof'));
    box.append(button('Zur Ermittlungsübersicht',()=>{documentDialog?.close();selectTab('Ermitteln');}));
-  });documentDialog.addEventListener('close',()=>{documentDialog=null;scheduleReturns();},{once:true});
+  });documentDialog.addEventListener('close',()=>{
+   documentDialog=null;
+   if(current())Array.from(body.querySelectorAll('[data-document-id]')).find(control=>control.dataset.documentId===doc.id)?.focus({preventScroll:true});
+   scheduleReturns();
+  },{once:true});
  }
  function resultDialog(docs){
   const receipt=value.returnNotice,ids=new Set([...docs.map(d=>d.id),...(receipt?.documentIds??[])]);
@@ -183,6 +281,69 @@ export async function renderCasefileContent(main,payload,{owner,variant,isCurren
  }
  function courtMessage(message){const row=card(message.title,message.answer,'source');row.append(el('p',message.actor,'badge'),el('p',message.sourceLabel??'Fiktiver Verfahrensakt','subtle'));for(const note of message.notes??[])row.append(card('Redaktionelle Einordnung',note,'proof'));return row;}
  function courtResult(message){const d=dialog('In der Hauptverhandlung',box=>{box.append(courtMessage(message));const active=value.stations.find(s=>s.active),person=value.interviews.find(p=>p.id===active?.interview);if(person){box.append(button('Staatsanwaltschaft: Nachfragen stellen',async()=>{const closed=new Promise(resolve=>d.addEventListener('close',resolve,{once:true}));d.close();await closed;if(current())interview(person,true);}));}});d.addEventListener('close',()=>body.querySelector('.casefile-court-stage')?.scrollIntoView({block:'nearest'}),{once:true});}
+ function courtPerspective(){
+  const intermediate=value.phase==='intermediate';
+  const introduced=new Set((value.introduced??[]).map(ref=>typeof ref==='string'?ref:ref.id));
+  function legalLink(panel,id,label){
+   const a=link(label,'https://www.gesetze-im-internet.de/stpo/__'+id+'.html','context-source');
+   a.target='_blank';a.rel='noopener noreferrer';panel.append(a);
+  }
+  const bench=dialog(intermediate?'Gerichtsperspektive · Zwischenverfahren':'Gerichtsperspektive · Hauptverhandlung',panel=>{
+   panel.classList.add('casefile-bench-dialog');
+   panel.append(el('p','In dieser Ansicht arbeiten Sie aus Sicht des Gerichts. Beim Schließen kehren Sie zur Staatsanwaltschaft zurück.','casefile-bench-intro'));
+   if(intermediate){
+    panel.append(card('Eröffnung des Hauptverfahrens prüfen','Das Gericht berücksichtigt Einwendungen und Beweisanträge. Einzelne Beweise können vor der Eröffnungsentscheidung ergänzend erhoben werden. Das Hauptverfahren wird eröffnet, wenn ein hinreichender Tatverdacht besteht.','focus'));
+   }else{
+    panel.append(card('Beweise aus der Hauptverhandlung würdigen','Das Gericht klärt den Sachverhalt von Amts wegen auf. Für das Urteil zählt, was in die Hauptverhandlung eingeführt wurde.','focus'));
+   }
+   const documents=intermediate?value.documents:value.documents.filter(doc=>introduced.has(doc.id));
+   panel.append(el('h3',intermediate?'Unterlagen für die Eröffnungsprüfung':'Eingeführte Beweismittel'));
+   if(!documents.length)panel.append(el('p','In diesem Durchlauf wurde bislang kein Dokument als Beweis eingeführt.','subtle'));
+   for(const doc of documents){
+    const details=el('details',null,'casefile-bench-source');
+    details.append(el('summary',doc.title),paper(doc));
+    panel.append(details);
+   }
+   if(!intermediate&&value.processGuide?.courtMessages?.length){
+    const protocol=el('details',null,'casefile-bench-source');
+    protocol.append(el('summary','Gerichtliches Verhandlungsprotokoll'));
+    for(const message of value.processGuide.courtMessages)protocol.append(courtMessage(message));
+    panel.append(protocol);
+   }
+   const exercise=el('section',null,'casefile-bench-exercise'),result=el('p',null,'notice');
+   result.hidden=true;result.setAttribute('role','status');
+   const explain=text=>{result.textContent=text;result.hidden=false;};
+   if(intermediate){
+    exercise.append(el('h3','Was ist als Nächstes zu prüfen?'));
+    exercise.append(button('Eine offene Beweisfrage klären',()=>explain('§ 202 StPO erlaubt einzelne ergänzende Beweiserhebungen vor der Entscheidung über die Eröffnung. Welche konkrete Frage ist nach der Aktenlektüre noch offen?')));
+    exercise.append(button('Über die Eröffnung entscheiden',()=>explain('Prüfen Sie den hinreichenden Tatverdacht nach § 203 StPO. Wird das Hauptverfahren nicht eröffnet, muss der Beschluss nach § 204 StPO erkennen lassen, ob tatsächliche oder rechtliche Gründe ausschlaggebend sind.')));
+    legalLink(exercise,201,'§ 201 StPO · Übermittlung der Anklageschrift');
+    legalLink(exercise,202,'§ 202 StPO · Ergänzende Beweiserhebungen');
+    legalLink(exercise,203,'§ 203 StPO · Eröffnungsbeschluss');
+    legalLink(exercise,204,'§ 204 StPO · Nichteröffnungsbeschluss');
+   }else{
+    exercise.append(el('h3','Auf welche Beweise darf sich das Urteil stützen?'));
+    exercise.append(button('Die Ermittlungsakte als Ganzes',()=>explain('Eine Aktennotiz wird durch die Ablage in der Ermittlungsakte allein noch kein Beweis für das Urteil. Prüfen Sie im Verhandlungsprotokoll, wie der betreffende Inhalt in die Hauptverhandlung gelangt ist.')));
+    exercise.append(button('Die Beweise aus der Hauptverhandlung',()=>explain('§ 261 StPO knüpft die Überzeugung des Gerichts an den Inbegriff der Hauptverhandlung. Vergleichen Sie Belastendes und Entlastendes und prüfen Sie offene Widersprüche.')));
+    legalLink(exercise,244,'§ 244 StPO · Beweisaufnahme und Aufklärungspflicht');
+    legalLink(exercise,261,'§ 261 StPO · Freie richterliche Beweiswürdigung');
+   }
+   exercise.append(result);panel.append(exercise);
+   function proceed(label,op,args={}){
+    panel.append(button(label,()=>{
+     bench.addEventListener('close',()=>{if(current())run(op,args);},{once:true});
+     bench.close();
+    },'button'));
+   }
+   if(intermediate&&!value.structured&&!['opened','hypothesis'].includes(value.courtStatus)){
+    proceed('Gerichtliche Eröffnungsprüfung durchführen','courtReview');
+   }else if(value.phase==='trial'&&value.trialStage===3&&!value.stations.some(station=>station.active)){
+    const pending=value.stations.filter(station=>!station.completed&&station.id!=='accused');
+    if(pending.length)panel.append(el('h3','Nächste gerichtliche Beweiserhebung'));
+    for(const station of pending)proceed(station.title,'guidedStation',{station:station.id});
+   }
+  });
+ }
  function guidedTrial(){
   const guide=value.processGuide;if(!guide)return;const stage=el('h3',value.phase==='trial'?(guide.steps[value.trialStage]??'Beweisaufnahme'):value.phase==='closing'?'Ihr Schlussvortrag':value.closingStep==='defense'?'Schlussvortrag der Verteidigung':value.closingStep==='reply'?'Erwiderungsmöglichkeit':'Persönliches letztes Wort und Urteil','casefile-court-stage');body.append(stage,button('Verhandlungsprotokoll · '+guide.courtMessages.length+' Einträge',()=>dialog('Verhandlungsprotokoll',box=>{for(const message of guide.courtMessages)box.append(courtMessage(message));})));
   body.append(card(guide.role,guide.text,'focus'),disclosure('Welcher Beweis zählt im Prozess?',n=>{n.append(rich(guide.proofHint));source(n,'conviction');source(n,'questions');}));

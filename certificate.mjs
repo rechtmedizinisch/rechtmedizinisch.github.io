@@ -4,7 +4,30 @@ export function requireCertificate(status){if(!status?.isComplete||status.totalC
 // The browser rasterizes only the name so all characters supported by its fonts
 // survive PDF export. The remaining certificate text remains selectable.
 export async function buildCertificate({name,status,nameImage,date=new Date()}){
-  requireCertificate(status);name=certificateName(name);if(!nameImage)throw Error('Der Name konnte nicht für das PDF vorbereitet werden.');
+  requireCertificate(status);
+  return buildDocument(name,nameImage,{
+    title:'Kursabschluss-Zertifikat',
+    lines:['alle 15 Kurse mit Pflichtmaterialien, Originalquellen und Wissensaufgaben','erfolgreich abgeschlossen hat.'],
+    details:`ABSCHLUSS 100 % · ${status.completedUnits*10} XP · ${date.toLocaleDateString('de-DE')}`,
+    filename:'Recht-Medizinisch-Zertifikat.pdf'
+  });
+}
+function requireParcoursCertificate(progress){
+  const date=progress?.certificateDate;
+  if(progress?.total!==41 || !(date instanceof Date) || !Number.isFinite(+date))throw Error('Das Zertifikat ist nach Abschluss aller 41 Aufgaben verfügbar.');
+  return date;
+}
+export async function buildParcoursCertificate({name,progress,nameImage}){
+  const date=requireParcoursCertificate(progress);
+  return buildDocument(name,nameImage,{
+    title:'Parcours-Zertifikat',
+    lines:['alle 41 Aufgaben des Parcours für Recht und Ethik','erfolgreich abgeschlossen hat.'],
+    details:`ABSCHLUSS 100 % · ${date.toLocaleDateString('de-DE')}`,
+    filename:'Recht-und-Ethik-Parcours-Zertifikat.pdf'
+  });
+}
+async function buildDocument(name,nameImage,{title,lines,details,filename}){
+  certificateName(name);if(!nameImage)throw Error('Der Name konnte nicht für das PDF vorbereitet werden.');
   const doc=await PDFDocument.create(),page=doc.addPage([842,595]);
   const regular=await doc.embedFont(StandardFonts.Helvetica),bold=await doc.embedFont(StandardFonts.HelveticaBold);
   const navy=rgb(.027,.114,.2),teal=rgb(.025,.43,.46),muted=rgb(.35,.40,.43);
@@ -14,20 +37,27 @@ export async function buildCertificate({name,status,nameImage,date=new Date()}){
   page.drawRectangle({x:0,y:580,width:842,height:15,color:rgb(.35,.84,.82)});
   const center=(text,y,size,font=regular,color=navy)=>page.drawText(text,{x:(842-font.widthOfTextAtSize(text,size))/2,y,size,font,color});
   center('RECHT MEDIZINISCH · INTERAKTIVER LERNKURS',508,13,bold);
-  center('Kursabschluss-Zertifikat',427,36,bold);
+  center(title,427,36,bold);
   center('Hiermit wird bestätigt, dass',373,16);
   const image=await doc.embedPng(nameImage);page.drawImage(image,{x:100,y:295,width:642,height:65});
   page.drawLine({start:{x:180,y:284},end:{x:662,y:284},thickness:1,color:navy});
-  center('alle 15 Kurse mit Pflichtmaterialien, Originalquellen und Wissensaufgaben',243,15);
-  center('erfolgreich abgeschlossen hat.',218,15);
-  center(`ABSCHLUSS 100 % · ${status.completedUnits*10} XP · ${date.toLocaleDateString('de-DE')}`,158,13,bold,teal);
+  lines.forEach((line,i)=>center(line,243-i*25,15));
+  center(details,158,13,bold,teal);
   center('Nachweis über den Abschluss dieses Lernkurses;',84,11,regular,muted);
   center('keine CME-Anerkennung oder Berufsqualifikation.',68,11,regular,muted);
-  doc.setTitle('Recht Medizinisch - Kursabschluss-Zertifikat');doc.setAuthor('Recht Medizinisch');
-  return {bytes:await doc.save(),filename:'Recht-Medizinisch-Zertifikat.pdf'};
+  doc.setTitle('Recht Medizinisch - '+title);doc.setAuthor('Recht Medizinisch');
+  return {bytes:await doc.save(),filename};
 }
 export async function downloadCertificate(name,status){
   name=certificateName(name);requireCertificate(status);
+  return downloadPDF(await buildCertificate({name,status,nameImage:await certificateNameImage(name)}));
+}
+export async function downloadParcoursCertificate(name,progress,isCurrent=()=>true){
+  name=certificateName(name);requireParcoursCertificate(progress);
+  const file=await buildParcoursCertificate({name,progress,nameImage:await certificateNameImage(name)});
+  if(isCurrent())downloadPDF(file);
+}
+async function certificateNameImage(name){
   const canvas=document.createElement('canvas');canvas.width=1926;canvas.height=195;
   const ctx=canvas.getContext('2d');if(!ctx)throw Error('Die PDF-Erstellung wird von diesem Browser nicht unterstützt.');
   ctx.fillStyle='#772d41';ctx.textAlign='center';ctx.textBaseline='middle';
@@ -35,7 +65,9 @@ export async function downloadCertificate(name,status){
   while(ctx.measureText(name).width>1870&&size>18){size--;ctx.font=`600 ${size}px Georgia, serif`;}
   ctx.fillText(name,963,97.5,1870);
   const image=await new Promise(resolve=>canvas.toBlob(resolve,'image/png'));if(!image)throw Error('Namensdarstellung fehlgeschlagen.');
-  const file=await buildCertificate({name,status,nameImage:new Uint8Array(await image.arrayBuffer())});
+  return new Uint8Array(await image.arrayBuffer());
+}
+function downloadPDF(file){
   const url=URL.createObjectURL(new Blob([file.bytes],{type:'application/pdf'}));
   const a=document.createElement('a');a.href=url;a.download=file.filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),60000);
 }

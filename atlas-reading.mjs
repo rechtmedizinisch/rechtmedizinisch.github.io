@@ -1,10 +1,11 @@
+import { sourceTitle, courtSourceLinks } from './source-titles.mjs?v=20261125-source-titles';
 import {formatSlideText} from './slide-tools.js?v=20261111-guided-learning';
 import {safeURL} from './policy.mjs?v=20261111-guided-learning';
 import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
 import {focusedAtlasNode,focusedPodcastNode,schemaDestination,materialReadingKey,slideDestination} from './atlas-navigation.mjs?v=20261111-guided-learning';
 import {learningTrailLink,learningTrailSource} from './learning-paths.mjs?v=20261111-guided-learning';
-import {readingRole,readingHeading,roleIcon} from './reading-style.mjs?v=20261112-casefile-procedure';
-export {roleIcon} from './reading-style.mjs?v=20261112-casefile-procedure';
+import {readingRole,readingHeading,roleIcon} from './reading-style.mjs?v=20261126-web-release';
+export {roleIcon} from './reading-style.mjs?v=20261126-web-release';
 import {readingGroups} from './reading-guide.mjs?v=20261111-guided-learning';
 const element=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=protectReferences(text);if(cls)n.className=cls;return n;};
 function card(title,text,role='explanation',marker=null){
@@ -47,7 +48,27 @@ export function renderAtlasReading(main,content,library=[],options={}){
  }
  const reading=content.diagramAsset?element('details',null,'atlas-explanations'):element('div');
  if(content.diagramAsset)reading.append(element('summary','Ausführliche Erläuterungen'));
- function sectionCard(row){const box=card(row.title,row.body,row.role);if(row.originalCourtText){box.dataset.noReferenceHelp='';box.prepend(element('p','Gerichtstext vom '+row.courtDate+' · Gesetzesbezeichnungen in dieser Lesefassung ergänzt. Maßgeblich ist die damalige Gesetzesfassung.','subtle'));}return box;}
+ const originalFacts=(content.sections??[]).find(row=>row.originalCourtText&&row.title==='Tatbestand');
+ const sourceTitles=new Map((content.sources??[]).map(source=>[source.url,source.title]));
+ const courtLinks=courtSourceLinks({links:[...sourceTitles.keys()]}).filter(link=>link.decision);
+ function sectionCard(row){
+  const box=card(row.title,row.body,row.role);
+  if(row.originalCourtText){
+   box.dataset.noReferenceHelp='';
+   box.prepend(element('p','Gerichtstext vom '+row.courtDate+' · Gesetzesbezeichnungen in dieser Lesefassung ergänzt. Maßgeblich ist die damalige Gesetzesfassung.','subtle'));
+  }
+  if(content.type==='case'&&row.role==='facts'&&row.title==='Sachverhalt'&&(originalFacts||courtLinks.length)){
+   const details=element('details',null,'casework-original-facts');details.dataset.noReferenceHelp='';
+   details.append(element('summary',originalFacts?'Gerichtlichen Sachverhalt lesen':'Sachverhalt in der Originalentscheidung nachlesen'));
+   if(originalFacts)details.append(sectionCard(originalFacts));
+   for(const source of courtLinks){
+    const url=safeURL(source.url);if(!url)continue;
+    const link=element('a',sourceTitle(sourceTitles.get(source.url),source.url),'button secondary');link.href=url;link.target='_blank';link.rel='noopener noreferrer';details.append(link);
+   }
+   box.append(details);
+  }
+  return box;
+ }
  const groups=readingGroups(content);
  if(groups){
   for(const group of groups){
@@ -72,7 +93,7 @@ export function renderAtlasReading(main,content,library=[],options={}){
  if(content.relatedIds?.length){const related=element('details',null,'card');related.append(element('summary','Passende Fälle & Schemata'));for(const id of content.relatedIds){const target=library.find(row=>row.id==='atlas:'+id);const link=element('a',(target?.title??(id.startsWith('case-')?'Fall '+id.slice(5).toUpperCase():'Vertiefung'))+' öffnen','button secondary');link.href=learningTrailLink('#material/'+encodeURIComponent('atlas:'+id),options.learningTrail,learningTrailSource('atlas:'+content.id,options.focusedStage));related.append(link);}main.append(related);}
  if(content.sources?.length){
   const sources=element('details',null,'card');sources.append(element('summary','Originalquellen & Rechtsgrundlagen'));
-  for(const source of content.sources){const url=safeURL(source.url);if(!url)continue;const link=element('a',source.title+' · '+new URL(url).hostname+'','button secondary');link.href=url;link.target='_blank';link.rel='noopener noreferrer';sources.append(link);}main.append(sources);
+  for(const source of content.sources){const url=safeURL(source.url);if(!url)continue;const link=element('a',sourceTitle(source.title,source.url),'button secondary');link.href=url;link.target='_blank';link.rel='noopener noreferrer';sources.append(link);}main.append(sources);
  }
  main.dataset.readingId=materialReadingKey('atlas',content.id,focus?options.focusedStage:null,options.originId);main.dataset.readingVersion=content.contentVersion;
  [...main.querySelectorAll('details')].forEach((detail,index)=>{if(!detail.dataset.readingKey)detail.dataset.readingKey='detail:'+index;});

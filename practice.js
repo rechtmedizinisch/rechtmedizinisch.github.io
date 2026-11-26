@@ -1,4 +1,4 @@
-import {mtrEntry} from './mtr.js?v=20261125';
+import {roleIcon} from './reading-style.mjs?v=20261126-web-release';
 import {hasAccess,shuffle} from './policy.mjs?v=20261111-guided-learning';
 import {protectReferences} from './presentation-theme.mjs?v=20261111-guided-learning';
 import {courseMistakes} from './practice-mistakes.mjs?v=20261111-guided-learning';
@@ -14,23 +14,47 @@ const modes=[
  {id:'exam',icon:'📝',title:'Prüfungsmodus',description:'Ohne Lösungshinweise kreuzen. Alle Lösungen und Erklärungen erscheinen erst in der Auswertung.'}
 ];
 function modeCards(onChange){const grid=el('div',null,'practice-modes');if(onChange)grid.setAttribute('aria-label','Übungsmodus auswählen');for(const m of modes){const card=el(onChange?'button':'article',null,'practice-mode');if(onChange){card.type='button';card.setAttribute('aria-pressed',String(m.id==='learning'));card.onclick=()=>{for(const n of grid.children)n.setAttribute('aria-pressed','false');card.setAttribute('aria-pressed','true');onChange(m.id);};}card.append(el('span',m.icon,'mode-icon'),el('strong',m.title),el('span',m.description,'mode-description'));grid.append(card);}return grid;}
+function practiceLink(href,title,detail,symbol,note=''){
+ const card=el('a',null,'card practice-entry');
+ card.href=href;
+ const icon=el('span',null,'practice-entry-icon');
+ icon.append(roleIcon(symbol));
+ const copy=el('div',null,'practice-entry-copy');
+ copy.append(el('h3',title),el('p',detail));
+ if(note)copy.append(el('span',note,'practice-entry-access'));
+ const arrow=el('span','›','practice-entry-chevron');
+ arrow.setAttribute('aria-hidden','true');
+ card.append(icon,copy,arrow);
+ return card;
+}
+
+export function renderPracticeOverview(main,grants){
+ const apply=el('section',null,'practice-overview');apply.append(el('h2','Wissen anwenden'));
+ apply.append(
+  practiceLink('#casework','Fallwerkstatt',workshopCases.length+' Originalfälle · Sachverhalte und Urteile aus der Praxis','facts','Ein Fall kostenlos'),
+  practiceLink('#casefile','Interaktive Strafakte','Ermitteln, Beweise würdigen und entscheiden','reasoning','Ein Probefall kostenlos'),
+  practiceLink('#mtr','Parcours für Recht und Ethik','Grundlagen für alle Gesundheitsberufe · Besonderheiten für den MTR-Beruf','radiology',hasAccess('all',grants)?'8 Etappen · 41 Aufgaben':'8 Etappen · 41 Aufgaben · Premium')
+ );
+ const recall=el('section',null,'practice-overview');recall.append(el('h2','Wissen abfragen'),
+  practiceLink('#quiz','Quiz & Prüfungsrunden','Rundenmodus, Fragenauswahl und Fehlertraining','question',hasAccess('practice',grants)?'':'Premium'));
+ main.append(el('h1','Üben'),apply,recall);
+}
+
 export async function renderPractice(main,auth,grants,user,isCurrent,learningStore,initialPathId=''){
- if(/^special-[a-z0-9-]+$/.test(initialPathId)){const back=el('a','← Zurück zum Spezialkurs','button secondary');back.href='#material/'+encodeURIComponent('special:'+initialPathId);main.append(back);}
- const hero=el('section',null,'knowledge-banner');hero.append(el('p','LERNWERKZEUGE','section-number'),el('h1','Wissen gezielt festigen'),el('p','Üben, wiederholen oder unter Zeitdruck testen. Fragen und Antworten werden bei jeder neuen Runde neu gemischt.'));main.append(hero);
- const workshop=el('a',null,'card practice-entry');workshop.href='#casework';const workshopCopy=el('div',null,'practice-entry-copy');workshopCopy.append(el('h2','Fallwerkstatt'),el('p',`${workshopCases.length} Originalfälle · Sachverhalt, eigene Überlegungen und Entscheidung`),el('span','Ein Probefall kostenlos · weitere Fälle mit Premium','subtle'));workshop.append(workshopCopy,el('span','Fallwerkstatt öffnen','button secondary'));main.append(workshop);
- const casefile=el('section',null,'card');casefile.append(el('h2','Interaktive Strafakte'),el('p','Drei Fälle mit je drei Varianten · selbst ermitteln und entscheiden. Fall 1, Variante A kostenlos ausprobieren; weitere Varianten mit Premium.'));const casefileLink=el('a','Strafakte öffnen','button secondary');casefileLink.href='#casefile';casefile.append(casefileLink);main.append(casefile);
- main.append(mtrEntry(grants));
+ const back=el('a','Zurück zu Üben','button secondary');back.href='#practice';
+ if(/^special-[a-z0-9-]+$/.test(initialPathId)){back.textContent='Zurück zum Spezialkurs';back.href='#material/'+encodeURIComponent('special:'+initialPathId);}
+ main.append(back,el('h1','Quiz & Prüfungsrunden'));
  if(!auth||!hasAccess('practice',grants)){const a=el('a','Anmelden & Übungsbereich freischalten →','button');a.href='#account';const gate=el('section',null,'card');gate.append(el('h2','🔒 Ihre Wissensrunde freischalten'),el('p','Der Übungsbereich benötigt einen Web-Zugang für Übungen oder alle Inhalte.','notice'),a);main.append(gate,modeCards());const free=el('section',null,'card');free.append(el('span','Kostenlos starten','badge'),el('h2','Fragen direkt im Kurs beantworten'),el('p','Die Fallfragen und Wissensfragen in Kurs 1 und 2 sind ohne Anmeldung zugänglich.'));const links=el('div',null,'row');for(const n of [1,2]){const l=el('a',`Kurs ${n} öffnen`,'button secondary');l.href=`#course/tag-0${n}`;links.append(l);}free.append(links);main.append(free);return;}
  let data;try{data=await auth.getCourse('practice:course-quizzes-202610');}catch{}
  if(!isCurrent())return;
  if(!validPracticeBank(data?.questions)){main.append(el('p','Die Übungsfragen konnten nicht geladen werden. Bitte versuchen Sie es erneut.','notice'));return;}
- let paths=[];try{const response=await fetch('./library.json?v=20261113-resolution');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
+ let paths=[];try{const response=await fetch('./library.json?v=20261126-parcours-dialog-fit');if(response.ok)paths=(await response.json()).filter(e=>e.group==='special'&&e.content).map(e=>e.content);}catch{}
  if(!isCurrent())return;
  let pathId=initialPathId;
  const panel=el('section',null,'card practice-panel');main.append(panel);
  function saveResult(id,right){learningStore.recordPracticeAnswer(id,right);}
  function setup(){
-  panel.replaceChildren(el('span','✓ Übungsbereich freigeschaltet','badge'),el('h2','Ihre Wissensrunde'));
+  panel.replaceChildren(el('h2','Ihre Wissensrunde'),el('h3','Rundenmodus'));
   let selectedMode='learning';const modesView=modeCards(value=>selectedMode=value);
   const timeLabel=el('label','Zeitlimit in Sekunden · 0 bedeutet ohne Timer');timeLabel.htmlFor='practice-seconds';const seconds=el('input');seconds.id='practice-seconds';seconds.type='number';seconds.min=0;seconds.max=5400;seconds.step=30;seconds.value='0';
   const timePreview=el('p','Ohne Zeitlimit','badge');const showTime=()=>{const n=Number(seconds.value);timePreview.textContent=n>0?`⏱ ${Math.floor(n/60)}:${String(n%60).padStart(2,'0')} Minuten für die gesamte Runde`:'Ohne Zeitlimit';};seconds.addEventListener('input',showTime);
@@ -46,7 +70,7 @@ export async function renderPractice(main,auth,grants,user,isCurrent,learningSto
   const start=items=>{if(!items.length)return;const requested=Number(count.value);if(!Number.isInteger(requested)||requested<1||requested>items.length){count.reportValidity();return;}items=shuffle(items).slice(0,requested);const n=Number(seconds.value);if(!Number.isInteger(n)||n<0||n>5400||n%30){seconds.reportValidity();return;}run(items,selectedMode,n);};
   const timerBox=el('div',null,'practice-timer-setup');timerBox.append(el('h3','⏱ Optionales Zeitlimit'),timeLabel,seconds,timePreview,btn('90 Sekunden je Frage übernehmen',()=>{seconds.value=String(Math.min(Number(count.value)||1,selected().length)*90);showTime();},'secondary'));
   const startButton=btn('Runde starten →',()=>start(selected()));startButton.disabled=!questions.length;
-  panel.append(modesView,el('label','Lernangebot'),offer,el('label','Themenauswahl'),topic,el('label','Anzahl Fragen'),count,timerBox,el('p',`${questions.length} Fragen. Für die Auswertung zählt der erste Versuch je Frage.`,'subtle'),startButton);
+  panel.append(modesView,el('h3','Fragenauswahl'),el('label','Lernangebot'),offer,el('label','Themenauswahl'),topic,el('label','Anzahl Fragen'),count,timerBox,el('p',`${questions.length} Fragen. Für die Auswertung zählt der erste Versuch je Frage.`,'subtle'),startButton);
   const courseWrong=courseMistakes(questions,learningStore?.snapshot),courseBox=el('section',null,'practice-mistakes');
   courseBox.append(el('h3','📚 Fehlertraining aus Kursen'),el('p',courseWrong.length?`${courseWrong.length} ${courseWrong.length===1?'offene Kursfrage':'offene Kursfragen'}`:'Aktuell keine offenen Fehler aus Ihren Kursfragen.'));
   if(courseWrong.length){courseBox.append(btn('Kursfehler üben →',()=>run(courseWrong,'learning',0),'secondary'));const links=el('div',null,'row');for(const q of courseWrong){const a=el('a',`Kurs ${String(q.no).padStart(2,'0')} · Antwort im Kurs korrigieren →`,'button secondary');a.href='#course/'+encodeURIComponent(q.id);links.append(a);}courseBox.append(links);}
