@@ -147,7 +147,7 @@ export async function renderMTR(main, auth, grants, user, isCurrent) {
   try {
     const [payload, template, registered] = await Promise.all([
       auth.getCourse(contentId),
-      fetch('./mtr-engine.html?v=20261126-parcours-account').then(response => {
+      fetch('./mtr-engine.html?v=20261126-parcours-touch').then(response => {
         if (!response.ok) throw Error();
         return response.text();
       }),
@@ -163,6 +163,7 @@ export async function renderMTR(main, auth, grants, user, isCurrent) {
     } catch { message.textContent = 'Der bisherige Parcoursstand ist in diesem Browser nicht verfügbar.'; }
     const player = node('iframe');
     player.title = 'Interaktiver Parcours für Recht und Ethik';
+    player.setAttribute('data-parcours-player', '');
     player.sandbox = 'allow-scripts allow-popups allow-popups-to-escape-sandbox';
     player.style.cssText = 'display:block;width:100%;height:80dvh;min-height:26rem;border:1px solid #9aada6;border-radius:1rem;margin-block:1rem';
     let certificatePending = false;

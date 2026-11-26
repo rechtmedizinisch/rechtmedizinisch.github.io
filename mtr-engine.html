@@ -20,7 +20,10 @@
 .match-count{font-weight:700;margin:.28rem 0 .6rem}.match-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem}
 .match-grid section h2{font-size:.93rem;color:#3a5d50;margin:0 0 .42rem}
 .match-grid .answer{width:100%;min-height:48px;overflow-wrap:anywhere}
-.match-grid .token[draggable]{cursor:grab}.match-grid .token.dragging{opacity:.58;cursor:grabbing}
+.match-grid .token[draggable]{cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.match-grid .token.dragging{opacity:.58;cursor:grabbing}
+:root{overscroll-behavior:none}
+@media(pointer:coarse) and (max-width:560px){.match-grid{padding-inline:1rem}}
+.match-touch-preview{position:fixed;z-index:6;top:0;left:0;pointer-events:none;width:max-content;max-width:min(16rem,70vw);padding:.45rem .65rem;border:2px solid var(--green);border-radius:.58rem;background:var(--card,#fff);color:var(--ink);box-shadow:0 4px 16px #0003;overflow-wrap:anywhere;transform:translate(-50%,-115%)}
 .match-grid .token[data-drop]{border:1px dashed #84ab96;background:#f5faf3}
 .match-grid .token[data-drop].drop-hover,.match-grid .token.picked{background:#dfeee4;border:2px solid #36745e}
 .match-grid .token.mismatch,.match-grid .token.mismatch[data-drop]{background:var(--bad-bg);border-color:#b9645d;color:var(--bad)}
@@ -267,6 +270,7 @@ a,button,summary{overflow-wrap:anywhere}
   let sourceOpen=false;
   let selection=null;
   let dragSource=null;
+  let touchDrag=null;
   const names={read:'Lesespur',listen:'Hören oder lesen',case:'Fallentscheidung',branch:'Fall in zwei Schritten',match:'Zuordnen',sort:'Reihenfolge',lesson:'Lernstopp',audio:'Hörauftrag'};
   const hearing=c=>c.k==='listen'||c.k==='read';
   const fresh=c=>({view:hearing(c)?'intro':'question',material:'read',part:0,passedParts:[],picked:{},pairs:[],order:[],checked:false,detail:null,marks:[],markPassed:false,markChecked:false,media:null,opened:[],sourceTask:false});
@@ -370,6 +374,7 @@ a,button,summary{overflow-wrap:anywhere}
     state.history.single++;
     selection=null;
     dragSource=null;
+    clearTouchDrag();
     sourceOpen=false;
     update();
   }
@@ -596,7 +601,7 @@ a,button,summary{overflow-wrap:anywhere}
     const captions = {
       drag:'Zieht eine Beschreibung auf den passenden Begriff. Ihr könnt auch erst die Beschreibung und dann den Begriff anklicken.',
       insert:'Zieht den passenden Begriff in das Feld der Beschreibung. Antippen oder Anklicken funktioniert ebenfalls.',
-      connect:'Klickt einen Begriff und die passende Beschreibung an. Ihr könnt auf beiden Seiten beginnen.',
+      connect:'Zieht einen Begriff auf die passende Beschreibung oder tippt beide an. Ihr könnt auf beiden Seiten beginnen.',
       table:'Wählt links zu jeder Beschreibung den passenden Begriff aus.'
     };
     const order = sequence(c.pairs.length,335+c.id*63);
@@ -624,7 +629,7 @@ a,button,summary{overflow-wrap:anywhere}
           '<select data-match-row="'+i+'" aria-label="Begriff für: '+esc(c.pairs[i][1])+'"><option value="">Begriff wählen</option>'+remaining.map(j=>'<option value="'+j+'">'+esc(c.pairs[j][0])+'</option>').join('')+'</select>')+'</td><td>'+esc(c.pairs[i][1])+'</td></tr>';
       }).join('')+'</tbody></table>';
     }else if(style==='connect'){
-      exercise=remaining.length?'<div class="match-grid connector"><section><h2>Begriffe</h2><div class="options">'+remaining.map(i=>pairButton(0,i,false,false)).join('')+'</div></section><section><h2>Beschreibungen</h2><div class="options">'+remainShuffled.map(i=>pairButton(1,i,false,false)).join('')+'</div></section></div>'+placed:placed;
+      exercise=remaining.length?'<div class="match-grid connector"><section><h2>Begriffe</h2><div class="options">'+remaining.map(i=>pairButton(0,i,true,true)).join('')+'</div></section><section><h2>Beschreibungen</h2><div class="options">'+remainShuffled.map(i=>pairButton(1,i,true,true)).join('')+'</div></section></div>'+placed:placed;
     }else{
       const targetSide=style==='drag'?0:1;
       const tokenSide=1-targetSide;
@@ -632,7 +637,7 @@ a,button,summary{overflow-wrap:anywhere}
       const tokens=style==='drag'?remainShuffled:remaining;
       exercise=remaining.length?'<div class="match-grid '+style+'"><section><h2>'+ (tokenSide===1?'Beschreibungen':'Begriffe')+'</h2><div class="options">'+tokens.map(i=>pairButton(tokenSide,i,true,false)).join('')+'</div></section><section><h2>'+(style==='drag'?'Passende Begriffe':'Felder für die Begriffe')+'</h2><div class="options">'+targets.map(i=>pairButton(targetSide,i,false,true)).join('')+'</div></section></div>'+placed:placed;
     }
-    return '<p class="match-instruction">'+captions[style]+'</p><p class="match-count">'+connected.size+' / '+c.pairs.length+' verbunden</p>'+exercise+feedback;
+    return '<p class="match-instruction">'+captions[style]+'</p><p class="match-count" id="match-count" tabindex="-1">'+connected.size+' / '+c.pairs.length+' verbunden</p>'+exercise+feedback;
   }
   function sourceLinks(c,w,showingRequiredSources) {
     const primary=c.audio&&w.part===0?[c.audio,c.readAlternative]:[];
@@ -720,6 +725,7 @@ a,button,summary{overflow-wrap:anywhere}
     state.at=index;
     selection=null;
     dragSource=null;
+    clearTouchDrag();
     closeMenu(false);
     sourceOpen=false;
     update();
@@ -775,7 +781,7 @@ a,button,summary{overflow-wrap:anywhere}
       w.pairs.push(term);
       if(w.pairs.length===c.pairs.length)finishCard();
     }
-    update(correct ? '#feedback' : focus);
+    update(correct ? (done()||c.mode==='table'?'#feedback':'#match-count') : focus);
   }
   function tapPair(c,side,index) {
     const w=rec(c);
@@ -918,10 +924,104 @@ a,button,summary{overflow-wrap:anywhere}
     const row=Number(field.dataset.matchRow);
     assign(c,Number(field.value),row,'[data-match-row="'+row+'"]');
   });
+  function dropMatch(source,target) {
+    const card=current();
+    if(!target||!source||card?.id!==source.card||source.side===Number(target.dataset.side))return;
+    const dst=Number(target.dataset.i);
+    assign(card,source.side===0?source.index:dst,source.side===1?source.index:dst,'#feedback',dst);
+  }
+  function clearTouchDrag() {
+    if(!touchDrag)return;
+    cancelAnimationFrame(touchDrag.frame);
+    touchDrag.element.classList.remove('dragging');
+    touchDrag.target?.classList.remove('drop-hover');
+    touchDrag.preview?.remove();
+    touchDrag=null;
+  }
+  function followTouchDrag() {
+    const drag=touchDrag;
+    if(!drag?.preview)return;
+    const top=document.getElementById('top').getBoundingClientRect().bottom;
+    const bottom=window.innerHeight;
+    const edge=44;
+    if(drag.y<top+edge)window.scrollBy(0,-Math.min(14,(top+edge-drag.y)/4));
+    if(drag.y>bottom-edge)window.scrollBy(0,Math.min(14,(drag.y-bottom+edge)/4));
+    drag.preview.style.left=Math.min(Math.max(drag.x,drag.preview.offsetWidth/2+6),window.innerWidth-drag.preview.offsetWidth/2-6)+'px';
+    drag.preview.style.top=Math.max(drag.y,drag.preview.offsetHeight+8)+'px';
+    const target=document.elementFromPoint(drag.x,drag.y)?.closest('[data-drop]');
+    if(target!==drag.target){
+      drag.target?.classList.remove('drop-hover');
+      drag.target=target;
+      target?.classList.add('drop-hover');
+    }
+    drag.frame=requestAnimationFrame(followTouchDrag);
+  }
+  function beginDrag(element,id,x,y) {
+    const card=current();
+    if(touchDrag||!element||card?.k!=='match'||done())return false;
+    touchDrag={id,element,card:card.id,side:Number(element.dataset.side),index:Number(element.dataset.i),
+      startX:x,startY:y,x,y};
+    return true;
+  }
+  function moveDrag(x,y) {
+    const drag=touchDrag;
+    drag.x=x;drag.y=y;
+    if(!drag.preview){
+      if(Math.hypot(drag.x-drag.startX,drag.y-drag.startY)<8)return;
+      drag.preview=document.createElement('span');
+      drag.preview.className='match-touch-preview';
+      drag.preview.textContent=drag.element.textContent;
+      drag.preview.setAttribute('aria-hidden','true');
+      document.body.append(drag.preview);
+      drag.element.classList.add('dragging');
+      followTouchDrag();
+    }
+  }
+  function endDrag(x,y) {
+    const drag=touchDrag;
+    const moved=Boolean(drag.preview);
+    const target=document.elementFromPoint(x,y);
+    clearTouchDrag();
+    if(moved)dropMatch(drag,target?.closest('[data-drop]'));
+    else if(drag.element.contains(target))drag.element.click();
+  }
+  const draggable = target => target.closest('.match-grid [draggable="true"][data-side]');
+  const activeFinger = fingers => Array.from(fingers).find(finger=>finger.identifier===touchDrag?.id);
+  document.addEventListener('touchstart',event=>{
+    const finger=event.changedTouches[0];
+    if(event.touches.length!==1||!beginDrag(draggable(event.target),finger.identifier,finger.clientX,finger.clientY))return;
+    // Claim the gesture before WebKit starts scrolling or begins a native drag.
+    event.preventDefault();
+  },{passive:false});
+  document.addEventListener('touchmove',event=>{
+    const finger=activeFinger(event.changedTouches);
+    if(!finger)return;
+    event.preventDefault();
+    moveDrag(finger.clientX,finger.clientY);
+  },{passive:false});
+  document.addEventListener('touchend',event=>{
+    const finger=activeFinger(event.changedTouches);
+    if(!finger)return;
+    event.preventDefault();
+    endDrag(finger.clientX,finger.clientY);
+  },{passive:false});
+  document.addEventListener('touchcancel',event=>{if(activeFinger(event.changedTouches))clearTouchDrag();});
+  document.addEventListener('pointerdown',event=>{
+    if(event.pointerType!=='pen'||!event.isPrimary||!beginDrag(draggable(event.target),event.pointerId,event.clientX,event.clientY))return;
+    if(event.isTrusted)touchDrag.element.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  },{passive:false});
+  document.addEventListener('pointermove',event=>{if(event.pointerType==='pen'&&event.pointerId===touchDrag?.id)moveDrag(event.clientX,event.clientY);});
+  document.addEventListener('pointerup',event=>{if(event.pointerType==='pen'&&event.pointerId===touchDrag?.id)endDrag(event.clientX,event.clientY);});
+  document.addEventListener('pointercancel',event=>{if(event.pointerType==='pen'&&event.pointerId===touchDrag?.id)clearTouchDrag();});
+  document.addEventListener('click',event=>{
+    if(event.pointerType==='pen'&&draggable(event.target))event.stopImmediatePropagation();
+  },true);
   document.addEventListener('dragstart',event=>{
     const source=event.target.closest('[draggable="true"][data-side]');
     const c=current();
     if(!source||c?.k!=='match'||done())return;
+    if(touchDrag){event.preventDefault();return;}
     dragSource={card:c.id,side:Number(source.dataset.side),index:Number(source.dataset.i)};
     event.dataTransfer.effectAllowed='move';
     event.dataTransfer.setData('text/plain',JSON.stringify(dragSource));
@@ -943,10 +1043,9 @@ a,button,summary{overflow-wrap:anywhere}
     const c=current();
     if(!target||!dragSource||c?.id!==dragSource.card)return;
     event.preventDefault();
-    const {side,index}=dragSource;
-    const dst=Number(target.dataset.i);
+    const source=dragSource;
     dragSource=null;
-    if(side!==Number(target.dataset.side))assign(c,side===0?index:dst,side===1?index:dst,'#feedback',dst);
+    dropMatch(source,target);
   });
   document.addEventListener('dragend',()=>{
     dragSource=null;

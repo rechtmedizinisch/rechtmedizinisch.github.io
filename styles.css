@@ -490,3 +490,5 @@ body>footer { padding-inline:clamp(14px,5vw,20px); }
 .footer-app-stores img { display:block; width:auto; max-width:100%; }
 .store-badge-apple { height:40px; }
 .store-badge-google { height:52px; }
+
+html:has(iframe[data-parcours-player]) { overscroll-behavior-x: none; }
