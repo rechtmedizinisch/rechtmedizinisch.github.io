@@ -5,6 +5,7 @@ import {courseMistakes} from './practice-mistakes.mjs?v=20261111-guided-learning
 import {validPracticeBank,practiceExplanations,practiceSources} from './practice-bank.mjs?v=20261111-guided-learning';
 import {learningPathQuestions} from './learning-paths.mjs?v=20261111-guided-learning';
 import {workshopCases} from './practice-catalog.mjs?v=20261111-guided-learning';
+import {localParcoursProgress} from './mtr.js?v=20261126-parcours-navigation';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const btn=(text,fn,cls='')=>{const b=el('button',text,cls);b.type='button';b.onclick=fn;return b;};
 function sourceLinks(target,question){for(const url of practiceSources(question)){const link=el('a','Originalquelle · '+new URL(url).hostname+'','practice-source');link.href=url;link.target='_blank';link.rel='noopener noreferrer';target.append(link);}}
@@ -28,12 +29,17 @@ function practiceLink(href,title,detail,symbol,note=''){
  return card;
 }
 
-export function renderPracticeOverview(main,grants){
+export function renderPracticeOverview(main,grants,user){
+ const canOpenParcours = !!user?.id && hasAccess('all',grants);
+ const progress = localParcoursProgress(canOpenParcours ? user.id : null);
+ const parcoursStatus = canOpenParcours
+  ? `${progress.completed} von ${progress.total} Aufgaben abgeschlossen`
+  : `${progress.total} Aufgaben · Premium`;
  const apply=el('section',null,'practice-overview');apply.append(el('h2','Wissen anwenden'));
  apply.append(
   practiceLink('#casework','Fallwerkstatt',workshopCases.length+' Originalfälle · Sachverhalte und Urteile aus der Praxis','facts','Ein Fall kostenlos'),
   practiceLink('#casefile','Interaktive Strafakte','Ermitteln, Beweise würdigen und entscheiden','reasoning','Ein Probefall kostenlos'),
-  practiceLink('#mtr','Parcours für Recht und Ethik','Grundlagen für alle Gesundheitsberufe · Besonderheiten für den MTR-Beruf','radiology',hasAccess('all',grants)?'8 Etappen · 41 Aufgaben':'8 Etappen · 41 Aufgaben · Premium')
+  practiceLink('#mtr','Parcours für Recht und Ethik','Grundlagen für alle Gesundheitsberufe · Besonderheiten für den MTR-Beruf · 8 Etappen','radiology',parcoursStatus)
  );
  const recall=el('section',null,'practice-overview');recall.append(el('h2','Wissen abfragen'),
   practiceLink('#quiz','Quiz & Prüfungsrunden','Rundenmodus, Fragenauswahl und Fehlertraining','question',hasAccess('practice',grants)?'':'Premium'));

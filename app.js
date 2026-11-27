@@ -9,13 +9,13 @@ import {billingPanel} from './billing.js?v=20261111-guided-learning';
 import {replacePresentation} from './presentation-transition.mjs?v=20261111-guided-learning';
 import {renderLearningOffer} from './learning-offer.mjs?v=20261111-guided-learning';
 import {renderFreeContent} from './free-content.mjs?v=20261126-parcours-dialog-fit';
-import {homeLearning} from './home-learning.mjs?v=20261126-parcours-dialog-fit';
+import {homeLearning} from './home-learning.mjs?v=20261126-parcours-quellen';
 import {progressActions} from './progress-actions.mjs?v=20261111-guided-learning';
 import {progressSync} from './progress-sync.mjs?v=20261111-guided-learning';
 import {syncPanel} from './progress-sync-ui.mjs?v=20261111-guided-learning';
 import {renderSearch} from './search.js?v=20261126-parcours-dialog-fit';
-import {renderPodcast} from './podcast.js?v=20261126-parcours-dialog-fit';
-import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261126-parcours-touch';
+import {renderPodcast} from './podcast.js?v=20261126-parcours-quellen';
+import {renderProgress,progressBadge,catalogOverall} from './progress-overview.mjs?v=20261126-parcours-navigation';
 import {renderCourseLearning} from './course-learning.js?v=20261111-guided-learning';
 import {progressStore} from './progress-store.mjs?v=20261111-guided-learning';
 import {renderReferences} from './references.js?v=20261111-guided-learning';
@@ -23,12 +23,12 @@ import {formatSlideText} from './slide-tools.js?v=20261111-guided-learning';
 import {loginPanel} from './email-login.js?v=20261111-guided-learning';
 import {passwordPanel} from './password-panel.mjs?v=20261111-guided-learning';
 import {renderLegal} from './legal.js?v=20261125-brevo';
-import {renderPractice,renderPracticeOverview} from './practice.js?v=20261126-web-release';
-import {renderMTR,closeMTR} from './mtr.js?v=20261126-parcours-touch';
+import {renderPractice,renderPracticeOverview} from './practice.js?v=20261126-parcours-navigation';
+import {renderMTR,closeMTR} from './mtr.js?v=20261126-parcours-navigation';
 import {renderCasework} from './casework.js?v=20261125-casefile-paper';
 import {renderCasefile,closeActiveCasefile} from './casefile.js?v=20261126-web-release';
 import {accountTools} from './account-tools.js?v=20261111-guided-learning';
-import {renderLibrary,courseMaterials} from './library.js?v=20261126-web-release';
+import {renderLibrary,courseMaterials,loadLibraryEntries} from './library.js?v=20261126-parcours-quellen';
 import {readingViewState} from './reading-view-state.mjs?v=20261111-guided-learning';
 import {config} from './config.js?v=20261111-guided-learning';
 import {installContextHelp} from './context-help.mjs?v=20261126-parcours-dialog-fit';
@@ -187,7 +187,13 @@ function homePodcast(){
   if(!latest||!section.isConnected)return;
   section.append(el('h3',latest.label+' · '+latest.title));
   renderPodcastListening(section,{episodeID:latest.id,legacyURL:latest.url});
-  if(latest.id==='suizidassistenz-1')section.append(link('Lernmaterial & S2k-Leitlinie','#material/atlas%3Atopic-suizidassistenz-leitlinie-096-001','button secondary'));
+  if(latest.id==='suizidassistenz-1'){
+   const material=link('Lernmaterial & S2k-Leitlinie','#material/atlas%3Atopic-suizidassistenz-leitlinie-096-001','button secondary');
+   const prepare=()=>loadLibraryEntries().catch(()=>{});
+   material.addEventListener('pointerdown',prepare,{once:true});
+   material.addEventListener('focus',prepare,{once:true});
+   section.append(material);
+  }
  }).catch(()=>{});
 }
 function courses(){const banner=el('section',undefined,'knowledge-banner');banner.append(el('p','VERSTEHEN · ANWENDEN · VERTIEFEN','section-number'),el('h1','Ihr Weg durch das Medizinrecht'),el('p','15 fallbasierte Kurse – von den ersten Schritten nach einem Konflikt bis zum Gerichtsbesuch.'),el('span','Kurse 1 & 2 kostenlos · ohne Anmeldung','badge'));main.append(banner);const search=el('input');search.type='search';search.placeholder='Kursnummer, Thema oder Lernziel suchen';search.setAttribute('aria-label','Kurse durchsuchen');const results=el('div'),count=el('p','','subtle');count.setAttribute('role','status');const groups=[['🧭','Kostenlos beginnen','Orientierung gewinnen und im Ernstfall die ersten Schritte kennen.',1,2],['⚖','Haftung & Verfahren','Ansprüche, Beweise und gerichtliche sowie außergerichtliche Wege verstehen.',3,8],['🩺','Verantwortung im Berufsalltag','Berufsrecht, Patientenautonomie und sichere Entscheidungen in der Versorgung.',9,13],['🏛','Wissen in die Praxis übertragen','Das Gelernte am Gesamtfall und beim Gerichtsbesuch zusammenführen.',14,15]];const render=()=>{const q=search.value.trim().toLocaleLowerCase('de'),matches=catalog.catalog.filter(c=>`${String(c.no).padStart(2,'0')} ${c.title} ${c.subtitle} ${c.goals.join(' ')}`.toLocaleLowerCase('de').includes(q));results.replaceChildren();count.textContent=q?`${matches.length} ${matches.length===1?"passender Kurs":"passende Kurse"}`:'Alle 15 Kurse · Kurse 1 & 2 kostenlos · weitere Kurse mit Premium oder Kursedition';for(const [icon,title,description,first,last] of groups){const items=matches.filter(c=>c.no>=first&&c.no<=last);if(!items.length)continue;const group=el('section',undefined,'course-group'),heading=el('h2',`${icon} ${title}`),grid=el('div',undefined,'grid');group.append(heading,el('p',description,'subtle'));grid.append(...items.map(courseCard));group.append(grid);results.append(group);}if(!matches.length)results.append(el('p','Kein passender Kurs. Versuchen Sie einen anderen Begriff.','notice'));};search.addEventListener('input',render);main.append(search,count,results);render();}
@@ -265,7 +271,7 @@ async function route(){
   placeReadingBar();
   return;
  }
- document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=false;});main.querySelectorAll('[data-blob-url]').forEach(n=>URL.revokeObjectURL(n.dataset.blobUrl));main.removeAttribute('aria-busy');main.classList.remove('narrow','presentation-player','casework','casefile');main.replaceChildren();placeReadingBar();if(!authSettled&&['library','material','slides','practice','quiz','casework','casefile','mtr','progress','courses','course','search','shop'].includes(page)){main.append(status('Ihr Zugang und Lernstand werden geladen …'));return;}if(page==='library'||page==='material'||page==='slides')await renderLibrary(main,page==='material'&&id?decodeURIComponent(id):null,auth,grants,()=>version===routeVersion,page==='slides'?'slides':page==='library'?id:null,learningStore());else if(page==='practice'&&!id)renderPracticeOverview(main,grants);else if(page==='quiz'||page==='practice')await renderPractice(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='mtr')await renderMTR(main,auth,grants,user,()=>version===routeVersion);else if(page==='casework')await renderCasework(main,auth,grants,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='casefile')await renderCasefile(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='search')await renderSearch(main,catalog,auth,()=>version===routeVersion);else if(page==='podcast')await renderPodcast(main,()=>version===routeVersion,id?decodeURIComponent(id):null);else if(page==='progress'){renderProgress(main,catalog,learningStore(),!!user,user,auth,grants);main.append(progressActions(learningStore(),user?progressStore(null):null,!!user,route));if(syncService)main.querySelector('#certificate')?.after(syncPanel(syncInfo,syncService,route));if(id==='certificate')main.querySelector('#certificate')?.scrollIntoView({block:'start'});}else if(page==='offer')renderLearningOffer(main,catalog);else if(page==='free')await renderFreeContent(main,catalog,()=>version===routeVersion);else if(page==='courses')courses();else if(page==='course')await course(id,version);else if(['cases','norms'].includes(page))references(page,id);else if(page==='account')await account();else if(page==='shop')await shop();else if(page==='cancel')renderCancellation(main);else if(['privacy','terms'].includes(page))renderLegal(main,page);else home();
+ document.querySelectorAll('body > header, body > footer').forEach(el=>{el.inert=false;});main.querySelectorAll('[data-blob-url]').forEach(n=>URL.revokeObjectURL(n.dataset.blobUrl));main.removeAttribute('aria-busy');main.classList.remove('narrow','presentation-player','casework','casefile');main.replaceChildren();placeReadingBar();if(!authSettled&&['library','material','slides','practice','quiz','casework','casefile','mtr','progress','courses','course','search','shop'].includes(page)){main.append(status('Ihr Zugang und Lernstand werden geladen …'));return;}if(page==='library'||page==='material'||page==='slides')await renderLibrary(main,page==='material'&&id?decodeURIComponent(id):null,auth,grants,()=>version===routeVersion,page==='slides'?'slides':page==='library'?id:null,learningStore());else if(page==='practice'&&!id)renderPracticeOverview(main,grants,user);else if(page==='quiz'||page==='practice')await renderPractice(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='mtr')await renderMTR(main,auth,grants,user,()=>version===routeVersion);else if(page==='casework')await renderCasework(main,auth,grants,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='casefile')await renderCasefile(main,auth,grants,user,()=>version===routeVersion,learningStore(),id?decodeURIComponent(id):'');else if(page==='search')await renderSearch(main,catalog,auth,()=>version===routeVersion);else if(page==='podcast')await renderPodcast(main,()=>version===routeVersion,id?decodeURIComponent(id):null);else if(page==='progress'){renderProgress(main,catalog,learningStore(),!!user,user,auth,grants);main.append(progressActions(learningStore(),user?progressStore(null):null,!!user,route));if(syncService)main.querySelector('#certificate')?.after(syncPanel(syncInfo,syncService,route));if(id==='certificate')main.querySelector('#certificate')?.scrollIntoView({block:'start'});}else if(page==='offer')renderLearningOffer(main,catalog);else if(page==='free')await renderFreeContent(main,catalog,()=>version===routeVersion);else if(page==='courses')courses();else if(page==='course')await course(id,version);else if(['cases','norms'].includes(page))references(page,id);else if(page==='account')await account();else if(page==='shop')await shop();else if(page==='cancel')renderCancellation(main);else if(['privacy','terms'].includes(page))renderLegal(main,page);else home();
  if(version===routeVersion&&main.dataset.readingId){
   readingViews.restore(main,main.dataset.readingVersion+':'+main.dataset.readingId,y=>requestAnimationFrame(()=>{if(version===routeVersion)window.scrollTo(0,y);}));
  }

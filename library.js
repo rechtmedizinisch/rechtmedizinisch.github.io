@@ -22,12 +22,20 @@ groups.guide='🧭 Gesundheitssystem & Berufsweg';groupDescriptions.guide='Sechs
 groupDescriptions.atlas='Prüfungsschemata, vollständige Verfahrensübersichten, Fälle und optionale Kurserläuterungen.';
 const categorySymbols={'Berufsrecht':'🪪','Datenschutz & Dokumentation':'🔒','Haftung & Verfahren':'⚖','Kompetenz & Verantwortung':'🛡','Rechtliche Grundlagen':'§','Regelwerke & Standard':'☷','Strafrechtliche Grundlagen':'🏛','PJ & Verantwortung':'🪪','Erste Stelle & Rechte':'📄','Weiterbildung & Kammer':'🎓','Rezepte & Alltag':'💊','Pflege':'🩺','Rettungsdienst':'🚑','Hebammen':'🤱','Physiotherapie':'🚶','Ergotherapie':'✋','Logopädie':'🗣','Psychologie':'🧠','Patientenrechte':'❤','Gesundheitssystem':'🏛','Berufsweg':'🎓','Eigene Praxis':'🏥','Gesundheitsökonomie':'📊','Krankenhaus & Arbeit':'🏥','Gesundheitssystem & Leistungsrecht':'🏛','Rechtliche Grundlagen & Haftung':'⚖','Versicherung & Finanzierung':'📊'};
 const careerEntries=[['Vor meinem PJ',['pj-rolle','pj-plan','kompetenz-pj','aufklaerung-pj']],['Vor meiner ersten Stelle',['approbation-start','vertrag-start','arbeitszeit-start','haftpflicht-start','versorgung-start']],['In meiner Weiterbildung',['wbo-start','elogbuch-start','facharzt-start','ueberlastung-start']]];
-let entries;
+let entries,libraryRequest;
+export function loadLibraryEntries(){
+ if(entries)return Promise.resolve(entries);
+ libraryRequest??=fetch('./library.json?v=20261126-parcours-dialog-fit').then(response=>{
+  if(!response.ok)throw Error('Bibliothek nicht erreichbar');
+  return response.json();
+ }).then(rows=>entries=rows).catch(error=>{libraryRequest=null;throw error;});
+ return libraryRequest;
+}
 const node=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=protectReferences(String(text));if(cls)n.className=cls;return n;};
 const anchor=(text,url)=>{const n=node('a',text,'button secondary');n.href=url;return n;};
 const scope=e=>e.group==='atlas'?e.scope:e.group==='slides'?'slides':['system','podcast'].includes(e.group)?'diagrams':'knowledge';
 export async function courseMaterials(main,no,isCurrent){
- if(!entries){const r=await fetch('./library.json?v=20261126-parcours-dialog-fit');if(!r.ok)return;entries=await r.json();}
+ try{await loadLibraryEntries();}catch{return;}
  if(!isCurrent())return;
  const matching=entries.filter(e=>e.courses?.includes(no));if(!matching.length)return;
  const box=node('section',null,'card');box.append(node('h2','📚 Materialien zu Kurs '+String(no).padStart(2,'0')));
@@ -42,7 +50,7 @@ export async function renderLibrary(main,id,auth,grants,isCurrent,onlyGroup=null
  const categoryOnly=onlyGroup==='atlas-terms'?'Begriffe':null;
  if(categoryOnly)onlyGroup='atlas';
  if(!id&&onlyGroup==='glossary')main.append(anchor('Gesundheitssystem & Berufsweg öffnen','#material/guide%3Ahealth-system'),anchor('Rechts- & Prozessbegriffe entdecken →','#library/atlas-terms'));
- if(!entries){const r=await fetch('./library.json?v=20261126-parcours-dialog-fit');if(!r.ok)throw Error('Bibliothek nicht erreichbar');entries=await r.json();}
+ await loadLibraryEntries();
  if(!isCurrent())return;
  if(!trail.every(key=>key==='presentation-index'||entries.some(e=>e.id===learningTrailId(key))))trail=[];
  const open=e=>hasMaterialAccess(e,grants);

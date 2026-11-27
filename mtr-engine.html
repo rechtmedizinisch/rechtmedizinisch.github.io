@@ -138,6 +138,9 @@ a,button,summary{overflow-wrap:anywhere}
   margin-bottom:.6rem;
 }
 .parcours-dialog .dialog-heading h2 {font-size:1.25rem}
+#parcours-dialog-title:focus {outline:none}
+.actions button:disabled {background:var(--bg);border:1px solid var(--line);color:var(--muted);box-shadow:none;cursor:not-allowed}
+.media-alternative .reading {margin-top:.65rem}
 .parcours-dialog button {margin:0;min-height:44px}
 .parcours-dialog .route-list {margin-block:.65rem}
 
@@ -278,7 +281,12 @@ a,button,summary{overflow-wrap:anywhere}
   const sourceReady=(c,w)=>!c.requires||done()||c.requires.every(id=>w.opened?.includes(id));
   const hasQuiz=c=>c.k==='lesson'||c.k==='audio';
   const audioTextKey='audio-text';
+  const audioTranscriptKey='audio-transcript';
+  const inlineAudioReadingKey='audio-reading';
   const opened=(w,id)=>w.opened?.includes(id)===true;
+  const audioReadingReady=w=>opened(w,audioTextKey)||opened(w,audioTranscriptKey)||opened(w,inlineAudioReadingKey)||w.media==='text'||done();
+  const audioReady=(c,w)=>opened(w,c.audio)||w.media==='heard'||audioReadingReady(w);
+  const audioChoice=(c,w)=>Boolean(c.audio)&&w.part===0&&(c.k==='audio'||c.k==='lesson'&&!w.media);
   const chapterNeighbor=(c,step)=>{const cards=chapterCards[c.ch];return cards[cards.indexOf(c)+step];};
 
   function transmit(action, value) {
@@ -439,7 +447,8 @@ a,button,summary{overflow-wrap:anywhere}
     let heading,body;
     if(mode==='route'){
       heading='Etappen';
-      body=(state.at>=0?btn('home','Zur Etappenübersicht','quiet'):'')+routeRows();
+      body=(state.at>=0?btn('home','Zur Etappenübersicht','quiet'):'')+routeRows()+
+        '<div class="stats-actions">'+btn('exit','Parcours verlassen','quiet')+'</div>';
     }else if(mode==='stats'){
       heading='Mein Stand';
       body='<p>'+esc(progressText())+'</p>'+certificateSummary('h3')+
@@ -467,6 +476,11 @@ a,button,summary{overflow-wrap:anywhere}
   }
   menu.addEventListener('cancel',event=>{event.preventDefault();closeMenu();});
   document.addEventListener('rm-dismiss-parcours-menu',()=>closeMenu());
+  document.addEventListener('rm-parcours-back',()=>{
+    if(menu.open)return closeMenu();
+    if(state.at===-1)return transmit('exit','');
+    retreat();
+  });
   function top() {
     const value=percent(state.done.length,deck.length);
     header.innerHTML='<div class="top-inner"><div class="parcours-identity"><img class="mark" width="36" height="36" src="'+esc(logo)+'" alt="Recht Medizinisch"><div class="brand">Recht und Ethik<span>Für Gesundheitsberufe · mit MTR-Vertiefung</span></div></div>'+
@@ -507,30 +521,33 @@ a,button,summary{overflow-wrap:anywhere}
     const count=c.requires.filter(id=>opened(w,id)).length;
     return '<div class="source-panel"><p class="section-label">'+(c.requires.length===1?'Pflichtquelle':'Pflichtquellen')+'</p>'+
       '<p class="small-hint">'+(done()?'Hier können Sie die Quellen erneut lesen.':'Öffnen Sie jeden aufgeführten Link einzeln. Danach können Sie mit der Aufgabe fortfahren.')+'</p>'+
-      '<p class="small-hint" role="status">'+count+' von '+c.requires.length+' geöffnet</p><ul class="required-sources">'+
+      '<p class="small-hint" role="status" data-source-count>'+count+' von '+c.requires.length+' geöffnet</p><ul class="required-sources">'+
       c.requires.map(id=>'<li><a href="'+esc(refs[id][1])+'" target="_blank" rel="noopener noreferrer" data-open-source="'+id+'">'+esc(refs[id][0])+' öffnen</a>'+
         (opened(w,id)?'<span class="source-tick"> ✓ Geöffnet</span>':'')+'</li>').join('')+'</ul></div>';
   }
   function audioPanel(c,w) {
+    const reading=refs[c.readAlternative];
+    const apple=episodes[c.audio]?.apple;
     return '<div class="media-panel episode">'+
       '<div><h2>'+esc(c.mediaLabel)+'</h2>'+platformLinks(c.audio,false,true)+
-      '<p class="small-hint">'+(opened(w,c.audio)?'✓ Podcastlink geöffnet.':'Wählt einen Anbieter. Der Link öffnet sich in einem neuen Tab.')+'</p></div></div>'+
-      (!w.media?'<details class="peek"'+(opened(w,audioTextKey)?' open':'')+'><summary>Alternative bei fehlendem Audio</summary><p><a href="'+esc(refs[c.readAlternative][1])+'" target="_blank" rel="noopener noreferrer" data-open-source="'+audioTextKey+'">Quelle für die Lesespur öffnen</a>'+
-        (opened(w,audioTextKey)?'<span class="source-tick"> ✓ Geöffnet</span>':'')+'</p>'+btn('media-text','Lesespur anzeigen','quiet',unlocked(opened(w,audioTextKey)))+'</details>':'');
+      '<p class="small-hint" data-audio-status>'+(opened(w,c.audio)?'✓ Podcastlink geöffnet.':'Öffnen Sie einen Podcast-Link oder nutzen Sie die Lesealternative. Eine Möglichkeit genügt.')+'</p></div></div>'+
+      '<details class="peek media-alternative"'+(audioReadingReady(w)?' open':'')+'><summary>Lesen statt hören</summary>'+
+        (reading?'<p><a href="'+esc(reading[1])+'" target="_blank" rel="noopener noreferrer" data-open-source="'+audioTextKey+'">'+esc(reading[0])+' öffnen</a>'+
+        (opened(w,audioTextKey)?'<span class="source-tick"> ✓ Geöffnet</span>':'')+'</p>':'')+
+        '<details class="peek" data-audio-reading><summary>Lesespur lesen</summary>'+reads([[c.k==='audio'?'Lesespur zur AWMF-Leitlinie':c.display,c.text.join(' ')]])+'</details>'+
+        (apple&&!apple.hint?'<p class="small-hint"><a href="'+esc(apple.url)+'" target="_blank" rel="noopener noreferrer" data-open-source="'+audioTranscriptKey+'">In Apple Podcasts nach einem Transkript suchen</a>'+
+        (opened(w,audioTranscriptKey)?'<span class="source-tick"> ✓ Geöffnet</span>':'')+'</p>':'')+'</details>';
   }
   function lesson(c,w) {
     if(w.part>0){
-      const recap=c.k==='audio'&&w.media!=='text'?'':'<details class="peek"><summary>Auszug noch einmal lesen</summary><p>'+esc(c.text.join(' '))+'</p></details>';
+      const recap=c.audio?'<details class="peek"><summary>Podcast und Lesealternative erneut öffnen</summary>'+audioPanel(c,w)+'</details>':
+        '<details class="peek"><summary>Auszug noch einmal lesen</summary><p>'+esc(c.text.join(' '))+'</p></details>';
       return '<p class="section-label">Frage '+w.part+' von '+c.quiz.length+'</p>'+recap+chose(c,w);
     }
-    const media=c.audio?audioPanel(c,w):'';
-    if(c.audio&&!w.media)return media;
-    if(c.k==='audio'){
-      return media+(w.media==='text'?'<div class="reading"><section><h2>Lesespur zur AWMF-Leitlinie</h2><p>'+esc(c.text.join(' '))+'</p></section></div>':'');
-    }
+    if(audioChoice(c,w))return audioPanel(c,w);
     const answer=w.markPassed||done()?note('yes',c.explanation,'Markierung richtig.'):
       w.markChecked?note('no','Prüft noch einmal, welche zwei Stellen der Auftrag verlangt. Ihr könnt eine Markierung mit einem zweiten Klick lösen.','Noch nicht richtig.'):quietNote();
-    return media+(w.media==='text'?'<p class="section-label">Schriftliche Alternative</p>':'')+
+    return (w.media==='text'?'<p class="section-label">Schriftliche Alternative</p>':'')+
       '<p class="question short-question">'+esc(c.ask)+'</p><div class="reading"><section><h2>'+esc(c.display)+'</h2><p>'+lessonText(c,w)+'</p></section></div>'+
       '<p class="small-hint" id="mark-count">'+(w.markPassed?'2 von 2 markiert':w.marks.length+' von 2 markiert')+'</p>'+answer;
   }
@@ -552,14 +569,14 @@ a,button,summary{overflow-wrap:anywhere}
       certificateSummary('h2')+
       '<p>'+progressText()+'</p><h2 class="choose-chapter">Stand je Etappe</h2>'+routeRows(true)+
       '<details class="start-links"><summary>Lernstatistik</summary>'+statsPanel()+'</details>'+
-      '<div class="actions">'+btn('home','Zur Etappenübersicht','quiet')+btn('reset-all','Ganzen Parcours neu starten','quiet danger')+'</div></div>';
+      '<div class="actions">'+back()+btn('home','Zur Etappenübersicht','quiet')+btn('reset-all','Ganzen Parcours neu starten','quiet danger')+'</div></div>';
   }
   function reads(list) {
     return '<div class="reading">'+list.map(([name,body])=>'<section><h2>'+esc(name)+'</h2><p>'+esc(body)+'</p></section>').join('')+'</div>';
   }
   function materials(c,w) {
     if(c.k==='listen' && w.view==='intro') return '<div class="media-choices">'+btn('audio-mode','Kurzvisite hören <span>2:35 Min.</span>','media-tile')+btn('read-mode','Lesespur öffnen <span>Gleicher Auftrag</span>','media-tile')+'</div>';
-    if(c.k==='listen' && w.view==='audio') return '<div class="media-panel episode">'+' '+'<div><h2>Kurzvisite zum Erlanger Baby-Fall</h2><p>Hört die ganze Folge und kehrt danach hierher zurück.</p>'+href(c.audio,'Kurzvisite öffnen · 2:35 Min.')+'<p class="small-hint">Der QR-Code führt direkt zu derselben Folge.</p></div></div>';
+    if(c.k==='listen' && w.view==='audio') return '<div class="media-panel"><h2>Kurzvisite zum Erlanger Baby-Fall</h2><p>Hören Sie die Folge und kehren Sie danach hierher zurück.</p><a href="'+esc(refs[c.audio][1])+'" target="_blank" rel="noopener noreferrer" data-open-source="'+esc(c.audio)+'">Kurzvisite öffnen</a></div>';
     return reads(c.read);
   }
   function note(type,text,caption) {
@@ -654,14 +671,13 @@ a,button,summary{overflow-wrap:anywhere}
   }
   function actions(c,w) {
     let right='';
-    if(c.audio&&w.part===0&&!w.media) {
-      right=btn('media-heard',c.k==='lesson'?'Angehört · Zur Markierung':'Angehört · Zu den Fragen','primary',unlocked(opened(w,c.audio)||done()));
+    if(audioChoice(c,w)) {
+      const destination=c.k==='lesson'?'Zur Markierung':'Zu den Fragen';
+      right=btn('media-continue',destination,'primary',unlocked(audioReady(c,w)));
     }else if(c.requires&&c.k==='lesson'&&w.part===0&&!w.sourceTask){
       right=btn('source-task','Zur Markierung','primary',unlocked(sourceReady(c,w)));
     }else if(c.requires&&c.k==='read'&&w.view!=='question'){
       right=btn('show-task','Zu den Fragen','primary',unlocked(sourceReady(c,w)));
-    }else if(c.k==='audio'&&w.part===0) {
-      if(w.media)right=btn('lesson-next','Zu den Fragen','primary');
     }else if(c.k==='lesson'&&w.part===0){
       if(!c.audio||w.media){
         right=w.markPassed||done()?btn('lesson-next','Zu den Fragen','primary') :
@@ -670,7 +686,7 @@ a,button,summary{overflow-wrap:anywhere}
     }else if(hasQuiz(c)&&w.part<c.quiz.length&&(w.passedParts.includes(w.part)||done())){
       right=btn('lesson-next','Nächste Frage','primary');
     }else if(hearing(c)&&w.view!=='question'){
-      if(c.k==='read'||w.view==='read'||w.view==='audio')right=(c.k==='listen'?btn(w.view==='audio'?'read-mode':'audio-mode',w.view==='audio'?'Zur Lesespur':'Zum Podcast','quiet'):'')+btn('show-task','Aufgabe öffnen →','primary');
+      if(c.k==='read'||w.view==='read'||w.view==='audio')right=(c.k==='listen'?btn(w.view==='audio'?'read-mode':'audio-mode',w.view==='audio'?'Zur Lesespur':'Zum Podcast','quiet'):'')+btn('show-task','Aufgabe öffnen →','primary',unlocked(w.view!=='audio'||opened(w,c.audio)||done()));
     }else if(c.k==='branch'&&w.part===0&&(done()||w.passedParts.includes(0))) {
       right=btn('branch-next','Weiter im Fall →','primary');
     }else if(done()){
@@ -738,19 +754,19 @@ a,button,summary{overflow-wrap:anywhere}
   }
   function retreat() {
     const c=current();
-    if(!c)return navigate(-1);
+    if(!c)return navigate(state.at===deck.length?deck.length-1:-1);
     const w=rec(c);
     if((c.k==='branch'||hasQuiz(c))&&w.part>0) {
       w.part--;
+    }else if(c.k==='lesson'&&c.audio&&w.media) {
+      w.media=null;
     }else if(c.requires&&c.k==='lesson'&&w.sourceTask) {
       w.sourceTask=false;
-    }else if(hasQuiz(c)&&c.audio&&w.media) {
-      w.media=null;
     }else if(hearing(c)&&w.view==='question') {
       w.view=c.k==='listen'?w.material:'intro';
     }else if(c.k==='listen'&&(w.view==='read'||w.view==='audio')) {
       w.view='intro';
-    }else return navigate(deck.indexOf(chapterNeighbor(c,-1)));
+    }else return navigate(state.at-1);
     update();
   }
   function pickAnswer(c,i) {
@@ -800,22 +816,48 @@ a,button,summary{overflow-wrap:anywhere}
     const c=current();
     const id=link?.dataset.openSource;
     if(!id||!c)return;
-    const audioSource=c.audio&&(id===c.audio||id===audioTextKey);
+    const audioSource=c.audio&&(id===c.audio||id===audioTextKey||id===audioTranscriptKey);
     if(!audioSource&&!c.requires?.includes(id))return;
     const w=rec(c);
     w.opened??=[];
     if(w.opened.includes(id))return;
     w.opened.push(id);
     persist();
-    setTimeout(()=>{
-      if(current()!==c||state.records[c.id]!==w)return;
-      const provider=link.dataset.platform;
-      const selector=provider?'[data-platform="'+provider+'"][data-open-source="'+id+'"]':'[data-open-source="'+id+'"]';
-      render(id===audioTextKey?'[data-action="media-text"]':selector);
-    },0);
+    for(const source of main.querySelectorAll('a[data-open-source]')){
+      if(source.dataset.openSource!==id||id===c.audio||source.nextElementSibling?.classList.contains('source-tick'))continue;
+      const tick=document.createElement('span');
+      tick.className='source-tick';
+      tick.textContent=' ✓ Geöffnet';
+      source.after(tick);
+    }
+    const count=main.querySelector('[data-source-count]');
+    if(count)count.textContent=c.requires.filter(key=>opened(w,key)).length+' von '+c.requires.length+' geöffnet';
+    if(id===c.audio){
+      const status=main.querySelector('[data-audio-status]');
+      if(status)status.textContent='✓ Podcastlink geöffnet.';
+    }
+    if(audioSource){
+      const advance=main.querySelector('[data-action="'+(c.k==='listen'?'show-task':'media-continue')+'"]');
+      if(advance)advance.disabled=false;
+    }else if(sourceReady(c,w)){
+      const advance=main.querySelector('[data-action="show-task"],[data-action="source-task"]');
+      if(advance)advance.disabled=false;
+    }
   }
   document.addEventListener('click',rememberSource);
   document.addEventListener('auxclick',rememberSource);
+  function markInlineReading(event) {
+    const details=event.target;
+    const card=current();
+    if(!details.matches?.('details[data-audio-reading]')||!details.isConnected||!details.open||!card?.audio)return;
+    const w=rec(card);
+    if(opened(w,inlineAudioReadingKey))return;
+    (w.opened??=[]).push(inlineAudioReadingKey);
+    persist();
+    const nextStep=main.querySelector('[data-action="media-continue"]');
+    if(nextStep)nextStep.disabled=false;
+  }
+  document.addEventListener('toggle',markInlineReading,true);
   document.addEventListener('click',event=>{
     const b=event.target.closest('button[data-action], span.mark-text[data-action]');
     if(!b||b.disabled)return;
@@ -824,6 +866,7 @@ a,button,summary{overflow-wrap:anywhere}
     if(op==='close-menu')return closeMenu();
     if(op==='certificate'&&certificateAvailable())return transmit('certificate','');
     if(op==='reset-all'){closeMenu();return resetAll();}
+    if(op==='exit'){closeMenu(false);return transmit('exit','');}
     if(op==='home')return navigate(-1);
     if(op==='chapter')return openChapter(Number(b.dataset.chapter));
     if(op==='back'&&state.at>=0)return retreat();
@@ -842,13 +885,10 @@ a,button,summary{overflow-wrap:anywhere}
         }
         break;
 
-      case 'media-heard':
-      case 'media-text': {
-        if(!c.audio)break;
-        const heard=op==='media-heard';
-        if(!(heard?(opened(w,c.audio)||done()):opened(w,audioTextKey)))break;
-        w.media=heard?'heard':'text';
-        if(heard&&c.k==='audio')w.part=1;
+      case 'media-continue': {
+        if(!audioChoice(c,w)||!audioReady(c,w))break;
+        w.media=opened(w,c.audio)||w.media==='heard'?'heard':'text';
+        if(c.k==='audio')w.part=1;
         update();
         break;
       }
@@ -888,6 +928,7 @@ a,button,summary{overflow-wrap:anywhere}
         update();
         break;
       case 'show-task':
+        if(w.view==='audio'&&!opened(w,c.audio)&&!done())break;
         w.view='question';
         update();
         break;

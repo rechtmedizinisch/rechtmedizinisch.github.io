@@ -1,4 +1,4 @@
-import {catalogOverall} from './progress-overview.mjs?v=20261126-web-release';
+import {catalogOverall} from './progress-overview.mjs?v=20261126-parcours-quellen';
 import {resumeHref} from './learning-resume.mjs?v=20261111-guided-learning';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!=null)n.textContent=text;if(cls)n.className=cls;return n;};
 export function homeLearning(main,catalog,store){
@@ -22,7 +22,7 @@ export function homeLearning(main,catalog,store){
   const groups=[
     {label:'01 · Lernen',title:'Ihren Lernweg wählen',tone:'teal',icon:'📚',items:[['Alle 15 Kurse','#courses','Von Grundlagen bis Capstone'],['Lernfolien & Themenbibliothek','#slides',`${counts.baseSlides} Kursfolien · ${counts.additionalMaterials} Themen, Fälle & Schemata`],['Nach Rechtsgebieten lernen','#material/special%3Aspecial-rechtsgebiete','Grundlagen, Schemata und Fälle gemeinsam finden'],['Üben & Wissen prüfen','#practice','Fragen und Lernrunden']]},
     {label:'02 · Nachschlagen',title:'Wissen schnell finden',tone:'blue',icon:'🔎',items:[['Medizinrecht durchsuchen','#search','Begriffe, Fälle und Quellen'],['Begriffe & Gesundheitssystem','#library/glossary','Verständlich erklärt'],['Schaubilder','#library/diagrams','Zusammenhänge sehen']]},
-    {label:'03 · Praxis',title:'Recht im Berufsalltag',tone:'gold',icon:'🩺',items:[['Special: PJ & Berufsstart','#library/career','Sicher in die Praxis starten'],['Special: Rettungsmedizin','#material/special%3Aspecial-rettungsmedizin','Recht im Einsatz · sieben Kapitel'],['Special: MTR','#material/atlas%3Aspecial-mtr-praxis','Praxisfragen aus der Radiologie · mit Parcours','assets/mtr-scanner.svg'],['Andere Gesundheitsberufe','#library/professions','Wissen für das ganze Team']]}
+    {label:'03 · Praxis',title:'Recht im Berufsalltag',tone:'gold',icon:'🩺',items:[['Special: PJ & Berufsstart','#library/career','Verantwortung im PJ, erster Arbeitsvertrag und Weiterbildung'],['Special: Rettungsmedizin','#material/special%3Aspecial-rettungsmedizin','Patientenwille, Befugnisse und Verantwortung im Einsatz'],['Special: MTR','#material/atlas%3Aspecial-mtr-praxis','Praxisfragen aus der Radiologie · mit Parcours','assets/mtr-scanner.svg'],['Andere Gesundheitsberufe','#library/professions','Wissen für das ganze Team']]}
   ];
   const section=el('section',null,'home-learning-menu');section.append(el('p','WAS MÖCHTEN SIE HEUTE TUN?','section-number'),el('h2','Ihr Lernangebot'));
   const grid=el('div',null,'home-shortcut-grid');

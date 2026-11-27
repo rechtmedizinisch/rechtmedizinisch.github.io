@@ -40,6 +40,9 @@ function readLocal(owner) {
   try { return localStorage.getItem(storageKey(owner)); }
   catch { return null; }
 }
+export function localParcoursProgress(owner) {
+  return parcoursProgress(owner ? readLocal(owner) : null);
+}
 async function accountProgress(auth, user) {
   const saved = readLocal(user.id);
   const result = await auth.parcoursCertificate(user.id, parcoursCompletionClaim(saved));
@@ -78,7 +81,7 @@ export function parcoursProgressCard(user, auth, grants) {
     entry.append(node('p', 'Der Parcours und das Zertifikat gehören zum Premiumzugang.'));
     return card;
   }
-  const progress = parcoursProgress(readLocal(user.id));
+  const progress = localParcoursProgress(user.id);
   const meter = node('progress');
   meter.max = progress.total;
   meter.value = progress.completed;
@@ -134,7 +137,7 @@ export function closeMTR() {
 }
 export async function renderMTR(main, auth, grants, user, isCurrent) {
   const owner = user?.id;
-  main.append(link('Zurück zu Üben', '#practice'), node('h1', 'Parcours für Recht und Ethik'));
+  main.append(link('Parcours verlassen', '#practice'), node('h1', 'Parcours für Recht und Ethik'));
   if (!owner || !auth || !hasAccess(scope, grants)) {
     main.append(node('p', 'Der vollständige Parcours ist mit Premium verfügbar. Die Grundlagen zu Berufszuständigkeit, Einwilligung und Strahlenschutz sind frei zugänglich.', 'notice'));
     main.append(link(owner ? 'Zugänge ansehen' : 'Anmelden & Code einlösen', owner ? '#shop' : '#account'), link('MTR-Grundlagen lesen', mtrBasics));
@@ -143,11 +146,13 @@ export async function renderMTR(main, auth, grants, user, isCurrent) {
   const message = node('p', 'Parcours wird geladen …', 'status');
   const sameSession = activeSession(auth);
   message.role = 'status';
+  message.hidden = true;
   main.append(message);
+  const loading = setTimeout(() => { if (isCurrent()) message.hidden = false; }, 250);
   try {
     const [payload, template, registered] = await Promise.all([
       auth.getCourse(contentId),
-      fetch('./mtr-engine.html?v=20261126-parcours-touch').then(response => {
+      fetch('./mtr-engine.html?v=20261126-parcours-navigation').then(response => {
         if (!response.ok) throw Error();
         return response.text();
       }),
@@ -181,7 +186,9 @@ export async function renderMTR(main, auth, grants, user, isCurrent) {
           event.data?.channel !== 'rm-mtr') return;
       const {action,value} = event.data;
       if (typeof value !== 'string') return;
-      if (action === 'escape-focus' && value === '') {
+      if (action === 'exit' && value === '') {
+        location.hash = '#practice';
+      } else if (action === 'escape-focus' && value === '') {
         document.dispatchEvent(new Event('rm-parcours-escape'));
       } else if (action === 'save' && value.length <= 100_000) {
         try {
@@ -219,6 +226,11 @@ export async function renderMTR(main, auth, grants, user, isCurrent) {
     message.hidden = true;
     main.append(player);
   } catch {
-    if (isCurrent()) message.textContent = 'Der Parcours ist gerade nicht erreichbar. Bitte laden Sie die Seite erneut oder prüfen Sie Ihren Zugang.';
+    if (isCurrent()) {
+      message.hidden = false;
+      message.textContent = 'Der Parcours ist gerade nicht erreichbar. Bitte laden Sie die Seite erneut oder prüfen Sie Ihren Zugang.';
+    }
+  } finally {
+    clearTimeout(loading);
   }
 }
