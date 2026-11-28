@@ -305,6 +305,7 @@ a,button,summary{overflow-wrap:anywhere}
         saved.records && saved.first && saved.history) {
       const done=[...new Set(saved.done)];
       state={...saved,at:-1,done,finishedAt:done.length===deck.length?saved.finishedAt:null};
+      state.history.firstCompletedAt??=state.history.certificateStats?.completedAt??state.history.lastCompletedAt??state.finishedAt;
     }
   } catch { storageOK=false; }
   document.addEventListener('click', event => {
@@ -349,7 +350,12 @@ a,button,summary{overflow-wrap:anywhere}
     if(!done())state.done.push(current().id);
     if(state.done.length===deck.length&&!state.finishedAt) {
       state.finishedAt=new Date().toISOString();
+      state.history.firstCompletedAt??=state.finishedAt;
       state.history.lastCompletedAt=state.finishedAt;
+      const stats=certificateStats(state.finishedAt,true);
+      state.history.certificateStats??=stats;
+      state.history.latestCertificateStats=stats;
+      recordAttempt('completed',state.finishedAt);
     }
   }
   function track(c,group,step,pass,review=false) {
@@ -369,13 +375,42 @@ a,button,summary{overflow-wrap:anywhere}
     return ['Fragen: '+score('choice'),'Zuordnungen: '+score('pair'),'Markierungen und Reihenfolgen: '+score('practice')];
   }
   function score(group) {const x=tally(group);return x.pass+' von '+x.total+' beim ersten Versuch';}
+  function certificateStats(completedAt,capturedAtCompletion) {
+    return {
+      completedAt,capturedAtCompletion,
+      first:{choice:tally('choice'),pair:tally('pair'),practice:tally('practice')},
+      wrong:state.wrong,reviewWrong:state.reviewWrong,totalWrong:state.history.wrong,
+      single:state.history.single,all:state.history.all,migrated:state.migrated??0
+    };
+  }
+  function recordAttempt(kind,at=new Date().toISOString()) {
+    const entries=Object.values(state.first);
+    const history=state.history.attempts??=[];
+    history.push({
+      kind,at,run:state.history.all+1,done:state.done.length,
+      pass:entries.filter(entry=>entry.pass).length,total:entries.length,
+      wrong:state.wrong,reviewWrong:state.reviewWrong
+    });
+    // Bound storage while retaining the complete cumulative counters in history.
+    if(history.length>120){
+      history.shift();
+      state.history.omittedAttempts=(state.history.omittedAttempts??0)+1;
+    }
+  }
   function rememberCompletion() {
-    if (new Set(state.done).size===deck.length && state.finishedAt) state.history.lastCompletedAt=state.finishedAt;
+    if (new Set(state.done).size!==deck.length || !state.finishedAt)return;
+    state.history.lastCompletedAt=state.finishedAt;
+    if(!state.history.certificateStats){
+      state.history.certificateStats=certificateStats(state.finishedAt,false);
+      state.history.latestCertificateStats=state.history.certificateStats;
+      recordAttempt('completed',state.finishedAt);
+    }
   }
   async function resetCard() {
     const c=current();
     if(!c||!await confirmReset('Diese Aufgabe zurücksetzen? Der übrige Fortschritt und die bisherige Statistik bleiben erhalten.'))return;
     rememberCompletion();
+    recordAttempt('single');
     state.done=state.done.filter(id=>id!==c.id);
     delete state.records[c.id];
     state.finishedAt=null;
@@ -389,6 +424,7 @@ a,button,summary{overflow-wrap:anywhere}
   async function resetAll() {
     if(!await confirmReset('Den gesamten Parcours neu starten? Damit wird der Bearbeitungsstand dieses Durchlaufs zurückgesetzt.'))return;
     rememberCompletion();
+    recordAttempt('restart');
     state={...freshRun(),history:{...state.history,all:state.history.all+1}};
     navigate(-1);
   }

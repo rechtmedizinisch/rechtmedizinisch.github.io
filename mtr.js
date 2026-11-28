@@ -22,14 +22,47 @@ function completionDate(value) {
   const date = new Date(value);
   return Number.isFinite(+date) && date.toISOString() === value ? date : null;
 }
+function parseRun(saved) {
+  try { return typeof saved === 'string' && saved.length <= 100_000 ? JSON.parse(saved) : null; }
+  catch { return null; }
+}
 export function parcoursProgress(saved) {
-  let record;
-  try { if (typeof saved === 'string' && saved.length <= 100_000) record = JSON.parse(saved); }
-  catch {}
+  const record = parseRun(saved);
   const done = Array.isArray(record?.done) ? record.done : [];
   const completed = new Set(done.filter(id => taskIds.has(id))).size;
   const active = completed === taskIds.size ? completionDate(record.finishedAt) : null;
-  return {completed, total:taskIds.size, certificateDate:active ?? (Array.isArray(record?.done) ? completionDate(record.history?.lastCompletedAt) : null)};
+  const history = Array.isArray(record?.done) ? record.history : null;
+  return {completed, total:taskIds.size, certificateDate:completionDate(history?.firstCompletedAt) ??
+    completionDate(history?.certificateStats?.completedAt) ?? active ?? completionDate(history?.lastCompletedAt)};
+}
+
+export function parcoursCertificateStats(saved, date) {
+  if (!date) return null;
+  const run = parseRun(saved);
+  const history = run?.history;
+  if (history?.certificateStats && [history.firstCompletedAt,history.certificateStats.completedAt].includes(date.toISOString())) {
+    const latest = history.latestCertificateStats;
+    const stats = completionDate(latest?.completedAt) ? latest : history.certificateStats;
+    return {
+      ...stats, snapshot:stats.capturedAtCompletion !== false,
+      totalWrong:history.wrong??stats.totalWrong,single:history.single??stats.single,all:history.all??stats.all,
+      attempts:Array.isArray(history.attempts)?history.attempts.slice(-120):[], omittedAttempts:history.omittedAttempts??0
+    };
+  }
+  // An older certificate can use the active run only while its completion still matches.
+  if (run?.finishedAt !== date.toISOString() || parcoursProgress(saved).completed !== taskIds.size ||
+      !run.first || !run.history) return null;
+  const first = {choice:{pass:0,total:0},pair:{pass:0,total:0},practice:{pass:0,total:0}};
+  for (const entry of Object.values(run.first)) {
+    if (!Object.hasOwn(first, entry?.group) || typeof entry.pass !== 'boolean') continue;
+    first[entry.group].total++;
+    if (entry.pass) first[entry.group].pass++;
+  }
+  return {
+    completedAt:run.finishedAt,first, wrong:run.wrong, reviewWrong:run.reviewWrong, totalWrong:history.wrong,
+    single:history.single, all:history.all, migrated:run.migrated??0, snapshot:false,
+    attempts:Array.isArray(history.attempts)?history.attempts.slice(-120):[], omittedAttempts:history.omittedAttempts??0
+  };
 }
 
 export function parcoursCompletionClaim(saved) {
@@ -46,12 +79,13 @@ export function localParcoursProgress(owner) {
 async function accountProgress(auth, user) {
   const saved = readLocal(user.id);
   const result = await auth.parcoursCertificate(user.id, parcoursCompletionClaim(saved));
-  return {...parcoursProgress(saved), certificateDate: completionDate(result?.completed_at)};
+  const certificateDate = completionDate(result?.completed_at);
+  return {...parcoursProgress(saved), certificateDate, stats:parcoursCertificateStats(saved, certificateDate)};
 }
 async function downloadAccountCertificate(user, progress, isCurrent) {
   const name = parcoursAccountName(user);
   if (!name) throw Error('In Ihrem Konto ist kein Name und keine E-Mail-Adresse hinterlegt.');
-  const {downloadParcoursCertificate} = await import('./certificate.mjs?v=20261126-parcours-account');
+  const {downloadParcoursCertificate} = await import('./certificate.mjs?v=20261128-parcours-statistics');
   return downloadParcoursCertificate(name, progress, isCurrent);
 }
 function activeSession(auth) {
@@ -152,7 +186,7 @@ export async function renderMTR(main, auth, grants, user, isCurrent) {
   try {
     const [payload, template, registered] = await Promise.all([
       auth.getCourse(contentId),
-      fetch('./mtr-engine.html?v=20261126-parcours-navigation').then(response => {
+      fetch('./mtr-engine.html?v=20261128-parcours-statistics').then(response => {
         if (!response.ok) throw Error();
         return response.text();
       }),
@@ -202,9 +236,9 @@ export async function renderMTR(main, auth, grants, user, isCurrent) {
       } else if (action === 'certificate' && value === '' && !certificatePending) {
         certificatePending = true;
         try {
-          const {certificateDate} = await accountProgress(auth, user);
+          const progress = await accountProgress(auth, user);
           if (!isActive()) return;
-          await downloadAccountCertificate(user, {total: taskIds.size, certificateDate}, isActive);
+          await downloadAccountCertificate(user, progress, isActive);
         } catch (error) {
           if (!isActive()) return;
           message.hidden = false;
